@@ -8,6 +8,7 @@ export default function App() {
       <MapView 
         provider={PROVIDER_GOOGLE} // If you want to use Google Maps
         style={styles.map}
+        mapType="standard" // Do not use satellite view
         region={{
           latitude: 42.9634,  // Latitude for Grand Rapids
           longitude: -85.6681, // Longitude for Grand Rapids
