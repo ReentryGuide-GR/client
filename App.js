@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.secondaryButton} >
+        <Text style={styles.buttonText}>Find Resources</Text>
+      </TouchableOpacity>
       <MapView 
         provider={PROVIDER_GOOGLE} // If you want to use Google Maps
         style={styles.map}
@@ -28,5 +31,26 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  secondaryButton: {
+    alignItems: 'center',
+    backgroundColor: '#222',
+    borderRadius: 50,
+    width: '85%',
+    padding: 18,
+    marginVertical: 20,
+    position: 'absolute',
+    top: 0,
+    shadowColor: '#A59D95',
+    shadowOffset: {width: 0, height: 8},
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 7,
+    zIndex: 11,
+  },
+  buttonText: {
+    fontWeight: '900',
+    fontSize: 20,
+    color: '#fff',
   },
 });
