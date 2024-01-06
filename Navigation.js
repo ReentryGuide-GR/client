@@ -4,6 +4,7 @@ import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainPage from "./App";
+import Menu from "./Menu";
 
 const Stack = createStackNavigator();
 
