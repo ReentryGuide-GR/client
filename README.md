@@ -21,10 +21,13 @@ SupportPath is a mobile application designed to assist former prisoners with the
    ```sh
    git clone git@github.com:Living-Water-Developers/CPI-map.git
 2. Install NPM packages:
+    ```sh
     npm install
     or 
+    ```sh
     yarn
 3. Running the App
+    ```sh
     npx expo start
 
 ### License
