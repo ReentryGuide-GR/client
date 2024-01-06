@@ -1,15 +1,23 @@
-//App.js
-import React from 'react';
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+//Map.js
+import React, { useState } from 'react';
+import { Text, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import Menu from './Menu';
 
-export default function App() {
+
+export default function Map() {
   const navigation = useNavigation()
+
+  const [isMenuVisible, setMenuVisibility] = useState(false);
+  const toggleMenu = () => {
+    setMenuVisibility(!isMenuVisible);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Menu isVisible={isMenuVisible} onClose={toggleMenu} />
       <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.navigate('Menu')}>
         <Text style={styles.buttonText}>Find Resources</Text>
       </TouchableOpacity>
