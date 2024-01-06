@@ -18,7 +18,7 @@ export default function Map() {
   return (
     <SafeAreaView style={styles.container}>
       <Menu isVisible={isMenuVisible} onClose={toggleMenu} />
-      <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.navigate('Menu')}>
+      <TouchableOpacity style={styles.secondaryButton} onPress={toggleMenu}>
         <Text style={styles.buttonText}>Find Resources</Text>
       </TouchableOpacity>
       <View
