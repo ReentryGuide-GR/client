@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
   primaryButton: {
     alignItems: 'center',
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
     padding: 18,
     marginVertical: 20,
     position: 'absolute',
-    top: 30,
+    top: 10,
     shadowColor: '#A59D95',
     shadowOffset: {width: 0, height: 8},
     shadowOpacity: 0.2,
