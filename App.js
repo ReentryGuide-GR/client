@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default function App() {
+  // const navigation = useNavigation()
+
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.secondaryButton} >
+      <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.navigate('Menu')}>
         <Text style={styles.buttonText}>Find Resources</Text>
       </TouchableOpacity>
       <MapView 
