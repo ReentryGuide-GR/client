@@ -15,7 +15,7 @@ export default function App() {
       </TouchableOpacity>
       <View
         style={{
-          borderRadius: 30,
+          borderRadius: 20,
           overflow: "hidden",
           height: '100%',
           width: '100%',
