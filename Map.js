@@ -13,17 +13,29 @@ export default function App() {
       <TouchableOpacity style={styles.secondaryButton} onPress={() => navigation.navigate('Menu')}>
         <Text style={styles.buttonText}>Find Resources</Text>
       </TouchableOpacity>
-      <MapView 
-        provider={PROVIDER_GOOGLE} // If you want to use Google Maps
-        style={styles.map}
-        mapType="standard" // Do not use satellite view
-        region={{
-          latitude: 42.9634,  // Latitude for Grand Rapids
-          longitude: -85.6681, // Longitude for Grand Rapids
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+      <View
+        style={{
+          borderRadius: 30,
+          overflow: "hidden",
+          height: '100%',
+          width: '100%',
+          flex: 1,
+          backgroundColor: '#ffaaaa'
         }}
-      />
+      > 
+        <MapView 
+          provider={PROVIDER_GOOGLE} // If you want to use Google Maps
+          style={styles.map}
+          mapType="standard" // Do not use satellite view
+          region={{
+            latitude: 42.9634,  // Latitude for Grand Rapids
+            longitude: -85.6681, // Longitude for Grand Rapids
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      </View>
+
       <TouchableOpacity style={styles.primaryButton} >
         <Text style={styles.buttonText}>Call Navigator</Text>
       </TouchableOpacity>
@@ -36,11 +48,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    overflow: 'hidden', 
+    borderRadius: 20,
+
   },
   map: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
+    ...StyleSheet.absoluteFillObject
   },
   primaryButton: {
     alignItems: 'center',
