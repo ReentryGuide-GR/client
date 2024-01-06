@@ -3,7 +3,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainPage from './MainPage'; // Assuming MainPage is your App.js
+import MainPage from './Map'; // Assuming MainPage is your App.js
 import Menu from './Menu';
 
 const Stack = createStackNavigator();
