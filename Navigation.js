@@ -10,11 +10,11 @@ const Stack = createStackNavigator();
 function Navigation() {
   return (
     <NavigationContainer>
-      <StatusBar
+      {/* <StatusBar
         backgroundColor="#EDE7E7"
         barStyle="dark-content"
         color="#000"
-     />
+     /> */}
       <Stack.Navigator initialRouteName="MainPage" component={MainPage} screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="Signup" component={SignupScreen} /> */}
       </Stack.Navigator>
