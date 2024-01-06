@@ -28,7 +28,7 @@ export default Menu;
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white', 
-    padding: 30, 
+    padding: 0, 
     justifyContent: 'center', 
     alignItems: 'center',
     width: '100%',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#fbfbfb',
       borderRadius: 50,
-      width: '85%',
+      width: '80%',
       padding: 18,
       marginBottom: 10,
       marginTop: 10,
