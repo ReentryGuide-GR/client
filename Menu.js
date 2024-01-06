@@ -11,7 +11,7 @@ return (
       visible={isVisible}
       onRequestClose={onClose}
     >
-      <View style={styles.outerContainer}>
+
         <View style={styles.mainContainer}>
         <Text style={styles.description}>Profile Page</Text>
           <Text style={styles.textContainer}>If you click the button labeled posted you will see all the items you have posted on the app.</Text>
@@ -22,7 +22,7 @@ return (
             <Text style={styles.primaryButtonText}>Close</Text>
           </TouchableOpacity>
         </View>
-      </View>
+
     </Modal>
   );
 };
@@ -30,22 +30,13 @@ return (
 export default Menu;
 
 const styles = StyleSheet.create({
-  outerContainer: {
-    marginHorizontal: 20, 
-    flex: 1, 
-    justifyContent: 'center'
-  },
   mainContainer: {
     backgroundColor: 'white', 
     padding: 30, 
-    borderRadius: 20, 
     justifyContent: 'center', 
     alignItems: 'center',
-    shadowColor: '#A59D95',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 24,
-    elevation: 7, //  drop-shadow(0px 8px 24px rgba(165, 157, 149, 0.20)),
+    width: '100%',
+    height: '100%',
   },
   textContainer: {
     fontSize: 15, 
