@@ -13,13 +13,9 @@ return (
     >
 
         <View style={styles.mainContainer}>
-        <Text style={styles.description}>Profile Page</Text>
-          <Text style={styles.textContainer}>If you click the button labeled posted you will see all the items you have posted on the app.</Text>
-          <Text> </Text>
-          <Text style={styles.textContainer}>If you click the button labeled archived you will see all the items you have not visable on the app.</Text>
-          <Text> </Text>
+        <Text style={styles.title}>What do you need?</Text>
           <TouchableOpacity style={styles.primaryButton} onPress={onClose}>
-            <Text style={styles.primaryButtonText}>Close</Text>
+            <Text style={styles.primaryButtonText}>Return to Map</Text>
           </TouchableOpacity>
         </View>
 
@@ -44,7 +40,7 @@ const styles = StyleSheet.create({
 
   primaryButton: {
       alignItems: 'center',
-      backgroundColor: '#FAF2F2',
+      backgroundColor: '#fbfbfb',
       borderRadius: 50,
       width: '85%',
       padding: 18,
@@ -62,12 +58,11 @@ const styles = StyleSheet.create({
       fontWeight: '900',
       fontSize: 20
     },
-    description: {
-      marginBottom: 8,
+    title: {
+      marginBottom: 18,
       color: '#2F2E41',
-      fontSize: 15,
-      fontWeight: 'bold',
-      marginTop: -3, 
+      fontSize: 35,
+      fontWeight: '900',
   }
 
 });
