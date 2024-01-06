@@ -10,8 +10,8 @@ import Navigation from './Navigation';
  * report and discover lost or found items within the Calvin community.
  * @returns {JSX.Element} - JSX representation of the root App component.
  * 
- * @author: CalvinFinds Team
- * @date: Fall, 2023
+ * @author: Living Water Developers
+ * @date: Jan, 2024
  */
 export default function App() {
   return (<Navigation />);
