@@ -23,9 +23,6 @@ SupportPath is a mobile application designed to assist former prisoners with the
 2. Install NPM packages:
     ```sh
     npm install
-    or 
-    ```sh
-    yarn
 3. Running the App
     ```sh
     npx expo start
