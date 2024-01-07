@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity } from 'react-native';
+import ActionButton from './components/ActionButton';
 // import * as styles from '../../styles/detailsStyles';
 
 const Menu = ({ isVisible, onClose }) => {
@@ -14,9 +15,12 @@ return (
 
         <View style={styles.mainContainer}>
         <Text style={styles.title}>What do you need?</Text>
-          <TouchableOpacity style={styles.primaryButton} onPress={onClose}>
-            <Text style={styles.primaryButtonText}>Return to Map</Text>
-          </TouchableOpacity>
+          <ActionButton
+            title="Return to Map"
+            onPress={onClose}
+            buttonStyle={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+          />
         </View>
 
     </Modal>
@@ -39,18 +43,9 @@ const styles = StyleSheet.create({
   },
 
   primaryButton: {
-      alignItems: 'center',
       backgroundColor: '#fbfbfb',
-      borderRadius: 50,
-      width: '80%',
-      padding: 18,
       marginBottom: 10,
       marginTop: 10,
-      shadowColor: '#A59D95',
-      shadowOffset: { width: 0, height: 8 },
-      shadowOpacity: 0.2,
-      shadowRadius: 24,
-      elevation: 7, //  drop-shadow(0px 8px 24px rgba(165, 157, 149, 0.20)),
     },
   
     primaryButtonText: {
