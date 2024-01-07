@@ -26,7 +26,7 @@ export default function Map() {
       />
       <View
         style={{
-          borderRadius: 20,
+          borderRadius: 24,
           overflow: "hidden",
           height: '100%',
           width: '100%',
