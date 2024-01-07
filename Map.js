@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   primaryButton: {
     backgroundColor: '#A33636',
     position: 'absolute',
-    bottom: 20,
+    bottom: 30,
     zIndex: 11,
   },
   secondaryButton: {
