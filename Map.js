@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Menu from './Menu';
+import ActionButton from './components/ActionButton';
 
 
 export default function Map() {
@@ -18,9 +19,11 @@ export default function Map() {
   return (
     <SafeAreaView style={styles.container}>
       <Menu isVisible={isMenuVisible} onClose={toggleMenu} />
-      <TouchableOpacity style={styles.secondaryButton} onPress={toggleMenu}>
-        <Text style={styles.buttonText}>Find Resources</Text>
-      </TouchableOpacity>
+      <ActionButton
+        title="Find Resources"
+        onPress={toggleMenu}
+        buttonStyle={styles.secondaryButton}
+      />
       <View
         style={{
           borderRadius: 20,
@@ -44,9 +47,11 @@ export default function Map() {
         />
       </View>
 
-      <TouchableOpacity style={styles.primaryButton} >
-        <Text style={styles.buttonText}>Call Navigator</Text>
-      </TouchableOpacity>
+      <ActionButton
+        title="Call Navigator"
+        onPress={() => { /* Your action here */ }}
+        buttonStyle={styles.primaryButton}
+      />
     </SafeAreaView>
   );
 }
@@ -64,40 +69,15 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   primaryButton: {
-    alignItems: 'center',
     backgroundColor: '#A33636',
-    borderRadius: 50,
-    width: '80%',
-    padding: 18,
-    marginVertical: 20,
     position: 'absolute',
     bottom: 10,
-    shadowColor: '#A59D95',
-    shadowOffset: {width: 0, height: 8},
-    shadowOpacity: 0.2,
-    shadowRadius: 24,
-    elevation: 7,
     zIndex: 11,
   },
   secondaryButton: {
-    alignItems: 'center',
     backgroundColor: '#222',
-    borderRadius: 50,
-    width: '85%',
-    padding: 18,
     marginVertical: 20,
     position: 'absolute',
     top: 10,
-    shadowColor: '#A59D95',
-    shadowOffset: {width: 0, height: 8},
-    shadowOpacity: 0.2,
-    shadowRadius: 24,
-    elevation: 7,
-    zIndex: 11,
-  },
-  buttonText: {
-    fontWeight: '700',
-    fontSize: 20,
-    color: '#fff',
   },
 });
