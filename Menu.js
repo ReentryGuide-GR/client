@@ -21,12 +21,14 @@ return (
               <Text style={styles.resourceButtonText}>Food</Text>
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity style={styles.resourceButton}>
             <View style={styles.row}>
               <Image source={require('./assets/clothing.png')} style={styles.icon} />
               <Text style={styles.resourceButtonText}>Clothing</Text>
             </View>
           </TouchableOpacity>
+          
           <ActionButton
             title="Return to Map"
             onPress={onClose}
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     borderRadius: 50,
     width: '80%',
-    padding: 16,
+    padding: 18,
     marginTop: 10,
     marginBottom: 10,
     backgroundColor: '#BFE0FF',
