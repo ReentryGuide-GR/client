@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Modal, TouchableOpacity, Image} from 'react-native';
 import ActionButton from './components/ActionButton';
 // import * as styles from '../../styles/detailsStyles';
 
@@ -22,7 +22,10 @@ return (
             textStyle={styles.primaryButtonText}
           />
           <TouchableOpacity style={styles.resourceButton}>
-            <Text style={styles.resourceButtonText}>Test</Text>
+            <View style={styles.row}>
+              <Image source={require('../../assets/emailIcon.png')} style={styles.inputIconStyle} />
+              <Text style={styles.resourceButtonText}>Test</Text>
+            </View>
           </TouchableOpacity>
         </View>
 
