@@ -21,6 +21,9 @@ return (
             buttonStyle={styles.primaryButton}
             textStyle={styles.primaryButtonText}
           />
+          <TouchableOpacity style={styles.resourceButton}>
+            <Text style={styles.resourceButtonText}>Test</Text>
+          </TouchableOpacity>
         </View>
 
     </Modal>
@@ -58,6 +61,24 @@ const styles = StyleSheet.create({
       color: '#2F2E41',
       fontSize: 35,
       fontWeight: '900',
-  }
+    },
+    resourceButton: {
+      alignItems: 'center',
+      borderRadius: 50,
+      width: '80%',
+      padding: 16,
+      backgroundColor: '#BFE0FF',
+      shadowColor: '#A59D95',
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.2,
+      shadowRadius: 24,
+      elevation: 7,
+      zIndex: 11,
+    },
+    resourceButtonText: {
+      fontWeight: '700',
+      fontSize: 20,
+      color: '#000',
+    },
 
 });
