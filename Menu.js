@@ -26,6 +26,11 @@ return (
             title="Clothing"
             onPress={onClose}
           />
+          <ResourceButton
+            imageSource={require('./assets/drop.png')}
+            title="Hygiene"
+            onPress={onClose}
+          />
           
           <ActionButton
             title="Return to Map"

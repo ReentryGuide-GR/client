@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     borderRadius: 50,
     width: '80%',
-    padding: 18,
+    padding: 14,
     marginTop: 10,
     marginBottom: 10,
     backgroundColor: '#BFE0FF',
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 8,
     width: 45,
-    height: 35,
+    height: 45,
+    resizeMode: 'contain'
   },
   resourceButtonText: {
     fontWeight: '700',
