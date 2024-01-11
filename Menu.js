@@ -31,13 +31,33 @@ return (
             title="Hygiene"
             onPress={onClose}
           />
+          <ResourceButton
+            imageSource={require('./assets/med.png')}
+            title="Healthcare"
+            onPress={onClose}
+          />
+
+          <ActionButton
+            title="More..."
+            onPress={onClose}
+            buttonStyle={styles.secondaryButton}
+            textStyle={styles.secondaryButtonText}
+          />
           
           <ActionButton
             title="Return to Map"
             onPress={onClose}
+            buttonStyle={styles.tertiaryButton}
+            textStyle={styles.tertiaryButtonText}
+          />
+
+          <ActionButton
+            title="Call Navigator"
+            onPress={onClose}
             buttonStyle={styles.primaryButton}
             textStyle={styles.primaryButtonText}
           />
+
         </View>
 
     </Modal>
@@ -58,19 +78,32 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
-
   primaryButton: {
-    backgroundColor: '#fbfbfb',
+    backgroundColor: '#A33636',
+    marginTop: 10,
     marginBottom: 10,
+  },
+
+  secondaryButton: {
+    backgroundColor: '#BFE0FF',
     marginTop: 10,
     marginBottom: 10,
   },
   
-  primaryButtonText: {
+  secondaryButtonText: {
     color: '#342F2F',
-    fontWeight: '900',
-    fontSize: 20,
   },
+
+  tertiaryButton: {
+    backgroundColor: '#fbfbfb',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  
+  tertiaryButtonText: {
+    color: '#342F2F',
+  },
+
   title: {
     marginBottom: 18,
     color: '#2F2E41',
