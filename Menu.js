@@ -22,7 +22,7 @@ return (
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.resourceButton}>
+          <TouchableOpacity style={styles.resourceButton} onPress={onClose}>
             <View style={styles.row}>
               <Image source={require('./assets/clothing.png')} style={styles.icon} />
               <Text style={styles.resourceButtonText}>Clothing</Text>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: '#342F2F',
     fontWeight: '900',
-    fontSize: 20
+    fontSize: 20,
   },
   title: {
     marginBottom: 18,
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 20,
     color: '#000',
+    marginLeft: 10,
   },
 
 });
