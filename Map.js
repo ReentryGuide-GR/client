@@ -1,17 +1,36 @@
 //Map.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Menu from './Menu';
 import ActionButton from './components/ActionButton';
-
+import * as Location from 'expo-location';
 
 export default function Map() {
   const navigation = useNavigation()
-
   const [isMenuVisible, setMenuVisibility] = useState(false);
+  const [region, setRegion] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.error('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setRegion({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    })();
+  }, []);
+
   const toggleMenu = () => {
     setMenuVisibility(!isMenuVisible);
   };
@@ -41,12 +60,7 @@ export default function Map() {
           mapType="standard" // Do not use satellite view
           userLocationUpdateInterval={1000}  // Update every 1 seconds
           userLocationPriority="high"  
-          region={{
-            latitude: 42.9634,  // Latitude for Grand Rapids
-            longitude: -85.6681, // Longitude for Grand Rapids
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
+          region={region}
         />
       </View>
 
