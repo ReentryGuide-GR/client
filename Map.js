@@ -39,6 +39,8 @@ export default function Map() {
           style={styles.map}
           showsUserLocation={true}
           mapType="standard" // Do not use satellite view
+          userLocationUpdateInterval={1000}  // Update every 1 seconds
+          userLocationPriority="high"  
           region={{
             latitude: 42.9634,  // Latitude for Grand Rapids
             longitude: -85.6681, // Longitude for Grand Rapids
