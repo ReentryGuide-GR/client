@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   resourceButtonText: {
-    fontWeight: '700',
+    fontWeight: '600',
+    letterSpacing: 0.3,
     fontSize: 20,
     color: '#000',
     marginLeft: 10,
