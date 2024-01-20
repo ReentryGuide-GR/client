@@ -37,6 +37,7 @@ export default function Map() {
         <MapView 
           provider={PROVIDER_GOOGLE} // If you want to use Google Maps
           style={styles.map}
+          showsUserLocation={true}
           mapType="standard" // Do not use satellite view
           region={{
             latitude: 42.9634,  // Latitude for Grand Rapids
