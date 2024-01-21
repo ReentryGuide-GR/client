@@ -58,10 +58,12 @@ const Map = () => {
           provider={PROVIDER_GOOGLE}
           style={styles.map}
           showsUserLocation={true}
+          showsMyLocationButton={false}
           mapType="standard"
           userLocationUpdateInterval={1000}
           userLocationPriority="high"
           region={region}
+
         />
         <MyLocationButton onMyLocation={() => {
           if (region && mapRef.current) {
