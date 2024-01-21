@@ -1,15 +1,15 @@
-//Map.js
-import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, TouchableOpacity, View} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+
+import { Text, StyleSheet, TouchableOpacity, View, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import * as Location from 'expo-location';
 import Menu from './Menu';
 import ActionButton from './components/ActionButton';
-import * as Location from 'expo-location';
 
-export default function Map() {
-  const navigation = useNavigation()
+const Map = () => {
+  const navigation = useNavigation();
+  const mapRef = useRef(null);
   const [isMenuVisible, setMenuVisibility] = useState(false);
   const [region, setRegion] = useState(null);
 
@@ -35,6 +35,15 @@ export default function Map() {
     setMenuVisibility(!isMenuVisible);
   };
 
+  const MyLocationButton = ({ onMyLocation }) => {
+    return (
+      <TouchableOpacity onPress={onMyLocation} style={styles.myLocationButton}>
+        <Text style={styles.myLocationButtonText}>My Location</Text>
+      </TouchableOpacity>
+    );
+  };
+  
+
   return (
     <SafeAreaView style={styles.container}>
       <Menu isVisible={isMenuVisible} onClose={toggleMenu} />
@@ -43,27 +52,23 @@ export default function Map() {
         onPress={toggleMenu}
         buttonStyle={styles.secondaryButton}
       />
-      <View
-        style={{
-          borderRadius: 24,
-          overflow: "hidden",
-          height: '100%',
-          width: '100%',
-          flex: 1,
-          backgroundColor: '#ffaaaa'
-        }}
-      > 
+      <View style={styles.mapContainer}>
         <MapView 
-          provider={PROVIDER_GOOGLE} // If you want to use Google Maps
+          ref={mapRef}
+          provider={PROVIDER_GOOGLE}
           style={styles.map}
           showsUserLocation={true}
-          mapType="standard" // Do not use satellite view
-          userLocationUpdateInterval={1000}  // Update every 1 seconds
-          userLocationPriority="high"  
+          mapType="standard"
+          userLocationUpdateInterval={1000}
+          userLocationPriority="high"
           region={region}
         />
+        <MyLocationButton onMyLocation={() => {
+          if (region && mapRef.current) {
+            mapRef.current.animateToRegion(region, 1000);
+          }
+        }} />
       </View>
-
       <ActionButton
         title="Call Navigator"
         onPress={() => { /* Your action here */ }}
@@ -71,7 +76,7 @@ export default function Map() {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -79,6 +84,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#fff'
+  },
+  mapContainer: {
+    borderRadius: 24,
+    overflow: "hidden",
+    height: '100%',
+    width: '100%',
+    flex: 1,
+    backgroundColor: '#ffaaaa',
   },
   map: {
     flex: 1,
@@ -96,4 +109,19 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
   },
+  myLocationButton: {
+    position: 'absolute',
+    bottom: 180,
+    right: 20,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    elevation: 3,
+  },
+  myLocationButtonText: {
+    fontSize: 16,
+    color: 'black',
+  },
 });
+
+export default Map;
