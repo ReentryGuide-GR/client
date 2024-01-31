@@ -17,8 +17,8 @@ export default ResourceButton;
 const styles = StyleSheet.create({
   resourceButton: {
     alignItems: 'left',
-    borderRadius: 25,
-    width: '80%',
+    borderRadius: 30,
+    width: '78%',
     padding: 14,
     marginTop: 10,
     marginBottom: 10,
