@@ -13,7 +13,7 @@ const ActionButton = ({ onPress, title, buttonStyle, textStyle }) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    borderRadius: 50,
+    borderRadius: 25,
     width: '80%',
     padding: 16,
     shadowColor: '#A59D95',
