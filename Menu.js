@@ -49,13 +49,6 @@ return (
           />
           
           <ActionButton
-            title="Return to Map"
-            onPress={onClose}
-            buttonStyle={styles.tertiaryButton}
-            textStyle={styles.tertiaryButtonText}
-          />
-
-          <ActionButton
             title="Call Navigator"
             onPress={onClose}
             buttonStyle={styles.primaryButton}
