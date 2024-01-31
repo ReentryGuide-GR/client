@@ -75,14 +75,10 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#A33636',
-    marginTop: 10,
-    marginBottom: 10,
   },
 
   secondaryButton: {
     backgroundColor: '#BFE0FF',
-    marginTop: 10,
-    marginBottom: 10,
   },
   
   secondaryButtonText: {
