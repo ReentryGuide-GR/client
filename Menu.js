@@ -1,25 +1,29 @@
 /* eslint-disable */
 import React from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import ActionButton from './components/ActionButton';
 import ResourceButton from './components/ResourceButton';
 // import * as styles from '../../styles/detailsStyles';
 
+const openGoogleMaps = (lat, lng) => {
+  // Use the geo URI scheme for Android
+  const url = Platform.OS === 'android' 
+    ? `google.navigation:q=${lat},${lng}&mode=w` // 'w' stands for walking
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
+
+  Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+};
+
 const Menu = ({ isVisible, onClose }) => {
 return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={isVisible}
-      onRequestClose={onClose}
-    >
 
         <View style={styles.mainContainer}>
           <Text style={styles.title}>What do you need?</Text>
+
           <ResourceButton
             imageSource={require('./assets/food.png')}
             title="Food"
-            onPress={() => { /* handle press */ }}
+            onPress={() => openGoogleMaps(42.9634, -85.6681)}
           />
           <ResourceButton
             imageSource={require('./assets/clothing.png')}
@@ -59,8 +63,6 @@ return (
           />
 
         </View>
-
-    </Modal>
   );
 };
 
