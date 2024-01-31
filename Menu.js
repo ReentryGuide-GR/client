@@ -18,36 +18,37 @@ const Menu = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
-          <Text style={styles.title}>What do you need?</Text>
+          <View style={styles.resourceContainer}>
+            <Text style={styles.title}>What do you need?</Text>
+            <ResourceButton
+              imageSource={require('./assets/food.png')}
+              title="Food"
+              onPress={() => openGoogleMaps(42.9634, -85.6681)}
+            />
+            <ResourceButton
+              imageSource={require('./assets/clothing.png')}
+              title="Clothing"
+              onPress={onClose}
+            />
+            <ResourceButton
+              imageSource={require('./assets/drop.png')}
+              title="Hygiene"
+              onPress={onClose}
+            />
+            <ResourceButton
+              imageSource={require('./assets/med.png')}
+              title="Healthcare"
+              onPress={onClose}
+            />
 
-          <ResourceButton
-            imageSource={require('./assets/food.png')}
-            title="Food"
-            onPress={() => openGoogleMaps(42.9634, -85.6681)}
-          />
-          <ResourceButton
-            imageSource={require('./assets/clothing.png')}
-            title="Clothing"
-            onPress={onClose}
-          />
-          <ResourceButton
-            imageSource={require('./assets/drop.png')}
-            title="Hygiene"
-            onPress={onClose}
-          />
-          <ResourceButton
-            imageSource={require('./assets/med.png')}
-            title="Healthcare"
-            onPress={onClose}
-          />
+            <ActionButton
+              title="More..."
+              onPress={onClose}
+              buttonStyle={styles.secondaryButton}
+              textStyle={styles.secondaryButtonText}
+            />
+          </View>
 
-          <ActionButton
-            title="More..."
-            onPress={onClose}
-            buttonStyle={styles.secondaryButton}
-            textStyle={styles.secondaryButtonText}
-          />
-          
           <ActionButton
             title="Call Navigator"
             onPress={onClose}
@@ -63,12 +64,18 @@ export default Menu;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: 'white', 
-    padding: 0, 
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 0,
+    width: '100%',
+    height: '100%',
+  },
+  resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
     width: '100%',
-    height: '100%',
   },
   textContainer: {
     fontSize: 15, 
