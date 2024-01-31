@@ -78,22 +78,13 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#BFE0FF',
+    backgroundColor: '#505967',
   },
   
   secondaryButtonText: {
-    color: '#342F2F',
+    color: '#fff',
   },
 
-  tertiaryButton: {
-    backgroundColor: '#fbfbfb',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  
-  tertiaryButtonText: {
-    color: '#342F2F',
-  },
 
   title: {
     marginBottom: 18,
