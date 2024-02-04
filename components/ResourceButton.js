@@ -1,7 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 
 const ResourceButton = ({ onPress, imageSource, title }) => {
+
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+  });
+
   return (
     <TouchableOpacity style={styles.resourceButton} onPress={onPress}>
       <View style={styles.row}>
@@ -42,9 +48,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   resourceButtonText: {
+    fontFamily: 'Manrope-SemiBold',
     fontWeight: '600',
     letterSpacing: 0.3,
-    fontSize: 20,
+    fontSize: 19,
     color: '#000',
     marginLeft: 10,
   },
