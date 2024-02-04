@@ -1,7 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 
 const ResourceButton = ({ onPress, imageSource, title }) => {
+
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
+
   return (
     <TouchableOpacity style={styles.resourceButton} onPress={onPress}>
       <View style={styles.row}>
@@ -17,12 +27,12 @@ export default ResourceButton;
 const styles = StyleSheet.create({
   resourceButton: {
     alignItems: 'left',
-    borderRadius: 50,
-    width: '80%',
-    padding: 14,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: '#BFE0FF',
+    borderRadius: 30,
+    width: '78%',
+    padding: 16,
+    marginTop: 7,
+    marginBottom: 7,
+    backgroundColor: '#E2E9F3',
     shadowColor: '#A59D95',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
@@ -33,18 +43,19 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 40,
+    paddingHorizontal: 30,
   },
   icon: {
-    marginRight: 8,
+    marginRight: 5,
     width: 45,
     height: 45,
     resizeMode: 'contain'
   },
   resourceButtonText: {
+    fontFamily: 'Manrope-SemiBold',
     fontWeight: '600',
     letterSpacing: 0.3,
-    fontSize: 20,
+    fontSize: 19,
     color: '#000',
     marginLeft: 10,
   },

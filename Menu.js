@@ -1,55 +1,54 @@
 /* eslint-disable */
 import React from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import * as Location from 'expo-location';
 import ActionButton from './components/ActionButton';
 import ResourceButton from './components/ResourceButton';
 // import * as styles from '../../styles/detailsStyles';
 
+const openGoogleMaps = (lat, lng) => {
+  // Use the geo URI scheme for Android
+  const url = Platform.OS === 'android' 
+    ? `google.navigation:q=${lat},${lng}&mode=w` // 'w' stands for walking
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
+
+  Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
+};
+
 const Menu = ({ isVisible, onClose }) => {
 return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={isVisible}
-      onRequestClose={onClose}
-    >
 
         <View style={styles.mainContainer}>
-          <Text style={styles.title}>What do you need?</Text>
-          <ResourceButton
-            imageSource={require('./assets/food.png')}
-            title="Food"
-            onPress={() => { /* handle press */ }}
-          />
-          <ResourceButton
-            imageSource={require('./assets/clothing.png')}
-            title="Clothing"
-            onPress={onClose}
-          />
-          <ResourceButton
-            imageSource={require('./assets/drop.png')}
-            title="Hygiene"
-            onPress={onClose}
-          />
-          <ResourceButton
-            imageSource={require('./assets/med.png')}
-            title="Healthcare"
-            onPress={onClose}
-          />
+          <View style={styles.resourceContainer}>
+            <Text style={styles.title}>What do you need?</Text>
+            <ResourceButton
+              imageSource={require('./assets/food.png')}
+              title="Food"
+              onPress={() => openGoogleMaps(42.9597159,-85.6668819)}
+            />
+            <ResourceButton
+              imageSource={require('./assets/clothing.png')}
+              title="Clothing"
+              onPress={onClose}
+            />
+            <ResourceButton
+              imageSource={require('./assets/drop.png')}
+              title="Hygiene"
+              onPress={onClose}
+            />
+            <ResourceButton
+              imageSource={require('./assets/med.png')}
+              title="Healthcare"
+              onPress={onClose}
+            />
 
-          <ActionButton
-            title="More..."
-            onPress={onClose}
-            buttonStyle={styles.secondaryButton}
-            textStyle={styles.secondaryButtonText}
-          />
-          
-          <ActionButton
-            title="Return to Map"
-            onPress={onClose}
-            buttonStyle={styles.tertiaryButton}
-            textStyle={styles.tertiaryButtonText}
-          />
+            <ActionButton
+              title="More..."
+              onPress={onClose}
+              buttonStyle={styles.secondaryButton}
+              textStyle={styles.secondaryButtonText}
+            />
+          </View>
 
           <ActionButton
             title="Call Navigator"
@@ -59,8 +58,6 @@ return (
           />
 
         </View>
-
-    </Modal>
   );
 };
 
@@ -68,41 +65,34 @@ export default Menu;
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: 'white', 
-    padding: 0, 
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 0,
+    width: '100%',
+    height: '100%',
+  },
+  resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
     width: '100%',
-    height: '100%',
   },
   textContainer: {
     fontSize: 15, 
   },
   primaryButton: {
     backgroundColor: '#A33636',
-    marginTop: 10,
-    marginBottom: 10,
   },
 
   secondaryButton: {
-    backgroundColor: '#BFE0FF',
-    marginTop: 10,
-    marginBottom: 10,
+    backgroundColor: '#505967',
   },
   
   secondaryButtonText: {
-    color: '#342F2F',
+    color: '#fff',
   },
 
-  tertiaryButton: {
-    backgroundColor: '#fbfbfb',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  
-  tertiaryButtonText: {
-    color: '#342F2F',
-  },
 
   title: {
     marginBottom: 18,
