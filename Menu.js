@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import * as Location from 'expo-location';
 import ActionButton from './components/ActionButton';
 import ResourceButton from './components/ResourceButton';
-import * as Location from 'expo-location';
 // import * as styles from '../../styles/detailsStyles';
 
 const openGoogleMaps = (lat, lng) => {
