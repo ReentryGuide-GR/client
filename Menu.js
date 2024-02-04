@@ -24,7 +24,7 @@ return (
             <ResourceButton
               imageSource={require('./assets/food.png')}
               title="Food"
-              onPress={() => openGoogleMaps(42.9634, -85.6681)}
+              onPress={() => openGoogleMaps(42.9597159,-85.6668819)}
             />
             <ResourceButton
               imageSource={require('./assets/clothing.png')}
