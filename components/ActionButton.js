@@ -8,6 +8,10 @@ const ActionButton = ({ onPress, title, buttonStyle, textStyle }) => {
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
 
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
+
   return (
     <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>

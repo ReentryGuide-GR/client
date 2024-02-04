@@ -8,6 +8,10 @@ const ResourceButton = ({ onPress, imageSource, title }) => {
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
 
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
+
   return (
     <TouchableOpacity style={styles.resourceButton} onPress={onPress}>
       <View style={styles.row}>
