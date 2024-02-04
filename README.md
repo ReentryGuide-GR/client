@@ -1,13 +1,13 @@
 # SupportPath (CPI-Map)
 
 ## Overview
-SupportPath is a mobile application designed to assist former prisoners with their reentry into society. It provides an easy-to-use platform for navigating the city and locating essential resources such as employment centers, housing, counseling services, and legal aid.
+SupportPath is a dedicated mobile application aimed at facilitating the reintegration of former prisoners into society. With a focus on accessibility and user-friendliness, SupportPath serves as a vital tool for navigating urban landscapes to locate crucial resources. It simplifies the process of finding employment centers, housing options, counseling services, and legal aid, thereby supporting users in their journey towards reintegration.
 
 ## Features
-- **Resource Locator:** Helps users find various essential resources.
-- **GPS Navigation:** Integrated map with GPS support for easy navigation.
+- **Resource Locator:** Dynamically finds the closest essential services like employment centers, housing, counseling, and legal aid, etc.
+- **Integration with Google Maps:** Integrates with Google Maps for turn-by-turn navigation, guiding users to their selected resources by foot.
 - **User-Friendly Interface:** Designed for simplicity and ease of use.
-- **Call Navigator:** Quick access for calling the Navigator.
+- **Call Navigator:** Provides immediate access to a Navigator for personalized assistance.
 
 ## Getting Started
 
@@ -33,5 +33,4 @@ This project is licensed under the GNU General Public License v2. See the LICENS
 ### Acknowledgements
 
 - React Navigation
-- React Native Maps
 
