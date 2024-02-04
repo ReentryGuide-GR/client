@@ -1,8 +1,13 @@
 // ActionButton.js
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
 
 const ActionButton = ({ onPress, title, buttonStyle, textStyle }) => {
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+  });
+
   return (
     <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
@@ -26,9 +31,10 @@ const styles = StyleSheet.create({
     zIndex: 11,
   },
   buttonText: {
+    fontFamily: 'Manrope-SemiBold',
     fontWeight: '600',
     letterSpacing: 0.3,
-    fontSize: 20,
+    fontSize: 19,
     color: '#fff',
   },
 });
