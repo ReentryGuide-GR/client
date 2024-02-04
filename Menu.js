@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import * as Location from 'expo-location';
 import ActionButton from './components/ActionButton';
 import ResourceButton from './components/ResourceButton';
+import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
 const openGoogleMaps = (lat, lng) => {
