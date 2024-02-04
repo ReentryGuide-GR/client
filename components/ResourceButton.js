@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   icon: {
-    marginRight: 8,
+    marginRight: 5,
     width: 45,
     height: 45,
     resizeMode: 'contain'
