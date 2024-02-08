@@ -1,9 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-const ResourceButton = ({ onPress, imageSource, title }) => {
-
+const GoBackButton = () => {
+  // const navigation = useNavigation(); // used for navigation.navigate()
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
@@ -13,26 +14,26 @@ const ResourceButton = ({ onPress, imageSource, title }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.resourceButton} onPress={onPress}>
+    <TouchableOpacity style={styles.GoBackButton}>
       <View style={styles.row}>
-        <Image source={imageSource} style={styles.icon} />
-        <Text style={styles.resourceButtonText}>{title}</Text>
+        <Image source={require('../assets/arrow_back.png')} style={styles.icon} />
+        <Text style={styles.GoBackButtonText}>Go Back</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-export default ResourceButton;
+export default GoBackButton;
 
 const styles = StyleSheet.create({
-  resourceButton: {
-    alignItems: 'left',
+  GoBackButton: {
+    alignItems: 'center',
     borderRadius: 30,
     width: '78%',
-    padding: 16,
+    padding: 23,
     marginTop: 7,
     marginBottom: 7,
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#fff',
     shadowColor: '#A59D95',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
@@ -44,14 +45,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 30,
+    marginLeft: -25,
   },
   icon: {
-    marginRight: 5,
-    width: 45,
-    height: 45,
+    // marginRight: 5,
+    width: 30,
+    height: 30,
     resizeMode: 'contain'
   },
-  resourceButtonText: {
+  GoBackButtonText: {
     fontFamily: 'Manrope-SemiBold',
     fontWeight: '600',
     letterSpacing: 0.3,
