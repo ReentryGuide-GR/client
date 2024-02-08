@@ -69,9 +69,10 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>What do you need?</Text>
+            <Text style={styles.title}>Select Food Location</Text>
             <ActionButton
               title="Select Closest Location"
+              buttonStyle={styles.secondaryButton}
               onPress={() => findClosestLocation('Food')}
             />
 
