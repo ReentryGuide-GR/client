@@ -70,25 +70,9 @@ return (
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>What do you need?</Text>
-            <ResourceButton
-              imageSource={require('./assets/food.png')}
-              title="Food"
+            <ActionButton
+              title="Select Closest Location"
               onPress={() => findClosestLocation('Food')}
-            />
-            <ResourceButton
-              imageSource={require('./assets/clothing.png')}
-              title="Clothing"
-              onPress={onClose}
-            />
-            <ResourceButton
-              imageSource={require('./assets/drop.png')}
-              title="Hygiene"
-              onPress={onClose}
-            />
-            <ResourceButton
-              imageSource={require('./assets/med.png')}
-              title="Healthcare"
-              onPress={onClose}
             />
 
             <ActionButton

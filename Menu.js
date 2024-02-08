@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from './components/ActionButton';
 import ResourceButton from './components/ResourceButton';
@@ -65,6 +66,8 @@ const openGoogleMaps = (lat, lng) => {
 };
 
 const Menu = ({ isVisible, onClose }) => {
+  const navigation = useNavigation(); // used for navigation.navigate()
+
 return (
 
         <View style={styles.mainContainer}>
@@ -73,7 +76,7 @@ return (
             <ResourceButton
               imageSource={require('./assets/food.png')}
               title="Food"
-              onPress={() => findClosestLocation('Food')}
+              onPress={() => navigation.navigate('SelectFoodLocationPage')}
             />
             <ResourceButton
               imageSource={require('./assets/clothing.png')}
