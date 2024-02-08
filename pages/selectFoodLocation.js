@@ -84,12 +84,23 @@ return (
             />
           </View>
 
-          <ActionButton
-            title="Call Navigator"
-            onPress={onClose}
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-          />
+          <View style={styles.resourceContainer}>
+
+            <ActionButton
+              title="Call Navigator"
+              onPress={onClose}
+              buttonStyle={styles.primaryButton}
+              textStyle={styles.primaryButtonText}
+            />
+
+            <ActionButton
+              title="Call Navigator"
+              onPress={onClose}
+              buttonStyle={styles.primaryButton}
+              textStyle={styles.primaryButtonText}
+            />
+            
+          </View>
 
         </View>
   );
