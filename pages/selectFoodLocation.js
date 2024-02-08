@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
+import GoBackButton from '../components/GoBackButton';
 import ResourceButton from '../components/ResourceButton';
 import locations from '../locationsData';
 // import * as styles from '../../styles/detailsStyles';
@@ -86,12 +87,7 @@ return (
 
           <View style={styles.resourceContainer}>
 
-            <ActionButton
-              title="Call Navigator"
-              onPress={onClose}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-            />
+            <GoBackButton/>
 
             <ActionButton
               title="Call Navigator"
@@ -99,7 +95,7 @@ return (
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
             />
-            
+
           </View>
 
         </View>
