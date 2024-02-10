@@ -78,10 +78,10 @@ return (
             />
 
             <ActionButton
-              title="More..."
+              title="Select Other Locations"
               onPress={onClose}
-              buttonStyle={styles.secondaryButton}
-              textStyle={styles.secondaryButtonText}
+              buttonStyle={styles.tertiaryButton}
+              textStyle={styles.tertiaryButtonText}
             />
           </View>
 
@@ -134,6 +134,13 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 
+  tertiaryButton: {
+    backgroundColor: '#E2E9F3',
+  },
+
+  tertiaryButtonText: {
+    color: '#000',
+  },
 
   title: {
     marginBottom: 18,

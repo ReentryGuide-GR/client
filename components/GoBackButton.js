@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
 const GoBackButton = () => {
-  // const navigation = useNavigation(); // used for navigation.navigate()
+  const navigation = useNavigation(); // used for navigation.navigate()
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
@@ -14,7 +14,10 @@ const GoBackButton = () => {
   }
 
   return (
-    <TouchableOpacity style={styles.GoBackButton}>
+    <TouchableOpacity 
+      style={styles.GoBackButton}
+      onPress={() => navigation.goBack()}
+    >
       <View style={styles.row}>
         <Image source={require('../assets/arrow_back.png')} style={styles.icon} />
         <Text style={styles.GoBackButtonText}>Go Back</Text>
