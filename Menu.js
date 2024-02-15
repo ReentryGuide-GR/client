@@ -78,7 +78,7 @@ return (
             <ResourceButton
               imageSource={require('./assets/food.png')}
               title="Find Food"
-              onPress={() => navigation.navigate('SelectFoodLocationPage')}
+              onPress={() => navigation.navigate('MealOrGroceries')}
             />
             <ResourceButton
               imageSource={require('./assets/clothing.png')}
