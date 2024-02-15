@@ -72,9 +72,7 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>Main Menu             </Text>
-            </View>
+            <Text style={styles.title}>Main Menu</Text>
             <ResourceButton
               imageSource={require('./assets/food.png')}
               title="Find Food"
@@ -156,7 +154,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    textAlign: 'left',
+    width: '78%',
   },
 
 });
