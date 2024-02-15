@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
@@ -70,7 +71,7 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Select Food Location</Text>
+            <Text style={styles.title}>Select Meal Location</Text>
             <ActionButton
               title="Select Closest Location"
               buttonStyle={styles.secondaryButton}
