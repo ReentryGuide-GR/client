@@ -71,10 +71,10 @@ return (
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>Select Food Location</Text>
-            <ActionButton
-              title="Select Closest Location"
-              buttonStyle={styles.secondaryButton}
-              onPress={() => findClosestLocation('Food')}
+            <ResourceButton
+              imageSource={require('./assets/meal.png')}
+              title="Find Meal"
+              onPress={() => navigation.navigate('SelectFoodLocationPage')}
             />
 
             <ActionButton
