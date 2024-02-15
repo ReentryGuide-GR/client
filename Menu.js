@@ -72,25 +72,27 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>What do you need?</Text>
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>Main Menu             </Text>
+            </View>
             <ResourceButton
               imageSource={require('./assets/food.png')}
-              title="Food"
+              title="Find Food"
               onPress={() => navigation.navigate('SelectFoodLocationPage')}
             />
             <ResourceButton
               imageSource={require('./assets/clothing.png')}
-              title="Clothing"
+              title="Find Clothing"
               onPress={onClose}
             />
             <ResourceButton
               imageSource={require('./assets/drop.png')}
-              title="Hygiene"
+              title="Find Hygiene"
               onPress={onClose}
             />
             <ResourceButton
               imageSource={require('./assets/med.png')}
-              title="Healthcare"
+              title="Find Healthcare"
               onPress={onClose}
             />
 
@@ -144,13 +146,17 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     color: '#fff',
   },
-
+  
+  textContainer: {
+    alignItems: 'left'
+  },
 
   title: {
     marginBottom: 18,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
+    textAlign: 'left',
   },
 
 });
