@@ -75,7 +75,7 @@ return (
             <ActionButton
               title="Select Closest Location"
               buttonStyle={styles.secondaryButton}
-              onPress={() => findClosestLocation('Food')}
+              onPress={() => findClosestLocation('Meal')}
             />
 
             <ActionButton
