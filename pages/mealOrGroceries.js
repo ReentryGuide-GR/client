@@ -16,7 +16,7 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Meal or Groceries</Text>
+            <Text style={styles.title}>Meal or Groceries?</Text>
             <ResourceButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
