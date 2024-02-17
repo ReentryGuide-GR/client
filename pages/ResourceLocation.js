@@ -17,6 +17,9 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location</Text>
             <Text style={styles.title}>Mel Trotter Ministries</Text>
+          </View>
+
+          <View style={styles.resourceContainer}>
             <ActionButton
               title="Plan Your Route"
               buttonStyle={styles.secondaryButton}
@@ -89,10 +92,10 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    marginBottom: 5,
+    marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '500',
     width: '78%',
   },
   title: {
