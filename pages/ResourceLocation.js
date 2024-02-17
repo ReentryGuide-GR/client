@@ -7,15 +7,25 @@ import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import ResourceButton from '../components/ResourceButton';
 import locations from '../locationsData';
+import { useFonts } from 'expo-font';
 // import * as styles from '../../styles/detailsStyles';
 
 
 const Menu = ({ isVisible, onClose }) => {
+
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
+
 return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>Closest food location</Text>
+            <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>Mel Trotter Ministries</Text>
           </View>
 
@@ -97,6 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     width: '78%',
+    fontFamily: 'Manrope-SemiBold',
   },
   title: {
     marginBottom: 18,
