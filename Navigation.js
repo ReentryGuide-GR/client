@@ -4,7 +4,7 @@ import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainPage from './Menu'; 
-import SelectFoodLocationPage from './pages/selectFoodLocation'; 
+import SelectResourceLocation from './pages/selectFoodLocation'; 
 import MealOrGroceries from './pages/mealOrGroceries'; 
 import ResourceLocation from './pages/ResourceLocation'; 
 
@@ -20,7 +20,7 @@ function Navigation() {
         />
       <Stack.Navigator initialRouteName="MainPage" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainPage" component={MainPage} />
-        <Stack.Screen name="SelectFoodLocationPage" component={SelectFoodLocationPage} />
+        <Stack.Screen name="SelectResourceLocation" component={SelectResourceLocation} />
         <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
         <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
       </Stack.Navigator>

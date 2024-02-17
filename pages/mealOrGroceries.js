@@ -20,13 +20,13 @@ return (
             <ResourceButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
-              onPress={() => navigation.navigate('SelectFoodLocationPage')}
+              onPress={() => navigation.navigate('SelectResourceLocation')}
             />
 
             <ResourceButton
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
-              onPress={() => navigation.navigate('SelectFoodLocationPage')}
+              onPress={() => navigation.navigate('SelectResourceLocation')}
             />
           </View>
 
