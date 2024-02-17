@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainPage from './Menu'; 
 import SelectFoodLocationPage from './pages/selectFoodLocation'; 
 import MealOrGroceries from './pages/mealOrGroceries'; 
+import ResourceLocation from './pages/ResourceLocation'; 
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ function Navigation() {
         <Stack.Screen name="MainPage" component={MainPage} />
         <Stack.Screen name="SelectFoodLocationPage" component={SelectFoodLocationPage} />
         <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
+        <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
