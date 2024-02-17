@@ -67,6 +67,8 @@ const openGoogleMaps = (lat, lng) => {
 };
 
 const Menu = ({ isVisible, onClose }) => {
+  const navigation = useNavigation(); // used for navigation.navigate()
+
 return (
 
         <View style={styles.mainContainer}>
@@ -75,7 +77,7 @@ return (
             <ActionButton
               title="Select Closest Location"
               buttonStyle={styles.secondaryButton}
-              onPress={() => findClosestLocation('Meal')}
+              onPress={() => navigation.navigate('ResourceLocation')}
             />
 
             <ActionButton
