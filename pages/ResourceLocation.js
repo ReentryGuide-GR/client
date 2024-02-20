@@ -30,6 +30,8 @@ return (
           </View>
 
           <View style={styles.resourceContainer}>
+            <Text style={styles.openOrClosed}>Open Now</Text>
+            <Text style={styles.timing}> - Closes at 5:45pm</Text>
             <ActionButton
               title="Plan Your Route"
               buttonStyle={styles.secondaryButton}
