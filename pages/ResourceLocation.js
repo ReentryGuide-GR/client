@@ -15,6 +15,7 @@ const Menu = ({ isVisible, onClose }) => {
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -30,8 +31,10 @@ return (
           </View>
 
           <View style={styles.resourceContainer}>
-            <Text style={styles.openOrClosed}>Open Now</Text>
-            <Text style={styles.timing}> - Closes at 5:45pm</Text>
+            <View style={styles.row}>
+              <Text style={styles.openOrClosed}>Closes Soon</Text>
+              <Text style={styles.timing}> - Closes at 5:45pm</Text>
+            </View>
             <ActionButton
               title="Plan Your Route"
               buttonStyle={styles.secondaryButton}
@@ -118,5 +121,19 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     width: '78%',
   },
-
+  row: {
+    flexDirection: 'row',
+    width: '78%',
+  },
+  openOrClosed: {
+    fontSize: 17,
+    // fontWeight: '700',
+    color: '#AF7E00',
+    fontFamily: 'Manrope-Bold',
+  },
+  timing: {
+    fontSize: 17,
+    // fontWeight: '700',
+    fontFamily: 'Manrope-Bold',
+  },
 });
