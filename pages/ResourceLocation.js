@@ -37,7 +37,7 @@ return (
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
-            <Text style={styles.title}>Mel Trotter Ministries</Text>
+            <Text style={styles.title}>{location.name}</Text>
           </View>
 
           <View style={styles.resourceContainer}>
