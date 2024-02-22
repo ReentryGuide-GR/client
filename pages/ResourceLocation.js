@@ -1,17 +1,26 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
+import { useFonts } from 'expo-font';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import ResourceButton from '../components/ResourceButton';
 import locations from '../locationsData';
-import { useFonts } from 'expo-font';
+import { openGoogleMaps } from '../utils'
+
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Menu = ({ isVisible, onClose }) => {
+const ResourceLocation = ({ isVisible, onClose }) => {
+
+  const route = useRoute();
+  const { location } = route.params;
+
+  const handlePlanYourRoute = () => {
+    openGoogleMaps(location.lat, location.lng);
+  };
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -21,6 +30,7 @@ const Menu = ({ isVisible, onClose }) => {
   if (!fontsLoaded) {
     return null; // Return null to render nothing while loading fonts
   }
+
 
 return (
 
@@ -38,7 +48,7 @@ return (
             <ActionButton
               title="Plan Your Route"
               buttonStyle={styles.secondaryButton}
-              onPress={() => findClosestLocation('Meal')}
+              onPress={handlePlanYourRoute}
             />
 
             <ActionButton
@@ -66,7 +76,7 @@ return (
   );
 };
 
-export default Menu;
+export default ResourceLocation;
 
 const styles = StyleSheet.create({
   mainContainer: {
