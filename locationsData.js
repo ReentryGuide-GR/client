@@ -13,8 +13,10 @@ const locations = {
       // Add more meal locations
     ],
     Clothing: [
-      { lat: 42.9612, lng: -85.6665, name: "Clothing Store 1" },
-      // Add more clothing locations
+      { lat: 42.91308, lng: -85.56207, name: "The Salvation Army Family Store & Donation Center" },
+      { lat: 42.91492, lng: -85.52872, name: "Goodwill Store" },
+      { lat: 42.92764, lng: -85.58598, name: "Test Close Calvin" },
+      // Add more clothing locations 
     ],
     // Add other categories as needed
   };
