@@ -1,7 +1,7 @@
 /* eslint-disable */
-import React from 'react';
+import React , { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
@@ -12,9 +12,14 @@ import { findClosestLocation } from '../utils';
 
 const Menu = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const route = useRoute();
+  const { category } = route.params; // Access the passed category
+
+
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
-    const closestLocation = await findClosestLocation('Meal'); // Assuming this returns the closest location object
+    const closestLocation = await findClosestLocation(category); // Assuming this returns the closest location object
     if (closestLocation) {
       navigation.navigate('ResourceLocation', { location: closestLocation });
     } else {
@@ -23,39 +28,42 @@ const Menu = ({ isVisible, onClose }) => {
     }
   };
 
-return (
+  // useEffect(() => {
+  //   fetchClosestLocation();
+  // }, [category]); // Call fetchClosestLocation when the component mounts or category changes
 
-        <View style={styles.mainContainer}>
-          <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Select Meal Location</Text>
-            <ActionButton
-              title="Select Closest Location"
-              buttonStyle={styles.secondaryButton}
-              onPress={handleSelectClosestLocation}
-            />
+  return (
+    <View style={styles.mainContainer}>
+      <View style={styles.resourceContainer}>
+        <Text style={styles.title}>Select {category} Location</Text>
+        <ActionButton
+          title="Select Closest Location"
+          buttonStyle={styles.secondaryButton}
+          onPress={handleSelectClosestLocation}
+        />
 
-            <ActionButton
-              title="Select Other Locations"
-              onPress={onClose}
-              buttonStyle={styles.tertiaryButton}
-              textStyle={styles.tertiaryButtonText}
-            />
-          </View>
+        <ActionButton
+          title="Select Other Locations"
+          onPress={onClose}
+          buttonStyle={styles.tertiaryButton}
+          textStyle={styles.tertiaryButtonText}
+        />
+      </View>
 
-          <View style={styles.resourceContainer}>
+      <View style={styles.resourceContainer}>
 
-            <GoBackButton/>
+        <GoBackButton/>
 
-            <ActionButton
-              title="Call Navigator"
-              onPress={onClose}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-            />
+        <ActionButton
+          title="Call Navigator"
+          onPress={onClose}
+          buttonStyle={styles.primaryButton}
+          textStyle={styles.primaryButtonText}
+        />
 
-          </View>
+      </View>
 
-        </View>
+    </View>
   );
 };
 

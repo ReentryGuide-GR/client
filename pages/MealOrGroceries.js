@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
@@ -20,13 +20,13 @@ return (
             <ResourceButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
-              onPress={() => navigation.navigate('SelectResourceLocation')}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
             <ResourceButton
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
-              onPress={() => navigation.navigate('SelectResourceLocation')}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
             />
           </View>
 
