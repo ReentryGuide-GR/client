@@ -12,7 +12,6 @@ const locations = {
 
       // Add more meal locations
     ],
-
     Clothing: [
       { lat: 42.9612, lng: -85.6665, name: "Clothing Store 1" },
       // Add more clothing locations
