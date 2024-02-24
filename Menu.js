@@ -81,7 +81,7 @@ return (
             <ResourceButton
               imageSource={require('./assets/clothing.png')}
               title="Find Clothing"
-              onPress={onClose}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing' })}
             />
             <ResourceButton
               imageSource={require('./assets/drop.png')}

@@ -1,9 +1,9 @@
 // ActionButton.js
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { useFonts } from 'expo-font';
 
-const ActionButton = ({ onPress, title, buttonStyle, textStyle }) => {
+const ActionButton = ({ onPress, title, buttonStyle, textStyle, imageSource }) => {
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
@@ -14,7 +14,12 @@ const ActionButton = ({ onPress, title, buttonStyle, textStyle }) => {
 
   return (
     <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
-      <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+      {/* <Text style={[styles.buttonText, textStyle]}>{title}</Text> */}
+      <View style={styles.row}>
+        {/* conditionally render the <Image> component */}
+        {imageSource && <Image source={imageSource} style={styles.icon} />}
+        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -40,6 +45,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0.3,
     fontSize: 19,
     color: '#fff',
+  },
+  icon: {
+    marginRight: 5,
+    width: 25,
+    height: 25,
+    resizeMode: 'contain'
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 0,
   },
 });
 
