@@ -46,14 +46,16 @@ return (
               <Text style={styles.timing}> - Closes at 5:45pm</Text>
             </View>
             <ActionButton
-              title="Plan Your Route"
+              imageSource={require('../assets/directions.png')}
+              title="Plan Your Route  "
               buttonStyle={styles.secondaryButton}
               onPress={handlePlanYourRoute}
             />
 
             <ActionButton
-              title="More Info"
+              title="More Info  "
               onPress={onClose}
+              imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
               textStyle={styles.tertiaryButtonText}
             />
