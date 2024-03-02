@@ -50,11 +50,13 @@ export const getUserLocation = async () => {
   }
 };
 
-// Function to open Google Maps with given coordinates
-export const openGoogleMaps = (lat, lng) => {
+// Function to open Google Maps with given coordinates and mode
+export const openGoogleMaps = (lat, lng, mode = 'w') => {
+  const modeParam = mode === 'bus' ? 'transit' : mode; // Google Maps uses 'transit' for public transportation
   const url = Platform.OS === 'android'
-    ? `google.navigation:q=${lat},${lng}&mode=w` // 'w' stands for walking
-    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
+    ? `google.navigation:q=${lat},${lng}&mode=${modeParam}`
+    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParam}`;
 
   Linking.openURL(url).catch(err => Alert.alert("Error", "Couldn't load page"));
 };
+
