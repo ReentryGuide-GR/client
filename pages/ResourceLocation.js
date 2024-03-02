@@ -14,6 +14,7 @@ import { openGoogleMaps } from '../utils'
 
 
 const ResourceLocation = ({ isVisible, onClose }) => {
+  const navigation = useNavigation(); // used for navigation.navigate()
 
   const route = useRoute();
   const { location } = route.params;
@@ -49,7 +50,7 @@ return (
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
               buttonStyle={styles.secondaryButton}
-              onPress={handlePlanYourRoute}
+              onPress={() => navigation.navigate('Transportation')}
             />
 
             <ActionButton
