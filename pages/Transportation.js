@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
@@ -12,15 +12,16 @@ import locations from '../locationsData';
 
 const Transportation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
-  // const route = useRoute();
-  // const { location } = route.params;
+  const route = useRoute();
+  const { location } = route.params;
+
 return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
-            {/* <Text style={styles.title}>{location.name}</Text> */}
-            <Text style={styles.title}>Location Name</Text>
+            <Text style={styles.title}>{location.name}</Text>
+            {/* <Text style={styles.title}>Location Name</Text> */}
           </View>
 
           <View style={styles.resourceContainer}>

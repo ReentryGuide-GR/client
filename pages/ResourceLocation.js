@@ -50,7 +50,7 @@ return (
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
               buttonStyle={styles.secondaryButton}
-              onPress={() => navigation.navigate('Transportation')}
+              onPress={() => navigation.navigate('Transportation', { location })}
             />
 
             <ActionButton
