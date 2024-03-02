@@ -10,7 +10,7 @@ import locations from '../locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Menu = ({ isVisible, onClose }) => {
+const Transportation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   // const route = useRoute();
   // const { location } = route.params;
@@ -61,7 +61,7 @@ return (
   );
 };
 
-export default Menu;
+export default Transportation;
 
 const styles = StyleSheet.create({
   mainContainer: {
