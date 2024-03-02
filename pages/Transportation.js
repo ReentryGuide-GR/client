@@ -1,32 +1,52 @@
 /* eslint-disable */
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 import locations from '../locationsData';
+import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Menu = ({ isVisible, onClose }) => {
+const Transportation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const route = useRoute();
+  const { location } = route.params;
+
+  const handlePlanYourRoute = (mode) => {
+    openGoogleMaps(location.lat, location.lng, mode);
+  };
+
 return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Meal or Groceries?</Text>
+            <Text style={styles.subtitle}>Closest food location:</Text>
+            <Text style={styles.title}>{location.name}</Text>
+            {/* <Text style={styles.title}>Location Name</Text> */}
+          </View>
+
+          <View style={styles.resourceContainer}>
+           <Text style={styles.subtitle}>How will you get there?</Text>
             <IconButton
-              imageSource={require('../assets/meal.png')}
-              title="Find Meal"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
+              imageSource={require('../assets/walk.png')}
+              title="Walk only"
+              onPress={() => handlePlanYourRoute('w')} // 'w' for walking
             />
 
             <IconButton
-              imageSource={require('../assets/grocery.png')}
-              title="Find Groceries"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              imageSource={require('../assets/subway.png')}
+              title="Bus and Walk"
+              onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
+            />
+
+            <IconButton
+              imageSource={require('../assets/car.png')}
+              title="Drive"
+              onPress={() => handlePlanYourRoute('d')} // 'd' for driving
             />
           </View>
 
@@ -47,7 +67,7 @@ return (
   );
 };
 
-export default Menu;
+export default Transportation;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -67,6 +87,15 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
+  subtitle: {
+    marginBottom: -2,
+    color: '#2F2E41',
+    fontSize: 18,
+    fontWeight: '500',
+    width: '78%',
+    fontFamily: 'Manrope-SemiBold',
+  },
+
   primaryButton: {
     backgroundColor: '#A33636',
   },

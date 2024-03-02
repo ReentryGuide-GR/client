@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from './components/ActionButton';
-import ResourceButton from './components/ResourceButton';
+import IconButton from './components/IconButton';
 import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
@@ -73,24 +73,24 @@ return (
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>Main Menu</Text>
-            <ResourceButton
+            <IconButton
               imageSource={require('./assets/food.png')}
-              title="Find Food"
+              title=" Find Food"
               onPress={() => navigation.navigate('MealOrGroceries')}
             />
-            <ResourceButton
+            <IconButton
               imageSource={require('./assets/clothing.png')}
-              title="Find Clothing"
+              title=" Find Clothing"
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing' })}
             />
-            <ResourceButton
+            <IconButton
               imageSource={require('./assets/drop.png')}
-              title="Find Hygiene"
+              title=" Find Hygiene"
               onPress={onClose}
             />
-            <ResourceButton
+            <IconButton
               imageSource={require('./assets/med.png')}
-              title="Find Healthcare"
+              title=" Find Healthcare"
               onPress={onClose}
             />
 

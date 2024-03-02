@@ -6,21 +6,17 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import ResourceButton from '../components/ResourceButton';
+import IconButton from '../components/IconButton';
 import locations from '../locationsData';
-import { openGoogleMaps } from '../utils'
 
 // import * as styles from '../../styles/detailsStyles';
 
 
 const ResourceLocation = ({ isVisible, onClose }) => {
+  const navigation = useNavigation(); // used for navigation.navigate()
 
   const route = useRoute();
   const { location } = route.params;
-
-  const handlePlanYourRoute = () => {
-    openGoogleMaps(location.lat, location.lng);
-  };
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -49,7 +45,7 @@ return (
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
               buttonStyle={styles.secondaryButton}
-              onPress={handlePlanYourRoute}
+              onPress={() => navigation.navigate('Transportation', { location })}
             />
 
             <ActionButton
