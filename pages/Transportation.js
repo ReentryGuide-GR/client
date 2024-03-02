@@ -12,12 +12,15 @@ import locations from '../locationsData';
 
 const Menu = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  // const route = useRoute();
+  // const { location } = route.params;
 return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
-            <Text style={styles.title}>{location.name}</Text>
+            {/* <Text style={styles.title}>{location.name}</Text> */}
+            <Text style={styles.title}>Location Name</Text>
           </View>
 
           <View style={styles.resourceContainer}>
@@ -78,6 +81,15 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
+  subtitle: {
+    marginBottom: -2,
+    color: '#2F2E41',
+    fontSize: 18,
+    fontWeight: '500',
+    width: '78%',
+    fontFamily: 'Manrope-SemiBold',
+  },
+
   primaryButton: {
     backgroundColor: '#A33636',
   },
