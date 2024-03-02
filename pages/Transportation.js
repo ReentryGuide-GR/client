@@ -16,8 +16,8 @@ const Transportation = ({ isVisible, onClose }) => {
   const route = useRoute();
   const { location } = route.params;
 
-  const handlePlanYourRoute = () => {
-    openGoogleMaps(location.lat, location.lng);
+  const handlePlanYourRoute = (mode) => {
+    openGoogleMaps(location.lat, location.lng, mode);
   };
 
 return (
@@ -34,19 +34,19 @@ return (
             <ResourceButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
-              onPress={handlePlanYourRoute}
+              onPress={() => handlePlanYourRoute('w')} // 'w' for walking
             />
 
             <ResourceButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
-              onPress={handlePlanYourRoute}
+              onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
             <ResourceButton
               imageSource={require('../assets/car.png')}
               title="Drive"
-              onPress={handlePlanYourRoute}
+              onPress={() => handlePlanYourRoute('d')} // 'd' for driving
             />
           </View>
 
