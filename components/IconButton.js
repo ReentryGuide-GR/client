@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     borderRadius: 30,
     width: '78%',
-    padding: 16,
+    padding: 18,
     marginTop: 7,
     marginBottom: 7,
     backgroundColor: '#E2E9F3',
@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   icon: {
-    marginRight: 5,
-    width: 45,
-    height: 45,
+    marginRight: 0,
+    width: 42,
+    height: 42,
     resizeMode: 'contain'
   },
   IconButtonText: {
