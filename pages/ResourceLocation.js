@@ -8,7 +8,6 @@ import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import ResourceButton from '../components/ResourceButton';
 import locations from '../locationsData';
-import { openGoogleMaps } from '../utils'
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -18,10 +17,6 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   const route = useRoute();
   const { location } = route.params;
-
-  const handlePlanYourRoute = () => {
-    openGoogleMaps(location.lat, location.lng);
-  };
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),

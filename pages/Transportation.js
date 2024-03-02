@@ -7,6 +7,7 @@ import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import ResourceButton from '../components/ResourceButton';
 import locations from '../locationsData';
+import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
@@ -14,6 +15,10 @@ const Transportation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { location } = route.params;
+
+  const handlePlanYourRoute = () => {
+    openGoogleMaps(location.lat, location.lng);
+  };
 
 return (
 
@@ -29,19 +34,19 @@ return (
             <ResourceButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
+              onPress={handlePlanYourRoute}
             />
 
             <ResourceButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              onPress={handlePlanYourRoute}
             />
 
             <ResourceButton
               imageSource={require('../assets/car.png')}
               title="Drive"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              onPress={handlePlanYourRoute}
             />
           </View>
 
