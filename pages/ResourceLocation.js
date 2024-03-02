@@ -6,7 +6,7 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import ResourceButton from '../components/ResourceButton';
+import IconButton from '../components/IconButton';
 import locations from '../locationsData';
 
 // import * as styles from '../../styles/detailsStyles';

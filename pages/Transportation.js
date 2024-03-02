@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import ResourceButton from '../components/ResourceButton';
+import IconButton from '../components/IconButton';
 import locations from '../locationsData';
 import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
@@ -31,19 +31,19 @@ return (
 
           <View style={styles.resourceContainer}>
            <Text style={styles.subtitle}>How will you get there?</Text>
-            <ResourceButton
+            <IconButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
               onPress={() => handlePlanYourRoute('w')} // 'w' for walking
             />
 
-            <ResourceButton
+            <IconButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
               onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
-            <ResourceButton
+            <IconButton
               imageSource={require('../assets/car.png')}
               title="Drive"
               onPress={() => handlePlanYourRoute('d')} // 'd' for driving

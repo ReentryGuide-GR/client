@@ -5,7 +5,7 @@ import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import ResourceButton from '../components/ResourceButton';
+import IconButton from '../components/IconButton';
 import locations from '../locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
@@ -17,13 +17,13 @@ return (
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>Meal or Groceries?</Text>
-            <ResourceButton
+            <IconButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
-            <ResourceButton
+            <IconButton
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
