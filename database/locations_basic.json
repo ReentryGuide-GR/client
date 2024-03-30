@@ -1,0 +1,30 @@
+{
+  "meal": [
+    {
+      "id": "1",
+      "name": "God’s Kitchen",
+      "coordinates": { "lat": 42.9634, "lng": -85.6681 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5, 6],
+        "open": "12:30",
+        "close": "14:00"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Mel Trotter",
+      "coordinates": { "lat": 42.9608, "lng": -85.6673 },
+      "openHours": {
+        "days": [0, 1, 2, 3, 4, 5, 6],
+        "open": "16:00",
+        "close": "17:45"
+      }
+    }
+  ],
+  "groceries": [
+    // Groceries locations
+  ],
+  "hygiene": [
+    // Hygiene locations
+  ]
+}
