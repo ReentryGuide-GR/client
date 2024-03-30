@@ -10,7 +10,7 @@ import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
 
-const Menu = ({ isVisible, onClose }) => {
+const SelectResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category } = route.params; // Access the passed category
@@ -67,7 +67,7 @@ const Menu = ({ isVisible, onClose }) => {
   );
 };
 
-export default Menu;
+export default SelectResourceLocation;
 
 const styles = StyleSheet.create({
   mainContainer: {
