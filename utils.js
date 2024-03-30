@@ -1,7 +1,7 @@
 // utils.js
 import * as Location from 'expo-location';
 import { Alert, Linking, Platform } from 'react-native';
-import locations from './locationsData'; // Ensure this path matches the location of your locations data file
+import locationsData from './database/locations_basic.json'; // Ensure this path matches the location of your locations data file
 
 // Haversine formula to calculate distance between two coordinates
 export const getDistance = (lat1, lng1, lat2, lng2) => {

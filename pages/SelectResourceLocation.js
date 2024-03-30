@@ -5,8 +5,8 @@ import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import IconButton from '../components/IconButton';
-import locations from '../locationsData';
+// import IconButton from '../components/IconButton';
+// import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
 
