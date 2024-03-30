@@ -1,5 +1,5 @@
 {
-  "meal": [
+  "Meal": [
     {
       "id": "1",
       "address": "303 Division Ave S, Grand Rapids, MI 49503",
@@ -13,10 +13,10 @@
       "specialRequirements": "Meals for program participants, but you may be able to join by calling first."
     }
   ],
-  "groceries": [
+  "Groceries": [
     // Detailed information for groceries locations
   ],
-  "hygiene": [
+  "Hygiene": [
     // Detailed information for hygiene locations
   ]
 }

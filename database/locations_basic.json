@@ -1,5 +1,5 @@
 {
-  "meal": [
+  "Meal": [
     {
       "id": "1",
       "name": "God’s Kitchen",
@@ -21,10 +21,10 @@
       }
     }
   ],
-  "groceries": [
+  "Groceries": [
     // Groceries locations
   ],
-  "hygiene": [
+  "Hygiene": [
     // Hygiene locations
   ]
 }
