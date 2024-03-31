@@ -17,7 +17,7 @@ const Transportation = ({ isVisible, onClose }) => {
   const { location } = route.params;
 
   const handlePlanYourRoute = (mode) => {
-    openGoogleMaps(location.lat, location.lng, mode);
+    openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
   };
 
 return (
@@ -26,6 +26,7 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text>
             {/* <Text style={styles.title}>Location Name</Text> */}
           </View>
 
