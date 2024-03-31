@@ -26,8 +26,7 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
-            <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text>
-            {/* <Text style={styles.title}>Location Name</Text> */}
+            {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
           </View>
 
           <View style={styles.resourceContainer}>
