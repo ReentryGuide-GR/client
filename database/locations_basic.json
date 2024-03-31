@@ -19,6 +19,16 @@
         "open": "16:00",
         "close": "17:45"
       }
+    },
+    {
+      "id": "3",
+      "name": "Test",
+      "coordinates": { "lat": 42.9208656, "lng": -83.5127242 },
+      "openHours": {
+        "days": [0, 1, 2, 3, 4, 5, 6],
+        "open": "16:00",
+        "close": "17:45"
+      }
     }
   ],
   "Groceries": [
