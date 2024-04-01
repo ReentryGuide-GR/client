@@ -100,13 +100,13 @@ const styles = StyleSheet.create({
   subtitle: {
     marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 18,
+    fontSize: 17,
     fontFamily: 'Manrope-Bold',
     width: '78%',
   },
   subtitle2: {
     marginBottom: 10,
-    fontSize: 18,
+    fontSize: 17,
     color: '#2F2E41',
     width: '76%',
     fontFamily: 'Manrope-Bold',
@@ -152,13 +152,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   openOrClosed: {
-    fontSize: 18,
+    fontSize: 17,
     // fontWeight: '700',
     color: '#664501',
     fontFamily: 'Manrope-Bold',
   },
   timing: {
-    fontSize: 18,
+    fontSize: 17,
     // fontWeight: '700',
     fontFamily: 'Manrope-Bold',
   },
