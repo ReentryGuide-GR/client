@@ -39,7 +39,11 @@ return (
 
           <View style={styles.resourceContainer}>
             <View style={styles.row}>
-              <Text style={styles.openOrClosed}>Closes Soon</Text>
+              <View style={styles.indicator}>
+                <Text style={styles.openOrClosed}>Closes Soon</Text>
+              </View>
+
+              
               <Text style={styles.timing}> - Closes at 5:45pm</Text>
             </View>
             <ActionButton
@@ -133,11 +137,19 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     width: '78%',
+    alignItems:'center',
+    paddingBottom: 5
+  },
+  indicator: {
+    backgroundColor: '#fce9c0',
+    padding: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
   },
   openOrClosed: {
     fontSize: 17,
     // fontWeight: '700',
-    color: '#AF7E00',
+    color: '#664501',
     fontFamily: 'Manrope-Bold',
   },
   timing: {
