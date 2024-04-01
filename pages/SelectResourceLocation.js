@@ -22,14 +22,18 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
     const result = await findClosestLocation(category);
     if (result) {
       const { location, distance } = result;
+      // Convert kilometers to miles
+      const distanceInMiles = distance * 0.621371;
       navigation.navigate('ResourceLocation', { 
         location: location, 
-        distance: distance 
+        // Ensure distance is rounded to 1 decimal place for display
+        distance: parseFloat(distanceInMiles.toFixed(1))
       });
     } else {
       console.error("No closest location found");
     }
   };
+  
   
 
   // useEffect(() => {
@@ -39,7 +43,6 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.resourceContainer}>
-        <Text>Location Value</Text>
         <Text style={styles.title}>Select {category} Location</Text>
         <ActionButton
           imageSource={require('../assets/bullseye.png')}
