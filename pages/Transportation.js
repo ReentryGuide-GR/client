@@ -34,6 +34,8 @@ return (
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
+            <Text style={styles.subtitle}>~ 5 miles away</Text>
+
 
           </View>
 
@@ -98,13 +100,13 @@ const styles = StyleSheet.create({
   subtitle: {
     marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: 'Manrope-Bold',
     width: '78%',
   },
   subtitle2: {
     marginBottom: 10,
-    fontSize: 17,
+    fontSize: 18,
     color: '#2F2E41',
     width: '76%',
     fontFamily: 'Manrope-Bold',
@@ -150,13 +152,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   openOrClosed: {
-    fontSize: 17,
+    fontSize: 18,
     // fontWeight: '700',
     color: '#664501',
     fontFamily: 'Manrope-Bold',
   },
   timing: {
-    fontSize: 17,
+    fontSize: 18,
     // fontWeight: '700',
     fontFamily: 'Manrope-Bold',
   },
