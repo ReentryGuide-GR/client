@@ -60,9 +60,9 @@ const ResourceLocation = ({ isVisible, onClose }) => {
       case 'closingSoon':
         return { ...styles.indicator, backgroundColor: '#ffe8ad' };
       case 'openingSoon':
-        return { ...styles.indicator, backgroundColor: '#abffa3' };
+        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
       case 'open':
-        return { ...styles.indicator, backgroundColor: '#abffa3' };
+        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
       case 'closed':
         return { ...styles.indicator, backgroundColor: '#ffd1d1' };
       default:
