@@ -1,7 +1,7 @@
 // utils.js
 import * as Location from 'expo-location';
 import { Alert, Linking, Platform } from 'react-native';
-import locations from './locationsData'; // Ensure this path matches the location of your locations data file
+import locationsData from './database/locations_basic.json'; // Ensure this path matches the location of your locations data file
 
 // Haversine formula to calculate distance between two coordinates
 export const getDistance = (lat1, lng1, lat2, lng2) => {
@@ -24,13 +24,20 @@ export const findClosestLocation = async (category) => {
     return null;
   }
 
-  const closest = locations[category].reduce((prev, curr) => {
-    const prevDistance = getDistance(userLocation.latitude, userLocation.longitude, prev.lat, prev.lng);
-    const currDistance = getDistance(userLocation.latitude, userLocation.longitude, curr.lat, curr.lng);
-    return (prevDistance < currDistance) ? prev : curr;
-  });
+  // Ensure category names are correctly capitalized as in your JSON
+  const categoryData = locationsData[category.charAt(0).toUpperCase() + category.slice(1)];
+  if (!categoryData) {
+    Alert.alert("Error", `Category ${category} not found`);
+    return null;
+  }
 
-  return closest; // Return the closest location object
+  const closest = categoryData.reduce((prev, curr) => {
+    const prevDistance = getDistance(userLocation.latitude, userLocation.longitude, prev.coordinates.lat, prev.coordinates.lng);
+    const currDistance = getDistance(userLocation.latitude, userLocation.longitude, curr.coordinates.lat, curr.coordinates.lng);
+    return (prevDistance < currDistance) ? prev : curr;
+  }, categoryData[0]); // Initialize with the first location as the default
+
+  return closest; // Return the closest location object, including its ID
 };
 
 // Function to get the user's current location

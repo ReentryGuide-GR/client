@@ -11,13 +11,13 @@ import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Transportation = ({ isVisible, onClose }) => {
+const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location } = route.params;
+  const { location, indicatorColor, textColor, timeMessage, statusText } = route.params;
 
   const handlePlanYourRoute = (mode) => {
-    openGoogleMaps(location.lat, location.lng, mode);
+    openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
   };
 
 return (
@@ -26,11 +26,19 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
-            {/* <Text style={styles.title}>Location Name</Text> */}
+            {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
+          
+            <View style={styles.row}>
+              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+                <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
+              </View>
+              <Text style={styles.timing}> - {timeMessage}</Text>
+            </View>
+
           </View>
 
           <View style={styles.resourceContainer}>
-           <Text style={styles.subtitle}>How will you get there?</Text>
+            <Text style={styles.subtitle2}>How will you get there?</Text>
             <IconButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
@@ -95,6 +103,13 @@ const styles = StyleSheet.create({
     width: '78%',
     fontFamily: 'Manrope-SemiBold',
   },
+  subtitle2: {
+    marginBottom: 10,
+    fontSize: 17,
+    color: '#2F2E41',
+    width: '76%',
+    fontFamily: 'Manrope-Bold',
+  },
 
   primaryButton: {
     backgroundColor: '#A33636',
@@ -117,11 +132,34 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginBottom: 18,
+    marginBottom: 8,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
     width: '78%',
+  },
+  row: {
+    flexDirection: 'row',
+    width: '78%',
+    alignItems:'center',
+    paddingBottom: 5
+  },
+  indicator: {
+    backgroundColor: '#fce9c0',
+    padding: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+  },
+  openOrClosed: {
+    fontSize: 17,
+    // fontWeight: '700',
+    color: '#664501',
+    fontFamily: 'Manrope-Bold',
+  },
+  timing: {
+    fontSize: 17,
+    // fontWeight: '700',
+    fontFamily: 'Manrope-Bold',
   },
 
 });

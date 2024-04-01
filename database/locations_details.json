@@ -1,0 +1,22 @@
+{
+  "Meal": [
+    {
+      "id": "1",
+      "address": "303 Division Ave S, Grand Rapids, MI 49503",
+      "phone": "616-454-4110",
+      "specialRequirements": "No appointment needed. Just walk in."
+    },
+    {
+      "id": "2",
+      "address": "225 Commerce Ave. SW, Grand Rapids, MI 49503",
+      "phone": "616-454-8249",
+      "specialRequirements": "Meals for program participants, but you may be able to join by calling first."
+    }
+  ],
+  "Groceries": [
+    // Detailed information for groceries locations
+  ],
+  "Hygiene": [
+    // Detailed information for hygiene locations
+  ]
+}

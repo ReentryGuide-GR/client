@@ -3,7 +3,15 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { useFonts } from 'expo-font';
 
-const ActionButton = ({ onPress, title, buttonStyle, textStyle, imageSource }) => {
+const ActionButton = ({
+  onPress,
+  title,
+  buttonStyle,
+  textStyle,
+  imageSource,
+  iconSize = 30,
+  buttonPadding = 23, // Default padding value
+}) => {
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
@@ -13,11 +21,21 @@ const ActionButton = ({ onPress, title, buttonStyle, textStyle, imageSource }) =
   }
 
   return (
-    <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
-      {/* <Text style={[styles.buttonText, textStyle]}>{title}</Text> */}
+    <TouchableOpacity
+      style={[
+        styles.button,
+        buttonStyle,
+        { padding: buttonPadding }, // Apply custom padding
+      ]}
+      onPress={onPress}
+    >
       <View style={styles.row}>
-        {/* conditionally render the <Image> component */}
-        {imageSource && <Image source={imageSource} style={styles.icon} />}
+        {imageSource && (
+          <Image
+            source={imageSource}
+            style={[styles.icon, { width: iconSize, height: iconSize }]} // Use iconSize for both width and height
+          />
+        )}
         <Text style={[styles.buttonText, textStyle]}>{title}</Text>
       </View>
     </TouchableOpacity>
@@ -29,7 +47,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 30,
     width: '78%',
-    padding: 23,
     marginTop: 7,
     marginBottom: 7,
     shadowColor: '#A59D95',
@@ -47,9 +64,9 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   icon: {
-    marginRight: 5,
-    width: 25,
-    height: 25,
+    marginRight: 10,
+    // width: 30,
+    // height: 30,
     resizeMode: 'contain'
   },
   row: {
