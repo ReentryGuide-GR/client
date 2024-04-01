@@ -14,7 +14,7 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, indicatorColor, textColor, timeMessage, statusText } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -26,15 +26,15 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-          
             <View style={styles.row}>
               <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
                 <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
-            <Text style={styles.subtitle}>~ 5 miles away</Text>
+
 
 
           </View>
@@ -111,7 +111,13 @@ const styles = StyleSheet.create({
     width: '76%',
     fontFamily: 'Manrope-Bold',
   },
-
+  distance: {
+    marginBottom: 8,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '78%',
+  },
   primaryButton: {
     backgroundColor: '#A33636',
   },
