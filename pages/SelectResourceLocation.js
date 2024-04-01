@@ -19,14 +19,18 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
-    const closestLocation = await findClosestLocation(category); // Assuming this returns the closest location object
-    if (closestLocation) {
-      navigation.navigate('ResourceLocation', { location: closestLocation });
+    const result = await findClosestLocation(category);
+    if (result) {
+      const { location, distance } = result;
+      navigation.navigate('ResourceLocation', { 
+        location: location, 
+        distance: distance 
+      });
     } else {
-      // Handle the case where no closest location is found
       console.error("No closest location found");
     }
   };
+  
 
   // useEffect(() => {
   //   fetchClosestLocation();
@@ -35,6 +39,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.resourceContainer}>
+        <Text>Location Value</Text>
         <Text style={styles.title}>Select {category} Location</Text>
         <ActionButton
           imageSource={require('../assets/bullseye.png')}

@@ -16,7 +16,7 @@ import moment from 'moment';
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location } = route.params;
+  const { location, distance } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -116,7 +116,7 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
-            <Text style={styles.distance}>~ 5 miles away</Text>
+            <Text style={styles.distance}>~ {parseFloat(distance.toFixed(1))} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={getIndicatorStyle()}>
