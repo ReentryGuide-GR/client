@@ -5,7 +5,7 @@ import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-// import IconButton from '../components/IconButton';
+import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
@@ -45,6 +45,8 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
 
         <ActionButton
           imageSource={require('../assets/locations.png')}
+          iconSize={40}
+          buttonPadding={18}
           title="Select Other Locations"
           onPress={onClose}
           buttonStyle={styles.tertiaryButton}
