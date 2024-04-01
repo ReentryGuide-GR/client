@@ -11,10 +11,10 @@ import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Transportation = ({ isVisible, onClose }) => {
+const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location } = route.params;
+  const { location, indicatorColor, textColor, timeMessage, statusText } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -27,12 +27,14 @@ return (
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
+          
             <View style={styles.row}>
-              <View style={styles.indicator}>
-                <Text style={styles.openOrClosed}>Closes Soon</Text>
+              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+                <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
               </View>
-              <Text style={styles.timing}> - Closes at 5:45pm</Text>
+              <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
+
           </View>
 
           <View style={styles.resourceContainer}>
