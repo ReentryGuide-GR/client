@@ -116,6 +116,7 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <Text style={styles.distance}>~ 5 miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={getIndicatorStyle()}>
@@ -215,8 +216,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
     width: '78%',
   },
-  title: {
+  distance: {
     marginBottom: 8,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '78%',
+  },
+  title: {
+    marginBottom: 10,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
