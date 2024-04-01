@@ -22,6 +22,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [status, setStatus] = useState('');
   const [timeMessage, setTimeMessage] = useState('');
 
+  // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
     updateLocationStatus();
   }, [location]);
@@ -130,7 +131,15 @@ return (
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
               buttonStyle={styles.secondaryButton}
-              onPress={() => navigation.navigate('Transportation', { location })}
+              onPress={() => 
+                navigation.navigate('Transportation', { 
+                  location: location,
+                  statusText: getStatusText(), // Added status text here
+                  indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
+                  textColor: getTextStyle().color, // Extract color from the style object
+                  timeMessage: timeMessage 
+                })                
+              }
             />
 
             <ActionButton
