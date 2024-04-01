@@ -37,12 +37,14 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Select {category} Location</Text>
         <ActionButton
+          imageSource={require('../assets/bullseye.png')}
           title="Select Closest Location"
           buttonStyle={styles.secondaryButton}
           onPress={handleSelectClosestLocation}
         />
 
         <ActionButton
+          imageSource={require('../assets/locations.png')}
           title="Select Other Locations"
           onPress={onClose}
           buttonStyle={styles.tertiaryButton}
