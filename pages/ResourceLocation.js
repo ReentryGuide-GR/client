@@ -1,12 +1,13 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import IconButton from '../components/IconButton';
+// import IconButton from '../components/IconButton';
+import moment from 'moment';
 // import locationsData from './database/locations_basic.json';
 
 // import * as styles from '../../styles/detailsStyles';
@@ -14,9 +15,89 @@ import IconButton from '../components/IconButton';
 
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
-
   const route = useRoute();
   const { location } = route.params;
+
+  // Initialize state for status and time message
+  const [status, setStatus] = useState('');
+  const [timeMessage, setTimeMessage] = useState('');
+
+  useEffect(() => {
+    updateLocationStatus();
+  }, [location]);
+
+  const updateLocationStatus = () => {
+    const now = moment();
+    const openTime = moment(location.openHours.open, "HH:mm");
+    const closeTime = moment(location.openHours.close, "HH:mm");
+
+    // Create a copy of closeTime for the "closing soon" comparison to avoid mutating the original closeTime
+    const closingSoonTime = moment(closeTime).subtract(1, 'hours');
+
+    if (now.isBetween(openTime, closingSoonTime)) {
+        setStatus('open');
+        setTimeMessage(`Closes at ${location.openHours.close}`);
+    } else if (now.isBetween(closingSoonTime, closeTime)) {
+        setStatus('closingSoon');
+        setTimeMessage(`Closes at ${location.openHours.close}`);
+    } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
+        setStatus('openingSoon');
+        setTimeMessage(`Opens at ${location.openHours.open}`);
+    } else if (now.isBefore(openTime)) {
+        setStatus('closed');
+        setTimeMessage(`Opens at ${location.openHours.open}`);
+    } else {
+        setStatus('closed');
+        setTimeMessage(`Opens at ${location.openHours.open}`); // Adjust according to how you handle next open time
+    }
+};
+
+
+  // Define styles based on status
+  const getIndicatorStyle = () => {
+    switch (status) {
+      case 'closingSoon':
+        return { ...styles.indicator, backgroundColor: '#ffe8ad' };
+      case 'openingSoon':
+        return { ...styles.indicator, backgroundColor: '#abffa3' };
+      case 'open':
+        return { ...styles.indicator, backgroundColor: '#abffa3' };
+      case 'closed':
+        return { ...styles.indicator, backgroundColor: '#ffd1d1' };
+      default:
+        return styles.indicator;
+    }
+  };
+
+  const getTextStyle = () => {
+    switch (status) {
+      case 'closingSoon':
+        return { ...styles.openOrClosed, color: '#543c00' };
+      case 'openingSoon':
+        return { ...styles.openOrClosed, color: 'darkgreen' };
+      case 'open':
+        return { ...styles.openOrClosed, color: 'darkgreen' };
+      case 'closed':
+        return { ...styles.openOrClosed, color: 'darkred' };
+      default:
+        return styles.openOrClosed;
+    }
+  };
+
+  const getStatusText = () => {
+    switch (status) {
+      case 'closingSoon':
+        return 'Closes Soon';
+      case 'openingSoon':
+        return 'Opens Soon';
+      case 'open':
+        return 'Open';
+      case 'closed':
+        return 'Closed';
+      default:
+        return '';
+    }
+  };
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -36,10 +117,10 @@ return (
             <Text style={styles.title}>{location.name}</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
-              <View style={styles.indicator}>
-                <Text style={styles.openOrClosed}>Closes Soon</Text>
+              <View style={getIndicatorStyle()}>
+                <Text style={getTextStyle()}>{getStatusText()}</Text>
               </View>
-              <Text style={styles.timing}> - Closes at 5:45pm</Text>
+              <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
           </View>
 
@@ -140,7 +221,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   indicator: {
-    backgroundColor: '#fce9c0',
+    // backgroundColor: '#fce9c0',
     padding: 5,
     paddingHorizontal: 10,
     borderRadius: 20,
@@ -148,7 +229,7 @@ const styles = StyleSheet.create({
   openOrClosed: {
     fontSize: 17,
     // fontWeight: '700',
-    color: '#664501',
+    // color: '#664501',
     fontFamily: 'Manrope-Bold',
   },
   timing: {
