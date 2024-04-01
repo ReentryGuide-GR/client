@@ -35,17 +35,16 @@ return (
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-          </View>
-
-          <View style={styles.resourceContainer}>
             <View style={styles.row}>
               <View style={styles.indicator}>
                 <Text style={styles.openOrClosed}>Closes Soon</Text>
               </View>
-
-              
               <Text style={styles.timing}> - Closes at 5:45pm</Text>
             </View>
+          </View>
+
+          <View style={styles.resourceContainer}>
+
             <ActionButton
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-SemiBold',
   },
   title: {
-    marginBottom: 18,
+    marginBottom: 8,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
