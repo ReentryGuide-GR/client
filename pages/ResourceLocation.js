@@ -116,7 +116,7 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
-            <Text style={styles.distance}>~ {parseFloat(distance.toFixed(1))} miles away</Text>
+            <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={getIndicatorStyle()}>
@@ -135,6 +135,7 @@ return (
               onPress={() => 
                 navigation.navigate('Transportation', { 
                   location: location,
+                  distance: distance,
                   statusText: getStatusText(), // Added status text here
                   indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
                   textColor: getTextStyle().color, // Extract color from the style object
