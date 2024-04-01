@@ -98,10 +98,9 @@ const styles = StyleSheet.create({
   subtitle: {
     marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
     width: '78%',
-    fontFamily: 'Manrope-SemiBold',
   },
   subtitle2: {
     marginBottom: 10,
