@@ -26,6 +26,11 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <View style={styles.row}>
+              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+                <Text style={[styles.openOrClosed, { color: textColor }]}>Appointment Required</Text> 
+              </View>
+            </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
