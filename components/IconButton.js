@@ -18,6 +18,7 @@ const IconButton = ({ onPress, imageSource, title }) => {
         <Image source={imageSource} style={styles.icon} />
         <Text style={styles.IconButtonText}>{title}</Text>
       </View>
+      <Image source={require('../assets/arrow_forward.png')} style={styles.arrow} />
     </TouchableOpacity>
   );
 };
@@ -26,8 +27,10 @@ export default IconButton;
 
 const styles = StyleSheet.create({
   IconButton: {
-    alignItems: 'left',
-    borderRadius: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between', 
+    alignItems: 'center',
+    borderRadius: 20,
     width: '78%',
     padding: 18,
     marginTop: 7,
@@ -43,7 +46,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 30,
+    paddingHorizontal: 6,
   },
   icon: {
     marginRight: 0,
@@ -51,11 +54,18 @@ const styles = StyleSheet.create({
     height: 42,
     resizeMode: 'contain'
   },
+  arrow: {
+    marginRight: 0,
+    width: 20,
+    height: 20,
+
+    resizeMode: 'contain'
+  },
   IconButtonText: {
     fontFamily: 'Manrope-SemiBold',
     fontWeight: '600',
     letterSpacing: 0.3,
-    fontSize: 19,
+    fontSize: 18,
     color: '#000',
     marginLeft: 10,
   },
