@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
+import { useFonts } from 'expo-font';
 import ActionButton from './components/ActionButton';
 import IconButton from './components/IconButton';
 import locations from './locationsData';
@@ -11,6 +12,14 @@ import locations from './locationsData';
 
 const Menu = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('./assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
 
 return (
 
