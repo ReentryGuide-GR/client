@@ -118,7 +118,7 @@ return (
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
               <View style={styles.requirementIndicator}>
-                <Text style={styles.openOrClosed}>Appointment Required</Text> 
+                <Text style={styles.openOrClosed}>Meals for program participants, but you may be able to join by calling first.</Text> 
               </View>
             </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>
