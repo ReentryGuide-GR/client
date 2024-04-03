@@ -34,12 +34,12 @@ return (
 
             <GoBackButton/>
 
-            <ActionButton
+            {/* <ActionButton
               title="Call Navigator"
               onPress={onClose}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
-            />
+            /> */}
 
           </View>
 
