@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     width: '78%',
-    padding: 18,
+    padding: 20,
     marginTop: 7,
     marginBottom: 7,
     backgroundColor: '#E2E9F3',
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 0,
-    width: 42,
-    height: 42,
+    width: 38,
+    height: 38,
     resizeMode: 'contain'
   },
   arrow: {
