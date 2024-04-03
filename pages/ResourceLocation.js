@@ -136,7 +136,7 @@ return (
             <IconButton
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
-              iconSize={30}
+              iconSize={32}
               buttonStyle={styles.secondaryButton}
               onPress={() => 
                 navigation.navigate('Transportation', { 
@@ -152,11 +152,10 @@ return (
 
             <IconButton
               title="More Info  "
-              iconSize={30}
+              iconSize={32}
               onPress={onClose}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
-              textStyle={styles.tertiaryButtonText}
             />
           </View>
 
@@ -199,6 +198,12 @@ const styles = StyleSheet.create({
 
   secondaryButton: {
     backgroundColor: '#E2E9F3',
+    padding: 25
+  },
+
+  tertiaryButton: {
+    // backgroundColor: '#E2E9F3',
+    padding: 25
   },
 
   subtitle: {
