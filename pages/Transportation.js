@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '78%',
+    width: '80%',
   },
   subtitle2: {
     marginBottom: 10,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '78%',
+    width: '80%',
   },
   primaryButton: {
     backgroundColor: '#E2E9F3',
@@ -134,11 +134,11 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
   row: {
     flexDirection: 'row',
-    width: '78%',
+    width: '80%',
     alignItems:'center',
     paddingBottom: 5
   },

@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '78%',
+    width: '80%',
   },
   requirementIndicator: {
     padding: 5,
@@ -224,18 +224,18 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '78%',
+    width: '80%',
   },
   title: {
     marginBottom: 10,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
   row: {
     flexDirection: 'row',
-    width: '78%',
+    width: '80%',
     alignItems:'center',
     paddingBottom: 5
   },

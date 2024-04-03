@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
 
 });
