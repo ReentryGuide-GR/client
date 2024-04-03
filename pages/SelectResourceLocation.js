@@ -51,7 +51,6 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
           buttonStyle={styles.secondaryButton}
           textStyle={styles.primaryButtonText}
           onPress={handleSelectClosestLocation}
-          arrowStyle="white"
         />
 
         <IconButton
@@ -60,8 +59,6 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
           buttonPadding={18}
           title="Pick Other Locations"
           onPress={onClose}
-          buttonStyle={styles.tertiaryButton}
-          textStyle={styles.tertiaryButtonText}
         />
       </View>
 
@@ -105,16 +102,13 @@ const styles = StyleSheet.create({
   primaryButton: {
     backgroundColor: '#A33636',
   },
-  primaryButtonText: {
-    color: '#fff',
-  },
 
   secondaryButton: {
-    backgroundColor: '#505967',
+    backgroundColor: '#E2E9F3',
   },
   
   secondaryButtonText: {
-    color: '#fff',
+    color: '#000',
   },
 
   tertiaryButton: {
