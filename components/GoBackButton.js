@@ -30,8 +30,9 @@ export default GoBackButton;
 
 const styles = StyleSheet.create({
   GoBackButton: {
+    flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 30,
+    borderRadius: 20,
     width: '78%',
     padding: 23,
     marginTop: 7,
@@ -47,13 +48,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 30,
-    marginLeft: -25,
+    paddingHorizontal: 26,
   },
   icon: {
     // marginRight: 5,
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     resizeMode: 'contain'
   },
   GoBackButtonText: {
