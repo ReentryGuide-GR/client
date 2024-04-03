@@ -3,7 +3,7 @@ import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 
-const IconButton = ({ onPress, imageSource, title }) => {
+const IconButton = ({ onPress, imageSource, title, buttonStyle, textStyle }) => {
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -14,12 +14,12 @@ const IconButton = ({ onPress, imageSource, title }) => {
   }
 
   return (
-    <TouchableOpacity style={styles.IconButton} onPress={onPress}>
+    <TouchableOpacity style={[styles.IconButton, buttonStyle]} onPress={onPress}>
       <View style={styles.row}>
         <Image source={imageSource} style={styles.icon} />
-        <Text style={styles.IconButtonText}>{title}</Text>
+        <Text style={[styles.IconButtonText, textStyle]}>{title}</Text>
       </View>
-      <Image source={require('../assets/arrow_forward.png')} style={styles.arrow} />
+      <Image source={require('../assets/arrow_forward.png')} style={[styles.arrow]} />
     </TouchableOpacity>
   );
 };
