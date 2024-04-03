@@ -42,6 +42,8 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
 
   return (
     <View style={styles.mainContainer}>
+      {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
+      <View></View> 
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Select {category} Location</Text>
         <IconButton
