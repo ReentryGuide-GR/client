@@ -182,12 +182,11 @@ export default ResourceLocation;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
-    width: '100%',
-    height: '100%',
+    paddingTop: '5%',
+    paddingBottom: '5%',
   },
   resourceContainer: {
     justifyContent: 'center', 
