@@ -200,18 +200,6 @@ const styles = StyleSheet.create({
   secondaryButton: {
     backgroundColor: '#E2E9F3',
   },
-  
-  secondaryButtonText: {
-    color: '#fff',
-  },
-
-  tertiaryButton: {
-    backgroundColor: '#fff',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
-  },
 
   subtitle: {
     marginBottom: -2,

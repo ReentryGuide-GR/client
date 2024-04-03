@@ -49,18 +49,21 @@ return (
             <IconButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('w')} // 'w' for walking
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
               title="Drive"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('d')} // 'd' for driving
             />
           </View>
@@ -123,23 +126,7 @@ const styles = StyleSheet.create({
     width: '78%',
   },
   primaryButton: {
-    backgroundColor: '#A33636',
-  },
-
-  secondaryButton: {
-    backgroundColor: '#505967',
-  },
-  
-  secondaryButtonText: {
-    color: '#fff',
-  },
-
-  tertiaryButton: {
     backgroundColor: '#E2E9F3',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
   },
 
   title: {

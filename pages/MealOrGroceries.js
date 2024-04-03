@@ -22,12 +22,14 @@ return (
             <IconButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
+              buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
             <IconButton
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
+              buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
             />
           </View>
@@ -69,23 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 15, 
   },
   primaryButton: {
-    backgroundColor: '#A33636',
-  },
-
-  secondaryButton: {
-    backgroundColor: '#505967',
-  },
-  
-  secondaryButtonText: {
-    color: '#fff',
-  },
-
-  tertiaryButton: {
     backgroundColor: '#E2E9F3',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
   },
 
   title: {
