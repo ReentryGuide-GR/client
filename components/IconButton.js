@@ -1,3 +1,4 @@
+//in IconButton.js
 import React from 'react';
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
