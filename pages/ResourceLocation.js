@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
-import ActionButton from '../components/ActionButton';
+import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 // import IconButton from '../components/IconButton';
 import moment from 'moment';
@@ -133,9 +133,10 @@ return (
 
           <View style={styles.resourceContainer}>
 
-            <ActionButton
+            <IconButton
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
+              iconSize={30}
               buttonStyle={styles.secondaryButton}
               onPress={() => 
                 navigation.navigate('Transportation', { 
@@ -149,8 +150,9 @@ return (
               }
             />
 
-            <ActionButton
+            <IconButton
               title="More Info  "
+              iconSize={30}
               onPress={onClose}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
@@ -162,12 +164,12 @@ return (
 
             <GoBackButton/>
 
-            <ActionButton
+            {/* <IconButton
               title="Call Navigator"
               onPress={onClose}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
-            />
+            /> */}
 
           </View>
 
@@ -195,12 +197,9 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
-  primaryButton: {
-    backgroundColor: '#A33636',
-  },
 
   secondaryButton: {
-    backgroundColor: '#505967',
+    backgroundColor: '#E2E9F3',
   },
   
   secondaryButtonText: {
@@ -208,7 +207,7 @@ const styles = StyleSheet.create({
   },
 
   tertiaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#fff',
   },
 
   tertiaryButtonText: {
