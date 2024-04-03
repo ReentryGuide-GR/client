@@ -44,18 +44,21 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
     <View style={styles.mainContainer}>
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Select {category} Location</Text>
-        <ActionButton
+        <IconButton
+          iconSize={30}
           imageSource={require('../assets/bullseye.png')}
-          title="Select Closest Location"
+          title="Pick Closest Location"
           buttonStyle={styles.secondaryButton}
+          textStyle={styles.primaryButtonText}
           onPress={handleSelectClosestLocation}
+          arrowStyle="white"
         />
 
-        <ActionButton
+        <IconButton
           imageSource={require('../assets/locations.png')}
-          iconSize={40}
+          iconSize={30}
           buttonPadding={18}
-          title="Select Other Locations"
+          title="Pick Other Locations"
           onPress={onClose}
           buttonStyle={styles.tertiaryButton}
           textStyle={styles.tertiaryButtonText}
@@ -66,12 +69,12 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
 
         <GoBackButton/>
 
-        <ActionButton
+        {/* <IconButton
           title="Call Navigator"
           onPress={onClose}
           buttonStyle={styles.primaryButton}
           textStyle={styles.primaryButtonText}
-        />
+        /> */}
 
       </View>
 
@@ -101,6 +104,9 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#A33636',
+  },
+  primaryButtonText: {
+    color: '#fff',
   },
 
   secondaryButton: {

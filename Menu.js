@@ -48,7 +48,7 @@ return (
               onPress={onClose}
             />
 
-            <ActionButton
+            <IconButton
               title="More..."
               onPress={onClose}
               buttonStyle={styles.secondaryButton}
@@ -103,11 +103,11 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#505967',
+    backgroundColor: '#E2E9F3',
   },
   
   secondaryButtonText: {
-    color: '#fff',
+    color: '#000',
   },
   
   textContainer: {
