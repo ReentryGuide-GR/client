@@ -56,11 +56,12 @@ return (
             />
           </View>
 
-          <ActionButton
+          <IconButton
             title="Call Navigator"
             onPress={onClose}
             buttonStyle={styles.primaryButton}
             textStyle={styles.primaryButtonText}
+            arrowStyle="white"
           />
 
         </View>
@@ -97,7 +98,9 @@ const styles = StyleSheet.create({
   primaryButton: {
     backgroundColor: '#A33636',
   },
-  
+  primaryButtonText: {
+    color: '#fff',
+  },
 
   secondaryButton: {
     backgroundColor: '#505967',
