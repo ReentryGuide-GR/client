@@ -14,7 +14,7 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, indicatorColor, textColor, timeMessage, statusText } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -26,14 +26,21 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <View style={styles.row}>
+              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+                <Text style={[styles.openOrClosed, { color: textColor }]}>Appointment Required</Text> 
+              </View>
+            </View>
+            <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-          
             <View style={styles.row}>
               <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
                 <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
+
+
 
           </View>
 
@@ -42,18 +49,21 @@ return (
             <IconButton
               imageSource={require('../assets/walk.png')}
               title="Walk only"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('w')} // 'w' for walking
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
               title="Drive"
+              buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('d')} // 'd' for driving
             />
           </View>
@@ -62,12 +72,12 @@ return (
 
             <GoBackButton/>
 
-            <ActionButton
+            {/* <ActionButton
               title="Call Navigator"
               onPress={onClose}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
-            />
+            /> */}
 
           </View>
 
@@ -80,12 +90,11 @@ export default Transportation;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
-    width: '100%',
-    height: '100%',
+    paddingTop: '5%',
+    paddingBottom: '5%',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -98,10 +107,9 @@ const styles = StyleSheet.create({
   subtitle: {
     marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 18,
-    fontWeight: '500',
-    width: '78%',
-    fontFamily: 'Manrope-SemiBold',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '80%',
   },
   subtitle2: {
     marginBottom: 10,
@@ -110,25 +118,15 @@ const styles = StyleSheet.create({
     width: '76%',
     fontFamily: 'Manrope-Bold',
   },
-
+  distance: {
+    marginBottom: 8,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '80%',
+  },
   primaryButton: {
-    backgroundColor: '#A33636',
-  },
-
-  secondaryButton: {
-    backgroundColor: '#505967',
-  },
-  
-  secondaryButtonText: {
-    color: '#fff',
-  },
-
-  tertiaryButton: {
     backgroundColor: '#E2E9F3',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
   },
 
   title: {
@@ -136,11 +134,11 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
   row: {
     flexDirection: 'row',
-    width: '78%',
+    width: '80%',
     alignItems:'center',
     paddingBottom: 5
   },

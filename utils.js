@@ -24,21 +24,29 @@ export const findClosestLocation = async (category) => {
     return null;
   }
 
-  // Ensure category names are correctly capitalized as in your JSON
   const categoryData = locationsData[category.charAt(0).toUpperCase() + category.slice(1)];
   if (!categoryData) {
     Alert.alert("Error", `Category ${category} not found`);
     return null;
   }
 
-  const closest = categoryData.reduce((prev, curr) => {
-    const prevDistance = getDistance(userLocation.latitude, userLocation.longitude, prev.coordinates.lat, prev.coordinates.lng);
-    const currDistance = getDistance(userLocation.latitude, userLocation.longitude, curr.coordinates.lat, curr.coordinates.lng);
-    return (prevDistance < currDistance) ? prev : curr;
-  }, categoryData[0]); // Initialize with the first location as the default
+  // Initialize with the first location as the default and calculate distance for it
+  let closestLocation = categoryData[0];
+  let shortestDistance = getDistance(userLocation.latitude, userLocation.longitude, closestLocation.coordinates.lat, closestLocation.coordinates.lng);
 
-  return closest; // Return the closest location object, including its ID
+  // Go through each location to find the closest
+  categoryData.forEach(location => {
+    const distance = getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng);
+    if (distance < shortestDistance) {
+      shortestDistance = distance;
+      closestLocation = location;
+    }
+  });
+
+  // Return both the closest location and the shortest distance to it
+  return { location: closestLocation, distance: shortestDistance };
 };
+
 
 // Function to get the user's current location
 export const getUserLocation = async () => {

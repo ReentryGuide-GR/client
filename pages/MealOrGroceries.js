@@ -15,17 +15,21 @@ const Menu = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
+          {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
+          <View></View> 
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>Meal or Groceries?</Text>
             <IconButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
+              buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
             <IconButton
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
+              buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
             />
           </View>
@@ -34,12 +38,12 @@ return (
 
             <GoBackButton/>
 
-            <ActionButton
+            {/* <ActionButton
               title="Call Navigator"
               onPress={onClose}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
-            />
+            /> */}
 
           </View>
 
@@ -52,12 +56,11 @@ export default Menu;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
-    width: '100%',
-    height: '100%',
+    paddingTop: '5%',
+    paddingBottom: '5%',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -68,23 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 15, 
   },
   primaryButton: {
-    backgroundColor: '#A33636',
-  },
-
-  secondaryButton: {
-    backgroundColor: '#505967',
-  },
-  
-  secondaryButtonText: {
-    color: '#fff',
-  },
-
-  tertiaryButton: {
     backgroundColor: '#E2E9F3',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
   },
 
   title: {
@@ -92,7 +79,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
 
 });

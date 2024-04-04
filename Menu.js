@@ -3,75 +3,36 @@ import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
+import { useFonts } from 'expo-font';
 import ActionButton from './components/ActionButton';
 import IconButton from './components/IconButton';
 import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
 
-//Get Distance from each resource location to the user location
-const getDistance = (lat1, lng1, lat2, lng2) => {
-  // Haversine formula
-  const toRad = x => (x * Math.PI) / 180;
-  const R = 6371; // Earth radius in km
-  const dLat = toRad(lat2 - lat1);
-  const dLng = toRad(lng2 - lng1);
-  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(dLng / 2) * Math.sin(dLng / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-};
-
-const findClosestLocation = async (category) => {
-  let userLocation = await getUserLocation();
-  if (!userLocation) {
-    Alert.alert("Error", "Unable to get user location");
-    return;
-  }
-
-  const closest = locations[category].reduce((prev, curr) => {
-    const prevDistance = getDistance(userLocation.latitude, userLocation.longitude, prev.lat, prev.lng);
-    const currDistance = getDistance(userLocation.latitude, userLocation.longitude, curr.lat, curr.lng);
-    return (prevDistance < currDistance) ? prev : curr;
-  });
-
-  openGoogleMaps(closest.lat, closest.lng);
-};
-
-
-const getUserLocation = async () => {
-  try {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      console.error('Permission to access location was denied');
-      return null;
-    }
-
-    const location = await Location.getCurrentPositionAsync({});
-    return location.coords;
-  } catch (error) {
-    console.error("Couldn't get location", error);
-    return null;
-  }
-};
-
-const openGoogleMaps = (lat, lng) => {
-  // Use the geo URI scheme for Android
-  const url = Platform.OS === 'android' 
-    ? `google.navigation:q=${lat},${lng}&mode=w` // 'w' stands for walking
-    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=walking`;
-
-  Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
-};
-
 const Menu = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('./assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
 
 return (
 
         <View style={styles.mainContainer}>
+          <IconButton
+            title="Call Navigator"
+            onPress={onClose}
+            buttonStyle={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+            arrowStyle="white"
+          />
           <View style={styles.resourceContainer}>
+            <Text style={styles.subtitle}>Support Path</Text>
             <Text style={styles.title}>Main Menu</Text>
             <IconButton
               imageSource={require('./assets/food.png')}
@@ -94,20 +55,9 @@ return (
               onPress={onClose}
             />
 
-            <ActionButton
-              title="More..."
-              onPress={onClose}
-              buttonStyle={styles.secondaryButton}
-              textStyle={styles.secondaryButtonText}
-            />
           </View>
-
-          <ActionButton
-            title="Call Navigator"
-            onPress={onClose}
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-          />
+          {/* Placeholder for space at the bottom */}
+          <View></View> 
 
         </View>
   );
@@ -118,12 +68,12 @@ export default Menu;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
+    paddingTop: '5%',
+    paddingBottom: '5%',
     width: '100%',
-    height: '100%',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -133,16 +83,26 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
+  subtitle: {
+    marginBottom: -2,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '80%',
+  },
   primaryButton: {
     backgroundColor: '#A33636',
   },
+  primaryButtonText: {
+    color: '#fff',
+  },
 
   secondaryButton: {
-    backgroundColor: '#505967',
+    backgroundColor: '#E2E9F3',
   },
   
   secondaryButtonText: {
-    color: '#fff',
+    color: '#000',
   },
   
   textContainer: {
@@ -154,7 +114,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
 
 });

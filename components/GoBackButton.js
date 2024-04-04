@@ -30,30 +30,30 @@ export default GoBackButton;
 
 const styles = StyleSheet.create({
   GoBackButton: {
+    flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 30,
-    width: '78%',
-    padding: 23,
-    marginTop: 7,
-    marginBottom: 7,
+    borderRadius: 20,
+    width: '80%',
+    padding: 30,
+    marginTop: 5,
+    marginBottom: 5,
     backgroundColor: '#fff',
     shadowColor: '#A59D95',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 24,
-    elevation: 7,
+    elevation: 20,
     zIndex: 11,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 30,
-    marginLeft: -25,
+    paddingHorizontal: 24,
   },
   icon: {
     // marginRight: 5,
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     resizeMode: 'contain'
   },
   GoBackButtonText: {

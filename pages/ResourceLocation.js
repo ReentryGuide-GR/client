@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
-import ActionButton from '../components/ActionButton';
+import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 // import IconButton from '../components/IconButton';
 import moment from 'moment';
@@ -16,7 +16,7 @@ import moment from 'moment';
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location } = route.params;
+  const { location, distance } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -60,9 +60,9 @@ const ResourceLocation = ({ isVisible, onClose }) => {
       case 'closingSoon':
         return { ...styles.indicator, backgroundColor: '#ffe8ad' };
       case 'openingSoon':
-        return { ...styles.indicator, backgroundColor: '#abffa3' };
+        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
       case 'open':
-        return { ...styles.indicator, backgroundColor: '#abffa3' };
+        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
       case 'closed':
         return { ...styles.indicator, backgroundColor: '#ffd1d1' };
       default:
@@ -116,6 +116,12 @@ return (
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
+            <View style={styles.row}>
+              <View style={styles.requirementIndicator}>
+                <Text style={styles.openOrClosed}>Meals for program participants, but you may be able to join by calling first.</Text> 
+              </View>
+            </View>
+            <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={getIndicatorStyle()}>
@@ -127,13 +133,15 @@ return (
 
           <View style={styles.resourceContainer}>
 
-            <ActionButton
+            <IconButton
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route  "
+              iconSize={32}
               buttonStyle={styles.secondaryButton}
               onPress={() => 
                 navigation.navigate('Transportation', { 
                   location: location,
+                  distance: distance,
                   statusText: getStatusText(), // Added status text here
                   indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
                   textColor: getTextStyle().color, // Extract color from the style object
@@ -142,12 +150,12 @@ return (
               }
             />
 
-            <ActionButton
+            <IconButton
               title="More Info  "
+              iconSize={32}
               onPress={onClose}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
-              textStyle={styles.tertiaryButtonText}
             />
           </View>
 
@@ -155,12 +163,12 @@ return (
 
             <GoBackButton/>
 
-            <ActionButton
+            {/* <IconButton
               title="Call Navigator"
               onPress={onClose}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
-            />
+            /> */}
 
           </View>
 
@@ -173,12 +181,11 @@ export default ResourceLocation;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
-    width: '100%',
-    height: '100%',
+    paddingTop: '5%',
+    paddingBottom: '5%',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -188,44 +195,47 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
-  primaryButton: {
-    backgroundColor: '#A33636',
-  },
 
   secondaryButton: {
-    backgroundColor: '#505967',
-  },
-  
-  secondaryButtonText: {
-    color: '#fff',
+    backgroundColor: '#E2E9F3',
+    padding: 25
   },
 
   tertiaryButton: {
-    backgroundColor: '#E2E9F3',
-  },
-
-  tertiaryButtonText: {
-    color: '#000',
+    // backgroundColor: '#E2E9F3',
+    padding: 25
   },
 
   subtitle: {
     marginBottom: -2,
     color: '#2F2E41',
-    fontSize: 18,
-    fontWeight: '500',
-    width: '78%',
-    fontFamily: 'Manrope-SemiBold',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '80%',
+  },
+  requirementIndicator: {
+    padding: 5,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    backgroundColor: '#fce9c0',
+  },
+  distance: {
+    marginBottom: 8,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '80%',
   },
   title: {
-    marginBottom: 8,
+    marginBottom: 10,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
   row: {
     flexDirection: 'row',
-    width: '78%',
+    width: '80%',
     alignItems:'center',
     paddingBottom: 5
   },

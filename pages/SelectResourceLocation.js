@@ -19,14 +19,22 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
-    const closestLocation = await findClosestLocation(category); // Assuming this returns the closest location object
-    if (closestLocation) {
-      navigation.navigate('ResourceLocation', { location: closestLocation });
+    const result = await findClosestLocation(category);
+    if (result) {
+      const { location, distance } = result;
+      // Convert kilometers to miles
+      const distanceInMiles = distance * 0.621371;
+      navigation.navigate('ResourceLocation', { 
+        location: location, 
+        // Ensure distance is rounded to 1 decimal place for display
+        distance: parseFloat(distanceInMiles.toFixed(1))
+      });
     } else {
-      // Handle the case where no closest location is found
       console.error("No closest location found");
     }
   };
+  
+  
 
   // useEffect(() => {
   //   fetchClosestLocation();
@@ -34,23 +42,24 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
 
   return (
     <View style={styles.mainContainer}>
+      {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
+      <View></View> 
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Select {category} Location</Text>
-        <ActionButton
+        <IconButton
+          iconSize={32}
           imageSource={require('../assets/bullseye.png')}
-          title="Select Closest Location"
-          buttonStyle={styles.secondaryButton}
+          title="Pick Closest Location"
+          buttonStyle={styles.primaryButton}
+          textStyle={styles.primaryButtonText}
           onPress={handleSelectClosestLocation}
         />
 
-        <ActionButton
+        <IconButton
           imageSource={require('../assets/locations.png')}
-          iconSize={40}
-          buttonPadding={18}
-          title="Select Other Locations"
+          iconSize={38}
+          title="Pick Other Locations"
           onPress={onClose}
-          buttonStyle={styles.tertiaryButton}
-          textStyle={styles.tertiaryButtonText}
         />
       </View>
 
@@ -58,12 +67,12 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
 
         <GoBackButton/>
 
-        <ActionButton
+        {/* <IconButton
           title="Call Navigator"
           onPress={onClose}
           buttonStyle={styles.primaryButton}
           textStyle={styles.primaryButtonText}
-        />
+        /> */}
 
       </View>
 
@@ -76,12 +85,11 @@ export default SelectResourceLocation;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
-    padding: 0,
-    width: '100%',
-    height: '100%',
+    paddingTop: '5%',
+    paddingBottom: '5%',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -91,20 +99,19 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
-  primaryButton: {
-    backgroundColor: '#A33636',
-  },
 
-  secondaryButton: {
-    backgroundColor: '#505967',
+  primaryButton: {
+    backgroundColor: '#E2E9F3',
+    padding: 25,
   },
   
   secondaryButtonText: {
-    color: '#fff',
+    color: '#000',
   },
 
   tertiaryButton: {
     backgroundColor: '#E2E9F3',
+    padding: 22,
   },
 
   tertiaryButtonText: {
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '78%',
+    width: '80%',
   },
 
 });
