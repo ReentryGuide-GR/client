@@ -48,12 +48,6 @@ return (
               onPress={onClose}
             />
 
-            <IconButton
-              title="More..."
-              onPress={onClose}
-              buttonStyle={styles.secondaryButton}
-              textStyle={styles.secondaryButtonText}
-            />
           </View>
 
           <IconButton
