@@ -24,6 +24,13 @@ const Menu = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
+          <IconButton
+            title="Call Navigator"
+            onPress={onClose}
+            buttonStyle={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+            arrowStyle="white"
+          />
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>Support Path</Text>
             <Text style={styles.title}>Main Menu</Text>
@@ -50,13 +57,7 @@ return (
 
           </View>
 
-          <IconButton
-            title="Call Navigator"
-            onPress={onClose}
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-            arrowStyle="white"
-          />
+          <View></View>
 
         </View>
   );
