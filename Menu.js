@@ -56,8 +56,8 @@ return (
             />
 
           </View>
-
-          <View></View>
+          {/* Placeholder for space at the bottom */}
+          <View></View> 
 
         </View>
   );
