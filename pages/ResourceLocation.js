@@ -8,6 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 // import IconButton from '../components/IconButton';
 import moment from 'moment';
+import locationsDetails from '../database/locations_details.json';
 // import locationsData from './database/locations_basic.json';
 
 // import * as styles from '../../styles/detailsStyles';
@@ -26,6 +27,20 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   useEffect(() => {
     updateLocationStatus();
   }, [location]);
+
+  // Find the matching entry and extract the specialRequirements:
+  useEffect(() => {
+    updateLocationStatus();
+    // Assuming location includes an id
+    const matchingDetails = locationsDetails.Meal.find(detail => detail.id === location.id);
+    if (matchingDetails) {
+      // Assuming you have a state for specialRequirements
+      setSpecialRequirements(matchingDetails.specialRequirements);
+    }
+  }, [location]);
+
+  // Declare specialRequirements  
+  const [specialRequirements, setSpecialRequirements] = useState('');
 
   const updateLocationStatus = () => {
     const now = moment();
@@ -51,8 +66,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
         setStatus('closed');
         setTimeMessage(`Opens at ${location.openHours.open}`); // Adjust according to how you handle next open time
     }
-};
-
+  };
 
   // Define styles based on status
   const getIndicatorStyle = () => {
@@ -118,7 +132,7 @@ return (
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
               <View style={styles.requirementIndicator}>
-                <Text style={styles.openOrClosed}>Meals for program participants, but you may be able to join by calling first.</Text> 
+                <Text style={styles.openOrClosed}>{specialRequirements}</Text> 
               </View>
             </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>
