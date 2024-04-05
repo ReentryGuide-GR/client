@@ -79,15 +79,15 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
 export const requirementsColorMapping = (colorName) => {
   const mappings = {
     Red: {
-      backgroundColor: '#FFCDD2', // Example light red
+      backgroundColor: '#ffd1d1', // Example light red
       textColor: '#7B1C1C', // Darker red for text
     },
     Yellow: {
-      backgroundColor: '#FFF9C4', // Example light yellow
-      textColor: '#C79100', // Darker yellow for text
+      backgroundColor: '#ffe8ad', // Example light yellow
+      textColor: '#543c00', // Darker yellow for text
     },
     Green: {
-      backgroundColor: '#C8E6C9', // Example light green
+      backgroundColor: '#c1fcbb', // Example light green
       textColor: '#256029', // Darker green for text
     },
   };
