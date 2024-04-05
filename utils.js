@@ -80,7 +80,7 @@ export const requirementsColorMapping = (colorName) => {
   const mappings = {
     Red: {
       backgroundColor: '#ffd1d1', // Example light red
-      textColor: '#7B1C1C', // Darker red for text
+      textColor: 'darkred', // Darker red for text
     },
     Yellow: {
       backgroundColor: '#ffe8ad', // Example light yellow
