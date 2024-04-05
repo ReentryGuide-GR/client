@@ -27,14 +27,14 @@
       "id": "1",
       "address": "Test Groceries address 1",
       "phone": "123-456-7890",
-      "specialRequirements": "Test Groceries address 1", 
-      "requirementsColor": "Green"
+      "specialRequirements": "Test Groceries requirements 1", 
+      "requirementsColor": "Yellow"
     },
     {
       "id": "2",
       "address": "Test Groceries address 2",
       "phone": "616-454-8249",
-      "specialRequirements": "Test Groceries address 2", 
+      "specialRequirements": "Test Groceries requirements 2", 
       "requirementsColor": "Yellow"
     }
   ],
