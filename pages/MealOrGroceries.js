@@ -10,7 +10,7 @@ import IconButton from '../components/IconButton';
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Menu = ({ isVisible, onClose }) => {
+const Page = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
 return (
 
@@ -51,7 +51,7 @@ return (
   );
 };
 
-export default Menu;
+export default Page;
 
 const styles = StyleSheet.create({
   mainContainer: {
