@@ -26,8 +26,8 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       const distanceInMiles = distance * 0.621371;
       navigation.navigate('ResourceLocation', { 
         location: location, 
-        // Ensure distance is rounded to 1 decimal place for display
-        distance: parseFloat(distanceInMiles.toFixed(1))
+        distance: parseFloat(distanceInMiles.toFixed(1)), // Ensure distance is rounded to 1 decimal place for display
+        category // Pass category to ResourceLocation
       });
     } else {
       console.error("No closest location found");

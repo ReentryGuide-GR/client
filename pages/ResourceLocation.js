@@ -16,7 +16,7 @@ import { requirementsColorMapping } from '../utils';
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance } = route.params;
+  const { location, distance, category } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -34,7 +34,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Find the matching entry and extract the specialRequirements:
   useEffect(() => {
-    const matchingDetails = locationsDetails.Meal.find(detail => detail.id === location.id);
+    const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
     if (matchingDetails) {
         setSpecialRequirements(matchingDetails.specialRequirements);
         // New: Use requirementsColorMapping to set colors
@@ -42,7 +42,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
         setRequirementIndicatorStyle({ backgroundColor });
         setRequirementsTextStyle({ color: textColor });
     }
-  }, [location]);
+  }, [location, category]); // Dependency on category to re-run effect if it changes
 
   const updateLocationStatus = () => {
     const now = moment();
