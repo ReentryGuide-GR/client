@@ -19,11 +19,24 @@
       "address": "1234 Test St. SW, Grand Rapids, MI 49500",
       "phone": "123-456-7890",
       "specialRequirements": "Test requirement sentence", 
-      "requirementsColor": "Green"
+      "requirementsColor": "Yellow"
     }
   ],
   "Groceries": [
-    // Detailed information for groceries locations
+    {
+      "id": "1",
+      "address": "Test Groceries address 1",
+      "phone": "123-456-7890",
+      "specialRequirements": "Test Groceries address 1", 
+      "requirementsColor": "Green"
+    },
+    {
+      "id": "2",
+      "address": "Test Groceries address 2",
+      "phone": "616-454-8249",
+      "specialRequirements": "Test Groceries address 2", 
+      "requirementsColor": "Yellow"
+    }
   ],
   "Hygiene": [
     // Detailed information for hygiene locations

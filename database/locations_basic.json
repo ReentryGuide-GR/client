@@ -32,7 +32,26 @@
     }
   ],
   "Groceries": [
-    // Groceries locations
+    {
+      "id": "1",
+      "name": "Test Groceries Location 1",
+      "coordinates": { "lat": 42.9176572, "lng": -85.5118018 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5, 6],
+        "open": "00:30",
+        "close": "4:00"
+      }
+    },
+    {
+      "id": "2",
+      "name": "Test Groceries Location 2",
+      "coordinates": { "lat": 42.9608, "lng": -85.6673 },
+      "openHours": {
+        "days": [0, 1, 2, 3, 4, 5, 6],
+        "open": "6:00",
+        "close": "7:45"
+      }
+    }
   ],
   "Hygiene": [
     // Hygiene locations
