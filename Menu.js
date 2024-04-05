@@ -29,10 +29,10 @@ return (
             onPress={onClose}
             buttonStyle={styles.primaryButton}
             textStyle={styles.primaryButtonText}
-            arrowStyle="white"
+            // arrowStyle="white"
           />
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>Support Path</Text>
+            <Text style={styles.subtitle}>Guideway GR</Text>
             <Text style={styles.title}>Main Menu</Text>
             <IconButton
               imageSource={require('./assets/food.png')}
@@ -91,10 +91,10 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   primaryButton: {
-    backgroundColor: '#A33636',
+    backgroundColor: '#FFCBCB',
   },
   primaryButtonText: {
-    color: '#fff',
+    color: '#000',
   },
 
   secondaryButton: {
