@@ -75,3 +75,22 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
   Linking.openURL(url).catch(err => Alert.alert("Error", "Couldn't load page"));
 };
 
+// Return Colors for Special Requirement Background and Text Colors
+export const requirementsColorMapping = (colorName) => {
+  const mappings = {
+    Red: {
+      backgroundColor: '#FFCDD2', // Example light red
+      textColor: '#7B1C1C', // Darker red for text
+    },
+    Yellow: {
+      backgroundColor: '#FFF9C4', // Example light yellow
+      textColor: '#C79100', // Darker yellow for text
+    },
+    Green: {
+      backgroundColor: '#C8E6C9', // Example light green
+      textColor: '#256029', // Darker green for text
+    },
+  };
+
+  return mappings[colorName] || { backgroundColor: '#FFFFFF', textColor: '#000000' }; // Default case
+};
