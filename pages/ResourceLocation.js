@@ -6,10 +6,9 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
-// import IconButton from '../components/IconButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-// import locationsData from './database/locations_basic.json';
+import { requirementsColorMapping } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -23,6 +22,11 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [status, setStatus] = useState('');
   const [timeMessage, setTimeMessage] = useState('');
 
+  // Declare specialRequirements  
+  const [specialRequirements, setSpecialRequirements] = useState('');
+  const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
+  const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
+
   // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
     updateLocationStatus();
@@ -30,17 +34,15 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Find the matching entry and extract the specialRequirements:
   useEffect(() => {
-    updateLocationStatus();
-    // Assuming location includes an id
     const matchingDetails = locationsDetails.Meal.find(detail => detail.id === location.id);
     if (matchingDetails) {
-      // Assuming you have a state for specialRequirements
-      setSpecialRequirements(matchingDetails.specialRequirements);
+        setSpecialRequirements(matchingDetails.specialRequirements);
+        // New: Use requirementsColorMapping to set colors
+        const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
+        setRequirementIndicatorStyle({ backgroundColor });
+        setRequirementsTextStyle({ color: textColor });
     }
   }, [location]);
-
-  // Declare specialRequirements  
-  const [specialRequirements, setSpecialRequirements] = useState('');
 
   const updateLocationStatus = () => {
     const now = moment();
@@ -131,8 +133,8 @@ return (
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
-              <View style={styles.requirementIndicator}>
-                <Text style={styles.openOrClosed}>{specialRequirements}</Text> 
+              <View style={[styles.indicator, requirementIndicatorStyle]}>
+              <Text style={[styles.requirementText, requirementsTextStyle]}>{specialRequirements}</Text>
               </View>
             </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>
@@ -227,11 +229,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
     width: '80%',
   },
-  requirementIndicator: {
+  indicator: {
     padding: 5,
     paddingHorizontal: 10,
     borderRadius: 20,
-    backgroundColor: '#fce9c0',
+  },
+  requirementText: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
   },
   distance: {
     marginBottom: 8,
@@ -252,12 +257,6 @@ const styles = StyleSheet.create({
     width: '80%',
     alignItems:'center',
     paddingBottom: 5
-  },
-  indicator: {
-    // backgroundColor: '#fce9c0',
-    padding: 5,
-    paddingHorizontal: 10,
-    borderRadius: 20,
   },
   openOrClosed: {
     fontSize: 17,
