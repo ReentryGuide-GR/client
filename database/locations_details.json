@@ -11,6 +11,12 @@
       "address": "225 Commerce Ave. SW, Grand Rapids, MI 49503",
       "phone": "616-454-8249",
       "specialRequirements": "Meals for program participants, but you may be able to join by calling first."
+    },
+    {
+      "id": "3",
+      "address": "1234 Test St. SW, Grand Rapids, MI 49500",
+      "phone": "123-456-7890",
+      "specialRequirements": "Test requirement sentence"
     }
   ],
   "Groceries": [
