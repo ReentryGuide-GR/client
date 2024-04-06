@@ -14,7 +14,7 @@ const Page = ({ onClose }) => {
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
-    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
+    'Manrope-ExtraBold': require('../assets/fonts/Manrope-ExtraBold.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -113,15 +113,13 @@ const styles = StyleSheet.create({
   },
   IconButtonText: {
     fontFamily: 'Manrope-SemiBold',
-    fontWeight: '600',
     letterSpacing: 0.3,
     fontSize: 18,
-    color: '#000',
+    color: '#333',
     marginLeft: 5,
   },
   IconButtonTextBold: {
-    fontFamily: 'Manrope-Bold',
-    fontWeight: '600',
+    fontFamily: 'Manrope-ExtraBold',
     letterSpacing: 0.3,
     fontSize: 18,
     color: '#000',
