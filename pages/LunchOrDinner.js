@@ -18,12 +18,12 @@ return (
           {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
           <View></View> 
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Meal or Groceries?</Text>
+            <Text style={styles.title}>Lunch or Dinner?</Text>
             <IconButton
               imageSource={require('../assets/meal.png')}
               title="Find Meal"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('LunchOrDinner')}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
             <IconButton

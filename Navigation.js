@@ -6,6 +6,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import MainPage from './Menu'; 
 import SelectResourceLocation from './pages/SelectResourceLocation'; 
 import MealOrGroceries from './pages/MealOrGroceries'; 
+import LunchOrDinner from './pages/LunchOrDinner'; 
 import ResourceLocation from './pages/ResourceLocation'; 
 import Transportation from './pages/Transportation'; 
 
@@ -30,6 +31,7 @@ function Navigation() {
         <Stack.Screen name="MainPage" component={MainPage} />
         <Stack.Screen name="SelectResourceLocation" component={SelectResourceLocation} />
         <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
+        <Stack.Screen name="LunchOrDinner" component={LunchOrDinner} />
         <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
         <Stack.Screen name="Transportation" component={Transportation} />
       </Stack.Navigator>
