@@ -14,7 +14,7 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText, requirementIndicatorStyle, requirementsTextStyle, specialRequirements } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -27,8 +27,8 @@ return (
             <Text style={styles.subtitle}>Closest food location:</Text>
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
-              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
-                <Text style={[styles.openOrClosed, { color: textColor }]}>Appointment Required</Text> 
+              <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
+                <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>{specialRequirements}</Text> 
               </View>
             </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>

@@ -158,6 +158,9 @@ return (
                 navigation.navigate('Transportation', { 
                   location: location,
                   distance: distance,
+                  requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+                  requirementsTextStyle: requirementsTextStyle.color,
+                  specialRequirements: specialRequirements,
                   statusText: getStatusText(), // Added status text here
                   indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
                   textColor: getTextStyle().color, // Extract color from the style object
