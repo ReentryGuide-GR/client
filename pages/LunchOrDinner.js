@@ -1,4 +1,6 @@
-/* eslint-disable */
+// This Page is developed to fit Grand Rapids environment, where 
+// "God’s Kitchen" is for lunch and "Mel Trotter" is for dinner.
+// These two locations are the only locations we know that doesn't require payments for food.  
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
@@ -21,14 +23,14 @@ return (
             <Text style={styles.title}>Lunch or Dinner?</Text>
             <IconButton
               imageSource={require('../assets/meal.png')}
-              title="Find Meal"
+              title="Lunch"
               buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
             />
 
             <IconButton
               imageSource={require('../assets/grocery.png')}
-              title="Find Groceries"
+              title="Dinner"
               buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
             />
