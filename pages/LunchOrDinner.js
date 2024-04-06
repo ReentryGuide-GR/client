@@ -6,12 +6,21 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation, useRoute} from '@react-navigation/native';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
-// import locationsData from './database/locations_basic.json';
-// import * as styles from '../../styles/detailsStyles';
+import { useFonts } from 'expo-font';
 
 
 const Page = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
+
 return (
 
         <View style={styles.mainContainer}>
@@ -19,19 +28,30 @@ return (
           <View></View> 
           <View style={styles.resourceContainer}>
             <Text style={styles.title}>Lunch or Dinner?</Text>
-            <IconButton
-              imageSource={require('../assets/meal.png')}
-              title="Lunch"
-              buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}
-            />
 
-            <IconButton
-              imageSource={require('../assets/grocery.png')}
-              title="Dinner"
-              buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
-            />
+
+            <TouchableOpacity style={styles.IconButton} onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}>
+              <View style={styles.row}>
+                <Text style={styles.IconButtonText}>Lunch</Text>
+                <Text style={styles.IconButtonTextBold}>12:30</Text>
+                <Text style={styles.IconButtonText}>pm -</Text>
+                <Text style={styles.IconButtonTextBold}>2:00</Text>
+                <Text style={styles.IconButtonText}>pm</Text>
+              </View>
+              <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.IconButton} onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Meal' })}>
+              <View style={styles.row}>
+                <Text style={styles.IconButtonText}>Dinner</Text>
+                <Text style={styles.IconButtonTextBold}>4:00</Text>
+                <Text style={styles.IconButtonText}>pm -</Text>
+                <Text style={styles.IconButtonTextBold}>5:45</Text>
+                <Text style={styles.IconButtonText}>pm</Text>
+              </View>
+              <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
+            </TouchableOpacity>
+
           </View>
 
           <View style={styles.resourceContainer}>
@@ -63,8 +83,49 @@ const styles = StyleSheet.create({
   textContainer: {
     fontSize: 15, 
   },
-  primaryButton: {
+  IconButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', 
+    alignItems: 'center',
+    borderRadius: 20,
+    width: '80%',
+    padding: 21,
+    marginTop: 5,
+    marginBottom: 5,
     backgroundColor: '#E2E9F3',
+    shadowColor: '#A59D95',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 30,
+    zIndex: 11,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 6,
+  },
+  arrow: {
+    marginRight: 0,
+    width: 20,
+    height: 20,
+    resizeMode: 'contain'
+  },
+  IconButtonText: {
+    fontFamily: 'Manrope-SemiBold',
+    fontWeight: '600',
+    letterSpacing: 0.3,
+    fontSize: 18,
+    color: '#000',
+    marginLeft: 5,
+  },
+  IconButtonTextBold: {
+    fontFamily: 'Manrope-Bold',
+    fontWeight: '600',
+    letterSpacing: 0.3,
+    fontSize: 18,
+    color: '#000',
+    marginLeft: 5,
   },
 
   title: {
