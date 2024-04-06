@@ -4,21 +4,21 @@
       "id": "1",
       "address": "303 Division Ave S, Grand Rapids, MI 49503",
       "phone": "616-454-4110",
-      "specialRequirementsText": "Walk-ins Welcome.", 
+      "requirementsText": "Walk-ins Welcome.", 
       "requirementsColor": "Green"
     },
     {
       "id": "2",
       "address": "225 Commerce Ave. SW, Grand Rapids, MI 49503",
       "phone": "616-454-8249",
-      "specialRequirementsText": "Meals for program participants, but you may be able to join by calling first.", 
+      "requirementsText": "Meals for program participants, but you may be able to join by calling first.", 
       "requirementsColor": "Yellow"
     },
     {
       "id": "3",
       "address": "1234 Test St. SW, Grand Rapids, MI 49500",
       "phone": "123-456-7890",
-      "specialRequirementsText": "Test requirement sentence", 
+      "requirementsText": "Test requirement sentence", 
       "requirementsColor": "Yellow"
     }
   ],
@@ -27,14 +27,14 @@
       "id": "1",
       "address": "Test Groceries address 1",
       "phone": "123-456-7890",
-      "specialRequirementsText": "Test Groceries requirements 1", 
+      "requirementsText": "Test Groceries requirements 1", 
       "requirementsColor": "Yellow"
     },
     {
       "id": "2",
       "address": "Test Groceries address 2",
       "phone": "616-454-8249",
-      "specialRequirementsText": "Test Groceries requirements 2", 
+      "requirementsText": "Test Groceries requirements 2", 
       "requirementsColor": "Yellow"
     }
   ],

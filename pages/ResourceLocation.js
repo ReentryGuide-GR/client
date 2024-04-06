@@ -22,8 +22,8 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [status, setStatus] = useState('');
   const [timeMessage, setTimeMessage] = useState('');
 
-  // Declare specialRequirementsText  
-  const [specialRequirementsText, setspecialRequirementsText] = useState('');
+  // Declare requirementsText  
+  const [requirementsText, setrequirementsText] = useState('');
   const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
@@ -32,11 +32,11 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     updateLocationStatus();
   }, [location]);
 
-  // Find the matching entry and extract the specialRequirementsText:
+  // Find the matching entry and extract the requirementsText:
   useEffect(() => {
     const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
     if (matchingDetails) {
-        setspecialRequirementsText(matchingDetails.specialRequirementsText);
+        setrequirementsText(matchingDetails.requirementsText);
         // New: Use requirementsColorMapping to set colors
         const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
         setRequirementIndicatorStyle({ backgroundColor });
@@ -134,7 +134,7 @@ return (
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
               <View style={[styles.indicator, requirementIndicatorStyle]}>
-              <Text style={[styles.requirementText, requirementsTextStyle]}>{specialRequirementsText}</Text>
+              <Text style={[styles.requirementText, requirementsTextStyle]}>{requirementsText}</Text>
               </View>
             </View>
             <Text style={styles.distance}>~ {distance} miles away</Text>
@@ -160,7 +160,7 @@ return (
                   distance: distance,
                   requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
                   requirementsTextStyle: requirementsTextStyle.color,
-                  specialRequirementsText: specialRequirementsText,
+                  requirementsText: requirementsText,
                   statusText: getStatusText(), // Added status text here
                   indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
                   textColor: getTextStyle().color, // Extract color from the style object
