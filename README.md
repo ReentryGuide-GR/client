@@ -19,7 +19,7 @@ HelpHub (CPI-Map) is a mobile application developed in collaboration with the Ca
 ### Installation
 1. Clone the repo:
    ```sh
-   git clone git@github.com:Living-Water-Developers/CPI-map.git
+   git clone git@github.com:Reentry-Reimagined/CPI-map.git
 2. Install NPM packages:
     ```sh
     npm install
