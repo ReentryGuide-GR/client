@@ -21,6 +21,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const { statusBackgroundColor, statusTextStyleColor, statusText } = getStatusStyles(status);
 
   const [timeMessage, setTimeMessage] = useState('');
+  const [statusTime, setStatusTime] = useState('');
 
   // Declare requirementsText  
   const [requirementsText, setRequirementsText] = useState('');
@@ -32,6 +33,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     const statusUpdate = updateLocationStatus(location.openHours);
     setStatus(statusUpdate.status);
     setTimeMessage(statusUpdate.message);
+    setStatusTime(statusUpdate.time);
   }, [location]);
 
   // Find the matching entry and extract the requirementsText:
@@ -78,7 +80,9 @@ return (
               <View style={[styles.indicator, statusBackgroundColor]}>
                 <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
               </View>
-              <Text style={styles.timing}> - {timeMessage}</Text>
+              <Text style={styles.timing}> 
+                - {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
+              </Text>
             </View>
           </View>
 
@@ -198,6 +202,6 @@ const styles = StyleSheet.create({
   timing: {
     fontSize: 17,
     // fontWeight: '700',
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
   },
 });
