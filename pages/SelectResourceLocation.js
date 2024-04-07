@@ -26,7 +26,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
         location: location, 
         distance: parseFloat(distanceInMiles.toFixed(1)), // Ensure distance is rounded to 1 decimal place for display
         category, 
-        subtitle: `Closest ${category} Location`
+        subtitle: `Closest ${category} Location: `
       });
     } else {
       console.error("No closest location found");
