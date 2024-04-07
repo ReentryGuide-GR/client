@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping } from '../utils';
+import { requirementsColorMapping, formatTime } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -54,24 +54,24 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
     if (now.isBetween(openTime, closingSoonTime)) {
         setStatus('open');
-        setTimeMessage(`Closes at ${location.openHours.close}`);
+        setTimeMessage(`Closes at ${formatTime(location.openHours.close)}`);
     } else if (now.isBetween(closingSoonTime, closeTime)) {
         setStatus('closingSoon');
-        setTimeMessage(`Closes at ${location.openHours.close}`);
+        setTimeMessage(`Closes at ${formatTime(location.openHours.close)}`);
     } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
         setStatus('openingSoon');
-        setTimeMessage(`Opens at ${location.openHours.open}`);
+        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`);
     } else if (now.isBefore(openTime)) {
         setStatus('closed');
-        setTimeMessage(`Opens at ${location.openHours.open}`);
+        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`);
     } else {
         setStatus('closed');
-        setTimeMessage(`Opens at ${location.openHours.open}`); // Adjust according to how you handle next open time
+        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`); // Adjust according to how you handle next open time
     }
   };
 
   // Define styles based on status
-  const getIndicatorStyle = () => {
+  const getStatusIndicatorStyle = () => {
     switch (status) {
       case 'closingSoon':
         return { ...styles.indicator, backgroundColor: '#ffe8ad' };
@@ -86,7 +86,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     }
   };
 
-  const getTextStyle = () => {
+  const getStatusTextStyle = () => {
     switch (status) {
       case 'closingSoon':
         return { ...styles.openOrClosed, color: '#543c00' };
@@ -140,8 +140,8 @@ return (
             <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
-              <View style={getIndicatorStyle()}>
-                <Text style={getTextStyle()}>{getStatusText()}</Text>
+              <View style={getStatusIndicatorStyle()}>
+                <Text style={getStatusTextStyle()}>{getStatusText()}</Text>
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
@@ -162,8 +162,8 @@ return (
                   requirementsTextStyle: requirementsTextStyle.color,
                   requirementsText: requirementsText,
                   statusText: getStatusText(), // Added status text here
-                  indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
-                  textColor: getTextStyle().color, // Extract color from the style object
+                  indicatorColor: getStatusIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
+                  textColor: getStatusTextStyle().color, // Extract color from the style object
                   timeMessage: timeMessage 
                 })                
               }
