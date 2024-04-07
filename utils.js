@@ -23,17 +23,14 @@ export const findClosestLocation = async (category) => {
     Alert.alert("Error", "Unable to get user location");
     return null;
   }
-
   const categoryData = locationsData[category.charAt(0).toUpperCase() + category.slice(1)];
   if (!categoryData) {
     Alert.alert("Error", `Category ${category} not found`);
     return null;
   }
-
   // Initialize with the first location as the default and calculate distance for it
   let closestLocation = categoryData[0];
   let shortestDistance = getDistance(userLocation.latitude, userLocation.longitude, closestLocation.coordinates.lat, closestLocation.coordinates.lng);
-
   // Go through each location to find the closest
   categoryData.forEach(location => {
     const distance = getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng);
@@ -42,11 +39,9 @@ export const findClosestLocation = async (category) => {
       closestLocation = location;
     }
   });
-
   // Return both the closest location and the shortest distance to it
   return { location: closestLocation, distance: shortestDistance };
 };
-
 
 // Function to get the user's current location
 export const getUserLocation = async () => {
