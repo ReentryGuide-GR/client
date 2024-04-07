@@ -14,7 +14,7 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, requirementIndicatorStyle, requirementsTextStyle, requirementsText } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -31,13 +31,17 @@ return (
                 <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>{requirementsText}</Text> 
               </View>
             </View>
-            <Text style={styles.distance}>~ {distance} miles away</Text>
+            <Text style={styles.distance}>
+              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
+            </Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
                 <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
               </View>
-              <Text style={styles.timing}> - {timeMessage}</Text>
+              <Text style={styles.timing}> 
+                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
+              </Text>
             </View>
 
 
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#2F2E41',
     fontSize: 17,
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
     width: '80%',
   },
   primaryButton: {
@@ -155,9 +159,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   timing: {
+    marginLeft: 5,
     fontSize: 17,
     // fontWeight: '700',
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
   },
 
 });

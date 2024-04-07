@@ -2,13 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
-import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping } from '../utils';
+import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -20,23 +18,29 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
+  const { statusBackgroundColor, statusTextStyleColor, statusText } = getStatusStyles(status);
+
   const [timeMessage, setTimeMessage] = useState('');
+  const [statusTime, setStatusTime] = useState('');
 
   // Declare requirementsText  
-  const [requirementsText, setrequirementsText] = useState('');
+  const [requirementsText, setRequirementsText] = useState('');
   const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
   // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
-    updateLocationStatus();
+    const statusUpdate = updateLocationStatus(location.openHours);
+    setStatus(statusUpdate.status);
+    setTimeMessage(statusUpdate.message);
+    setStatusTime(statusUpdate.time);
   }, [location]);
 
   // Find the matching entry and extract the requirementsText:
   useEffect(() => {
     const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
     if (matchingDetails) {
-        setrequirementsText(matchingDetails.requirementsText);
+        setRequirementsText(matchingDetails.requirementsText);
         // New: Use requirementsColorMapping to set colors
         const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
         setRequirementIndicatorStyle({ backgroundColor });
@@ -44,79 +48,9 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     }
   }, [location, category]); // Dependency on category to re-run effect if it changes
 
-  const updateLocationStatus = () => {
-    const now = moment();
-    const openTime = moment(location.openHours.open, "HH:mm");
-    const closeTime = moment(location.openHours.close, "HH:mm");
-
-    // Create a copy of closeTime for the "closing soon" comparison to avoid mutating the original closeTime
-    const closingSoonTime = moment(closeTime).subtract(1, 'hours');
-
-    if (now.isBetween(openTime, closingSoonTime)) {
-        setStatus('open');
-        setTimeMessage(`Closes at ${location.openHours.close}`);
-    } else if (now.isBetween(closingSoonTime, closeTime)) {
-        setStatus('closingSoon');
-        setTimeMessage(`Closes at ${location.openHours.close}`);
-    } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
-        setStatus('openingSoon');
-        setTimeMessage(`Opens at ${location.openHours.open}`);
-    } else if (now.isBefore(openTime)) {
-        setStatus('closed');
-        setTimeMessage(`Opens at ${location.openHours.open}`);
-    } else {
-        setStatus('closed');
-        setTimeMessage(`Opens at ${location.openHours.open}`); // Adjust according to how you handle next open time
-    }
-  };
-
-  // Define styles based on status
-  const getIndicatorStyle = () => {
-    switch (status) {
-      case 'closingSoon':
-        return { ...styles.indicator, backgroundColor: '#ffe8ad' };
-      case 'openingSoon':
-        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
-      case 'open':
-        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
-      case 'closed':
-        return { ...styles.indicator, backgroundColor: '#ffd1d1' };
-      default:
-        return styles.indicator;
-    }
-  };
-
-  const getTextStyle = () => {
-    switch (status) {
-      case 'closingSoon':
-        return { ...styles.openOrClosed, color: '#543c00' };
-      case 'openingSoon':
-        return { ...styles.openOrClosed, color: '#075400' };
-      case 'open':
-        return { ...styles.openOrClosed, color: '#075400' };
-      case 'closed':
-        return { ...styles.openOrClosed, color: 'darkred' };
-      default:
-        return styles.openOrClosed;
-    }
-  };
-
-  const getStatusText = () => {
-    switch (status) {
-      case 'closingSoon':
-        return 'Closes Soon';
-      case 'openingSoon':
-        return 'Opens Soon';
-      case 'open':
-        return 'Open';
-      case 'closed':
-        return 'Closed';
-      default:
-        return '';
-    }
-  };
 
   const [fontsLoaded] = useFonts({
+    'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
@@ -137,13 +71,18 @@ return (
               <Text style={[styles.requirementText, requirementsTextStyle]}>{requirementsText}</Text>
               </View>
             </View>
-            <Text style={styles.distance}>~ {distance} miles away</Text>
+            <Text style={styles.distance}>
+              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
+            </Text>
+
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
-              <View style={getIndicatorStyle()}>
-                <Text style={getTextStyle()}>{getStatusText()}</Text>
+              <View style={[styles.indicator, statusBackgroundColor]}>
+                <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
               </View>
-              <Text style={styles.timing}> - {timeMessage}</Text>
+              <Text style={styles.timing}> 
+                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
+              </Text>
             </View>
           </View>
 
@@ -161,10 +100,11 @@ return (
                   requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
                   requirementsTextStyle: requirementsTextStyle.color,
                   requirementsText: requirementsText,
-                  statusText: getStatusText(), // Added status text here
-                  indicatorColor: getIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
-                  textColor: getTextStyle().color, // Extract color from the style object
-                  timeMessage: timeMessage 
+                  statusText: statusText, // Added status text here
+                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
+                  textColor: statusTextStyleColor, // Extract color from the style object
+                  timeMessage: timeMessage, 
+                  statusTime: statusTime
                 })                
               }
             />
@@ -180,14 +120,7 @@ return (
 
           <View style={styles.resourceContainer}>
 
-            <GoBackButton/>
-
-            {/* <IconButton
-              title="Call Navigator"
-              onPress={onClose}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-            /> */}
+          <GoBackButton/>
 
           </View>
 
@@ -245,8 +178,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#2F2E41',
     fontSize: 17,
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
     width: '80%',
+    letterSpacing: 0.4, //increase letter spacing 
   },
   title: {
     marginBottom: 10,
@@ -268,8 +202,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   timing: {
+    marginLeft: 5,
     fontSize: 17,
     // fontWeight: '700',
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
+    letterSpacing: 0.4, //increase letter spacing 
   },
 });

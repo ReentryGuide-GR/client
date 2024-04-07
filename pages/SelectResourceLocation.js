@@ -14,8 +14,6 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category } = route.params; // Access the passed category
-
-
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
