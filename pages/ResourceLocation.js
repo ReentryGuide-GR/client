@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Medium',
     width: '80%',
+    letterSpacing: 0.4, //increase letter spacing 
   },
   title: {
     marginBottom: 10,
@@ -204,5 +205,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
+    letterSpacing: 0.4, //increase letter spacing 
   },
 });
