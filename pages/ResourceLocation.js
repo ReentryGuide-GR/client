@@ -103,7 +103,8 @@ return (
                   statusText: statusText, // Added status text here
                   indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
                   textColor: statusTextStyleColor, // Extract color from the style object
-                  timeMessage: timeMessage 
+                  timeMessage: timeMessage, 
+                  statusTime: statusTime
                 })                
               }
             />
