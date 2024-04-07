@@ -105,27 +105,36 @@ export const updateLocationStatus = (openHours) => {
   const closeTime = moment(openHours.close, "HH:mm");
   const closingSoonTime = moment(closeTime).subtract(1, 'hours');
   let status = '';
-  let message = '';
+  let time = '';
 
   if (now.isBetween(openTime, closingSoonTime)) {
     status = 'open';
-    message = `Closes at ${formatTime(openHours.close)}`;
+    time = formatTime(openHours.close);
   } else if (now.isBetween(closingSoonTime, closeTime)) {
     status = 'closingSoon';
-    message = `Closes at ${formatTime(openHours.close)}`;
+    time = formatTime(openHours.close);
   } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
     status = 'openingSoon';
-    message = `Opens at ${formatTime(openHours.open)}`;
+    time = formatTime(openHours.open);
   } else if (now.isBefore(openTime)) {
     status = 'closed';
-    message = `Opens at ${formatTime(openHours.open)}`;
+    time = formatTime(openHours.open);
   } else {
     status = 'closed';
-    message = `Opens at ${formatTime(openHours.open)}`;
+    time = formatTime(openHours.open); // Assuming this is the next open time
   }
 
-  return { status, message };
+  // Constructing the message based on status
+  let message = '';
+  if(status === 'open' || status === 'closingSoon'){
+    message = `Closes at `;
+  }else{
+    message = `Opens at `;
+  }
+
+  return { status, message, time }; // Including time in the return statement
 };
+
 
 export const getStatusIndicatorStyle = (status) => {
   switch (status) {
