@@ -81,7 +81,7 @@ return (
                 <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
               </View>
               <Text style={styles.timing}> 
-                - {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
+                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
               </Text>
             </View>
           </View>
@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   timing: {
+    marginLeft: 5,
     fontSize: 17,
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
