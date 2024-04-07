@@ -1,6 +1,7 @@
 // utils.js
 import * as Location from 'expo-location';
 import { Alert, Linking, Platform } from 'react-native';
+import moment from 'moment';
 import locationsData from './database/locations_basic.json'; // Ensure this path matches the location of your locations data file
 
 // Haversine formula to calculate distance between two coordinates
@@ -96,4 +97,32 @@ export const formatTime = (time) => {
   const isPM = hours >= 12;
   const formattedHours = ((hours + 11) % 12 + 1);
   return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
+};
+
+export const updateLocationStatus = (openHours) => {
+  const now = moment();
+  const openTime = moment(openHours.open, "HH:mm");
+  const closeTime = moment(openHours.close, "HH:mm");
+  const closingSoonTime = moment(closeTime).subtract(1, 'hours');
+  let status = '';
+  let message = '';
+
+  if (now.isBetween(openTime, closingSoonTime)) {
+    status = 'open';
+    message = `Closes at ${formatTime(openHours.close)}`;
+  } else if (now.isBetween(closingSoonTime, closeTime)) {
+    status = 'closingSoon';
+    message = `Closes at ${formatTime(openHours.close)}`;
+  } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
+    status = 'openingSoon';
+    message = `Opens at ${formatTime(openHours.open)}`;
+  } else if (now.isBefore(openTime)) {
+    status = 'closed';
+    message = `Opens at ${formatTime(openHours.open)}`;
+  } else {
+    status = 'closed';
+    message = `Opens at ${formatTime(openHours.open)}`;
+  }
+
+  return { status, message };
 };
