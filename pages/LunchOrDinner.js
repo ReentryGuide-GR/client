@@ -10,11 +10,20 @@ import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
 
+const formatTime = (time) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  const isPM = hours >= 12;
+  const formattedHours = ((hours + 11) % 12 + 1);
+  return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
+};
 
 const Page = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [godsKitchenDistance, setGodsKitchenDistance] = useState(null);
   const [melTrotterDistance, setMelTrotterDistance] = useState(null);
+
+  const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
+  const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
 
   
 
@@ -26,8 +35,7 @@ const Page = ({ onClose }) => {
         return;
       }
 
-      const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
-      const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
+
 
       const distanceToMelTrotter = getDistance(userLocation.latitude, userLocation.longitude, melTrotterLocation.coordinates.lat, melTrotterLocation.coordinates.lng);
       const distanceToGodsKitchen = getDistance(userLocation.latitude, userLocation.longitude, godsKitchenLocation.coordinates.lat, godsKitchenLocation.coordinates.lng);
@@ -69,10 +77,9 @@ return (
             >
               <View style={styles.row}>
                 <Text style={styles.IconButtonText}>Lunch</Text>
-                <Text style={styles.IconButtonTextBold}>4:00</Text>
-                <Text style={styles.IconButtonText}>pm -</Text>
-                <Text style={styles.IconButtonTextBold}>5:45</Text>
-                <Text style={styles.IconButtonText}>pm</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours.open)}</Text>
+                <Text style={styles.IconButtonText}> - </Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours.close)}</Text>
               </View>
               <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
             </TouchableOpacity>
@@ -90,10 +97,9 @@ return (
             >
               <View style={styles.row}>
                 <Text style={styles.IconButtonText}>Dinner</Text>
-                <Text style={styles.IconButtonTextBold}>12:30</Text>
-                <Text style={styles.IconButtonText}>pm -</Text>
-                <Text style={styles.IconButtonTextBold}>2:00</Text>
-                <Text style={styles.IconButtonText}>pm</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours.open)}</Text>
+                <Text style={styles.IconButtonText}> - </Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours.close)}</Text>
               </View>
               <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
             </TouchableOpacity>
