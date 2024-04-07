@@ -141,3 +141,19 @@ export const getStatusIndicatorStyle = (status) => {
       return {};
   }
 };
+
+export const getStatusTextStyleColor = (status) => {
+  switch (status) {
+    case 'closingSoon':
+      return '#543c00';
+    case 'openingSoon':
+      return '#075400';
+    case 'open':
+      return '#075400';
+    case 'closed':
+      return 'darkred';
+    default:
+      return 'white'; // Default color if none of the statuses match
+  }
+};
+

@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle } from '../utils';
+import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle, getStatusTextStyleColor } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -21,6 +21,8 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
   const statusIndicatorStyle = getStatusIndicatorStyle(status);
+  const statusTextStyleColor = getStatusTextStyleColor(status);
+
   const [timeMessage, setTimeMessage] = useState('');
 
   // Declare requirementsText  
@@ -106,7 +108,7 @@ return (
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={[styles.indicator, statusIndicatorStyle]}>
-                <Text style={getStatusTextStyle()}>{getStatusText()}</Text>
+                <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{getStatusText()}</Text>
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
@@ -128,7 +130,7 @@ return (
                   requirementsText: requirementsText,
                   statusText: getStatusText(), // Added status text here
                   indicatorColor: statusIndicatorStyle.backgroundColor, // Extract backgroundColor from the style object
-                  textColor: getStatusTextStyle().color, // Extract color from the style object
+                  textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage 
                 })                
               }
