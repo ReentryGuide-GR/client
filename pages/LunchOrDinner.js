@@ -63,6 +63,7 @@ return (
                   location: godsKitchen,
                   category: "Meal",
                   distance: godsKitchenDistance,
+                  subtitle: "Lunch Location: "
                 });
               }}
             >
@@ -83,6 +84,7 @@ return (
                   location: melTrotter,
                   category: "Meal",
                   distance: melTrotterDistance,
+                  subtitle: "Dinner Location: "
                 });
               }}
             >
