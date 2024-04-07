@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, formatTime } from '../utils';
+import { requirementsColorMapping, formatTime, updateLocationStatus } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -23,20 +23,22 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [timeMessage, setTimeMessage] = useState('');
 
   // Declare requirementsText  
-  const [requirementsText, setrequirementsText] = useState('');
+  const [requirementsText, setRequirementsText] = useState('');
   const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
   // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
-    updateLocationStatus();
+    const statusUpdate = updateLocationStatus(location.openHours);
+    setStatus(statusUpdate.status);
+    setTimeMessage(statusUpdate.message);
   }, [location]);
 
   // Find the matching entry and extract the requirementsText:
   useEffect(() => {
     const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
     if (matchingDetails) {
-        setrequirementsText(matchingDetails.requirementsText);
+        setRequirementsText(matchingDetails.requirementsText);
         // New: Use requirementsColorMapping to set colors
         const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
         setRequirementIndicatorStyle({ backgroundColor });
@@ -44,31 +46,6 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     }
   }, [location, category]); // Dependency on category to re-run effect if it changes
 
-  const updateLocationStatus = () => {
-    const now = moment();
-    const openTime = moment(location.openHours.open, "HH:mm");
-    const closeTime = moment(location.openHours.close, "HH:mm");
-
-    // Create a copy of closeTime for the "closing soon" comparison to avoid mutating the original closeTime
-    const closingSoonTime = moment(closeTime).subtract(1, 'hours');
-
-    if (now.isBetween(openTime, closingSoonTime)) {
-        setStatus('open');
-        setTimeMessage(`Closes at ${formatTime(location.openHours.close)}`);
-    } else if (now.isBetween(closingSoonTime, closeTime)) {
-        setStatus('closingSoon');
-        setTimeMessage(`Closes at ${formatTime(location.openHours.close)}`);
-    } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
-        setStatus('openingSoon');
-        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`);
-    } else if (now.isBefore(openTime)) {
-        setStatus('closed');
-        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`);
-    } else {
-        setStatus('closed');
-        setTimeMessage(`Opens at ${formatTime(location.openHours.open)}`); // Adjust according to how you handle next open time
-    }
-  };
 
   // Define styles based on status
   const getStatusIndicatorStyle = () => {
