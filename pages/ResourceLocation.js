@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle, getStatusTextStyleColor, getStatusText } from '../utils';
+import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -20,9 +20,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
-  const statusIndicatorStyle = getStatusIndicatorStyle(status);
-  const statusTextStyleColor = getStatusTextStyleColor(status);
-  const statusText = getStatusText(status);
+  const { statusBackgroundColor, statusTextStyleColor, statusText } = getStatusStyles(status);
 
   const [timeMessage, setTimeMessage] = useState('');
 
@@ -51,10 +49,6 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   }, [location, category]); // Dependency on category to re-run effect if it changes
 
 
-  // Define styles based on status
-
-
-
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
@@ -79,7 +73,7 @@ return (
             <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
-              <View style={[styles.indicator, statusIndicatorStyle]}>
+              <View style={[styles.indicator, statusBackgroundColor]}>
                 <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
@@ -101,7 +95,7 @@ return (
                   requirementsTextStyle: requirementsTextStyle.color,
                   requirementsText: requirementsText,
                   statusText: statusText, // Added status text here
-                  indicatorColor: statusIndicatorStyle.backgroundColor, // Extract backgroundColor from the style object
+                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
                   textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage 
                 })                

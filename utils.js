@@ -172,3 +172,41 @@ export const getStatusText = (status) => {
   }
 };
 
+//Combined function
+export const getStatusStyles = (status) => {
+  let backgroundColor, textColor, text;
+  
+  switch (status) {
+    case 'closingSoon':
+      backgroundColor = '#ffe8ad';
+      textColor = '#543c00';
+      text = 'Closes Soon';
+      break;
+    case 'openingSoon':
+      backgroundColor = '#c1fcbb';
+      textColor = '#075400';
+      text = 'Opens Soon';
+      break;
+    case 'open':
+      backgroundColor = '#c1fcbb';
+      textColor = '#075400';
+      text = 'Open';
+      break;
+    case 'closed':
+      backgroundColor = '#ffd1d1';
+      textColor = 'darkred';
+      text = 'Closed';
+      break;
+    default:
+      backgroundColor = 'transparent';
+      textColor = 'black';
+      text = '';
+      break;
+  }
+
+  return {
+    statusBackgroundColor: { backgroundColor },
+    statusTextStyleColor: textColor,
+    statusText: text
+  };
+};
