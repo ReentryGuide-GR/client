@@ -104,8 +104,27 @@ export const updateLocationStatus = (openHours) => {
   const openTime = moment(openHours.open, "HH:mm");
   const closeTime = moment(openHours.close, "HH:mm");
   const closingSoonTime = moment(closeTime).subtract(1, 'hours');
+  const dayOfWeek = now.day(); // Sunday as 0 through Saturday as 6
   let status = '';
   let time = '';
+
+  // Determines if the location opens today or in the future
+  const getNextOpenDay = () => {
+    const todayIndex = openHours.days.findIndex(day => day === dayOfWeek);
+    if (todayIndex !== -1 && now.isBefore(closeTime)) {
+      // Opens later today
+      return "Today";
+    } else {
+      // Find the next day it opens
+      const futureOpenDays = openHours.days.filter(day => day > dayOfWeek);
+      if (futureOpenDays.length > 0) {
+        return futureOpenDays[0] === dayOfWeek + 1 ? "Tomorrow" : moment().day(futureOpenDays[0]).format('dddd');
+      } else {
+        // Next week
+        return moment().day(openHours.days[0] + 7).format('dddd');
+      }
+    }
+  };
 
   if (now.isBetween(openTime, closingSoonTime)) {
     status = 'open';
@@ -124,15 +143,19 @@ export const updateLocationStatus = (openHours) => {
     time = formatTime(openHours.open); // Assuming this is the next open time
   }
 
+  // Adjust time variable with the day context
+  const nextOpenDay = getNextOpenDay();
+  time = `${nextOpenDay} ${time}`;
+
   // Constructing the message based on status
   let message = '';
-  if(status === 'open' || status === 'closingSoon'){
-    message = `Closes at `;
-  }else{
-    message = `Opens at `;
+  if (status === 'open' || status === 'closingSoon') {
+    message = `Closes `;
+  } else {
+    message = `Opens `;
   }
 
-  return { status, message, time }; // Including time in the return statement
+  return { status, message, time }; // Including adjusted time in the message
 };
 
 
