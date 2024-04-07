@@ -101,49 +101,40 @@ export const formatTime = (time) => {
 
 export const updateLocationStatus = (openHours) => {
   const now = moment();
-  const today = now.day(); // Today's day of the week (0-6, where 0 is Sunday and 6 is Saturday)
-  const tomorrow = (today + 1) % 7; // Tomorrow's day of the week, adjusted for week wrap-around
-  const openDays = openHours.days; // Days of the week the location is open
-
-  // Initialize variables
+  const openTime = moment(openHours.open, "HH:mm");
+  const closeTime = moment(openHours.close, "HH:mm");
+  const closingSoonTime = moment(closeTime).subtract(1, 'hours');
   let status = '';
   let time = '';
-  let message = '';
 
-  // Find the next open day
-  const daysUntilNextOpen = openDays
-    .map(day => (day < today ? day + 7 : day) - today) // Adjust for wrap-around
-    .filter(day => day >= 0) // Only future days
-    .sort((a, b) => a - b)[0]; // Find the nearest future day
-
-  const nextOpenDay = moment().add(daysUntilNextOpen, 'days');
-  const isTomorrow = daysUntilNextOpen === 1;
-  const isOpenToday = openDays.includes(today);
-  const isClosedToday = !isOpenToday || now.isAfter(moment(openHours.close, "HH:mm"));
-
-  // Set the 'time' based on next open day
-  if (isOpenToday && !isClosedToday) {
-    const closingTimeToday = moment(openHours.close, "HH:mm");
-    time = formatTime(closingTimeToday.format("HH:mm"));
-    if (now.isBefore(closingTimeToday.subtract(1, 'hours'))) {
-      status = 'open';
-      message = 'Closes ';
-    } else {
-      status = 'closingSoon';
-      message = 'Closes ';
-    }
-  } else {
-    if (isTomorrow) {
-      time = `Tomorrow at ${formatTime(openHours.open)}`;
-    } else if (daysUntilNextOpen > 1) {
-      time = `${nextOpenDay.format('dddd')} at ${formatTime(openHours.open)}`;
-    }
+  if (now.isBetween(openTime, closingSoonTime)) {
+    status = 'open';
+    time = formatTime(openHours.close);
+  } else if (now.isBetween(closingSoonTime, closeTime)) {
+    status = 'closingSoon';
+    time = formatTime(openHours.close);
+  } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
+    status = 'openingSoon';
+    time = formatTime(openHours.open);
+  } else if (now.isBefore(openTime)) {
     status = 'closed';
-    message = 'Opens ';
+    time = formatTime(openHours.open);
+  } else {
+    status = 'closed';
+    time = formatTime(openHours.open); // Assuming this is the next open time
   }
 
-  return { status, message, time };
+  // Constructing the message based on status
+  let message = '';
+  if(status === 'open' || status === 'closingSoon'){
+    message = `Closes at `;
+  }else{
+    message = `Opens at `;
+  }
+
+  return { status, message, time }; // Including time in the return statement
 };
+
 
 export const getStatusIndicatorStyle = (status) => {
   switch (status) {
