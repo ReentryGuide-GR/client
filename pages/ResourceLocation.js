@@ -104,7 +104,8 @@ return (
                   indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
                   textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage, 
-                  statusTime: statusTime
+                  statusTime: statusTime,
+                  subtitle
                 })                
               }
             />
