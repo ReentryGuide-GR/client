@@ -2,11 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
-import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
@@ -113,14 +111,7 @@ return (
 
           <View style={styles.resourceContainer}>
 
-            <GoBackButton/>
-
-            {/* <IconButton
-              title="Call Navigator"
-              onPress={onClose}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-            /> */}
+          <GoBackButton/>
 
           </View>
 
