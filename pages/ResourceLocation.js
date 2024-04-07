@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, formatTime, updateLocationStatus } from '../utils';
+import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -20,6 +20,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
+  const statusIndicatorStyle = getStatusIndicatorStyle(status);
   const [timeMessage, setTimeMessage] = useState('');
 
   // Declare requirementsText  
@@ -48,20 +49,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
 
   // Define styles based on status
-  const getStatusIndicatorStyle = () => {
-    switch (status) {
-      case 'closingSoon':
-        return { ...styles.indicator, backgroundColor: '#ffe8ad' };
-      case 'openingSoon':
-        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
-      case 'open':
-        return { ...styles.indicator, backgroundColor: '#c1fcbb' };
-      case 'closed':
-        return { ...styles.indicator, backgroundColor: '#ffd1d1' };
-      default:
-        return styles.indicator;
-    }
-  };
+
 
   const getStatusTextStyle = () => {
     switch (status) {
@@ -117,7 +105,7 @@ return (
             <Text style={styles.distance}>~ {distance} miles away</Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
-              <View style={getStatusIndicatorStyle()}>
+              <View style={[styles.indicator, statusIndicatorStyle]}>
                 <Text style={getStatusTextStyle()}>{getStatusText()}</Text>
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
@@ -139,7 +127,7 @@ return (
                   requirementsTextStyle: requirementsTextStyle.color,
                   requirementsText: requirementsText,
                   statusText: getStatusText(), // Added status text here
-                  indicatorColor: getStatusIndicatorStyle().backgroundColor, // Extract backgroundColor from the style object
+                  indicatorColor: statusIndicatorStyle.backgroundColor, // Extract backgroundColor from the style object
                   textColor: getStatusTextStyle().color, // Extract color from the style object
                   timeMessage: timeMessage 
                 })                

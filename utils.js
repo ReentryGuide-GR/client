@@ -126,3 +126,18 @@ export const updateLocationStatus = (openHours) => {
 
   return { status, message };
 };
+
+export const getStatusIndicatorStyle = (status) => {
+  switch (status) {
+    case 'closingSoon':
+      return { backgroundColor: '#ffe8ad' };
+    case 'openingSoon':
+      return { backgroundColor: '#c1fcbb' };
+    case 'open':
+      return { backgroundColor: '#c1fcbb' };
+    case 'closed':
+      return { backgroundColor: '#ffd1d1' };
+    default:
+      return {};
+  }
+};
