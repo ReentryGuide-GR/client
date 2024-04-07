@@ -7,15 +7,8 @@ import { useNavigation, useRoute} from '@react-navigation/native';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 import { useFonts } from 'expo-font';
-import { getUserLocation, getDistance } from '../utils';
+import { getUserLocation, getDistance, formatTime } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
-
-const formatTime = (time) => {
-  const [hours, minutes] = time.split(':').map(Number);
-  const isPM = hours >= 12;
-  const formattedHours = ((hours + 11) % 12 + 1);
-  return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
-};
 
 const Page = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
@@ -24,8 +17,6 @@ const Page = ({ onClose }) => {
 
   const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
   const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
-
-  
 
   useEffect(() => {
     (async () => {

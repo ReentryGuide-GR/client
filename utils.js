@@ -94,3 +94,11 @@ export const requirementsColorMapping = (colorName) => {
 
   return mappings[colorName] || { backgroundColor: '#FFFFFF', textColor: '#000000' }; // Default case
 };
+
+// Convert 24-hour format to 12-hour format
+export const formatTime = (time) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  const isPM = hours >= 12;
+  const formattedHours = ((hours + 11) % 12 + 1);
+  return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
+};
