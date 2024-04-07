@@ -48,6 +48,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
 
   const [fontsLoaded] = useFonts({
+    'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
@@ -68,7 +69,10 @@ return (
               <Text style={[styles.requirementText, requirementsTextStyle]}>{requirementsText}</Text>
               </View>
             </View>
-            <Text style={styles.distance}>~ {distance} miles away</Text>
+            <Text style={styles.distance}>
+              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
+            </Text>
+
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={[styles.indicator, statusBackgroundColor]}>
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#2F2E41',
     fontSize: 17,
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-Medium',
     width: '80%',
   },
   title: {
