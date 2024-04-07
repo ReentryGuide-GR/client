@@ -8,7 +8,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import moment from 'moment';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle, getStatusTextStyleColor } from '../utils';
+import { requirementsColorMapping, formatTime, updateLocationStatus, getStatusIndicatorStyle, getStatusTextStyleColor, getStatusText } from '../utils';
 
 // import * as styles from '../../styles/detailsStyles';
 
@@ -22,6 +22,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [status, setStatus] = useState('');
   const statusIndicatorStyle = getStatusIndicatorStyle(status);
   const statusTextStyleColor = getStatusTextStyleColor(status);
+  const statusText = getStatusText(status);
 
   const [timeMessage, setTimeMessage] = useState('');
 
@@ -52,20 +53,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Define styles based on status
 
-  const getStatusText = () => {
-    switch (status) {
-      case 'closingSoon':
-        return 'Closes Soon';
-      case 'openingSoon':
-        return 'Opens Soon';
-      case 'open':
-        return 'Open';
-      case 'closed':
-        return 'Closed';
-      default:
-        return '';
-    }
-  };
+
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -92,7 +80,7 @@ return (
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
             <View style={styles.row}>
               <View style={[styles.indicator, statusIndicatorStyle]}>
-                <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{getStatusText()}</Text>
+                <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
               </View>
               <Text style={styles.timing}> - {timeMessage}</Text>
             </View>
@@ -112,7 +100,7 @@ return (
                   requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
                   requirementsTextStyle: requirementsTextStyle.color,
                   requirementsText: requirementsText,
-                  statusText: getStatusText(), // Added status text here
+                  statusText: statusText, // Added status text here
                   indicatorColor: statusIndicatorStyle.backgroundColor, // Extract backgroundColor from the style object
                   textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage 

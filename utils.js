@@ -157,3 +157,18 @@ export const getStatusTextStyleColor = (status) => {
   }
 };
 
+export const getStatusText = (status) => {
+  switch (status) {
+    case 'closingSoon':
+      return 'Closes Soon';
+    case 'openingSoon':
+      return 'Opens Soon';
+    case 'open':
+      return 'Open';
+    case 'closed':
+      return 'Closed';
+    default:
+      return '';
+  }
+};
+
