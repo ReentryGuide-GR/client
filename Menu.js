@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
     width: '80%',
-    marginLeft: 20
+    marginLeft: 10
   },
   primaryButton: {
     backgroundColor: '#FFCBCB',
