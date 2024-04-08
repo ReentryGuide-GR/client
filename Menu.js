@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '80%',
-    marginLeft: 20
+    marginLeft: 10
   },
 
 });
