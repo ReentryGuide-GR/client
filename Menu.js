@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
     width: '80%',
+    marginLeft: 20
   },
   primaryButton: {
     backgroundColor: '#FFCBCB',
@@ -115,6 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '80%',
+    marginLeft: 20
   },
 
 });
