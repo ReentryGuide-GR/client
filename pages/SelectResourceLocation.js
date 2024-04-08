@@ -1,4 +1,4 @@
-/* eslint-disable */
+//SelectResoureLocation.js 
 import React , { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
@@ -25,7 +25,8 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       navigation.navigate('ResourceLocation', { 
         location: location, 
         distance: parseFloat(distanceInMiles.toFixed(1)), // Ensure distance is rounded to 1 decimal place for display
-        category // Pass category to ResourceLocation
+        category, 
+        subtitle: `Closest ${category} Location: `
       });
     } else {
       console.error("No closest location found");

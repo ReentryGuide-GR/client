@@ -14,7 +14,7 @@ import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from 
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, category } = route.params;
+  const { location, distance, category, subtitle } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -64,7 +64,7 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>Closest food location:</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
             <Text style={styles.title}>{location.name}</Text>
             <View style={styles.row}>
               <View style={[styles.indicator, requirementIndicatorStyle]}>
@@ -104,7 +104,8 @@ return (
                   indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
                   textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage, 
-                  statusTime: statusTime
+                  statusTime: statusTime,
+                  subtitle
                 })                
               }
             />
