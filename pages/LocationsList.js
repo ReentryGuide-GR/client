@@ -16,7 +16,7 @@ const data = [
 ];
 
 
-const ResourceLocation = ({ isVisible, onClose }) => {
+const LocationList = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category } = route.params;
@@ -93,7 +93,7 @@ return (
   );
 };
 
-export default ResourceLocation;
+export default LocationList;
 
 const styles = StyleSheet.create({
   mainContainer: {
