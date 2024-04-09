@@ -40,7 +40,6 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     <View style={styles.listContainer}>
     <View style={styles.card}>
       <View style={styles.infoContainer}>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
         <Text style={styles.title}>{item.name}</Text>
         <View style={styles.row}>
           <View style={[styles.indicator]}>
@@ -72,17 +71,22 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
+          <Text style={styles.pageTitle}>Select Category Location</Text>
+
 
           <FlatList
             data={data}
             renderItem={renderItem}
             keyExtractor={item => item.id}
-            contentContainerStyle={{ width: '100%' }}
+            contentContainerStyle={{ 
+              width: '100%',
+              paddingBottom: 120, // Adjust this value based on the height of your resourceContainer
+            }}
           />
-
-
           <View style={styles.resourceContainer}>
-            <GoBackButton/>
+            <View style={styles.buttonContainer}>
+              <GoBackButton/>
+            </View>
           </View>
 
         </View>
@@ -100,6 +104,17 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: '5%',
   },
+  pageTitle: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+    paddingBottom: 15,
+    color: '#2F2E41',
+    fontSize: 35,
+    fontWeight: '900',
+    width: '95%',
+    marginHorizontal: '10%',
+    // position: 'absolute',
+    top: 0
+  },
   listContainer: {
     alignItems: 'center',
     // backgroundColor: '#ff5555',
@@ -108,8 +123,16 @@ const styles = StyleSheet.create({
   resourceContainer: {
     // justifyContent: 'center', 
     // alignItems: 'center', doesn't work
-    width: '80%',
-    marginHorizontal: '10%'
+    width: '100%',
+    // marginHorizontal: '10%',
+    paddingTop: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+    position: 'absolute',
+    bottom: 20
+  },
+  buttonContainer: {
+    marginHorizontal: '10%',
+    width: '80%'
   },
   card: {
     backgroundColor: '#fff',
@@ -122,7 +145,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 24,
-    elevation: 30,
+    elevation: 20,
     marginBottom: 30,
     marginTop: 15
   },
@@ -134,14 +157,6 @@ const styles = StyleSheet.create({
 
   secondaryButton: {
     backgroundColor: '#E2E9F3',
-  },
-
-  subtitle: {
-    marginBottom: -2,
-    color: '#2F2E41',
-    fontSize: 17,
-    fontFamily: 'Manrope-Bold',
-    width: '80%',
   },
   indicator: {
     padding: 5,
@@ -164,10 +179,12 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 10,
     color: '#2F2E41',
-    fontSize: 35,
-    fontWeight: '900',
-    width: '80%',
+    fontSize: 30,
+    fontWeight: '800',
+    width: '95%',
+    marginHorizontal: '4'
   },
+
   row: {
     flexDirection: 'row',
     width: '80%',
