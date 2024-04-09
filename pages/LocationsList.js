@@ -35,66 +35,43 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
-          <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>Subtitle</Text>
-            <Text style={styles.title}>Name</Text>
-            <View style={styles.row}>
-              <View style={[styles.indicator]}>
-              <Text style={[styles.requirementText]}>requirementsText</Text>
-              </View>
-            </View>
-            <Text style={styles.distance}>
-              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>0</Text> miles away
-            </Text>
 
-            {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-            <View style={styles.row}>
-              <View style={[styles.indicator]}>
-                <Text style={[styles.openOrClosed]}>test Open</Text>
+          <View style={styles.resourceContainer}>
+
+            <View style={styles.card}>
+              <View style={styles.infoContainer}>
+                <Text style={styles.subtitle}>Subtitle</Text>
+                <Text style={styles.title}>Name</Text>
+                <View style={styles.row}>
+                  <View style={[styles.indicator]}>
+                  <Text style={[styles.requirementText]}>requirementsText</Text>
+                  </View>
+                </View>
+                <Text style={styles.distance}>
+                  ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>0</Text> miles away
+                </Text>
+                {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
+                <View style={styles.row}>
+                  <View style={[styles.indicator]}>
+                    <Text style={[styles.openOrClosed]}>test Open</Text>
+                  </View>
+                  <Text style={styles.timing}> 
+                    Opens at<Text style={{ fontFamily: 'Manrope-Bold', }}> 12:00</Text>
+                  </Text>
+                </View>
               </View>
-              <Text style={styles.timing}> 
-                 Opens at<Text style={{ fontFamily: 'Manrope-Bold', }}>12:00</Text>
-              </Text>
+              <IconButton
+                // imageSource={require('./assets/med.png')}
+                title="Select"
+                onPress={onClose}
+                iconSize={0}
+              />
             </View>
+
           </View>
 
           <View style={styles.resourceContainer}>
-
-            <IconButton
-              imageSource={require('../assets/directions.png')}
-              title="Plan Your Route  "
-              iconSize={32}
-              buttonStyle={styles.secondaryButton}
-              onPress={() => 
-                navigation.navigate('Transportation', { 
-                  location: location,
-                  distance: distance,
-                  requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
-                  requirementsTextStyle: requirementsTextStyle.color,
-                  requirementsText: requirementsText,
-                  statusText: statusText, // Added status text here
-                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
-                  textColor: statusTextStyleColor, // Extract color from the style object
-                  timeMessage: timeMessage, 
-                  statusTime: statusTime,
-                  subtitle
-                })                
-              }
-            />
-
-            <IconButton
-              title="More Info  "
-              iconSize={32}
-              onPress={onClose}
-              imageSource={require('../assets/info.png')}
-              buttonStyle={styles.tertiaryButton}
-            />
-          </View>
-
-          <View style={styles.resourceContainer}>
-
-          <GoBackButton/>
-
+            <GoBackButton/>
           </View>
 
         </View>
@@ -117,8 +94,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  textContainer: {
-    fontSize: 15, 
+  card: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    width: '85%',
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    shadowColor: '#A59D95',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 30,
+  },
+
+  infoContainer: {
+    width: '100%'
   },
 
   secondaryButton: {
@@ -142,6 +133,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingHorizontal: 10,
     borderRadius: 20,
+    backgroundColor: "#eee"
   },
   requirementText: {
     fontSize: 17,
