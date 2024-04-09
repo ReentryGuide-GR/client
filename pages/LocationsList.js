@@ -10,22 +10,27 @@ import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
 // Sample data array
-const data = [
-  { id: '1', subtitle: 'Subtitle', name: 'Name', requirementsText: 'requirementsText', distance: 0, openTime: '12:00', isOpen: 'Open' },
-  { id: '2', subtitle: 'Subtitle', name: 'Name', requirementsText: 'requirementsText', distance: 0, openTime: '12:00', isOpen: 'Open' },
-  // Add more objects as needed
-];
 
 
 const LocationList = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category } = route.params;
+  const [data, setData] = useState([]);
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
 
 
+  useEffect(() => {
+    // Filter locations by category from locationsBasic
+    const filteredLocations = locationsBasic[category].map(location => {
+      // Find additional details from locationsDetails by matching id within the same category
+      const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
+      return { ...location, ...details };
+    });
+    setData(filteredLocations); // Update state with the filtered and merged data
+  }, [category]);
 
   const [fontsLoaded] = useFonts({
     'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
@@ -37,6 +42,9 @@ const LocationList = ({ isVisible, onClose }) => {
     return null; // Return null to render nothing while loading fonts
   }
 
+
+
+  
   const renderItem = ({ item }) => (
     <View style={styles.listContainer}>
     <View style={styles.card}>
