@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import { StyleSheet, View, Text, FlatList} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
@@ -8,7 +8,12 @@ import GoBackButton from '../components/GoBackButton';
 import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
-// import * as styles from '../../styles/detailsStyles';
+// Sample data array
+const data = [
+  { id: '1', subtitle: 'Subtitle', name: 'Name', requirementsText: 'requirementsText', distance: 0, openTime: '12:00', isOpen: 'Open' },
+  { id: '2', subtitle: 'Subtitle', name: 'Name', requirementsText: 'requirementsText', distance: 0, openTime: '12:00', isOpen: 'Open' },
+  // Add more objects as needed
+];
 
 
 const ResourceLocation = ({ isVisible, onClose }) => {
@@ -31,45 +36,50 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     return null; // Return null to render nothing while loading fonts
   }
 
+  const renderItem = ({ item }) => (
+    <View style={styles.listContainer}>
+    <View style={styles.card}>
+      <View style={styles.infoContainer}>
+        <Text style={styles.subtitle}>{item.subtitle}</Text>
+        <Text style={styles.title}>{item.name}</Text>
+        <View style={styles.row}>
+          <View style={[styles.indicator]}>
+            <Text style={[styles.requirementText]}>{item.requirementsText}</Text>
+          </View>
+        </View>
+        <Text style={styles.distance}>
+          ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{item.distance}</Text> miles away
+        </Text>
+        <View style={styles.row}>
+          <View style={[styles.indicator]}>
+            <Text style={[styles.openOrClosed]}>{item.isOpen}</Text>
+          </View>
+          <Text style={styles.timing}>
+            Opens at<Text style={{ fontFamily: 'Manrope-Bold', }}> {item.openTime}</Text>
+          </Text>
+        </View>
+      </View>
+      <IconButton
+        title="Select"
+        onPress={onClose}
+        iconSize={0}
+        buttonStyle={styles.secondaryButton}
+      />
+    </View>
+    </View>
+  );
 
 return (
 
         <View style={styles.mainContainer}>
 
-          <View style={styles.listContainer}>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{ width: '100%' }}
+          />
 
-            <View style={styles.card}>
-              <View style={styles.infoContainer}>
-                <Text style={styles.subtitle}>Subtitle</Text>
-                <Text style={styles.title}>Name</Text>
-                <View style={styles.row}>
-                  <View style={[styles.indicator]}>
-                  <Text style={[styles.requirementText]}>requirementsText</Text>
-                  </View>
-                </View>
-                <Text style={styles.distance}>
-                  ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>0</Text> miles away
-                </Text>
-                {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-                <View style={styles.row}>
-                  <View style={[styles.indicator]}>
-                    <Text style={[styles.openOrClosed]}>test Open</Text>
-                  </View>
-                  <Text style={styles.timing}> 
-                    Opens at<Text style={{ fontFamily: 'Manrope-Bold', }}> 12:00</Text>
-                  </Text>
-                </View>
-              </View>
-              <IconButton
-                // imageSource={require('./assets/med.png')}
-                title="Select"
-                onPress={onClose}
-                iconSize={0}
-                buttonStyle={styles.secondaryButton}
-              />
-            </View>
-
-          </View>
 
           <View style={styles.resourceContainer}>
             <GoBackButton/>
@@ -85,26 +95,27 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     justifyContent: 'space-between',
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: '5%',
   },
   listContainer: {
-    justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    // backgroundColor: '#ff5555',
+    width: '100%'
   },
   resourceContainer: {
-    justifyContent: 'center', 
-    alignItems: 'center',
+    // justifyContent: 'center', 
+    // alignItems: 'center', doesn't work
     width: '80%',
+    marginHorizontal: '10%'
   },
   card: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    width: '85%',
-    paddingVertical: 30,
+    width: '88%',
+    paddingVertical: 20,
     paddingHorizontal: 20,
     borderRadius: 30,
     shadowColor: '#A59D95',
@@ -112,6 +123,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 24,
     elevation: 30,
+    marginBottom: 30,
+    marginTop: 15
   },
 
   infoContainer: {
