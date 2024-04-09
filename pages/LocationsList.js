@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
   requirementText: {
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
+    width: '100%'
   },
   distance: {
     marginBottom: 8,
