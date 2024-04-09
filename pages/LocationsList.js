@@ -19,7 +19,7 @@ const data = [
 const ResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  // const { category, subtitle } = route.params;
+  const { category } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -71,7 +71,7 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
-          <Text style={styles.pageTitle}>Select Category Location</Text>
+          <Text style={styles.pageTitle}>Select {category} Location</Text>
 
 
           <FlatList
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '95%',
+    // width: '95%',
     marginHorizontal: '10%',
     // position: 'absolute',
     top: 0
