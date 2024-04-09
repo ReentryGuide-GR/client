@@ -24,13 +24,15 @@ const Menu = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
-          <IconButton
-            title="Call Navigator"
-            onPress={onClose}
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-            // arrowStyle="white"
-          />
+          <View style={styles.resourceContainer}>
+            <IconButton
+              title="Call Navigator"
+              onPress={onClose}
+              buttonStyle={styles.primaryButton}
+              textStyle={styles.primaryButtonText}
+              // arrowStyle="white"
+            />
+          </View>
           <View style={styles.resourceContainer}>
             <Text style={styles.subtitle}>GR HelpHub</Text>
             <Text style={styles.title}>Main Menu</Text>
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
   resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
   },
   textContainer: {
     fontSize: 15, 
@@ -88,8 +90,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '80%',
-    marginLeft: 20
+    width: '90%',
   },
   primaryButton: {
     backgroundColor: '#FFCBCB',
@@ -115,8 +116,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '80%',
-    marginLeft: 20
+    width: '90%',
   },
 
 });

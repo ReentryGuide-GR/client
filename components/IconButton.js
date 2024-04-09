@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     alignItems: 'center',
     borderRadius: 20,
-    width: '80%',
+    width: '100%',
     padding: 21,
     marginTop: 5,
     marginBottom: 5,

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
   },
   textContainer: {
     fontSize: 15, 
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '80%',
+    width: '95%',
   },
 
 });

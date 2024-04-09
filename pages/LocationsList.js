@@ -36,7 +36,7 @@ return (
 
         <View style={styles.mainContainer}>
 
-          <View style={styles.resourceContainer}>
+          <View style={styles.listContainer}>
 
             <View style={styles.card}>
               <View style={styles.infoContainer}>
@@ -89,10 +89,15 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: '5%',
   },
-  resourceContainer: {
+  listContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
     width: '100%',
+  },
+  resourceContainer: {
+    justifyContent: 'center', 
+    alignItems: 'center',
+    width: '80%',
   },
   card: {
     backgroundColor: '#fff',
