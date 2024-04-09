@@ -65,6 +65,7 @@ return (
                 title="Select"
                 onPress={onClose}
                 iconSize={0}
+                buttonStyle={styles.secondaryButton}
               />
             </View>
 
@@ -114,17 +115,12 @@ const styles = StyleSheet.create({
   },
 
   infoContainer: {
-    width: '100%'
+    width: '100%',
+    paddingBottom: 10
   },
 
   secondaryButton: {
     backgroundColor: '#E2E9F3',
-    padding: 25
-  },
-
-  tertiaryButton: {
-    // backgroundColor: '#E2E9F3',
-    padding: 25
   },
 
   subtitle: {
