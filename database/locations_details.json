@@ -36,6 +36,13 @@
       "phone": "616-454-8249",
       "requirementsText": "Test Groceries requirements 2", 
       "requirementsColor": "Yellow"
+    },
+    {
+      "id": "2",
+      "address": "Test Groceries address 2",
+      "phone": "616-454-8249",
+      "requirementsText": "Test Groceries requirements 2", 
+      "requirementsColor": "Red"
     }
   ],
   "Hygiene": [
