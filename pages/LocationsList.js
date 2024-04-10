@@ -186,14 +186,15 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 24,
-    elevation: 20,
-    marginBottom: 30,
-    marginTop: 15
+    elevation: 30,
+    marginBottom: 35,
+    marginTop: 25
   },
 
   infoContainer: {
     width: '100%',
-    paddingBottom: 10
+    paddingBottom: 20,
+    paddingTop: 10
   },
 
   secondaryButton: {
