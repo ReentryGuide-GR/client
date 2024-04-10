@@ -11,7 +11,10 @@ import locationsDetails from '../database/locations_details.json';
 const MoreInfo = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle, category } = route.params;
+
+  // Find the matching location details
+  const locationDetails = locationsDetails[category].find(detail => detail.id === location.id);
 
 //   const handlePlanYourRoute = (mode) => {
 //     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -54,11 +57,11 @@ return (
                 </View>
                 <View style={[styles.row2, {backgroundColor: '#eee'}]}>
                     <Text style={styles.text}>Address</Text>
-                    <Text style={styles.text2}>1234 St SE</Text>
+                    <Text style={styles.text2}>{locationDetails.address}</Text>
                 </View>
                 <View style={styles.row2}>
                     <Text style={styles.text}>Phone</Text>
-                    <Text style={styles.text2}>'616 000 0000'</Text>
+                    <Text style={styles.text2}>{locationDetails.phone}</Text>
                 </View>
             </View>
           </View>

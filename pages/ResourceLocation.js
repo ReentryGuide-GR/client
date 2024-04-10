@@ -127,7 +127,9 @@ return (
                   textColor: statusTextStyleColor, // Extract color from the style object
                   timeMessage: timeMessage, 
                   statusTime: statusTime,
-                  subtitle
+                  subtitle,
+                  category
+
                 })                
               }
             />
