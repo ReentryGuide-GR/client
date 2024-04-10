@@ -38,10 +38,10 @@
       "requirementsColor": "Yellow"
     },
     {
-      "id": "2",
-      "address": "Test Groceries address 2",
+      "id": "3",
+      "address": "Test Groceries address 3",
       "phone": "616-454-8249",
-      "requirementsText": "Test Groceries requirements 2", 
+      "requirementsText": "Test Groceries requirements 3", 
       "requirementsColor": "Red"
     }
   ],
