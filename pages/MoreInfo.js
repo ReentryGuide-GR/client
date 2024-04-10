@@ -8,7 +8,7 @@ import locationsDetails from '../database/locations_details.json';
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Transportation = ({ onClose }) => {
+const MoreInfo = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle } = route.params;
@@ -80,7 +80,7 @@ return (
   );
 };
 
-export default Transportation;
+export default MoreInfo;
 
 const styles = StyleSheet.create({
   mainContainer: {
