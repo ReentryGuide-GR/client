@@ -101,10 +101,15 @@ const LocationList = ({ isVisible, onClose }) => {
       </View>
       <IconButton
         title="Select"
-        onPress={onClose}
+        onPress={() => navigation.navigate('ResourceLocation', {
+          location: item, // Pass the whole item as 'location'
+          category: category,
+          distance: item.distance
+        })}
         iconSize={0}
         buttonStyle={styles.secondaryButton}
       />
+
     </View>
     </View>
   );
