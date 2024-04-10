@@ -25,36 +25,33 @@ const LocationList = ({ isVisible, onClose }) => {
 
 
   useEffect(() => {
-    const categoryData = locationsBasic[category];
-    if (categoryData) {
-      const filteredLocations = categoryData.map(location => {
-        const details = locationsDetails[category]?.find(detail => detail.id === location.id) || {};
-        return { ...location, ...details };
-      });
-      setData(filteredLocations);
-    } else {
-      console.warn(`No data found for category: ${category}`);
-      setData([]);
-    }
-  }, [category]);
-
-  // Get requirement indicator color
-  useEffect(() => {
     const fetchAndMergeData = async () => {
       const userLocation = await getUserLocation();
-      if (!userLocation) return;
+      const categoryData = locationsBasic[category];
   
-      const mergedData = locationsBasic[category].map(location => {
-        const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
-        const distance = userLocation ? getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng) : null;
-        const colorMapping = requirementsColorMapping(details.requirementsColor);
-        return { ...location, ...details, ...colorMapping, distance: distance ? distance.toFixed(2) : 'N/A' };
-      });
-      setData(mergedData);
+      if (categoryData) {
+        const mergedData = categoryData.map(location => {
+          const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
+          const distance = userLocation ? getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng) : 'N/A';
+          const colorMapping = requirementsColorMapping(details.requirementsColor);
+          
+          return { 
+            ...location, 
+            ...details, 
+            ...colorMapping, 
+            distance: typeof distance === 'number' ? distance.toFixed(2) : distance 
+          };
+        });
+        setData(mergedData);
+      } else {
+        console.warn(`No data found for category: ${category}`);
+        setData([]);
+      }
     };
   
     fetchAndMergeData();
   }, [category]);
+  
   
   
 
