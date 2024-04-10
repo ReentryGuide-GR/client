@@ -35,13 +35,13 @@ const MoreInfo = ({ onClose }) => {
       return acc;
     }, []).map(group => {
       if (group.length > 1) {
-        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}\n`;
+        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
       } else {
-        return `${daysOfWeek[group[0]]}\n`;
+        return `${daysOfWeek[group[0]]}`;
       }
     }).join(", ");
     
-    return `${daysFormatted} ${openHours.open} - ${openHours.close}`;
+    return `${daysFormatted}\n${openHours.open} - ${openHours.close}`;
   };
   
   
