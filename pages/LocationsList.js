@@ -7,7 +7,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
-import { getDistance, findClosestLocation, getUserLocation, requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
+import { getDistance, findClosestLocation, getUserLocation, requirementsColorMapping, updateLocationStatus, getStatusText, getStatusStyles } from '../utils';
 
 // Sample data array
 
@@ -34,14 +34,21 @@ const LocationList = ({ isVisible, onClose }) => {
           const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
           const distance = userLocation ? getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng) : 'N/A';
           const colorMapping = requirementsColorMapping(details.requirementsColor);
+          const statusDetails = updateLocationStatus(location.openHours);
           
+          // Use getStatusText to set a human-readable status text based on statusDetails.status
+          const statusText = getStatusText(statusDetails.status); // Assuming status is a property of the object returned by updateLocationStatus
+        
           return { 
             ...location, 
             ...details, 
             ...colorMapping, 
-            distance: typeof distance === 'number' ? distance.toFixed(2) : distance 
+            distance: typeof distance === 'number' ? distance.toFixed(1) : distance,
+            statusText, // Add the resolved status text to the object
+            ...statusDetails
           };
         });
+        
         setData(mergedData);
       } else {
         console.warn(`No data found for category: ${category}`);
@@ -51,6 +58,7 @@ const LocationList = ({ isVisible, onClose }) => {
   
     fetchAndMergeData();
   }, [category]);
+  
   
   
   
@@ -82,13 +90,13 @@ const LocationList = ({ isVisible, onClose }) => {
           ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{item.distance}</Text> miles away
         </Text>
         <View style={styles.row}>
-          <View style={[styles.indicator]}>
-            <Text style={[styles.openOrClosed]}>{item.isOpen}</Text>
+          <View style={[styles.indicator, item.statusBackgroundColor]}>
+            <Text style={[styles.openOrClosed, { color: item.statusTextStyleColor }]}>{item.statusText}</Text>
           </View>
           <Text style={styles.timing}>
-            Opens at<Text style={{ fontFamily: 'Manrope-Bold', }}> {item.openTime}</Text>
+            {item.message}<Text style={{ fontFamily: 'Manrope-Bold', }}>{item.time}</Text>
           </Text>
-        </View>
+      </View>
       </View>
       <IconButton
         title="Select"
