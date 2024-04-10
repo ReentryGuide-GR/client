@@ -124,6 +124,7 @@ return (
             data={data}
             renderItem={renderItem}
             keyExtractor={item => item.id}
+            persistentScrollbar={true}
             contentContainerStyle={{ 
               width: '100%',
               paddingBottom: 120, // Adjust this value based on the height of your resourceContainer
