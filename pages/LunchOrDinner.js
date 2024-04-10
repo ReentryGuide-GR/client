@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
   },
   textContainer: {
     fontSize: 15, 
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     alignItems: 'center',
     borderRadius: 20,
-    width: '80%',
+    width: '100%',
     padding: 21,
     marginTop: 5,
     marginBottom: 5,
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '80%',
+    width: '95%',
   },
 
 });

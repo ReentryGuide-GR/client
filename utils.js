@@ -159,50 +159,50 @@ export const updateLocationStatus = (openHours) => {
 };
 
 
-export const getStatusIndicatorStyle = (status) => {
-  switch (status) {
-    case 'closingSoon':
-      return { backgroundColor: '#ffe8ad' };
-    case 'openingSoon':
-      return { backgroundColor: '#c1fcbb' };
-    case 'open':
-      return { backgroundColor: '#c1fcbb' };
-    case 'closed':
-      return { backgroundColor: '#ffd1d1' };
-    default:
-      return {};
-  }
-};
+// export const getStatusIndicatorStyle = (status) => {
+//   switch (status) {
+//     case 'closingSoon':
+//       return { backgroundColor: '#ffe8ad' };
+//     case 'openingSoon':
+//       return { backgroundColor: '#c1fcbb' };
+//     case 'open':
+//       return { backgroundColor: '#c1fcbb' };
+//     case 'closed':
+//       return { backgroundColor: '#ffd1d1' };
+//     default:
+//       return {};
+//   }
+// };
 
-export const getStatusTextStyleColor = (status) => {
-  switch (status) {
-    case 'closingSoon':
-      return '#543c00';
-    case 'openingSoon':
-      return '#075400';
-    case 'open':
-      return '#075400';
-    case 'closed':
-      return 'darkred';
-    default:
-      return 'white'; // Default color if none of the statuses match
-  }
-};
+// export const getStatusTextStyleColor = (status) => {
+//   switch (status) {
+//     case 'closingSoon':
+//       return '#543c00';
+//     case 'openingSoon':
+//       return '#075400';
+//     case 'open':
+//       return '#075400';
+//     case 'closed':
+//       return 'darkred';
+//     default:
+//       return 'white'; // Default color if none of the statuses match
+//   }
+// };
 
-export const getStatusText = (status) => {
-  switch (status) {
-    case 'closingSoon':
-      return 'Closes Soon';
-    case 'openingSoon':
-      return 'Opens Soon';
-    case 'open':
-      return 'Open';
-    case 'closed':
-      return 'Closed';
-    default:
-      return '';
-  }
-};
+// export const getStatusText = (status) => {
+//   switch (status) {
+//     case 'closingSoon':
+//       return 'Closes Soon';
+//     case 'openingSoon':
+//       return 'Opens Soon';
+//     case 'open':
+//       return 'Open';
+//     case 'closed':
+//       return 'Closed';
+//     default:
+//       return '';
+//   }
+// };
 
 //Combined function
 export const getStatusStyles = (status) => {

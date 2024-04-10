@@ -9,6 +9,7 @@ import MealOrGroceries from './pages/MealOrGroceries';
 import LunchOrDinner from './pages/LunchOrDinner'; 
 import ResourceLocation from './pages/ResourceLocation'; 
 import Transportation from './pages/Transportation'; 
+import LocationsList from './pages/LocationsList'; 
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ function Navigation() {
         <Stack.Screen name="LunchOrDinner" component={LunchOrDinner} />
         <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
         <Stack.Screen name="Transportation" component={Transportation} />
+        <Stack.Screen name="LocationsList" component={LocationsList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

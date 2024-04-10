@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
   },
   textContainer: {
     fontSize: 15, 
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '80%',
+    width: '100%',
   },
   indicator: {
     padding: 5,
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Medium',
-    width: '80%',
+    width: '100%',
     letterSpacing: 0.4, //increase letter spacing 
   },
   title: {
@@ -188,11 +188,11 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '80%',
+    width: '100%',
   },
   row: {
     flexDirection: 'row',
-    width: '80%',
+    width: '100%',
     alignItems:'center',
     paddingBottom: 5
   },

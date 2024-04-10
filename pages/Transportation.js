@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   resourceContainer: {
     justifyContent: 'center', 
     alignItems: 'center',
-    width: '100%',
+    width: '80%',
   },
   textContainer: {
     fontSize: 15, 
@@ -113,13 +113,13 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '80%',
+    width: '100%',
   },
   subtitle2: {
     marginBottom: 10,
     fontSize: 17,
     color: '#2F2E41',
-    width: '76%',
+    width: '100%',
     fontFamily: 'Manrope-Bold',
   },
   distance: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Medium',
-    width: '80%',
+    width: '100%',
   },
   primaryButton: {
     backgroundColor: '#E2E9F3',
@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '80%',
+    width: '100%',
   },
   row: {
     flexDirection: 'row',
-    width: '80%',
+    width: '100%',
     alignItems:'center',
     paddingBottom: 5
   },
