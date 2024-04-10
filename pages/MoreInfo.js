@@ -2,12 +2,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location';
-import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import IconButton from '../components/IconButton';
-import locations from '../locationsData';
-import { openGoogleMaps } from '../utils'
+import locationsDetails from '../database/locations_details.json';
+// import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
@@ -16,9 +13,9 @@ const Transportation = ({ onClose }) => {
   const route = useRoute();
   const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle } = route.params;
 
-  const handlePlanYourRoute = (mode) => {
-    openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
-  };
+//   const handlePlanYourRoute = (mode) => {
+//     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
+//   };
 
 return (
 
@@ -49,6 +46,21 @@ return (
           </View>
 
           <View style={styles.resourceContainer}>
+            <View style={styles.card}>
+                <View style={styles.row2}>
+                    <Text style={styles.text}>Open Hours</Text>
+                    <Text style={styles.text2}>Monday - Thursday 12:00 - 2:00</Text>
+
+                </View>
+                <View style={[styles.row2, {backgroundColor: '#eee'}]}>
+                    <Text style={styles.text}>Address</Text>
+                    <Text style={styles.text2}>1234 St SE</Text>
+                </View>
+                <View style={styles.row2}>
+                    <Text style={styles.text}>Phone</Text>
+                    <Text style={styles.text2}>'616 000 0000'</Text>
+                </View>
+            </View>
           </View>
 
           <View style={styles.resourceContainer}>
@@ -143,5 +155,41 @@ const styles = StyleSheet.create({
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
   },
-
+  card: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    width: '105%',
+    paddingVertical: 10,
+    borderRadius: 30,
+    shadowColor: '#A59D95',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 30
+  },
+  text: {
+    // marginBottom: -2,
+    // color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '40%',
+    paddingVertical: 5,
+  },
+  text2: {
+    // marginBottom: -2,
+    // color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '65%',
+    paddingVertical: 5,
+  },
+  row2: {
+    flexDirection: 'row',
+    width: '100%',
+    // alignItems:'center',
+    justifyContent: 'flex-start',
+    paddingBottom: 5, 
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
 });
