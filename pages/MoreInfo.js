@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     // marginBottom: -2,
     // color: '#2F2E41',
     fontSize: 17,
-    fontFamily: 'Manrope-Bold',
+    fontFamily: 'Manrope-SemiBold',
     width: '40%',
     paddingVertical: 5,
   },
