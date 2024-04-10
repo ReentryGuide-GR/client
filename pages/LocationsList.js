@@ -221,8 +221,8 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 10,
     color: '#2F2E41',
-    fontSize: 30,
-    fontWeight: '800',
+    fontSize: 27,
+    fontWeight: '700',
     width: '95%',
     marginHorizontal: '4'
   },
