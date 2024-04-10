@@ -28,7 +28,7 @@
       "address": "Test Groceries address 1",
       "phone": "123-456-7890",
       "requirementsText": "Test Groceries requirements 1", 
-      "requirementsColor": "Yellow"
+      "requirementsColor": "Green"
     },
     {
       "id": "2",
