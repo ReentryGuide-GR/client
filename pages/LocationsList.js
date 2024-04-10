@@ -7,7 +7,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
-import { getDistance, findClosestLocation, getUserLocation, requirementsColorMapping, updateLocationStatus, getStatusText, getStatusStyles } from '../utils';
+import { getDistance, findClosestLocation, getUserLocation, requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
 // Sample data array
 
@@ -35,17 +35,18 @@ const LocationList = ({ isVisible, onClose }) => {
           const distance = userLocation ? getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng) : 'N/A';
           const colorMapping = requirementsColorMapping(details.requirementsColor);
           const statusDetails = updateLocationStatus(location.openHours);
+          const statusStyles = getStatusStyles(statusDetails.status); // This line is updated
           
-          // Use getStatusText to set a human-readable status text based on statusDetails.status
-          const statusText = getStatusText(statusDetails.status); // Assuming status is a property of the object returned by updateLocationStatus
+
         
           return { 
             ...location, 
             ...details, 
             ...colorMapping, 
             distance: typeof distance === 'number' ? distance.toFixed(1) : distance,
-            statusText, // Add the resolved status text to the object
-            ...statusDetails
+            ...statusDetails, 
+            ...statusStyles // Spread the styles directly into the object
+
           };
         });
         
