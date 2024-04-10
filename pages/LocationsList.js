@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
-    paddingBottom: '5%',
+    // paddingBottom: '5%',
   },
   pageTitle: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)', 
@@ -166,10 +166,10 @@ const styles = StyleSheet.create({
     // alignItems: 'center', doesn't work
     width: '100%',
     // marginHorizontal: '10%',
-    paddingTop: 20,
+    paddingVertical: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.8)', 
     position: 'absolute',
-    bottom: 20
+    bottom: 0
   },
   buttonContainer: {
     marginHorizontal: '10%',
