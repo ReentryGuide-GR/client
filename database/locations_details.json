@@ -25,9 +25,9 @@
   "Groceries": [
     {
       "id": "1",
-      "address": "Test Groceries address 1",
-      "phone": "123-456-7890",
-      "requirementsText": "Test Groceries requirements 1", 
+      "address": "766 7th St. NW",
+      "phone": "(616)233-3006",
+      "requirementsText": "Walk-ins Welcome.", 
       "requirementsColor": "Green"
     },
     {
