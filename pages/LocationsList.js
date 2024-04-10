@@ -82,10 +82,8 @@ const LocationList = ({ isVisible, onClose }) => {
     <View style={styles.card}>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{item.name}</Text>
-        <View style={styles.row}>
-          <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
-            <Text style={[styles.requirementText, { color: item.textColor }]}>{item.requirementsText}</Text>
-          </View>
+        <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
+          <Text style={[styles.requirementText, { color: item.textColor }]}>{item.requirementsText}</Text>
         </View>
         <Text style={styles.distance}>
           ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{item.distance}</Text> miles away
@@ -208,7 +206,6 @@ const styles = StyleSheet.create({
   requirementText: {
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '100%'
   },
   distance: {
     marginBottom: 8,
