@@ -23,14 +23,19 @@ const LocationList = ({ isVisible, onClose }) => {
 
 
   useEffect(() => {
-    // Filter locations by category from locationsBasic
-    const filteredLocations = locationsBasic[category].map(location => {
-      // Find additional details from locationsDetails by matching id within the same category
-      const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
-      return { ...location, ...details };
-    });
-    setData(filteredLocations); // Update state with the filtered and merged data
+    const categoryData = locationsBasic[category];
+    if (categoryData) {
+      const filteredLocations = categoryData.map(location => {
+        const details = locationsDetails[category]?.find(detail => detail.id === location.id) || {};
+        return { ...location, ...details };
+      });
+      setData(filteredLocations);
+    } else {
+      console.warn(`No data found for category: ${category}`);
+      setData([]);
+    }
   }, [category]);
+  
 
   const [fontsLoaded] = useFonts({
     'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
