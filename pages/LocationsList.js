@@ -48,7 +48,7 @@ const LocationList = ({ isVisible, onClose }) => {
             ...statusStyles // Spread the styles directly into the object
 
           };
-        });
+        }).sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
         
         setData(mergedData);
       } else {
