@@ -1,8 +1,9 @@
 /* eslint-disable */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import GoBackButton from '../components/GoBackButton';
+import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 // import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
@@ -15,7 +16,44 @@ const MoreInfo = ({ onClose }) => {
 
   // Find the matching location details
   const locationDetails = locationsDetails[category].find(detail => detail.id === location.id);
+  const [openHoursFormatted, setOpenHoursFormatted] = useState('');
+  
 
+  const formatOpenHours = (openHours) => {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  
+    if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
+      return `Everyday \n${openHours.open} - ${openHours.close}`;
+    }
+  
+    let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
+      if (index > 0 && day - arr[index - 1] === 1) {
+        acc[acc.length - 1].push(day);
+      } else {
+        acc.push([day]);
+      }
+      return acc;
+    }, []).map(group => {
+      if (group.length > 1) {
+        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}\n`;
+      } else {
+        return `${daysOfWeek[group[0]]}\n`;
+      }
+    }).join(", ");
+    
+    return `${daysFormatted} ${openHours.open} - ${openHours.close}`;
+  };
+  
+  
+  useEffect(() => {
+    const details = locationsBasic[category].find(detail => detail.id === location.id);
+    if (details) {
+      setOpenHoursFormatted(formatOpenHours(details.openHours));
+    }
+  }, [location, category]);
+  
+
+  
 //   const handlePlanYourRoute = (mode) => {
 //     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
 //   };
@@ -52,7 +90,7 @@ return (
             <View style={styles.card}>
                 <View style={styles.row2}>
                     <Text style={styles.text}>Open Hours</Text>
-                    <Text style={styles.text2}>Monday - Thursday 12:00 - 2:00</Text>
+                    <Text style={styles.text2}>{openHoursFormatted}</Text>
 
                 </View>
                 <View style={[styles.row2, {backgroundColor: '#eee'}]}>
