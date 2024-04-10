@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '105%',
     paddingVertical: 10,
-    borderRadius: 30,
+    borderRadius: 20,
     shadowColor: '#A59D95',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
