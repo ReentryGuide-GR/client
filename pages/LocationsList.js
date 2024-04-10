@@ -7,7 +7,7 @@ import IconButton from '../components/IconButton';
 import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
-import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
+import { getDistance, findClosestLocation, getUserLocation, requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
 // Sample data array
 
@@ -20,6 +20,8 @@ const LocationList = ({ isVisible, onClose }) => {
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
+
+  
 
 
   useEffect(() => {
@@ -36,13 +38,24 @@ const LocationList = ({ isVisible, onClose }) => {
     }
   }, [category]);
 
+  // Get requirement indicator color
   useEffect(() => {
-    const filteredLocations = locationsBasic[category].map(location => {
-      const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
-      return { ...location, ...details, ...requirementsColorMapping(details.requirementsColor) };
-    });
-    setData(filteredLocations);
+    const fetchAndMergeData = async () => {
+      const userLocation = await getUserLocation();
+      if (!userLocation) return;
+  
+      const mergedData = locationsBasic[category].map(location => {
+        const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
+        const distance = userLocation ? getDistance(userLocation.latitude, userLocation.longitude, location.coordinates.lat, location.coordinates.lng) : null;
+        const colorMapping = requirementsColorMapping(details.requirementsColor);
+        return { ...location, ...details, ...colorMapping, distance: distance ? distance.toFixed(2) : 'N/A' };
+      });
+      setData(mergedData);
+    };
+  
+    fetchAndMergeData();
   }, [category]);
+  
   
 
   const [fontsLoaded] = useFonts({
