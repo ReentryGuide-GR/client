@@ -58,14 +58,14 @@
       "address": "Test Groceries address 2",
       "phone": "616-454-8249",
       "requirementsText": "Appointment Required. Must show ID. Has clothing, shoes, household items and hygiene products. ", 
-      "requirementsColor": "Red"
+      "requirementsColor": "Yellow"
     },
     {
       "id": "3",
       "address": "Test Groceries address 3",
       "phone": "616-454-8249",
       "requirementsText": "Hours available by appointment only. Call Nick Nichols from the Calvin Prison Initiative to schedule (616-929-0529). Dress clothes available. Clothing for kids available.", 
-      "requirementsColor": "Red"
+      "requirementsColor": "Yellow"
     }
   ],
   "Hygiene": [
