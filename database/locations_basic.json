@@ -37,7 +37,7 @@
       "name": "Test Groceries Location 1",
       "coordinates": { "lat": 42.9176572, "lng": -85.5118018 },
       "openHours": {
-        "days": [1, 2, 3, 4, 5, 6],
+        "days": [6],
         "open": "00:30",
         "close": "4:00"
       }
