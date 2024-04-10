@@ -35,6 +35,14 @@ const LocationList = ({ isVisible, onClose }) => {
       setData([]);
     }
   }, [category]);
+
+  useEffect(() => {
+    const filteredLocations = locationsBasic[category].map(location => {
+      const details = locationsDetails[category].find(detail => detail.id === location.id) || {};
+      return { ...location, ...details, ...requirementsColorMapping(details.requirementsColor) };
+    });
+    setData(filteredLocations);
+  }, [category]);
   
 
   const [fontsLoaded] = useFonts({
@@ -56,8 +64,8 @@ const LocationList = ({ isVisible, onClose }) => {
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{item.name}</Text>
         <View style={styles.row}>
-          <View style={[styles.indicator]}>
-            <Text style={[styles.requirementText]}>{item.requirementsText}</Text>
+          <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
+            <Text style={[styles.requirementText, { color: item.textColor }]}>{item.requirementsText}</Text>
           </View>
         </View>
         <Text style={styles.distance}>
