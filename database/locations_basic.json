@@ -126,5 +126,27 @@
         "close": "14:00"
       }
     }
+  ],
+  "Medical": [
+    {
+      "id": "1",
+      "name": "Catherine's Health Center Creston",
+      "coordinates": { "lat": 42.9851067, "lng": -85.6622827 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5],
+        "open": "8:30",
+        "close": "16:30"
+      }
+    }, 
+    {
+      "id": "2",
+      "name": "Catherine's Health Center at Streams",
+      "coordinates": { "lat": 42.8539207, "lng": -85.657134 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5],
+        "open": "8:30",
+        "close": "16:30"
+      }
+    }
   ]
 }
