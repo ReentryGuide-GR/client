@@ -113,9 +113,25 @@ return (
             <IconButton
               title="More Info  "
               iconSize={32}
-              onPress={onClose}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
+              onPress={() => 
+                navigation.navigate('MoreInfo', { 
+                  location: location,
+                  distance: distance,
+                  requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+                  requirementsTextStyle: requirementsTextStyle.color,
+                  requirementsText: requirementsText,
+                  statusText: statusText, // Added status text here
+                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
+                  textColor: statusTextStyleColor, // Extract color from the style object
+                  timeMessage: timeMessage, 
+                  statusTime: statusTime,
+                  subtitle,
+                  category
+
+                })                
+              }
             />
           </View>
 

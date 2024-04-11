@@ -4,9 +4,9 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
-import ActionButton from './components/ActionButton';
+// import ActionButton from './components/ActionButton';
 import IconButton from './components/IconButton';
-import locations from './locationsData';
+// import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
 
@@ -49,12 +49,12 @@ return (
             <IconButton
               imageSource={require('./assets/drop.png')}
               title=" Find Hygiene"
-              onPress={onClose}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene' })}
             />
             <IconButton
               imageSource={require('./assets/med.png')}
               title=" Find Healthcare"
-              onPress={onClose}
+              onPress={() => navigation.navigate('FindHealthcare')}
             />
 
           </View>

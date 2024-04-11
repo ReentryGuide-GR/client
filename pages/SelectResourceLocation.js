@@ -3,7 +3,7 @@ import React , { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
-import ActionButton from '../components/ActionButton';
+// import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';

@@ -1,24 +1,62 @@
 /* eslint-disable */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location';
-// import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
-import IconButton from '../components/IconButton';
-// import locations from '../locationsData';
-import { openGoogleMaps } from '../utils'
+import locationsBasic from '../database/locations_basic.json';
+import locationsDetails from '../database/locations_details.json';
+// import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Transportation = ({ onClose }) => {
+const MoreInfo = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle, category } = route.params;
 
-  const handlePlanYourRoute = (mode) => {
-    openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
+  // Find the matching location details
+  const locationDetails = locationsDetails[category].find(detail => detail.id === location.id);
+  const [openHoursFormatted, setOpenHoursFormatted] = useState('');
+  
+
+  const formatOpenHours = (openHours) => {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  
+    if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
+      return `Everyday \n${openHours.open} - ${openHours.close}`;
+    }
+  
+    let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
+      if (index > 0 && day - arr[index - 1] === 1) {
+        acc[acc.length - 1].push(day);
+      } else {
+        acc.push([day]);
+      }
+      return acc;
+    }, []).map(group => {
+      if (group.length > 1) {
+        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
+      } else {
+        return `${daysOfWeek[group[0]]}`;
+      }
+    }).join(", ");
+    
+    return `${daysFormatted}\n${openHours.open} - ${openHours.close}`;
   };
+  
+  
+  useEffect(() => {
+    const details = locationsBasic[category].find(detail => detail.id === location.id);
+    if (details) {
+      setOpenHoursFormatted(formatOpenHours(details.openHours));
+    }
+  }, [location, category]);
+  
+
+  
+//   const handlePlanYourRoute = (mode) => {
+//     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
+//   };
 
 return (
 
@@ -49,27 +87,21 @@ return (
           </View>
 
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle2}>How will you get there?</Text>
-            <IconButton
-              imageSource={require('../assets/walk.png')}
-              title="Walk only"
-              buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('w')} // 'w' for walking
-            />
+            <View style={styles.card}>
+                <View style={styles.row2}>
+                    <Text style={styles.text}>Open Hours</Text>
+                    <Text style={styles.text2}>{openHoursFormatted}</Text>
 
-            <IconButton
-              imageSource={require('../assets/subway.png')}
-              title="Bus and Walk"
-              buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
-            />
-
-            <IconButton
-              imageSource={require('../assets/car.png')}
-              title="Drive"
-              buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('d')} // 'd' for driving
-            />
+                </View>
+                <View style={[styles.row2, {backgroundColor: '#eee'}]}>
+                    <Text style={styles.text}>Address</Text>
+                    <Text style={styles.text2}>{locationDetails.address}</Text>
+                </View>
+                <View style={styles.row2}>
+                    <Text style={styles.text}>Phone</Text>
+                    <Text style={styles.text2}>{locationDetails.phone}</Text>
+                </View>
+            </View>
           </View>
 
           <View style={styles.resourceContainer}>
@@ -89,7 +121,7 @@ return (
   );
 };
 
-export default Transportation;
+export default MoreInfo;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -164,5 +196,41 @@ const styles = StyleSheet.create({
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
   },
-
+  card: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    width: '105%',
+    paddingVertical: 10,
+    borderRadius: 20,
+    shadowColor: '#A59D95',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 24,
+    elevation: 30
+  },
+  text: {
+    // marginBottom: -2,
+    // color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-SemiBold',
+    width: '40%',
+    paddingVertical: 5,
+  },
+  text2: {
+    // marginBottom: -2,
+    // color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    width: '65%',
+    paddingVertical: 5,
+  },
+  row2: {
+    flexDirection: 'row',
+    width: '100%',
+    // alignItems:'center',
+    justifyContent: 'flex-start',
+    paddingBottom: 5, 
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
 });

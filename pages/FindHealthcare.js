@@ -18,20 +18,33 @@ return (
           {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
           <View></View> 
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Meal or Groceries?</Text>
+            <Text style={styles.title}>Find Healthcare</Text>
             <IconButton
-              imageSource={require('../assets/meal.png')}
-              title="Find Meal"
+              imageSource={require('../assets/pill.png')}
+              title=" Find Medical Help"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('LunchOrDinner')}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Medical' })}
             />
 
             <IconButton
-              imageSource={require('../assets/grocery.png')}
-              title="Find Groceries"
+              imageSource={require('../assets/tooth.png')}
+              title=" Find Tooth Care"
+              buttonStyle={styles.primaryButton}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Dental' })}
+            />
+            <IconButton
+              imageSource={require('../assets/eye.png')}
+              title=" Find Eye Doctor"
               buttonStyle={styles.primaryButton}
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
             />
+            <IconButton
+              imageSource={require('../assets/hand_heart.png')}
+              title=" Find Mental Support"
+              buttonStyle={styles.primaryButton}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+            />
+
           </View>
 
           <View style={styles.resourceContainer}>

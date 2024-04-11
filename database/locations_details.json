@@ -3,72 +3,115 @@
     {
       "id": "1",
       "address": "303 Division Ave S, Grand Rapids, MI 49503",
-      "phone": "616-454-4110",
-      "requirementsText": "Walk-ins Welcome.", 
+      "phone": "(616) 454-4110",
+      "requirementsText": "Walk-ins Welcome", 
       "requirementsColor": "Green"
     },
     {
       "id": "2",
       "address": "225 Commerce Ave. SW, Grand Rapids, MI 49503",
-      "phone": "616-454-8249",
+      "phone": "(616) 454-8249",
       "requirementsText": "Meals for program participants, but you may be able to join by calling first.", 
-      "requirementsColor": "Yellow"
-    },
-    {
-      "id": "3",
-      "address": "1234 Test St. SW, Grand Rapids, MI 49500",
-      "phone": "123-456-7890",
-      "requirementsText": "Test requirement sentence", 
       "requirementsColor": "Yellow"
     }
   ],
   "Groceries": [
     {
       "id": "1",
-      "address": "Test Groceries address 1",
-      "phone": "123-456-7890",
-      "requirementsText": "Test Groceries requirements 1", 
+      "address": "766 7th St. NW",
+      "phone": "(616) 233-3006",
+      "requirementsText": "Walk-ins Welcome", 
       "requirementsColor": "Green"
     },
     {
       "id": "2",
-      "address": "Test Groceries address 2",
-      "phone": "616-454-8249",
-      "requirementsText": "Test Groceries requirements 2", 
+      "address": "935 Baxter SE",
+      "phone": "(616) 456-8593",
+      "requirementsText": "Appointment Required, ID required", 
       "requirementsColor": "Yellow"
     },
     {
       "id": "3",
-      "address": "Test Groceries address 3",
-      "phone": "616-454-8249",
-      "requirementsText": "Test Groceries requirements 3", 
-      "requirementsColor": "Red"
+      "address": "514 Eastern Ave SE",
+      "phone": "(616) 454-4888",
+      "requirementsText": "Be there at Saturday 7am to get a ticket. Pantry opens at approximately 8:30am. No ID required.", 
+      "requirementsColor": "Yellow"
+    },
+    {
+      "id": "4",
+      "address": "47 Jefferson Ave. SE",
+      "phone": "(616) 456-1456",
+      "requirementsText": "ID required", 
+      "requirementsColor": "Yellow"
     }
   ],
   "Clothing": [
     {
       "id": "1",
-      "address": "Test Groceries address 1",
-      "phone": "123-456-7890",
-      "requirementsText": "Clothing is free. Also has cosmetics.", 
+      "address": "265 Sheldon Ave SE",
+      "phone": "N/A",
+      "requirementsText": "Clothing is free. Also has Hygiene.", 
       "requirementsColor": "Green"
     },
     {
       "id": "2",
-      "address": "Test Groceries address 2",
-      "phone": "616-454-8249",
-      "requirementsText": "Appointment Required. Must show ID. Has clothing, shoes, household items and hygiene products. ", 
+      "address": "4255 Kalamazoo Ave SE",
+      "phone": "(616) 456-6150",
+      "requirementsText": "Appointment Required. ID Required. Has clothing, shoes, household items and hygiene products. ", 
       "requirementsColor": "Yellow"
     },
     {
       "id": "3",
       "address": "Test Groceries address 3",
-      "phone": "616-454-8249",
+      "phone": "(616) 454-8249",
       "requirementsText": "Hours available by appointment only. Call Nick Nichols from the Calvin Prison Initiative to schedule (616-929-0529). Dress clothes available. Clothing for kids available.", 
       "requirementsColor": "Yellow"
     }
   ],
   "Hygiene": [
-    // Detailed information for hygiene locations
+    {
+      "id": "1",
+      "address": "265 Sheldon Ave SE",
+      "phone": "N/A",
+      "requirementsText": "Clothing is free. Also has Hygiene.", 
+      "requirementsColor": "Green"
+    },
+    {
+      "id": "2",
+      "address": "4255 Kalamazoo Ave SE",
+      "phone": "(616) 456-6150",
+      "requirementsText": "Appointment Required. ID Required. Has clothing, shoes, household items and hygiene products. ", 
+      "requirementsColor": "Yellow"
+    },
+    {
+      "id": "3",
+      "address": "47 Jefferson Ave. SE",
+      "phone": "(616) 456-1456",
+      "requirementsText": "ID required", 
+      "requirementsColor": "Yellow"
+    }
+  ],
+  "Medical": [
+    {
+      "id": "1",
+      "address": "1211 Lafayette Ave NE",
+      "phone": "(616) 336-8800",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "2",
+      "address": "280 60th St SE Suite 200",
+      "phone": "(616) 483-0750",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "3",
+      "address": "950 36th St SW",
+      "phone": "(616) 320-0405",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }
   ]
 }
