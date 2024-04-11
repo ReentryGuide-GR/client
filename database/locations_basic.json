@@ -147,6 +147,16 @@
         "open": "8:30",
         "close": "16:30"
       }
+    },
+    {
+      "id": "3",
+      "name": "Catherine's Health Center at Wyoming",
+      "coordinates": { "lat": 42.898104, "lng": -85.6891897 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5],
+        "open": "8:30",
+        "close": "16:30"
+      }
     }
   ]
 }

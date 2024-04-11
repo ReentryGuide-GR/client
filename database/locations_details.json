@@ -105,6 +105,13 @@
       "phone": "(616) 483-0750",
       "requirementsText": "Unknown Special Requirement", 
       "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "3",
+      "address": "950 36th St SW",
+      "phone": "(616) 320-0405",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
     }
   ]
 }

@@ -23,14 +23,14 @@ return (
               imageSource={require('../assets/pill.png')}
               title=" Find Medical Help"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('LunchOrDinner')}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Medical' })}
             />
 
             <IconButton
               imageSource={require('../assets/tooth.png')}
               title=" Find Tooth Care"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Dental' })}
             />
             <IconButton
               imageSource={require('../assets/eye.png')}
