@@ -10,14 +10,16 @@ import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance, formatTime } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
 
-const Page = ({ onClose }) => {
-  const navigation = useNavigation(); // used for navigation.navigate()
+const Page = () => {
+  const navigation = useNavigation();
   const [godsKitchenDistance, setGodsKitchenDistance] = useState(null);
   const [melTrotterDistance, setMelTrotterDistance] = useState(null);
+  const [today, setToday] = useState(new Date().getDay()); // Sunday - 0, Monday - 1, ..., Saturday - 6
 
   // Access the first entry of openHours as it's now an array
   const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
   const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
+
 
   useEffect(() => {
     (async () => {
@@ -27,17 +29,35 @@ const Page = ({ onClose }) => {
         return;
       }
 
-
-
       const distanceToMelTrotter = getDistance(userLocation.latitude, userLocation.longitude, melTrotterLocation.coordinates.lat, melTrotterLocation.coordinates.lng);
       const distanceToGodsKitchen = getDistance(userLocation.latitude, userLocation.longitude, godsKitchenLocation.coordinates.lat, godsKitchenLocation.coordinates.lng);
 
-      // Choose which location you want to calculate distance for and set it
-      // For example, if this screen is meant for deciding on dinner:
       setMelTrotterDistance((distanceToMelTrotter * 0.621371).toFixed(1)); // Convert km to miles and round to 1 decimal place
-      setGodsKitchenDistance((distanceToGodsKitchen * 0.621371).toFixed(1)); // Convert km to miles and round to 1 decimal place
+      setGodsKitchenDistance((distanceToGodsKitchen * 0.621371).toFixed(1));
     })();
   }, []);
+
+    // Helper function to determine if a location is open today
+    const isOpenToday = (location) => {
+      return location.openHours.some(oh => oh.days.includes(today));
+    };
+  
+    // Helper function to render open hours or "Closed Today"
+    const renderOpenHours = (location) => {
+      if (isOpenToday(location)) {
+        const todayHours = location.openHours.find(oh => oh.days.includes(today));
+        return (
+          <>
+            <Text style={styles.IconButtonTextBold}>{formatTime(todayHours?.open)}</Text>
+            <Text style={styles.IconButtonText}> - </Text>
+            <Text style={styles.IconButtonTextBold}>{formatTime(todayHours?.close)}</Text>
+          </>
+        );
+      } else {
+        return <Text style={styles.IconButtonTextBold}>Closed Today</Text>;
+      }
+    };
+  
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -48,65 +68,56 @@ const Page = ({ onClose }) => {
     return null; // Return null to render nothing while loading fonts
   }
 
-return (
+  return (
+    <View style={styles.mainContainer}>
+      {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
+      <View></View> 
+      <View style={styles.resourceContainer}>
+      <Text style={styles.title}>Lunch or Dinner?</Text>
 
-        <View style={styles.mainContainer}>
-          {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
-          <View></View> 
-          <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Lunch or Dinner?</Text>
-
-            <TouchableOpacity
-              style={styles.IconButton}
-              onPress={() => {
-                const godsKitchen = locationsBasic.Meal.find(location => location.id === "1");
-                navigation.navigate('ResourceLocation', {
-                  location: godsKitchen,
-                  category: "Meal",
-                  distance: godsKitchenDistance,
-                  subtitle: "Lunch Location: "
-                });
-              }}
-            >
-              <View style={styles.row}>
-                <Text style={styles.IconButtonText}>Lunch</Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours[0]?.open)}</Text>
-                <Text style={styles.IconButtonText}> - </Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours[0]?.close)}</Text>
-              </View>
-              <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.IconButton}
-              onPress={() => {
-                const melTrotter = locationsBasic.Meal.find(location => location.id === "2"); // Assuming "2" is Mel Trotter
-                navigation.navigate('ResourceLocation', {
-                  location: melTrotter,
-                  category: "Meal",
-                  distance: melTrotterDistance,
-                  subtitle: "Dinner Location: "
-                });
-              }}
-            >
-              <View style={styles.row}>
-                <Text style={styles.IconButtonText}>Dinner</Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours[0]?.open)}</Text>
-                <Text style={styles.IconButtonText}> - </Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours[0]?.close)}</Text>
-              </View>
-              <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
-            </TouchableOpacity>
-
+        <TouchableOpacity
+          style={styles.IconButton}
+          onPress={() => {
+            const godsKitchen = locationsBasic.Meal.find(location => location.id === "1");
+            navigation.navigate('ResourceLocation', {
+              location: godsKitchen,
+              category: "Meal",
+              distance: godsKitchenDistance,
+              subtitle: "Lunch Location: "
+            });
+          }}
+        >
+          <View style={styles.row}>
+            <Text style={styles.IconButtonText}>Lunch</Text>
+            {renderOpenHours(godsKitchenLocation)}
           </View>
+          <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
+        </TouchableOpacity>
 
-          <View style={styles.resourceContainer}>
-
-            <GoBackButton/>
-
+        <TouchableOpacity
+          style={styles.IconButton}
+          onPress={() => {
+            const melTrotter = locationsBasic.Meal.find(location => location.id === "2");
+            navigation.navigate('ResourceLocation', {
+              location: melTrotter,
+              category: "Meal",
+              distance: melTrotterDistance,
+              subtitle: "Dinner Location: "
+            });
+          }}
+        >
+          <View style={styles.row}>
+            <Text style={styles.IconButtonText}>Dinner</Text>
+            {renderOpenHours(melTrotterLocation)}
           </View>
+          <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
+        </TouchableOpacity>
+      </View>
 
-        </View>
+      <View style={styles.resourceContainer}>
+        <GoBackButton/>
+      </View>
+    </View>
   );
 };
 
