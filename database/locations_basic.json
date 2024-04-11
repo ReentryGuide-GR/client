@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "God’s Kitchen",
-      "coordinates": { "lat": 42.9634, "lng": -85.6681 },
+      "coordinates": { "lat": 42.9576887, "lng": -85.6681539 },
       "openHours": {
         "days": [1, 2, 3, 4, 5, 6],
         "open": "12:30",
@@ -13,21 +13,11 @@
     {
       "id": "2",
       "name": "Mel Trotter",
-      "coordinates": { "lat": 42.9608, "lng": -85.6673 },
+      "coordinates": { "lat": 42.959223, "lng": -85.669267 },
       "openHours": {
         "days": [0, 1, 2, 3, 4, 5, 6],
         "open": "16:00",
         "close": "17:45"
-      }
-    },
-    {
-      "id": "3",
-      "name": "Test Very Super Extremely Alexandrina Long Name",
-      "coordinates": { "lat": 42.9204317, "lng": -85.5074351 },
-      "openHours": {
-        "days": [0, 1, 2, 3, 4, 5, 6],
-        "open": "11:00",
-        "close": "15:00"
       }
     }
   ],
@@ -44,22 +34,32 @@
     },
     {
       "id": "2",
-      "name": "Test Groceries Location 2",
-      "coordinates": { "lat": 42.9608, "lng": -85.6673 },
+      "name": "Baxter Community Center",
+      "coordinates": { "lat": 42.9529533, "lng": -85.6453506 },
       "openHours": {
         "days": [1, 2, 3, 4, 5],
-        "open": "16:00",
-        "close": "23:45"
+        "open": "00:00",
+        "close": "23:59"
       }
     },
     {
       "id": "3",
-      "name": "Test Groceries Location 3",
-      "coordinates": { "lat": 42.4608, "lng": -85.6673 },
+      "name": "Eastern Avenue CRC",
+      "coordinates": { "lat": 42.9533224, "lng": -85.6487539 },
       "openHours": {
-        "days": [0],
-        "open": "6:00",
-        "close": "7:45"
+        "days": [6],
+        "open": "7:00",
+        "close": "10:00"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Westminster Presbyterian Church",
+      "coordinates": { "lat": 42.9617366, "lng": -85.6645274 },
+      "openHours": {
+        "days": [4],
+        "open": "10:30",
+        "close": "14:00"
       }
     }
   ],

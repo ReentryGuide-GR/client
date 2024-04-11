@@ -4,7 +4,7 @@
       "id": "1",
       "address": "303 Division Ave S, Grand Rapids, MI 49503",
       "phone": "616-454-4110",
-      "requirementsText": "Walk-ins Welcome.", 
+      "requirementsText": "Walk-ins Welcome", 
       "requirementsColor": "Green"
     },
     {
@@ -13,13 +13,6 @@
       "phone": "616-454-8249",
       "requirementsText": "Meals for program participants, but you may be able to join by calling first.", 
       "requirementsColor": "Yellow"
-    },
-    {
-      "id": "3",
-      "address": "1234 Test St. SW, Grand Rapids, MI 49500",
-      "phone": "123-456-7890",
-      "requirementsText": "Test requirement sentence", 
-      "requirementsColor": "Yellow"
     }
   ],
   "Groceries": [
@@ -27,22 +20,29 @@
       "id": "1",
       "address": "766 7th St. NW",
       "phone": "(616)233-3006",
-      "requirementsText": "Walk-ins Welcome.", 
+      "requirementsText": "Walk-ins Welcome", 
       "requirementsColor": "Green"
     },
     {
       "id": "2",
-      "address": "Test Groceries address 2",
-      "phone": "616-454-8249",
-      "requirementsText": "Test Groceries requirements 2", 
+      "address": "935 Baxter SE",
+      "phone": "(616)456-8593",
+      "requirementsText": "Appointment Required, ID required", 
       "requirementsColor": "Yellow"
     },
     {
       "id": "3",
-      "address": "Test Groceries address 3",
-      "phone": "616-454-8249",
-      "requirementsText": "Test Groceries requirements 3", 
-      "requirementsColor": "Red"
+      "address": "514 Eastern Ave SE",
+      "phone": "616-454-4888",
+      "requirementsText": "Be there at Saturday 7am to get a ticket. Pantry opens at approximately 8:30am. No ID required.", 
+      "requirementsColor": "Yellow"
+    },
+    {
+      "id": "4",
+      "address": "47 Jefferson Ave. SE",
+      "phone": "616-456-1456",
+      "requirementsText": "ID required", 
+      "requirementsColor": "Yellow"
     }
   ],
   "Clothing": [
