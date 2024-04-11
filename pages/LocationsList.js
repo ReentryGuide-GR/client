@@ -117,7 +117,9 @@ const LocationList = ({ isVisible, onClose }) => {
 return (
 
         <View style={styles.mainContainer}>
-          <Text style={styles.pageTitle}>Select {category} Location</Text>
+          <View style={styles.pageTitleContainer}>
+            <Text style={styles.pageTitle}>Select {category} Location</Text>
+          </View>
 
 
           <FlatList
@@ -127,7 +129,8 @@ return (
             persistentScrollbar={true}
             contentContainerStyle={{ 
               width: '100%',
-              paddingBottom: 120, // Adjust this value based on the height of your resourceContainer
+              paddingBottom: 120,
+              paddingTop: 100,
             }}
           />
           <View style={styles.resourceContainer}>
@@ -151,16 +154,23 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     // paddingBottom: '5%',
   },
-  pageTitle: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', 
+  pageTitleContainer: {
+    backgroundColor: 'rgba(255, 255, 255, 1.0)', 
     paddingBottom: 15,
-    color: '#2F2E41',
+    top: 0,
+    // elevation: 7,
+    position: 'absolute',
+    zIndex: 100,
+    width: '100%'
+  },
+  pageTitle: {
+    // color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
     // width: '95%',
     marginHorizontal: '10%',
     // position: 'absolute',
-    top: 0
+    
   },
   listContainer: {
     alignItems: 'center',
@@ -175,7 +185,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: 'rgba(255, 255, 255, 0.8)', 
     position: 'absolute',
-    bottom: 0
+    bottom: 0, 
+    // elevation: 30,
   },
   buttonContainer: {
     marginHorizontal: '10%',
