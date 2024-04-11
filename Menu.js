@@ -54,7 +54,7 @@ return (
             <IconButton
               imageSource={require('./assets/med.png')}
               title=" Find Healthcare"
-              onPress={onClose}
+              onPress={() => navigation.navigate('FindHealthcare')}
             />
 
           </View>
