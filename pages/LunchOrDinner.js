@@ -15,6 +15,7 @@ const Page = ({ onClose }) => {
   const [godsKitchenDistance, setGodsKitchenDistance] = useState(null);
   const [melTrotterDistance, setMelTrotterDistance] = useState(null);
 
+  // Access the first entry of openHours as it's now an array
   const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
   const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
 
@@ -69,9 +70,9 @@ return (
             >
               <View style={styles.row}>
                 <Text style={styles.IconButtonText}>Lunch</Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours.open)}</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours[0]?.open)}</Text>
                 <Text style={styles.IconButtonText}> - </Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours.close)}</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(godsKitchenLocation.openHours[0]?.close)}</Text>
               </View>
               <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
             </TouchableOpacity>
@@ -90,9 +91,9 @@ return (
             >
               <View style={styles.row}>
                 <Text style={styles.IconButtonText}>Dinner</Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours.open)}</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours[0]?.open)}</Text>
                 <Text style={styles.IconButtonText}> - </Text>
-                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours.close)}</Text>
+                <Text style={styles.IconButtonTextBold}>{formatTime(melTrotterLocation.openHours[0]?.close)}</Text>
               </View>
               <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
             </TouchableOpacity>
