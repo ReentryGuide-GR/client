@@ -50,7 +50,7 @@
       "id": "1",
       "address": "265 Sheldon Ave SE",
       "phone": "N/A",
-      "requirementsText": "Clothing is free. Also has cosmetics.", 
+      "requirementsText": "Clothing is free. Also has Hygiene.", 
       "requirementsColor": "Green"
     },
     {
@@ -69,6 +69,26 @@
     }
   ],
   "Hygiene": [
-    // Detailed information for hygiene locations
+    {
+      "id": "1",
+      "address": "265 Sheldon Ave SE",
+      "phone": "N/A",
+      "requirementsText": "Clothing is free. Also has Hygiene.", 
+      "requirementsColor": "Green"
+    },
+    {
+      "id": "2",
+      "address": "4255 Kalamazoo Ave SE",
+      "phone": "(616)456-6150",
+      "requirementsText": "Appointment Required. ID Required. Has clothing, shoes, household items and hygiene products. ", 
+      "requirementsColor": "Yellow"
+    },
+    {
+      "id": "3",
+      "address": "47 Jefferson Ave. SE",
+      "phone": "616-456-1456",
+      "requirementsText": "ID required", 
+      "requirementsColor": "Yellow"
+    }
   ]
 }

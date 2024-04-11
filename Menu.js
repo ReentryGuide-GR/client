@@ -49,7 +49,7 @@ return (
             <IconButton
               imageSource={require('./assets/drop.png')}
               title=" Find Hygiene"
-              onPress={onClose}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene' })}
             />
             <IconButton
               imageSource={require('./assets/med.png')}

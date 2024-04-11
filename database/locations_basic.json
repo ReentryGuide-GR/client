@@ -96,6 +96,35 @@
     }
   ],
   "Hygiene": [
-    // Hygiene locations
+    {
+      "id": "1",
+      "name": "Cathedral of Saint Andrew Social Outreach Center",
+      "coordinates": { "lat": 42.9585335, "lng": -85.6668811 },
+      "openHours": {
+        "days": [2, 4],
+        "open": "9:30",
+        "close": "11:30"
+      }
+    },
+    {
+      "id": "2",
+      "name": "In the Image",
+      "coordinates": { "lat": 42.8860918, "lng": -85.6286259 },
+      "openHours": {
+        "days": [1, 2, 3, 4, 5],
+        "open": "10:00",
+        "close": "15:00"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Westminster Presbyterian Church",
+      "coordinates": { "lat": 42.9617366, "lng": -85.6645274 },
+      "openHours": {
+        "days": [4],
+        "open": "10:30",
+        "close": "14:00"
+      }
+    }
   ]
 }
