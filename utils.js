@@ -99,6 +99,7 @@ export const formatTime = (time) => {
   return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
 };
 
+
 export const updateLocationStatus = (openHoursArray) => {
   const now = moment();
   const dayOfWeek = now.day(); // Sunday as 0 through Saturday as 6
@@ -112,17 +113,14 @@ export const updateLocationStatus = (openHoursArray) => {
     }
   }
 
-  // Calculate open, close, and closing soon times for today if open today
-  let openTime, closeTime, closingSoonTime;
-  if (currentOpenHours) {
-    openTime = moment(currentOpenHours.open, "HH:mm");
-    closeTime = moment(currentOpenHours.close, "HH:mm");
-    closingSoonTime = moment(closeTime).subtract(1, 'hours');
-  }
-
-  // Determine status based on current time if open today
   let status = '', time = '';
+
   if (currentOpenHours) {
+    const openTime = moment(currentOpenHours.open, "HH:mm");
+    const closeTime = moment(currentOpenHours.close, "HH:mm");
+    const closingSoonTime = moment(closeTime).subtract(1, 'hours');
+
+    // Determine status based on current time if open today
     if (now.isBetween(openTime, closingSoonTime)) {
       status = 'open';
       time = formatTime(currentOpenHours.close);
@@ -133,32 +131,36 @@ export const updateLocationStatus = (openHoursArray) => {
       status = 'openingSoon';
       time = formatTime(currentOpenHours.open);
     } else {
-      // It's open today but currently closed, will open later today or next open day is today
       status = 'closed';
       time = formatTime(currentOpenHours.open);
     }
   }
 
-  // If not open today or we've determined it's closed for the rest of today, find the next open day
+  // If closed or not open today, find the next open day
   if (!currentOpenHours || status === 'closed') {
     const allDays = openHoursArray.reduce((acc, {days}) => [...acc, ...days], []);
-    let nextDayIndex = allDays.findIndex(day => day > dayOfWeek);
-    if (nextDayIndex === -1) { // No more days this week, wrap to next
-      nextDayIndex = 0; // Start from the first day in the next week
-    }
-    const nextDay = allDays.sort()[nextDayIndex];
-    const daysUntilNextOpen = (nextDay + 7 - dayOfWeek) % 7;
-    const nextOpenDate = now.clone().add(daysUntilNextOpen, 'days');
-    const nextOpenDayFormatted = nextOpenDate.calendar(null, {
-      sameDay: '[Today]',
-      nextDay: '[Tomorrow]',
-      nextWeek: 'dddd',
-      sameElse: 'dddd'
-    });
-    const nextOpenHours = openHoursArray.find(oh => oh.days.includes(nextOpenDate.day()));
+    if (allDays.length === 1 && allDays[0] === dayOfWeek) {
+      // If today is the only day it opens and it's already past closing time
+      time = moment().day(dayOfWeek).format('dddd') + ' ' + formatTime(currentOpenHours.open);
+    } else {
+      let nextDayIndex = allDays.findIndex(day => day > dayOfWeek);
+      if (nextDayIndex === -1) { // No more days this week, wrap to next
+        nextDayIndex = 0; // Start from the first day in the next week
+      }
+      const nextDay = allDays.sort()[nextDayIndex];
+      const daysUntilNextOpen = (nextDay + 7 - dayOfWeek) % 7;
+      const nextOpenDate = now.clone().add(daysUntilNextOpen, 'days');
+      const nextOpenDayFormatted = nextOpenDate.calendar(null, {
+        sameDay: '[Today]',
+        nextDay: '[Tomorrow]',
+        nextWeek: 'dddd',
+        sameElse: 'dddd'
+      });
+      const nextOpenHours = openHoursArray.find(oh => oh.days.includes(nextOpenDate.day()));
 
+      time = `${nextOpenDayFormatted} ${formatTime(nextOpenHours.open)}`;
+    }
     status = 'closed';
-    time = `${nextOpenDayFormatted} ${formatTime(nextOpenHours.open)}`;
     return { status, message: `Opens `, time };
   }
 
