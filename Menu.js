@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from '
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
-import ActionButton from './components/ActionButton';
+// import ActionButton from './components/ActionButton';
 import IconButton from './components/IconButton';
 import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
