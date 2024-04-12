@@ -42,7 +42,7 @@ return (
               imageSource={require('../assets/hand_heart.png')}
               title=" Find Mental Support"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Mental' })}
             />
 
           </View>
