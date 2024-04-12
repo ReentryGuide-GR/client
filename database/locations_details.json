@@ -129,5 +129,14 @@
       "requirementsText": "Unknown Special Requirement", 
       "requirementsColor": "Yellow"
     } 
+  ], 
+  "Vision": [
+    {
+      "id": "1",
+      "address": "100 Cherry St SE",
+      "phone": "(616) 776-2135",
+      "requirementsText": "By appointment – please call 616.776.2135 to schedule an appointment", 
+      "requirementsColor": "Yellow"
+    } 
   ]
 }

@@ -36,7 +36,7 @@ return (
               imageSource={require('../assets/eye.png')}
               title=" Find Eye Doctor"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Vision' })}
             />
             <IconButton
               imageSource={require('../assets/hand_heart.png')}
