@@ -27,10 +27,17 @@ return (
           <View style={styles.resourceContainer}>
             <IconButton
               title="Call Navigator"
-              onPress={onClose}
+              onPress={() => {
+                // Use the Linking API to open the phone app, empty number for now
+                Linking.openURL(`tel:${''}`)
+                  .catch(err => {
+                    console.error('Failed to open the phone app', err);
+                  });
+              }}
               buttonStyle={styles.primaryButton}
               textStyle={styles.primaryButtonText}
               // arrowStyle="white"
+              
             />
           </View>
           <View style={styles.resourceContainer}>
