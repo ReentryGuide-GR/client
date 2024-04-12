@@ -129,8 +129,8 @@ return (
             persistentScrollbar={true}
             contentContainerStyle={{ 
               width: '100%',
-              paddingBottom: 120,
-              paddingTop: 100,
+              paddingBottom: 130,
+              paddingTop: 80,
             }}
           />
           <View style={styles.resourceContainer}>
