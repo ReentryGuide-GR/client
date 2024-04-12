@@ -13,7 +13,7 @@ import { findClosestLocation } from '../utils';
 const SelectResourceLocation = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { category } = route.params; // Access the passed category
+  const { category, title } = route.params; // Access the passed category
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
@@ -26,7 +26,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
         location: location, 
         distance: parseFloat(distanceInMiles.toFixed(1)), // Ensure distance is rounded to 1 decimal place for display
         category, 
-        subtitle: `Closest ${category} Location: `
+        subtitle: `Closest ${title} Location: `
       });
     } else {
       console.error("No closest location found");
@@ -44,7 +44,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
       <View></View> 
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Select {category} Location</Text>
+        <Text style={styles.title}>Select {title} Location</Text>
         <IconButton
           iconSize={32}
           imageSource={require('../assets/bullseye.png')}
