@@ -3,160 +3,351 @@
     {
       "id": "1",
       "name": "God’s Kitchen",
-      "coordinates": { "lat": 42.9576887, "lng": -85.6681539 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5, 6],
-        "open": "12:30",
-        "close": "14:00"
-      }
+      "coordinates": {
+        "lat": 42.9576887,
+        "lng": -85.6681539
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5, 6 ],
+          "open": "12:30",
+          "close": "14:00"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "Mel Trotter",
-      "coordinates": { "lat": 42.959223, "lng": -85.669267 },
-      "openHours": {
-        "days": [0, 1, 2, 3, 4, 5, 6],
-        "open": "16:00",
-        "close": "17:45"
-      }
+      "coordinates": {
+        "lat": 42.959223,
+        "lng": -85.669267
+      },
+      "openHours": [
+        {
+          "days": [ 0, 1, 2, 3, 4, 5, 6 ],
+          "open": "16:00",
+          "close": "17:45"
+        }
+      ]
     }
   ],
   "Groceries": [
     {
       "id": "1",
       "name": "Matthew’s House",
-      "coordinates": { "lat": 42.977836, "lng": -85.6878471 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "09:30",
-        "close": "16:00"
-      }
+      "coordinates": {
+        "lat": 42.977836,
+        "lng": -85.6878471
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "09:30",
+          "close": "16:00"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "Baxter Community Center",
-      "coordinates": { "lat": 42.9529533, "lng": -85.6453506 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "00:00",
-        "close": "23:59"
-      }
+      "coordinates": {
+        "lat": 42.9529533,
+        "lng": -85.6453506
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "00:00",
+          "close": "23:59"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Eastern Avenue CRC",
-      "coordinates": { "lat": 42.9533224, "lng": -85.6487539 },
-      "openHours": {
-        "days": [6],
-        "open": "7:00",
-        "close": "10:00"
-      }
+      "coordinates": {
+        "lat": 42.9533224,
+        "lng": -85.6487539
+      },
+      "openHours": [
+        {
+          "days": [ 6 ],
+          "open": "7:00",
+          "close": "10:00"
+        }
+      ]
     },
     {
       "id": "4",
       "name": "Westminster Presbyterian Church",
-      "coordinates": { "lat": 42.9617366, "lng": -85.6645274 },
-      "openHours": {
-        "days": [4],
-        "open": "10:30",
-        "close": "14:00"
-      }
+      "coordinates": {
+        "lat": 42.9617366,
+        "lng": -85.6645274
+      },
+      "openHours": [
+        {
+          "days": [ 4 ],
+          "open": "10:30",
+          "close": "14:00"
+        }
+      ]
     }
   ],
   "Clothing": [
     {
       "id": "1",
       "name": "Cathedral of Saint Andrew Social Outreach Center",
-      "coordinates": { "lat": 42.9585335, "lng": -85.6668811 },
-      "openHours": {
-        "days": [2, 4],
-        "open": "9:30",
-        "close": "11:30"
-      }
+      "coordinates": {
+        "lat": 42.9585335,
+        "lng": -85.6668811
+      },
+      "openHours": [
+        {
+          "days": [ 2, 4 ],
+          "open": "9:30",
+          "close": "11:30"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "In the Image",
-      "coordinates": { "lat": 42.8860918, "lng": -85.6286259 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "10:00",
-        "close": "15:00"
-      }
+      "coordinates": {
+        "lat": 42.8860918,
+        "lng": -85.6286259
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "10:00",
+          "close": "15:00"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Calvin Theological Seminary",
-      "coordinates": { "lat": 42.927983, "lng": -85.5864931 },
-      "openHours": {
-        "days": [0],
-        "open": "23:59",
-        "close": "23:59"
-      }
+      "coordinates": {
+        "lat": 42.927983,
+        "lng": -85.5864931
+      },
+      "openHours": [
+        {
+          "days": [ 0 ],
+          "open": "23:59",
+          "close": "23:59"
+        }
+      ]
     }
   ],
   "Hygiene": [
     {
       "id": "1",
       "name": "Cathedral of Saint Andrew Social Outreach Center",
-      "coordinates": { "lat": 42.9585335, "lng": -85.6668811 },
-      "openHours": {
-        "days": [2, 4],
-        "open": "9:30",
-        "close": "11:30"
-      }
+      "coordinates": {
+        "lat": 42.9585335,
+        "lng": -85.6668811
+      },
+      "openHours": [
+        {
+          "days": [ 2, 4 ],
+          "open": "9:30",
+          "close": "11:30"
+        }
+      ]
     },
     {
       "id": "2",
       "name": "In the Image",
-      "coordinates": { "lat": 42.8860918, "lng": -85.6286259 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "10:00",
-        "close": "15:00"
-      }
+      "coordinates": {
+        "lat": 42.8860918,
+        "lng": -85.6286259
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "10:00",
+          "close": "15:00"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Westminster Presbyterian Church",
-      "coordinates": { "lat": 42.9617366, "lng": -85.6645274 },
-      "openHours": {
-        "days": [4],
-        "open": "10:30",
-        "close": "14:00"
-      }
+      "coordinates": {
+        "lat": 42.9617366,
+        "lng": -85.6645274
+      },
+      "openHours": [
+        {
+          "days": [ 4 ],
+          "open": "10:30",
+          "close": "14:00"
+        }
+      ]
     }
   ],
   "Medical": [
     {
       "id": "1",
       "name": "Catherine's Health Center Creston",
-      "coordinates": { "lat": 42.9851067, "lng": -85.6622827 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "8:30",
-        "close": "16:30"
-      }
-    }, 
+      "coordinates": {
+        "lat": 42.9851067,
+        "lng": -85.6622827
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }
+      ]
+    },
     {
       "id": "2",
       "name": "Catherine's Health Center at Streams",
-      "coordinates": { "lat": 42.8539207, "lng": -85.657134 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "8:30",
-        "close": "16:30"
-      }
+      "coordinates": {
+        "lat": 42.8539207,
+        "lng": -85.657134
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }
+      ]
     },
     {
       "id": "3",
       "name": "Catherine's Health Center at Wyoming",
-      "coordinates": { "lat": 42.898104, "lng": -85.6891897 },
-      "openHours": {
-        "days": [1, 2, 3, 4, 5],
-        "open": "8:30",
-        "close": "16:30"
-      }
+      "coordinates": {
+        "lat": 42.898104,
+        "lng": -85.6891897
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }, 
+        {
+          "days": [ 4 ],
+          "open": "8:30",
+          "close": "18:30"
+        }
+      ]
+    }
+  ], 
+  "Dental": [
+    {
+      "id": "1",
+      "name": "Catherine’s Health Center Dental",
+      "coordinates": {
+        "lat": 42.8989486,
+        "lng": -85.6485748
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "7:30",
+          "close": "16:00"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Catherine's Health Center at Streams",
+      "coordinates": {
+        "lat": 42.8539207,
+        "lng": -85.657134
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3 ],
+          "open": "7:30",
+          "close": "16:30"
+        },
+        {
+          "days": [ 4 ],
+          "open": "7:30",
+          "close": "18:30"
+        }, 
+        {
+          "days": [ 5 ],
+          "open": "8:00",
+          "close": "16:30"
+        }
+      ]
+    }
+  ], 
+  "Vision": [
+    {
+      "id": "1",
+      "name": "Cherry Health",
+      "coordinates": {
+        "lat": 42.9590752,
+        "lng": -85.6660828
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "8:00",
+          "close": "17:00"
+        }
+      ]
+    }
+  ],
+  "Mental": [
+    {
+      "id": "1",
+      "name": "Catherine's Health Center Creston",
+      "coordinates": {
+        "lat": 42.9851067,
+        "lng": -85.6622827
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Catherine's Health Center at Streams",
+      "coordinates": {
+        "lat": 42.8539207,
+        "lng": -85.657134
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Catherine's Health Center at Wyoming",
+      "coordinates": {
+        "lat": 42.898104,
+        "lng": -85.6891897
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 5 ],
+          "open": "8:30",
+          "close": "16:30"
+        }, 
+        {
+          "days": [ 4 ],
+          "open": "8:30",
+          "close": "18:30"
+        }
+      ]
     }
   ]
 }

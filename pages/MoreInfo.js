@@ -19,29 +19,41 @@ const MoreInfo = ({ onClose }) => {
   const [openHoursFormatted, setOpenHoursFormatted] = useState('');
   
 
-  const formatOpenHours = (openHours) => {
+  const formatOpenHours = (openHoursArray) => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   
-    if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
-      return `Everyday \n${openHours.open} - ${openHours.close}`;
+    // Ensure we're working with an array for both old and new structures
+    if (!Array.isArray(openHoursArray)) {
+      // If openHoursArray is not an array, assume it's the old single object structure
+      openHoursArray = [openHoursArray]; // Wrap it in an array for compatibility
     }
   
-    let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
-      if (index > 0 && day - arr[index - 1] === 1) {
-        acc[acc.length - 1].push(day);
-      } else {
-        acc.push([day]);
+    // Function to format a single openHours object
+    const formatSingleOpenHours = (openHours) => {
+      if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
+        return `Everyday ${openHours.open} - ${openHours.close}`;
       }
-      return acc;
-    }, []).map(group => {
-      if (group.length > 1) {
-        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
-      } else {
-        return `${daysOfWeek[group[0]]}`;
-      }
-    }).join(", ");
     
-    return `${daysFormatted}\n${openHours.open} - ${openHours.close}`;
+      let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
+        if (index > 0 && day - arr[index - 1] === 1) {
+          acc[acc.length - 1].push(day);
+        } else {
+          acc.push([day]);
+        }
+        return acc;
+      }, []).map(group => {
+        if (group.length > 1) {
+          return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
+        } else {
+          return daysOfWeek[group[0]];
+        }
+      }).join(", ");
+      
+      return `${daysFormatted} \n ${openHours.open} - ${openHours.close}`;
+    };
+  
+    // Iterate over each openHours object, format it, and combine the results
+    return openHoursArray.map(formatSingleOpenHours).join("\n\n");
   };
   
   

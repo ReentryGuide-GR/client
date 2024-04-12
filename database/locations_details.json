@@ -113,5 +113,53 @@
       "requirementsText": "Unknown Special Requirement", 
       "requirementsColor": "Yellow"
     }
+  ], 
+  "Dental": [
+    {
+      "id": "1",
+      "address": "781 36th St SE Suite B",
+      "phone": "(616) 828-0052",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "2",
+      "address": "280 60th St SE Suite 200",
+      "phone": "(616) 483-0750",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    } 
+  ], 
+  "Vision": [
+    {
+      "id": "1",
+      "address": "100 Cherry St SE",
+      "phone": "(616) 776-2135",
+      "requirementsText": "By appointment – please call 616.776.2135 to schedule an appointment", 
+      "requirementsColor": "Yellow"
+    } 
+  ],
+  "Mental": [
+    {
+      "id": "1",
+      "address": "1211 Lafayette Ave NE",
+      "phone": "(616) 336-8800",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "2",
+      "address": "280 60th St SE Suite 200",
+      "phone": "(616) 483-0750",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "3",
+      "address": "950 36th St SW",
+      "phone": "(616) 320-0405",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }
   ]
 }
