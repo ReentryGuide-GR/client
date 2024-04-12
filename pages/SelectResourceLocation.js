@@ -44,7 +44,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
       <View></View> 
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Select {title} Location</Text>
+        <Text style={styles.title}>Select {"\n"}{title} Location</Text>
         <IconButton
           iconSize={32}
           imageSource={require('../assets/bullseye.png')}
