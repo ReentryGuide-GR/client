@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -10,8 +10,26 @@ import IconButton from './components/IconButton';
 // import * as styles from '../../styles/detailsStyles';
 
 
+
 const Menu = ({ isVisible, onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const requestLocationPermission = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.error('Location permission not granted');
+      return;
+    }
+  
+    const userLocation = await Location.getCurrentPositionAsync({});
+    console.log(userLocation);
+  };
+
+  
+  useEffect(() => {
+    requestLocationPermission();
+  }, []);
+
+  
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('./assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf'),
