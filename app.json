@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.harryg02.cpimap"
+      "package": "com.reentryreimagined.grhelphub"
     },
     "web": {
       "favicon": "./assets/favicon.png"
