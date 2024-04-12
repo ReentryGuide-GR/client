@@ -238,5 +238,47 @@
         }
       ]
     }
+  ], 
+  "Dental": [
+    {
+      "id": "1",
+      "name": "Catherine’s Health Center Dental",
+      "coordinates": {
+        "lat": 42.8989486,
+        "lng": -85.6485748
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3, 4, 5 ],
+          "open": "7:30",
+          "close": "16:00"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Catherine's Health Center at Streams",
+      "coordinates": {
+        "lat": 42.8539207,
+        "lng": -85.657134
+      },
+      "openHours": [
+        {
+          "days": [ 1, 2, 3 ],
+          "open": "7:30",
+          "close": "16:30"
+        },
+        {
+          "days": [ 4 ],
+          "open": "7:30",
+          "close": "18:30"
+        }, 
+        {
+          "days": [ 5 ],
+          "open": "8:00",
+          "close": "16:30"
+        }
+      ]
+    }
   ]
 }

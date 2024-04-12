@@ -113,5 +113,21 @@
       "requirementsText": "Unknown Special Requirement", 
       "requirementsColor": "Yellow"
     }
+  ], 
+  "Dental": [
+    {
+      "id": "1",
+      "address": "781 36th St SE Suite B",
+      "phone": "(616) 828-0052",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "2",
+      "address": "280 60th St SE Suite 200",
+      "phone": "(616) 483-0750",
+      "requirementsText": "Unknown Special Requirement", 
+      "requirementsColor": "Yellow"
+    } 
   ]
 }
