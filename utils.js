@@ -63,21 +63,32 @@ export const getUserLocation = async () => {
 
 // Function to open Google Maps with given coordinates and mode
 export const openGoogleMaps = (lat, lng, mode = 'w') => {
-  const modeMapping = {
+  // Mapping the modes to their respective parameters for native app
+  const modeMappingApp = {
+    'driving': 'd',  // Google Maps app uses 'd' for driving
+    'walking': 'w',  // Google Maps app uses 'w' for walking
+    'bicycling': 'bicycling',
+    'transit': 'transit',
+    'bus': 'transit', // Specifying 'transit' as the mode for bus in native app
+  };
+
+  // Mapping the modes for the web version (consistent with the documentation)
+  const modeMappingWeb = {
     'driving': 'driving',
     'walking': 'walking',
     'bicycling': 'bicycling',
     'transit': 'transit',
-    'bus': 'transit', // Specifying 'transit' as the mode for bus
+    'bus': 'transit', // Web also uses 'transit' for bus
   };
 
-  const modeParam = modeMapping[mode]; // Default to driving if mode is not recognized
+  const modeParamApp = modeMappingApp[mode] || 'd'; // Default to driving if mode is not recognized for native apps
+  const modeParamWeb = modeMappingWeb[mode] || 'driving'; // Default to driving for web
 
   const baseUrl = Platform.OS === 'android'
-    ? `google.navigation:q=${lat},${lng}&mode=${modeParam}`
-    : `comgooglemaps://?daddr=${lat},${lng}&directionsmode=${modeParam}`;
+    ? `google.navigation:q=${lat},${lng}&mode=${modeParamApp}`
+    : `comgooglemaps://?daddr=${lat},${lng}&directionsmode=${modeParamApp}`;
 
-  const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParam}`;
+  const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParamWeb}`;
 
   // Try to open the native Google Maps first
   Linking.canOpenURL(baseUrl).then((supported) => {
