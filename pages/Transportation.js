@@ -54,21 +54,21 @@ return (
               imageSource={require('../assets/walk.png')}
               title="Walk only"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('w')} // 'w' for walking
+              onPress={() => handlePlanYourRoute('walking')} // 'w' for walking
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
               title="Bus and Walk"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('bus')} // 'bus' for public transit (handled as 'transit' in the function)
+              onPress={() => handlePlanYourRoute('transit')} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
               title="Drive"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('d')} // 'd' for driving
+              onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
             />
           </View>
 

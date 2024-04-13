@@ -11,7 +11,7 @@ import IconButton from './components/IconButton';
 
 
 
-const Menu = ({ isVisible, onClose }) => {
+const Menu = ({}) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -69,12 +69,12 @@ return (
             <IconButton
               imageSource={require('./assets/clothing.png')}
               title=" Find Clothing"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing', title: 'Clothing' })}
             />
             <IconButton
               imageSource={require('./assets/drop.png')}
               title=" Find Hygiene"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene', title: 'Hygiene'  })}
             />
             <IconButton
               imageSource={require('./assets/med.png')}

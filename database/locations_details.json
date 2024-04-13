@@ -96,21 +96,21 @@
       "id": "1",
       "address": "1211 Lafayette Ave NE",
       "phone": "(616) 336-8800",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "3",
       "address": "950 36th St SW",
       "phone": "(616) 320-0405",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }
   ], 
@@ -119,14 +119,14 @@
       "id": "1",
       "address": "781 36th St SE Suite B",
       "phone": "(616) 828-0052",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     } 
   ], 
@@ -144,21 +144,21 @@
       "id": "1",
       "address": "1211 Lafayette Ave NE",
       "phone": "(616) 336-8800",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "3",
       "address": "950 36th St SW",
       "phone": "(616) 320-0405",
-      "requirementsText": "Unknown Special Requirement", 
+      "requirementsText": "ID and insurance info required", 
       "requirementsColor": "Yellow"
     }
   ]
