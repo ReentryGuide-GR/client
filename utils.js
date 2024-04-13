@@ -63,12 +63,35 @@ export const getUserLocation = async () => {
 
 // Function to open Google Maps with given coordinates and mode
 export const openGoogleMaps = (lat, lng, mode = 'w') => {
-  const modeParam = mode === 'bus' ? 'transit' : mode; // Google Maps uses 'transit' for public transportation
-  const url = Platform.OS === 'android'
-    ? `google.navigation:q=${lat},${lng}&mode=${modeParam}`
-    : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParam}`;
+  const modeMapping = {
+    'driving': 'driving',
+    'walking': 'walking',
+    'bicycling': 'bicycling',
+    'transit': 'transit',
+    'bus': 'transit', // Specifying 'transit' as the mode for bus
+  };
 
-  Linking.openURL(url).catch(err => Alert.alert("Error", "Couldn't load page"));
+  const modeParam = modeMapping[mode]; // Default to driving if mode is not recognized
+
+  const baseUrl = Platform.OS === 'android'
+    ? `google.navigation:q=${lat},${lng}&mode=${modeParam}`
+    : `comgooglemaps://?daddr=${lat},${lng}&directionsmode=${modeParam}`;
+
+  const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParam}`;
+
+  // Try to open the native Google Maps first
+  Linking.canOpenURL(baseUrl).then((supported) => {
+    if (supported) {
+      Linking.openURL(baseUrl);
+    } else {
+      // If the app isn't installed, fall back to opening in a web browser
+      Linking.openURL(webUrl).catch(err => {
+        Alert.alert("Error", "Unable to open the map in a browser.");
+      });
+    }
+  }).catch(err => {
+    Alert.alert("Error", "An error occurred while trying to open the map.");
+  });
 };
 
 // Return Colors for Special Requirement Background and Text Colors
