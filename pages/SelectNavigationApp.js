@@ -36,14 +36,14 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>{location.name} by {mode}</Text>
-            <View style={styles.row}>
-              <Text style={styles.title}>Select Navigation App</Text>
-            </View>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
           </View>
 
           <View style={styles.resourceContainer}>
+          <Text style={styles.subtitle}>{location.name} by {mode}</Text>
+            <View style={styles.row}>
+              <Text style={styles.title}>Select Navigation App</Text>
+            </View>
             <IconButton
               // imageSource={require('../assets/walk.png')}
               title="Use Moovit"
