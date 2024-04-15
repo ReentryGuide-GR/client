@@ -52,36 +52,31 @@ return (
             <Text style={styles.subtitle2}>How will you get there?</Text>
             <IconButton
               imageSource={require('../assets/walk.png')}
-              title="Walk only"
+              title="By Walking"
               buttonStyle={styles.primaryButton}
               onPress={() => 
                 navigation.navigate('SelectNavigationApp', { 
                   location: location,
-                  distance: distance,
-                  // requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
-                  requirementsTextStyle: requirementsTextStyle.color,
-                  requirementsText: requirementsText,
-                  statusText: statusText, // Added status text here
-                  // indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
-                  // textColor: statusTextStyleColor, // Extract color from the style object
-                  timeMessage: timeMessage, 
-                  statusTime: statusTime,
-                  subtitle: "You",
-                  // category
+                  mode: 'walking'
                 })                
-              } // 'w' for walking
+              }
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
-              title="Bus and Walk"
+              title="By Bus"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('transit')} // 'bus' for public transit (handled as 'transit' in the function)
+              onPress={() => 
+                navigation.navigate('SelectNavigationApp', { 
+                  location: location,
+                  mode: 'bus'
+                })                
+              }
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
-              title="Drive"
+              title="By Driving"
               buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
             />

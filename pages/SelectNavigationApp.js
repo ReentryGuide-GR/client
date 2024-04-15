@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as Location from 'expo-location';
+// import * as Location from 'expo-location'
 // import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
@@ -14,17 +14,17 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime } = route.params;
+  const { location, mode } = route.params;
 
-  const handlePlanYourRoute = (mode) => {
+  const handleOpenGoogleMaps = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
   };
 
   const openMoovit = () => {
-    const lat = 40.712776; // latitude for destination
-    const lon = -74.005974; // longitude for destination
+    const lat = location.coordinates.lat; // latitude for destination
+    const lon = location.coordinates.lng; // longitude for destination
     const travelMode = 'publicTransport'; // Mode of transit, could be 'publicTransport', 'bike', etc.
-    const url = `moovit://directions?dest_lat=42.959223&dest_lon=-85.669267&travelMode=${travelMode}`;
+    const url = `moovit://directions?dest_lat=${lat}&dest_lon=${lon}&travelMode=${travelMode}`;
   
     Linking.openURL(url).catch(err => {
       console.error('Failed to open URL:', err);
@@ -36,36 +36,33 @@ return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>{location.name}</Text>
+            <Text style={styles.subtitle}>{location.name} by {mode}</Text>
             <View style={styles.row}>
               <Text style={styles.title}>Select Navigation App</Text>
             </View>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-
-
-
           </View>
 
           <View style={styles.resourceContainer}>
             <IconButton
-              imageSource={require('../assets/walk.png')}
+              // imageSource={require('../assets/walk.png')}
               title="Use Moovit"
               buttonStyle={styles.primaryButton}
               onPress={openMoovit} // 'w' for walking
             />
 
             <IconButton
-              imageSource={require('../assets/subway.png')}
-              title="Bus and Walk"
+              // imageSource={require('../assets/subway.png')}
+              title="Use Google Maps"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('transit')} // 'bus' for public transit (handled as 'transit' in the function)
+              onPress={() => handleOpenGoogleMaps(mode)} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
               title="Drive"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
+              onPress={() => handleOpenGoogleMaps('driving')} // 'd' for driving
             />
           </View>
 
