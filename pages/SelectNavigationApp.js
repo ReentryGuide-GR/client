@@ -11,7 +11,7 @@ import { openGoogleMaps } from '../utils'
 // import * as styles from '../../styles/detailsStyles';
 
 
-const Transportation = ({ onClose }) => {
+const SelectNavigationApp = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { location, mode } = route.params;
@@ -83,7 +83,7 @@ return (
   );
 };
 
-export default Transportation;
+export default SelectNavigationApp;
 
 const styles = StyleSheet.create({
   mainContainer: {
