@@ -14,47 +14,44 @@ import { openGoogleMaps } from '../utils'
 const Transportation = ({ onClose }) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle } = route.params;
+  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime } = route.params;
 
   const handlePlanYourRoute = (mode) => {
     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
   };
 
+  const openMoovit = () => {
+    const lat = 40.712776; // latitude for destination
+    const lon = -74.005974; // longitude for destination
+    const travelMode = 'publicTransport'; // Mode of transit, could be 'publicTransport', 'bike', etc.
+    const url = `moovit://directions?dest_lat=42.959223&dest_lon=-85.669267&travelMode=${travelMode}`;
+  
+    Linking.openURL(url).catch(err => {
+      console.error('Failed to open URL:', err);
+    });
+  };
+  
+
 return (
 
         <View style={styles.mainContainer}>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.title}>{location.name}</Text>
+            <Text style={styles.subtitle}>{location.name}</Text>
             <View style={styles.row}>
-              <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
-                <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>{requirementsText}</Text> 
-              </View>
+              <Text style={styles.title}>Select Navigation App</Text>
             </View>
-            <Text style={styles.distance}>
-              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
-            </Text>
             {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-            <View style={styles.row}>
-              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
-                <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
-              </View>
-              <Text style={styles.timing}> 
-                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
-              </Text>
-            </View>
 
 
 
           </View>
 
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle2}>How will you get there?</Text>
             <IconButton
               imageSource={require('../assets/walk.png')}
-              title="Walk only"
+              title="Use Moovit"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('walking')} // 'w' for walking
+              onPress={openMoovit} // 'w' for walking
             />
 
             <IconButton

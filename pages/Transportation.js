@@ -54,7 +54,22 @@ return (
               imageSource={require('../assets/walk.png')}
               title="Walk only"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('walking')} // 'w' for walking
+              onPress={() => 
+                navigation.navigate('SelectNavigationApp', { 
+                  location: location,
+                  distance: distance,
+                  // requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+                  requirementsTextStyle: requirementsTextStyle.color,
+                  requirementsText: requirementsText,
+                  statusText: statusText, // Added status text here
+                  // indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
+                  // textColor: statusTextStyleColor, // Extract color from the style object
+                  timeMessage: timeMessage, 
+                  statusTime: statusTime,
+                  subtitle: "You",
+                  // category
+                })                
+              } // 'w' for walking
             />
 
             <IconButton
