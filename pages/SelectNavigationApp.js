@@ -30,6 +30,7 @@ const SelectNavigationApp = ({ onClose }) => {
       console.error('Failed to open URL:', err);
     });
   };
+
   
 
 return (
@@ -55,15 +56,9 @@ return (
               // imageSource={require('../assets/subway.png')}
               title="Use Google Maps"
               buttonStyle={styles.primaryButton}
-              onPress={() => handleOpenGoogleMaps(mode)} // 'bus' for public transit (handled as 'transit' in the function)
+              onPress={() => openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode)} // 'bus' for public transit (handled as 'transit' in the function)
             />
 
-            <IconButton
-              imageSource={require('../assets/car.png')}
-              title="Drive"
-              buttonStyle={styles.primaryButton}
-              onPress={() => handleOpenGoogleMaps('driving')} // 'd' for driving
-            />
           </View>
 
           <View style={styles.resourceContainer}>
