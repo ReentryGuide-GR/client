@@ -61,7 +61,7 @@ return (
               imageSource={require('../assets/subway.png')}
               title="By Bus"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('bus')} 
+              onPress={() => handlePlanYourRoute('transit')} 
             />
 
             <IconButton
