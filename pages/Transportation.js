@@ -54,24 +54,14 @@ return (
               imageSource={require('../assets/walk.png')}
               title="By Walking"
               buttonStyle={styles.primaryButton}
-              onPress={() => 
-                navigation.navigate('SelectNavigationApp', { 
-                  location: location,
-                  mode: 'walking'
-                })                
-              }
+              onPress={() => handlePlanYourRoute('walking')} 
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
               title="By Bus"
               buttonStyle={styles.primaryButton}
-              onPress={() => 
-                navigation.navigate('SelectNavigationApp', { 
-                  location: location,
-                  mode: 'bus'
-                })                
-              }
+              onPress={() => handlePlanYourRoute('bus')} 
             />
 
             <IconButton
