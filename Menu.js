@@ -16,7 +16,7 @@ const Menu = ({}) => {
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
-      console.error('Location permission not granted');
+      navigation.navigate('RequestPermission');
       return;
     }
   
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
-    paddingBottom: '5%',
+    paddingBottom: 20,
     width: '100%',
   },
   resourceContainer: {
