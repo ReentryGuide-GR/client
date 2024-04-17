@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginBottom: 18,
+    marginBottom: 38,
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     width: '95%',
-    marginTop: 50,
+    marginTop: 38,
   }
 });
