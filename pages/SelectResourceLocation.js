@@ -3,6 +3,7 @@ import React , { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
+import * as SplashScreen from 'expo-splash-screen';
 // import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
@@ -11,13 +12,17 @@ import { findClosestLocation } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
 
 const SelectResourceLocation = ({ isVisible, onClose }) => {
+
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category, title } = route.params; // Access the passed category
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  // const [selectedLocation, setSelectedLocation] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSelectClosestLocation = async () => {
+    setIsLoading(true); // Start loading
     const result = await findClosestLocation(category);
+    setIsLoading(false); // End loading
     if (result) {
       const { location, distance } = result;
       // Convert kilometers to miles
@@ -33,11 +38,13 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
     }
   };
   
-  
-
-  // useEffect(() => {
-  //   fetchClosestLocation();
-  // }, [category]); // Call fetchClosestLocation when the component mounts or category changes
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.mainContainer}>
@@ -63,16 +70,7 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
       </View>
 
       <View style={styles.resourceContainer}>
-
         <GoBackButton/>
-
-        {/* <IconButton
-          title="Call Navigator"
-          onPress={onClose}
-          buttonStyle={styles.primaryButton}
-          textStyle={styles.primaryButtonText}
-        /> */}
-
       </View>
 
     </View>
@@ -89,6 +87,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: '5%',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   resourceContainer: {
     justifyContent: 'center', 
@@ -123,6 +126,12 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '95%',
+  },
+  loadingText: {
+    fontSize: 35,
+    fontWeight: '900',
+    width: '100%',
+    textAlign: 'center'
   },
 
 });
