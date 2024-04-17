@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -13,6 +13,18 @@ import IconButton from '../components/IconButton';
 
 const Page = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  
+  useEffect(() => {
+    const checkPermissionAndNavigate = async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === 'granted') {
+        navigation.navigate('MainPage'); // Replace 'MainPage' with your main menu screen name if it's different
+      }
+    };
+
+    checkPermissionAndNavigate();
+  }, [navigation]); // Dependency array includes navigation to avoid re-running this effect unnecessarily
+
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
@@ -21,6 +33,8 @@ const Page = () => {
   if (!fontsLoaded) {
     return null; // Return null to render nothing while loading fonts
   }
+
+  
 return (
 
         <View style={styles.mainContainer}>
