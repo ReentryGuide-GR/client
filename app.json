@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GR HelpHub",
-    "slug": "cpi-map",
+    "name": "ReentryGuide GR",
+    "slug": "rr-map",
     "version": "0.1.1",
     "orientation": "portrait",
     "icon": "assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.reentryreimagined.grhelphub"
+      "package": "com.reentryreimagined.reentryguidegr"
     },
     "web": {
       "favicon": "./assets/favicon.png"
