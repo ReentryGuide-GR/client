@@ -52,21 +52,21 @@ return (
             <Text style={styles.subtitle2}>How will you get there?</Text>
             <IconButton
               imageSource={require('../assets/walk.png')}
-              title="Walk only"
+              title="By Walking"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('walking')} // 'w' for walking
+              onPress={() => handlePlanYourRoute('walking')} 
             />
 
             <IconButton
               imageSource={require('../assets/subway.png')}
-              title="Bus and Walk"
+              title="By Bus"
               buttonStyle={styles.primaryButton}
-              onPress={() => handlePlanYourRoute('transit')} // 'bus' for public transit (handled as 'transit' in the function)
+              onPress={() => handlePlanYourRoute('transit')} 
             />
 
             <IconButton
               imageSource={require('../assets/car.png')}
-              title="Drive"
+              title="By Driving"
               buttonStyle={styles.primaryButton}
               onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
             />

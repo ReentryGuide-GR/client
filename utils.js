@@ -62,8 +62,8 @@ export const getUserLocation = async () => {
 };
 
 // Function to open Google Maps with given coordinates and mode
+// Function to open Google Maps or Moovit with given coordinates and mode
 export const openGoogleMaps = (lat, lng, mode = 'w') => {
-  // Mapping the modes to their respective parameters for native app
   const modeMappingApp = {
     'driving': 'd',  // Google Maps app uses 'd' for driving
     'walking': 'w',  // Google Maps app uses 'w' for walking
@@ -72,7 +72,6 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
     'bus': 'transit', // Specifying 'transit' as the mode for bus in native app
   };
 
-  // Mapping the modes for the web version (consistent with the documentation)
   const modeMappingWeb = {
     'driving': 'driving',
     'walking': 'walking',
@@ -84,20 +83,34 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
   const modeParamApp = modeMappingApp[mode] || 'd'; // Default to driving if mode is not recognized for native apps
   const modeParamWeb = modeMappingWeb[mode] || 'driving'; // Default to driving for web
 
+  if (mode === 'transit') {
+    const moovitUrl = `moovit://directions?dest_lat=${lat}&dest_lon=${lng}&travelMode=publicTransport`;
+    // Try to open Moovit for transit
+    Linking.openURL(moovitUrl).catch(err => {
+      // If Moovit fails to open, fallback to Google Maps
+      // Alert.alert("Error", "Moovit app not installed, trying Google Maps instead.");
+      openGoogleMapsViaLinking(lat, lng, modeParamApp, modeParamWeb);
+    });
+  } else {
+    openGoogleMapsViaLinking(lat, lng, modeParamApp, modeParamWeb);
+  }
+};
+
+const openGoogleMapsViaLinking = (lat, lng, modeParamApp, modeParamWeb) => {
   const baseUrl = Platform.OS === 'android'
     ? `google.navigation:q=${lat},${lng}&mode=${modeParamApp}`
     : `comgooglemaps://?daddr=${lat},${lng}&directionsmode=${modeParamApp}`;
 
   const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=${modeParamWeb}`;
 
-  // Try to open the native Google Maps first
+  // Try to open the native Google Maps
   Linking.canOpenURL(baseUrl).then((supported) => {
     if (supported) {
       Linking.openURL(baseUrl);
     } else {
       // If the app isn't installed, fall back to opening in a web browser
       Linking.openURL(webUrl).catch(err => {
-        Alert.alert("Error", "Unable to open the map in a browser.");
+        Alert.alert("Error", "Unable to open Google Maps in a browser.");
       });
     }
   }).catch(err => {
