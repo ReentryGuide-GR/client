@@ -88,7 +88,7 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
     // Try to open Moovit for transit
     Linking.openURL(moovitUrl).catch(err => {
       // If Moovit fails to open, fallback to Google Maps
-      Alert.alert("Error", "Moovit app not installed, trying Google Maps instead.");
+      // Alert.alert("Error", "Moovit app not installed, trying Google Maps instead.");
       openGoogleMapsViaLinking(lat, lng, modeParamApp, modeParamWeb);
     });
   } else {
