@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
-    paddingBottom: '5%',
+    paddingBottom: 20,
   },
   resourceContainer: {
     justifyContent: 'center', 
