@@ -17,15 +17,17 @@ const LocationList = ({ isVisible, onClose }) => {
   const route = useRoute();
   const { category } = route.params;
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);  // Loading state  
 
-  // Initialize state for status and time message
-  const [status, setStatus] = useState('');
-
-  
-
+  const [fontsLoaded] = useFonts({
+    'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
+  });
 
   useEffect(() => {
     const fetchAndMergeData = async () => {
+      setIsLoading(true); // Start loading
       const userLocation = await getUserLocation();
       const categoryData = locationsBasic[category];
   
@@ -36,9 +38,7 @@ const LocationList = ({ isVisible, onClose }) => {
           const colorMapping = requirementsColorMapping(details.requirementsColor);
           const statusDetails = updateLocationStatus(location.openHours);
           const statusStyles = getStatusStyles(statusDetails.status); // This line is updated
-          
-
-        
+                  
           return { 
             ...location, 
             ...details, 
@@ -55,27 +55,19 @@ const LocationList = ({ isVisible, onClose }) => {
         console.warn(`No data found for category: ${category}`);
         setData([]);
       }
+      setIsLoading(false); // End loading
     };
   
     fetchAndMergeData();
   }, [category]);
   
-  
-  
-  
-
-  const [fontsLoaded] = useFonts({
-    'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
-    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
-    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
-  });
-
-  if (!fontsLoaded) {
-    return null; // Return null to render nothing while loading fonts
+  if (!fontsLoaded || isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+          <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
   }
-
-
-
   
   const renderItem = ({ item }) => (
     <View style={styles.listContainer}>
@@ -153,6 +145,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     // paddingBottom: '5%',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 35,
+    fontWeight: '900',
+    width: '100%',
+    textAlign: 'center'
   },
   pageTitleContainer: {
     backgroundColor: 'rgba(255, 255, 255, 1.0)', 
