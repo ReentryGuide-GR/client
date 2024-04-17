@@ -59,7 +59,7 @@ return (
             />
           </View>
           <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>GR HelpHub</Text>
+            <Text style={styles.subtitle}>ReentryGuide GR</Text>
             <Text style={styles.title}>Main Menu</Text>
             <IconButton
               imageSource={require('./assets/food.png')}
