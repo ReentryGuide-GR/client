@@ -94,4 +94,8 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
   },
+  textContainer: {
+    width: '95%',
+    marginTop: 50,
+  }
 });
