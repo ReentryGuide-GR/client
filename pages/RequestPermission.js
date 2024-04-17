@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
+import { useFonts } from 'expo-font';
 // import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
@@ -12,6 +13,14 @@ import IconButton from '../components/IconButton';
 
 const Page = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
+  const [fontsLoaded] = useFonts({
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Return null to render nothing while loading fonts
+  }
 return (
 
         <View style={styles.mainContainer}>
@@ -24,12 +33,18 @@ return (
               // imageSource={require('../assets/meal.png')}
               title="Grant Permission"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('LunchOrDinner')}
+              iconSize={0}
+              onPress={() => Linking.openSettings()}
             />
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>1. Click "Grant Permission"</Text>
+              <Text style={styles.text}>2. Click "Permissions"</Text>
+              <Text style={styles.text}>3. Click "Location"</Text>
+              <Text style={styles.text}>4. Click "Allow all the time"</Text>
+            </View>
           </View>
 
-          <View style={styles.resourceContainer}>
-            <GoBackButton/>
+          <View>
           </View>
 
         </View>
@@ -71,6 +86,12 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
-    width: '90%',
+    width: '95%',
+  },
+  text: {
+    marginVertical: 4,
+    color: '#2F2E41',
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
   },
 });

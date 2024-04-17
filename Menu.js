@@ -16,7 +16,7 @@ const Menu = ({}) => {
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
-      console.error('Location permission not granted');
+      navigation.navigate('RequestPermission');
       return;
     }
   
