@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 // import ActionButton from './components/ActionButton';
-import IconButton from './components/IconButton';
+import IconButton from '../components/IconButton';
 // import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
@@ -31,8 +31,8 @@ const MainMenu = ({}) => {
 
   
   const [fontsLoaded] = useFonts({
-    'Manrope-SemiBold': require('./assets/fonts/Manrope-SemiBold.ttf'),
-    'Manrope-Bold': require('./assets/fonts/Manrope-Bold.ttf'),
+    'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
+    'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -62,22 +62,22 @@ return (
             <Text style={styles.subtitle}>ReentryGuide GR</Text>
             <Text style={styles.title}>Main Menu</Text>
             <IconButton
-              imageSource={require('./assets/food.png')}
+              imageSource={require('../assets/food.png')}
               title=" Find Food"
               onPress={() => navigation.navigate('MealOrGroceries')}
             />
             <IconButton
-              imageSource={require('./assets/clothing.png')}
+              imageSource={require('../assets/clothing.png')}
               title=" Find Clothing"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing', title: 'Clothing' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
             />
             <IconButton
-              imageSource={require('./assets/drop.png')}
+              imageSource={require('../assets/drop.png')}
               title=" Find Hygiene"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene', title: 'Hygiene'  })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene'  })}
             />
             <IconButton
-              imageSource={require('./assets/med.png')}
+              imageSource={require('../assets/med.png')}
               title=" Find Healthcare"
               onPress={() => navigation.navigate('FindHealthcare')}
             />

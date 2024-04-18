@@ -1,5 +1,5 @@
 {
-  "Meal": [
+  "meal": [
     {
       "id": "1",
       "name": "God’s Kitchen",
@@ -31,7 +31,7 @@
       ]
     }
   ],
-  "Groceries": [
+  "groceries": [
     {
       "id": "1",
       "name": "Matthew’s House",
@@ -93,7 +93,7 @@
       ]
     }
   ],
-  "Clothing": [
+  "clothing": [
     {
       "id": "1",
       "name": "Cathedral of Saint Andrew Social Outreach Center",
@@ -140,7 +140,7 @@
       ]
     }
   ],
-  "Hygiene": [
+  "hygiene": [
     {
       "id": "1",
       "name": "Cathedral of Saint Andrew Social Outreach Center",
@@ -187,7 +187,7 @@
       ]
     }
   ],
-  "Medical": [
+  "medical": [
     {
       "id": "1",
       "name": "Catherine's Health Center Creston",
@@ -239,7 +239,7 @@
       ]
     }
   ], 
-  "Dental": [
+  "dental": [
     {
       "id": "1",
       "name": "Catherine’s Health Center Dental",
@@ -281,7 +281,7 @@
       ]
     }
   ], 
-  "Vision": [
+  "vision": [
     {
       "id": "1",
       "name": "Cherry Health",
@@ -298,7 +298,7 @@
       ]
     }
   ],
-  "Mental": [
+  "mental": [
     {
       "id": "1",
       "name": "Catherine's Health Center Creston",

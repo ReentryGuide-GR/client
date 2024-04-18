@@ -17,8 +17,8 @@ const Page = () => {
   const [today, setToday] = useState(new Date().getDay()); // Sunday - 0, Monday - 1, ..., Saturday - 6
 
   // Access the first entry of openHours as it's now an array
-  const melTrotterLocation = locationsBasic.Meal.find(location => location.id === "2");
-  const godsKitchenLocation = locationsBasic.Meal.find(location => location.id === "1");
+  const melTrotterLocation = locationsBasic.meal.find(location => location.id === "2");
+  const godsKitchenLocation = locationsBasic.meal.find(location => location.id === "1");
 
 
   useEffect(() => {
@@ -78,10 +78,10 @@ const Page = () => {
         <TouchableOpacity
           style={styles.IconButton}
           onPress={() => {
-            const godsKitchen = locationsBasic.Meal.find(location => location.id === "1");
+            const godsKitchen = locationsBasic.meal.find(location => location.id === "1");
             navigation.navigate('ResourceLocation', {
               location: godsKitchen,
-              category: "Meal",
+              category: "meal",
               distance: godsKitchenDistance,
               subtitle: "Lunch Location: "
             });
@@ -97,10 +97,10 @@ const Page = () => {
         <TouchableOpacity
           style={styles.IconButton}
           onPress={() => {
-            const melTrotter = locationsBasic.Meal.find(location => location.id === "2");
+            const melTrotter = locationsBasic.meal.find(location => location.id === "2");
             navigation.navigate('ResourceLocation', {
               location: melTrotter,
-              category: "Meal",
+              category: "meal",
               distance: melTrotterDistance,
               subtitle: "Dinner Location: "
             });

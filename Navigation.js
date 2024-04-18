@@ -3,7 +3,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import MainMenu from './MainMenu'; 
+import MainMenu from './pages/MainMenu'; 
 import SelectResourceLocation from './pages/SelectResourceLocation'; 
 import MealOrGroceries from './pages/MealOrGroceries'; 
 import FindHealthcare from './pages/FindHealthcare'; 

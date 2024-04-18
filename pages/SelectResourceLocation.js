@@ -20,23 +20,22 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSelectClosestLocation = async () => {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     const result = await findClosestLocation(category);
-    setIsLoading(false); // End loading
+    setIsLoading(false);
     if (result) {
       const { location, distance } = result;
-      // Convert kilometers to miles
-      const distanceInMiles = distance * 0.621371;
       navigation.navigate('ResourceLocation', { 
-        location: location, 
-        distance: parseFloat(distanceInMiles.toFixed(1)), // Ensure distance is rounded to 1 decimal place for display
+        location, 
+        distance: parseFloat(distance * 0.621371).toFixed(1),
         category, 
         subtitle: `Closest ${title} Location: `
       });
     } else {
-      console.error("No closest location found");
+      console.error(`No closest location found for category: ${category}`);
     }
   };
+
   
   if (isLoading) {
     return (

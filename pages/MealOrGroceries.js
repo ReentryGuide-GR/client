@@ -30,7 +30,7 @@ return (
               imageSource={require('../assets/grocery.png')}
               title="Find Groceries"
               buttonStyle={styles.primaryButton}
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Groceries', title: 'Groceries' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'groceries', title: 'Groceries' })}
             />
           </View>
 
