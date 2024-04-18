@@ -88,9 +88,16 @@ return (
 
           <View style={styles.resourceContainer}>
 
+          <IconButton
+              imageSource={require('../assets/call.png')}
+              title="Call Them"
+              iconSize={32}
+              buttonStyle={styles.secondaryButton}
+            />
+
             <IconButton
               imageSource={require('../assets/directions.png')}
-              title="Plan Your Route  "
+              title="Plan Your Route"
               iconSize={32}
               buttonStyle={styles.secondaryButton}
               onPress={() => 
@@ -111,7 +118,7 @@ return (
             />
 
             <IconButton
-              title="More Info  "
+              title="More Info"
               iconSize={32}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
