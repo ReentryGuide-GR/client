@@ -24,7 +24,7 @@ export const findClosestLocation = async (category) => {
     Alert.alert("Error", "Unable to get user location");
     return null;
   }
-  const categoryData = locationsData[category.charAt(0).toUpperCase() + category.slice(1)];
+  const categoryData = locationsData[category.charAt(0) + category.slice(1)];
   if (!categoryData) {
     Alert.alert("Error", `Category ${category} not found`);
     return null;
