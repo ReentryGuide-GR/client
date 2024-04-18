@@ -1,5 +1,5 @@
 {
-  "Meal": [
+  "meal": [
     {
       "id": "1",
       "address": "303 Division Ave S, Grand Rapids, MI 49503",
@@ -15,7 +15,7 @@
       "requirementsColor": "Yellow"
     }
   ],
-  "Groceries": [
+  "groceries": [
     {
       "id": "1",
       "address": "766 7th St. NW",
@@ -45,7 +45,7 @@
       "requirementsColor": "Yellow"
     }
   ],
-  "Clothing": [
+  "clothing": [
     {
       "id": "1",
       "address": "265 Sheldon Ave SE",
@@ -68,7 +68,7 @@
       "requirementsColor": "Yellow"
     }
   ],
-  "Hygiene": [
+  "hygiene": [
     {
       "id": "1",
       "address": "265 Sheldon Ave SE",
@@ -91,7 +91,7 @@
       "requirementsColor": "Yellow"
     }
   ],
-  "Medical": [
+  "medical": [
     {
       "id": "1",
       "address": "1211 Lafayette Ave NE",
@@ -114,7 +114,7 @@
       "requirementsColor": "Yellow"
     }
   ], 
-  "Dental": [
+  "dental": [
     {
       "id": "1",
       "address": "781 36th St SE Suite B",
@@ -130,7 +130,7 @@
       "requirementsColor": "Yellow"
     } 
   ], 
-  "Vision": [
+  "vision": [
     {
       "id": "1",
       "address": "100 Cherry St SE",
@@ -139,7 +139,7 @@
       "requirementsColor": "Yellow"
     } 
   ],
-  "Mental": [
+  "mental": [
     {
       "id": "1",
       "address": "1211 Lafayette Ave NE",

@@ -69,12 +69,12 @@ return (
             <IconButton
               imageSource={require('../assets/clothing.png')}
               title=" Find Clothing"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing', title: 'Clothing' })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
             />
             <IconButton
               imageSource={require('../assets/drop.png')}
               title=" Find Hygiene"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene', title: 'Hygiene'  })}
+              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene'  })}
             />
             <IconButton
               imageSource={require('../assets/med.png')}
