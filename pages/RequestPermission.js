@@ -18,7 +18,7 @@ const Page = () => {
     const checkPermissionAndNavigate = async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status === 'granted') {
-        navigation.navigate('MainPage'); // Replace 'MainPage' with your main menu screen name if it's different
+        navigation.navigate('MainMenu'); // Replace 'MainPage' with your main menu screen name if it's different
       }
     };
 
