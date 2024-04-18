@@ -107,14 +107,6 @@ return (
 
           <View style={styles.resourceContainer}>
 
-          <IconButton
-              imageSource={require('../assets/call.png')}
-              title="Call Them"
-              iconSize={32}
-              buttonStyle={styles.secondaryButton}
-              onPress={() => makePhoneCall(phoneNumber)}
-            />
-
             <IconButton
               imageSource={require('../assets/directions.png')}
               title="Plan Your Route"
@@ -135,6 +127,14 @@ return (
                   subtitle
                 })                
               }
+            />
+
+            <IconButton
+              imageSource={require('../assets/call.png')}
+              title="Call Them"
+              iconSize={32}
+              buttonStyle={styles.secondaryButton}
+              onPress={() => makePhoneCall(phoneNumber)}
             />
 
             <IconButton
