@@ -151,7 +151,7 @@ export const formatOpenHours = (openHoursArray) => {
   // Function to format a single openHours object
   const formatSingleOpenHours = (openHours) => {
     if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
-      return `Everyday \n${openHours.open} - ${openHours.close}`;
+      return `Everyday \n${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
     }
   
     let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
@@ -169,7 +169,7 @@ export const formatOpenHours = (openHoursArray) => {
       }
     }).join(", ");
     
-    return `${daysFormatted} \n ${openHours.open} - ${openHours.close}`;
+    return `${daysFormatted} \n ${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
   };
 
   // Iterate over each openHours object, format it, and combine the results
