@@ -62,22 +62,22 @@ return (
             <Text style={styles.subtitle}>ReentryGuide GR</Text>
             <Text style={styles.title}>Main Menu</Text>
             <IconButton
-              imageSource={require('./assets/food.png')}
+              imageSource={require('../assets/food.png')}
               title=" Find Food"
               onPress={() => navigation.navigate('MealOrGroceries')}
             />
             <IconButton
-              imageSource={require('./assets/clothing.png')}
+              imageSource={require('../assets/clothing.png')}
               title=" Find Clothing"
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Clothing', title: 'Clothing' })}
             />
             <IconButton
-              imageSource={require('./assets/drop.png')}
+              imageSource={require('../assets/drop.png')}
               title=" Find Hygiene"
               onPress={() => navigation.navigate('SelectResourceLocation', { category: 'Hygiene', title: 'Hygiene'  })}
             />
             <IconButton
-              imageSource={require('./assets/med.png')}
+              imageSource={require('../assets/med.png')}
               title=" Find Healthcare"
               onPress={() => navigation.navigate('FindHealthcare')}
             />
