@@ -27,7 +27,7 @@
       "id": "2",
       "address": "935 Baxter SE",
       "phone": "(616) 456-8593",
-      "requirementsText": "Appointment Required, ID required", 
+      "requirementsText": "ID required, the market place is downstairs through front door, other doors are closed, free groceries for only one household per month.", 
       "requirementsColor": "Yellow"
     },
     {
@@ -62,8 +62,8 @@
     },
     {
       "id": "3",
-      "address": "Test Groceries address 3",
-      "phone": "(616) 454-8249",
+      "address": "3233 Burton St SE",
+      "phone": "(616) 929-0529",
       "requirementsText": "Hours available by appointment only. Call Nick Nichols from the Calvin Prison Initiative to schedule (616-929-0529). Dress clothes available. Clothing for kids available.", 
       "requirementsColor": "Yellow"
     }
@@ -96,21 +96,21 @@
       "id": "1",
       "address": "1211 Lafayette Ave NE",
       "phone": "(616) 336-8800",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "3",
       "address": "950 36th St SW",
       "phone": "(616) 320-0405",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }
   ], 
@@ -119,14 +119,14 @@
       "id": "1",
       "address": "781 36th St SE Suite B",
       "phone": "(616) 828-0052",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     } 
   ], 
@@ -135,7 +135,7 @@
       "id": "1",
       "address": "100 Cherry St SE",
       "phone": "(616) 776-2135",
-      "requirementsText": "By appointment – please call 616.776.2135 to schedule an appointment", 
+      "requirementsText": "Appointment by Phone Call Required", 
       "requirementsColor": "Yellow"
     } 
   ],
@@ -144,21 +144,21 @@
       "id": "1",
       "address": "1211 Lafayette Ave NE",
       "phone": "(616) 336-8800",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "2",
       "address": "280 60th St SE Suite 200",
       "phone": "(616) 483-0750",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }, 
     {
       "id": "3",
       "address": "950 36th St SW",
       "phone": "(616) 320-0405",
-      "requirementsText": "ID and insurance info required", 
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
       "requirementsColor": "Yellow"
     }
   ]

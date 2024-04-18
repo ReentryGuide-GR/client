@@ -3,7 +3,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import MainPage from './Menu'; 
+import MainMenu from './MainMenu'; 
 import SelectResourceLocation from './pages/SelectResourceLocation'; 
 import MealOrGroceries from './pages/MealOrGroceries'; 
 import FindHealthcare from './pages/FindHealthcare'; 
@@ -25,14 +25,14 @@ function Navigation() {
           // color="#000"
       />
       <Stack.Navigator
-        initialRouteName="MainPage"
+        initialRouteName="MainMenu"
         screenOptions={{
           headerShown: false,
           // Customizing the screen transition animation
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       >
-        <Stack.Screen name="MainPage" component={MainPage} />
+        <Stack.Screen name="MainMenu" component={MainMenu} />
         <Stack.Screen name="SelectResourceLocation" component={SelectResourceLocation} />
         <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
         <Stack.Screen name="FindHealthcare" component={FindHealthcare} />

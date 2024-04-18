@@ -11,7 +11,7 @@ import IconButton from './components/IconButton';
 
 
 
-const Menu = ({}) => {
+const MainMenu = ({}) => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -90,7 +90,7 @@ return (
   );
 };
 
-export default Menu;
+export default MainMenu;
 
 const styles = StyleSheet.create({
   mainContainer: {

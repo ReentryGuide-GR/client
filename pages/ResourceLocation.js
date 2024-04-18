@@ -28,6 +28,25 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+
+  const makePhoneCall = (phone) => {
+    if (phone) {
+      Linking.canOpenURL(`tel:${phone}`)
+        .then(supported => {
+          if (!supported) {
+            Alert.alert('Phone number is not available');
+          } else {
+            return Linking.openURL(`tel:${phone}`);
+          }
+        })
+        .catch(err => Alert.alert('Failed to make a call', err));
+    } else {
+      Alert.alert('No phone number available');
+    }
+  };
+
   // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
     const statusUpdate = updateLocationStatus(location.openHours);
@@ -36,12 +55,12 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     setStatusTime(statusUpdate.time);
   }, [location]);
 
-  // Find the matching entry and extract the requirementsText:
+  // Find the matching entry and extract the data:
   useEffect(() => {
     const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
     if (matchingDetails) {
         setRequirementsText(matchingDetails.requirementsText);
-        // New: Use requirementsColorMapping to set colors
+        setPhoneNumber(matchingDetails.phone); // Extract and set the phone number from matching details
         const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
         setRequirementIndicatorStyle({ backgroundColor });
         setRequirementsTextStyle({ color: textColor });
@@ -90,7 +109,7 @@ return (
 
             <IconButton
               imageSource={require('../assets/directions.png')}
-              title="Plan Your Route  "
+              title="Plan Your Route"
               iconSize={32}
               buttonStyle={styles.secondaryButton}
               onPress={() => 
@@ -111,7 +130,15 @@ return (
             />
 
             <IconButton
-              title="More Info  "
+              imageSource={require('../assets/call.png')}
+              title="Call Them"
+              iconSize={32}
+              buttonStyle={styles.secondaryButton}
+              onPress={() => makePhoneCall(phoneNumber)}
+            />
+
+            <IconButton
+              title="More Info"
               iconSize={32}
               imageSource={require('../assets/info.png')}
               buttonStyle={styles.tertiaryButton}
