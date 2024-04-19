@@ -138,6 +138,44 @@ export const requirementsColorMapping = (colorName) => {
   return mappings[colorName] || { backgroundColor: '#FFFFFF', textColor: '#000000' }; // Default case
 };
 
+// Return Formatted week schedule based on database
+export const formatOpenHours = (openHoursArray) => {
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  // Ensure we're working with an array for both old and new structures
+  if (!Array.isArray(openHoursArray)) {
+    // If openHoursArray is not an array, assume it's the old single object structure
+    openHoursArray = [openHoursArray]; // Wrap it in an array for compatibility
+  }
+
+  // Function to format a single openHours object
+  const formatSingleOpenHours = (openHours) => {
+    if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
+      return `Everyday \n${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
+    }
+  
+    let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
+      if (index > 0 && day - arr[index - 1] === 1) {
+        acc[acc.length - 1].push(day);
+      } else {
+        acc.push([day]);
+      }
+      return acc;
+    }, []).map(group => {
+      if (group.length > 1) {
+        return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
+      } else {
+        return daysOfWeek[group[0]];
+      }
+    }).join(", ");
+    
+    return `${daysFormatted} \n ${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
+  };
+
+  // Iterate over each openHours object, format it, and combine the results
+  return openHoursArray.map(formatSingleOpenHours).join("\n\n");
+};
+
 // Convert 24-hour format to 12-hour format
 export const formatTime = (time) => {
   const [hours, minutes] = time.split(':').map(Number);
@@ -145,7 +183,6 @@ export const formatTime = (time) => {
   const formattedHours = ((hours + 11) % 12 + 1);
   return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
 };
-
 
 export const updateLocationStatus = (openHoursArray) => {
   const now = moment();

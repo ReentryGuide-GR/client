@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking, Alert} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
@@ -29,23 +29,6 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
   const [phoneNumber, setPhoneNumber] = useState('');
-
-
-  const makePhoneCall = (phone) => {
-    if (phone) {
-      Linking.canOpenURL(`tel:${phone}`)
-        .then(supported => {
-          if (!supported) {
-            Alert.alert('Phone number is not available');
-          } else {
-            return Linking.openURL(`tel:${phone}`);
-          }
-        })
-        .catch(err => Alert.alert('Failed to make a call', err));
-    } else {
-      Alert.alert('No phone number available');
-    }
-  };
 
   // The indicator showing a place is whether opening or closed is determined here: 
   useEffect(() => {
@@ -134,7 +117,13 @@ return (
               title="Call Them"
               iconSize={32}
               buttonStyle={styles.secondaryButton}
-              onPress={() => makePhoneCall(phoneNumber)}
+              onPress={() => {
+                // Use the Linking API to open the phone app, empty number for now
+                Linking.openURL(`tel:${phoneNumber}`)
+                  .catch(err => {
+                    console.error('Failed to open the phone app', err);
+                  });
+              }}
             />
 
             <IconButton
