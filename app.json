@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ReentryGuide GR",
-    "slug": "rr-map",
+    "slug": "reentryguide-gr",
     "version": "0.1.1",
     "orientation": "portrait",
     "icon": "assets/icon.png",
@@ -22,20 +22,20 @@
         "foregroundImage": "assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.reentryreimagined.reentryguidegr"
+      "package": "com.reentryreimagined.reentryguidegr",
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "androidNavigationBar": {
-      // "visible": "true",
       "barStyle": "dark-content",
       "backgroundColor": "#FFFFFF"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9e475380-402e-44e2-8f4a-1d45f5ca3792"
-      }
     },
     "plugins": [
       [
@@ -44,6 +44,11 @@
           "isAndroidBackgroundLocationEnabled": true
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "24733c2f-1705-4d04-813d-bd6e3392342f"
+      }
+    }
   }
 }
