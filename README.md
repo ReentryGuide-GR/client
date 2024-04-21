@@ -30,7 +30,7 @@
     npx expo start
 
 ### License
-This project is licensed under the GNU General Public License v2. See the LICENSE file for more details.
+This project is licensed under the GNU General Public License v3. See the LICENSE file for more details.
 
 ### Acknowledgements
 
