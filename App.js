@@ -13,6 +13,6 @@ import Navigation from './Navigation';
  * @author: Harry (Tu) Gu
  * @date: Jan, 2024
  */
-export default function App() {
-  return (<Navigation />);
-}
+const App = () => (<Navigation />);
+
+export default App;
