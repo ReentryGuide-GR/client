@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';

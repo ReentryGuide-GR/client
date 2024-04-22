@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {useEffect} from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
