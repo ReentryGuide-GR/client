@@ -30,6 +30,7 @@ module.exports = {
     // prevent eslint to complain about the "styles" variable being used before it was defined
     'no-use-before-define': ['error', { variables: false }],
     'global-require': 'off',
+    'react/prop-types': 'off',
     'react/function-component-definition': [
       2,
       {
