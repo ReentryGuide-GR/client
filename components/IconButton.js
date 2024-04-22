@@ -1,10 +1,19 @@
-//in IconButton.js
+// in IconButton.js
 import React from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import {
+  TouchableOpacity, View, Text, Image, StyleSheet,
+} from 'react-native';
 import { useFonts } from 'expo-font';
 
-const IconButton = ({ onPress, imageSource, title, buttonStyle, textStyle, arrowStyle, iconSize = 40}) => {
-
+const IconButton = ({
+  onPress,
+  imageSource,
+  title,
+  buttonStyle,
+  textStyle,
+  arrowStyle,
+  iconSize = 40,
+}) => {
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
   });
@@ -14,15 +23,15 @@ const IconButton = ({ onPress, imageSource, title, buttonStyle, textStyle, arrow
   }
 
   // Determine the arrow image based on arrowStyle
-  const arrowImageSource = arrowStyle === 'white' 
-  ? require('../assets/arrow_forward_white.png') 
-  : require('../assets/arrow_forward.png');
+  const arrowImageSource = arrowStyle === 'white'
+    ? require('../assets/arrow_forward_white.png')
+    : require('../assets/arrow_forward.png');
 
   return (
     <TouchableOpacity style={[styles.IconButton, buttonStyle]} onPress={onPress}>
       <View style={styles.row}>
-        <Image 
-          source={imageSource} 
+        <Image
+          source={imageSource}
           style={[styles.icon, { width: iconSize, height: iconSize }]} // Use iconSize here
         />
         <Text style={[styles.IconButtonText, textStyle]}>{title}</Text>
@@ -37,7 +46,7 @@ export default IconButton;
 const styles = StyleSheet.create({
   IconButton: {
     flexDirection: 'row',
-    justifyContent: 'space-between', 
+    justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 20,
     width: '100%',
@@ -61,14 +70,13 @@ const styles = StyleSheet.create({
     marginRight: 0,
     width: 40,
     height: 40,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   arrow: {
     marginRight: 0,
     width: 20,
     height: 20,
-
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   IconButtonText: {
     fontFamily: 'Manrope-SemiBold',
