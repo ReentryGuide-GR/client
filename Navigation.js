@@ -16,35 +16,33 @@ import RequestPermission from './pages/RequestPermission';
 
 const Stack = createStackNavigator();
 
-function Navigation() {
-  return (
-    <NavigationContainer>
-      <StatusBar
-        backgroundColor="#fff"
-        barStyle="dark-content"
-        // color="#000"
-      />
-      <Stack.Navigator
-        initialRouteName="MainMenu"
-        screenOptions={{
-          headerShown: false,
-          // Customizing the screen transition animation
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}
-      >
-        <Stack.Screen name="MainMenu" component={MainMenu} />
-        <Stack.Screen name="SelectResourceLocation" component={SelectResourceLocation} />
-        <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
-        <Stack.Screen name="FindHealthcare" component={FindHealthcare} />
-        <Stack.Screen name="LunchOrDinner" component={LunchOrDinner} />
-        <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
-        <Stack.Screen name="Transportation" component={Transportation} />
-        <Stack.Screen name="LocationsList" component={LocationsList} />
-        <Stack.Screen name="MoreInfo" component={MoreInfo} />
-        <Stack.Screen name="RequestPermission" component={RequestPermission} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+const Navigation = () => (
+  <NavigationContainer>
+    <StatusBar
+      backgroundColor="#fff"
+      barStyle="dark-content"
+      // color="#000"
+    />
+    <Stack.Navigator
+      initialRouteName="MainMenu"
+      screenOptions={{
+        headerShown: false,
+        // Customizing the screen transition animation
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
+    >
+      <Stack.Screen name="MainMenu" component={MainMenu} />
+      <Stack.Screen name="SelectResourceLocation" component={SelectResourceLocation} />
+      <Stack.Screen name="MealOrGroceries" component={MealOrGroceries} />
+      <Stack.Screen name="FindHealthcare" component={FindHealthcare} />
+      <Stack.Screen name="LunchOrDinner" component={LunchOrDinner} />
+      <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
+      <Stack.Screen name="Transportation" component={Transportation} />
+      <Stack.Screen name="LocationsList" component={LocationsList} />
+      <Stack.Screen name="MoreInfo" component={MoreInfo} />
+      <Stack.Screen name="RequestPermission" component={RequestPermission} />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 
 export default Navigation;
