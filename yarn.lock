@@ -2075,6 +2075,11 @@
     mkdirp "^0.5.1"
     nullthrows "^1.1.1"
 
+"@react-native/eslint-plugin@^0.74.81":
+  version "0.74.81"
+  resolved "https://registry.yarnpkg.com/@react-native/eslint-plugin/-/eslint-plugin-0.74.81.tgz#ac53da7c41a35948b0f9d01d88d2a858e879edb1"
+  integrity sha512-vlbLJ38MFJzcEgNxNswjgDRELvZX5e4SmGhtN9N1ZQpXLkgo3hs+l2m4ulSpKhSmqpbacB5XbuTTMgKOsLj/5w==
+
 "@react-native/gradle-plugin@^0.72.11":
   version "0.72.11"
   resolved "https://registry.npmjs.org/@react-native/gradle-plugin/-/gradle-plugin-0.72.11.tgz"
