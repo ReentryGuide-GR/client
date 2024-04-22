@@ -20,8 +20,8 @@ const Page = () => {
   const [today] = useState(new Date().getDay());
 
   // Access the first entry of openHours as it's now an array
-  const melTrotterLocation = locationsBasic.meal.find(location => location.id === '2');
-  const godsKitchenLocation = locationsBasic.meal.find(location => location.id === '1');
+  const melTrotterLocation = locationsBasic.meal.find((location) => location.id === '2');
+  const godsKitchenLocation = locationsBasic.meal.find((location) => location.id === '1');
 
   useEffect(() => {
     (async () => {
@@ -50,12 +50,12 @@ const Page = () => {
   }, []);
 
   // Helper function to determine if a location is open today
-  const isOpenToday = (location) => (location.openHours.some(oh => oh.days.includes(today)));
+  const isOpenToday = (location) => (location.openHours.some((oh) => oh.days.includes(today)));
 
   // Helper function to render open hours or "Closed Today"
   const renderOpenHours = (location) => {
     if (isOpenToday(location)) {
-      const todayHours = location.openHours.find(oh => oh.days.includes(today));
+      const todayHours = location.openHours.find((oh) => oh.days.includes(today));
       return (
         <>
           <Text style={styles.IconButtonTextBold}>{formatTime(todayHours?.open)}</Text>
@@ -63,9 +63,8 @@ const Page = () => {
           <Text style={styles.IconButtonTextBold}>{formatTime(todayHours?.close)}</Text>
         </>
       );
-    } else {
-      return <Text style={styles.IconButtonTextBold}>Closed Today</Text>;
     }
+    return <Text style={styles.IconButtonTextBold}>Closed Today</Text>;
   };
 
   const [fontsLoaded] = useFonts({
@@ -79,16 +78,16 @@ const Page = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {/* Empty Component to make buttons in the middle of the screen but not on top, 
-      easier for user to reach*/}
-      <View></View> 
+      {/* Empty Component to make buttons in the middle of the screen but not on top,
+      easier for user to reach */}
+      <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Lunch or Dinner?</Text>
 
         <TouchableOpacity
           style={styles.IconButton}
           onPress={() => {
-            const godsKitchen = locationsBasic.meal.find(location => location.id === '1');
+            const godsKitchen = locationsBasic.meal.find((location) => location.id === '1');
             navigation.navigate('ResourceLocation', {
               location: godsKitchen,
               category: 'meal',
@@ -107,7 +106,7 @@ const Page = () => {
         <TouchableOpacity
           style={styles.IconButton}
           onPress={() => {
-            const melTrotter = locationsBasic.meal.find(location => location.id === '2');
+            const melTrotter = locationsBasic.meal.find((location) => location.id === '2');
             navigation.navigate('ResourceLocation', {
               location: melTrotter,
               category: 'meal',
@@ -120,7 +119,7 @@ const Page = () => {
             <Text style={styles.IconButtonText}>Dinner</Text>
             {renderOpenHours(melTrotterLocation)}
           </View>
-          <Image source={ require('../assets/arrow_forward.png') } style={[styles.arrow]} />
+          <Image source={require('../assets/arrow_forward.png')} style={[styles.arrow]} />
         </TouchableOpacity>
       </View>
 
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
     marginRight: 0,
     width: 20,
     height: 20,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   IconButtonText: {
     fontFamily: 'Manrope-SemiBold',
