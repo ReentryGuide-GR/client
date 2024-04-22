@@ -29,6 +29,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     // prevent eslint to complain about the "styles" variable being used before it was defined
     'no-use-before-define': ['error', { variables: false }],
+    'global-require': 'off',
     'react/function-component-definition': [
       2,
       {
