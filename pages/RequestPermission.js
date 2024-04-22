@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking,
+  StyleSheet, View, Text, Linking, AppState,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -20,7 +20,20 @@ const Page = () => {
         navigation.navigate('MainMenu');
       }
     };
-    checkPermissionAndNavigate();
+
+    const handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'active') {
+        checkPermissionAndNavigate();
+      }
+    };
+
+    // Subscribe to app state changes
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      // Unsubscribe to the app state changes when the component unmounts
+      subscription.remove();
+    };
   }, [navigation]);
 
   const [fontsLoaded] = useFonts({
@@ -34,7 +47,7 @@ const Page = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {/* Empty Component to make buttons in the middle of the screen but not on top, 
+      {/* Empty Component to make buttons in the middle of the screen but not on top,
       easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
