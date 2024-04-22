@@ -1,10 +1,6 @@
 import React from 'react';
 import {
-  TouchableOpacity,
-  View,
-  Text,
-  Image,
-  StyleSheet,
+  TouchableOpacity, View, Text, Image, StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
