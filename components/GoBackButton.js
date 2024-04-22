@@ -1,5 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
@@ -14,7 +20,7 @@ const GoBackButton = () => {
   }
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.GoBackButton}
       onPress={() => navigation.goBack()}
     >
@@ -54,7 +60,7 @@ const styles = StyleSheet.create({
     // marginRight: 5,
     width: 20,
     height: 20,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   GoBackButtonText: {
     fontFamily: 'Manrope-SemiBold',
