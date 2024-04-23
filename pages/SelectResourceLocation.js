@@ -53,7 +53,7 @@ const SelectResourceLocation = () => {
           Select
           {'\n'}
           {title}
-          Location
+          &nbsp;Location
         </Text>
         <IconButton
           iconSize={32}
