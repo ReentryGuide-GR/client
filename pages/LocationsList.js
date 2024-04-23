@@ -93,7 +93,7 @@ const LocationList = () => {
             </View>
           </View>
           <Text style={styles.distance}>
-            ~
+            ~&nbsp;
             <Text style={{ fontFamily: 'Manrope-Bold' }}>
               {item.distance}
             </Text>

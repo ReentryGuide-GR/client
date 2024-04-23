@@ -44,7 +44,7 @@ const Transportation = () => {
           </View>
         </View>
         <Text style={styles.distance}>
-          ~
+          ~&nbsp;
           <Text style={{ fontFamily: 'Manrope-Bold' }}>
             {distance}
           </Text>

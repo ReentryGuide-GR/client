@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking, Alert} from 'react-native';
+import {
+  StyleSheet, View, Text, Linking,
+} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
@@ -9,11 +11,12 @@ import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from 
 
 // import * as styles from '../../styles/detailsStyles';
 
-
-const ResourceLocation = ({ isVisible, onClose }) => {
+const ResourceLocation = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, category, subtitle } = route.params;
+  const {
+    location, distance, category, subtitle,
+  } = route.params;
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
@@ -22,14 +25,14 @@ const ResourceLocation = ({ isVisible, onClose }) => {
   const [timeMessage, setTimeMessage] = useState('');
   const [statusTime, setStatusTime] = useState('');
 
-  // Declare requirementsText  
+  // Declare requirementsText
   const [requirementsText, setRequirementsText] = useState('');
   const [requirementIndicatorStyle, setRequirementIndicatorStyle] = useState({});
   const [requirementsTextStyle, setRequirementsTextStyle] = useState({});
 
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  // The indicator showing a place is whether opening or closed is determined here: 
+  // The indicator showing a place is whether opening or closed is determined here:
   useEffect(() => {
     const statusUpdate = updateLocationStatus(location.openHours);
     setStatus(statusUpdate.status);
@@ -39,16 +42,19 @@ const ResourceLocation = ({ isVisible, onClose }) => {
 
   // Find the matching entry and extract the data:
   useEffect(() => {
-    const matchingDetails = locationsDetails[category]?.find(detail => detail.id === location.id);
+    const matchingDetails = locationsDetails[category]?.find((detail) => detail.id === location.id);
     if (matchingDetails) {
-        setRequirementsText(matchingDetails.requirementsText);
-        setPhoneNumber(matchingDetails.phone); // Extract and set the phone number from matching details
-        const { backgroundColor, textColor } = requirementsColorMapping(matchingDetails.requirementsColor);
-        setRequirementIndicatorStyle({ backgroundColor });
-        setRequirementsTextStyle({ color: textColor });
+      setRequirementsText(matchingDetails.requirementsText);
+      // Extract and set the phone number from matching details
+      setPhoneNumber(matchingDetails.phone);
+      const {
+        backgroundColor,
+        textColor,
+      } = requirementsColorMapping(matchingDetails.requirementsColor);
+      setRequirementIndicatorStyle({ backgroundColor });
+      setRequirementsTextStyle({ color: textColor });
     }
   }, [location, category]); // Dependency on category to re-run effect if it changes
-
 
   const [fontsLoaded] = useFonts({
     'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
@@ -60,103 +66,109 @@ const ResourceLocation = ({ isVisible, onClose }) => {
     return null; // Return null to render nothing while loading fonts
   }
 
+  return (
 
-return (
-
-        <View style={styles.mainContainer}>
-          <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.title}>{location.name}</Text>
-            <View style={styles.row}>
-              <View style={[styles.indicator, requirementIndicatorStyle]}>
-              <Text style={[styles.requirementText, requirementsTextStyle]}>{requirementsText}</Text>
-              </View>
-            </View>
-            <Text style={styles.distance}>
-              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
-            </Text>
-
-            {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-            <View style={styles.row}>
-              <View style={[styles.indicator, statusBackgroundColor]}>
-                <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
-              </View>
-              <Text style={styles.timing}> 
-                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
-              </Text>
-            </View>
+    <View style={styles.mainContainer}>
+      <View style={styles.resourceContainer}>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.title}>{location.name}</Text>
+        <View style={styles.row}>
+          <View style={[styles.indicator, requirementIndicatorStyle]}>
+            <Text style={[styles.requirementText, requirementsTextStyle]}>{requirementsText}</Text>
           </View>
-
-          <View style={styles.resourceContainer}>
-
-            <IconButton
-              imageSource={require('../assets/directions.png')}
-              title="Plan Your Route"
-              iconSize={32}
-              buttonStyle={styles.secondaryButton}
-              onPress={() => 
-                navigation.navigate('Transportation', { 
-                  location: location,
-                  distance: distance,
-                  requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
-                  requirementsTextStyle: requirementsTextStyle.color,
-                  requirementsText: requirementsText,
-                  statusText: statusText, // Added status text here
-                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
-                  textColor: statusTextStyleColor, // Extract color from the style object
-                  timeMessage: timeMessage, 
-                  statusTime: statusTime,
-                  subtitle
-                })                
-              }
-            />
-
-            <IconButton
-              imageSource={require('../assets/call.png')}
-              title="Call Them"
-              iconSize={32}
-              buttonStyle={styles.secondaryButton}
-              onPress={() => {
-                // Use the Linking API to open the phone app, empty number for now
-                Linking.openURL(`tel:${phoneNumber}`)
-                  .catch(err => {
-                    console.error('Failed to open the phone app', err);
-                  });
-              }}
-            />
-
-            <IconButton
-              title="More Info"
-              iconSize={32}
-              imageSource={require('../assets/info.png')}
-              buttonStyle={styles.tertiaryButton}
-              onPress={() => 
-                navigation.navigate('MoreInfo', { 
-                  location: location,
-                  distance: distance,
-                  requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
-                  requirementsTextStyle: requirementsTextStyle.color,
-                  requirementsText: requirementsText,
-                  statusText: statusText, // Added status text here
-                  indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
-                  textColor: statusTextStyleColor, // Extract color from the style object
-                  timeMessage: timeMessage, 
-                  statusTime: statusTime,
-                  subtitle,
-                  category
-
-                })                
-              }
-            />
-          </View>
-
-          <View style={styles.resourceContainer}>
-
-          <GoBackButton/>
-
-          </View>
-
         </View>
+        <Text style={styles.distance}>
+          ~&nbsp;
+          <Text style={{ fontFamily: 'Manrope-Bold' }}>
+            {distance}
+          </Text>
+          &nbsp;miles away
+        </Text>
+        {/* For Debug */}
+        {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
+        Lng: {location.coordinates.lng}</Text> */}
+        <View style={styles.row}>
+          <View style={[styles.indicator, statusBackgroundColor]}>
+            <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
+          </View>
+          <Text style={styles.timing}>
+            {timeMessage}
+            <Text style={{ fontFamily: 'Manrope-Bold' }}>
+              {statusTime}
+            </Text>
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.resourceContainer}>
+
+        <IconButton
+          imageSource={require('../assets/directions.png')}
+          title="Plan Your Route"
+          iconSize={32}
+          buttonStyle={styles.secondaryButton}
+          onPress={() => navigation.navigate('Transportation', {
+            location,
+            distance,
+            requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+            requirementsTextStyle: requirementsTextStyle.color,
+            requirementsText,
+            statusText, // Added status text here
+            // Extract backgroundColor from the style object
+            indicatorColor: statusBackgroundColor.backgroundColor,
+            textColor: statusTextStyleColor, // Extract color from the style object
+            timeMessage,
+            statusTime,
+            subtitle,
+          })}
+        />
+
+        <IconButton
+          imageSource={require('../assets/call.png')}
+          title="Call Them"
+          iconSize={32}
+          buttonStyle={styles.secondaryButton}
+          onPress={() => {
+            // Use the Linking API to open the phone app, empty number for now
+            Linking.openURL(`tel:${phoneNumber}`)
+              .catch(err => {
+                console.error('Failed to open the phone app', err);
+              });
+          }}
+        />
+
+        <IconButton
+          title="More Info"
+          iconSize={32}
+          imageSource={require('../assets/info.png')}
+          buttonStyle={styles.tertiaryButton}
+          onPress={() => 
+            navigation.navigate('MoreInfo', { 
+              location: location,
+              distance: distance,
+              requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+              requirementsTextStyle: requirementsTextStyle.color,
+              requirementsText: requirementsText,
+              statusText: statusText, // Added status text here
+              indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
+              textColor: statusTextStyleColor, // Extract color from the style object
+              timeMessage: timeMessage, 
+              statusTime: statusTime,
+              subtitle,
+              category
+
+            })                
+          }
+        />
+      </View>
+
+      <View style={styles.resourceContainer}>
+
+      <GoBackButton/>
+
+      </View>
+
+    </View>
   );
 };
 
