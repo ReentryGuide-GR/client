@@ -131,7 +131,7 @@ const ResourceLocation = () => {
           onPress={() => {
             // Use the Linking API to open the phone app, empty number for now
             Linking.openURL(`tel:${phoneNumber}`)
-              .catch(err => {
+              .catch((err) => {
                 console.error('Failed to open the phone app', err);
               });
           }}
@@ -142,30 +142,26 @@ const ResourceLocation = () => {
           iconSize={32}
           imageSource={require('../assets/info.png')}
           buttonStyle={styles.tertiaryButton}
-          onPress={() => 
-            navigation.navigate('MoreInfo', { 
-              location: location,
-              distance: distance,
-              requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
-              requirementsTextStyle: requirementsTextStyle.color,
-              requirementsText: requirementsText,
-              statusText: statusText, // Added status text here
-              indicatorColor: statusBackgroundColor.backgroundColor, // Extract backgroundColor from the style object
-              textColor: statusTextStyleColor, // Extract color from the style object
-              timeMessage: timeMessage, 
-              statusTime: statusTime,
-              subtitle,
-              category
-
-            })                
-          }
+          onPress={() => navigation.navigate('MoreInfo', {
+            location,
+            distance,
+            requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
+            requirementsTextStyle: requirementsTextStyle.color,
+            requirementsText,
+            statusText, // Added status text here
+            // Extract backgroundColor from the style object
+            indicatorColor: statusBackgroundColor.backgroundColor,
+            textColor: statusTextStyleColor, // Extract color from the style object
+            timeMessage,
+            statusTime,
+            subtitle,
+            category,
+          })}
         />
       </View>
 
       <View style={styles.resourceContainer}>
-
-      <GoBackButton/>
-
+        <GoBackButton />
       </View>
 
     </View>
@@ -184,22 +180,22 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   resourceContainer: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
   },
   textContainer: {
-    fontSize: 15, 
+    fontSize: 15,
   },
 
   secondaryButton: {
     backgroundColor: '#E2E9F3',
-    padding: 25
+    padding: 25,
   },
 
   tertiaryButton: {
     // backgroundColor: '#E2E9F3',
-    padding: 25
+    padding: 25,
   },
 
   subtitle: {
@@ -224,7 +220,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Medium',
     width: '100%',
-    letterSpacing: 0.4, //increase letter spacing 
+    letterSpacing: 0.4, // increase letter spacing
   },
   title: {
     marginBottom: 10,
@@ -236,8 +232,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     width: '100%',
-    alignItems:'center',
-    paddingBottom: 5
+    alignItems: 'center',
+    paddingBottom: 5,
   },
   openOrClosed: {
     fontSize: 17,
@@ -250,6 +246,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
-    letterSpacing: 0.4, //increase letter spacing 
+    letterSpacing: 0.4, // increase letter spacing
   },
 });
