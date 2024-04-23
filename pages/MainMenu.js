@@ -69,7 +69,7 @@ const MainMenu = () => {
         <IconButton
           imageSource={require('../assets/drop.png')}
           title=" Find Hygiene"
-          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene'  })}
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene' })}
         />
         <IconButton
           imageSource={require('../assets/med.png')}
