@@ -1,94 +1,106 @@
-import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet, View, Text,
+} from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
-import { formatOpenHours } from '../utils'
+import { formatOpenHours } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
 
-const MoreInfo = ({ onClose }) => {
-  const navigation = useNavigation(); // used for navigation.navigate()
+const MoreInfo = () => {
+  // const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { location, distance, indicatorColor, textColor, timeMessage, statusText, statusTime, requirementIndicatorStyle, requirementsTextStyle, requirementsText, subtitle, category } = route.params;
+  const {
+    location,
+    distance,
+    indicatorColor,
+    textColor,
+    timeMessage,
+    statusText,
+    statusTime,
+    requirementIndicatorStyle,
+    requirementsTextStyle,
+    requirementsText,
+    subtitle,
+    category,
+  } = route.params;
 
   // Find the matching location details
-  const locationDetails = locationsDetails[category].find(detail => detail.id === location.id);
+  const locationDetails = locationsDetails[category].find((detail) => detail.id === location.id);
   const [openHoursFormatted, setOpenHoursFormatted] = useState('');
-  
+
   useEffect(() => {
-    const details = locationsBasic[category].find(detail => detail.id === location.id);
+    const details = locationsBasic[category].find((detail) => detail.id === location.id);
     if (details) {
       setOpenHoursFormatted(formatOpenHours(details.openHours));
     }
   }, [location, category]);
-  
 
-  
-//   const handlePlanYourRoute = (mode) => {
-//     openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
-//   };
+  return (
 
-return (
-
-        <View style={styles.mainContainer}>
-          <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-            <Text style={styles.title}>{location.name}</Text>
-            <View style={styles.row}>
-              <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
-                <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>{requirementsText}</Text> 
-              </View>
-            </View>
-            <Text style={styles.distance}>
-              ~ <Text style={{ fontFamily: 'Manrope-Bold', }}>{distance}</Text> miles away
+    <View style={styles.mainContainer}>
+      <View style={styles.resourceContainer}>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Text style={styles.title}>{location.name}</Text>
+        <View style={styles.row}>
+          <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
+            <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
+              {requirementsText}
             </Text>
-            {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat}, Lng: {location.coordinates.lng}</Text> */}
-            <View style={styles.row}>
-              <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
-                <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text> 
-              </View>
-              <Text style={styles.timing}> 
-                 {timeMessage}<Text style={{ fontFamily: 'Manrope-Bold', }}>{statusTime}</Text>
-              </Text>
-            </View>
+          </View>
+        </View>
+        <Text style={styles.distance}>
+          ~&nbsp;
+          <Text style={{ fontFamily: 'Manrope-Bold' }}>
+            {distance}
+          </Text>
+          &nbsp;miles away
+        </Text>
+        {/* For Debug */}
+        {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
+        Lng: {location.coordinates.lng}</Text> */}
+        <View style={styles.row}>
+          <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+            <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
+          </View>
+          <Text style={styles.timing}>
+            {timeMessage}
+            <Text style={{ fontFamily: 'Manrope-Bold' }}>
+              {statusTime}
+            </Text>
+          </Text>
+        </View>
 
+      </View>
 
+      <View style={styles.resourceContainer}>
+        <View style={styles.card}>
 
+          <View style={styles.row2}>
+            <Text style={styles.text}>Open Hours</Text>
+            <Text style={styles.text2}>{openHoursFormatted}</Text>
           </View>
 
-          <View style={styles.resourceContainer}>
-            <View style={styles.card}>
-                <View style={styles.row2}>
-                    <Text style={styles.text}>Open Hours</Text>
-                    <Text style={styles.text2}>{openHoursFormatted}</Text>
-
-                </View>
-                <View style={[styles.row2, {backgroundColor: '#eee'}]}>
-                    <Text style={styles.text}>Address</Text>
-                    <Text style={styles.text2}>{locationDetails.address}</Text>
-                </View>
-                <View style={styles.row2}>
-                    <Text style={styles.text}>Phone</Text>
-                    <Text style={styles.text2}>{locationDetails.phone}</Text>
-                </View>
-            </View>
+          <View style={[styles.row2, { backgroundColor: '#eee' }]}>
+            <Text style={styles.text}>Address</Text>
+            <Text style={styles.text2}>{locationDetails.address}</Text>
           </View>
 
-          <View style={styles.resourceContainer}>
-
-            <GoBackButton/>
-
-            {/* <ActionButton
-              title="Call Navigator"
-              onPress={onClose}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-            /> */}
-
+          <View style={styles.row2}>
+            <Text style={styles.text}>Phone</Text>
+            <Text style={styles.text2}>{locationDetails.phone}</Text>
           </View>
 
         </View>
+      </View>
+
+      <View style={styles.resourceContainer}>
+        <GoBackButton />
+      </View>
+
+    </View>
   );
 };
 
@@ -104,12 +116,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   resourceContainer: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
   },
   textContainer: {
-    fontSize: 15, 
+    fontSize: 15,
   },
   subtitle: {
     marginBottom: -2,
@@ -146,8 +158,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     width: '100%',
-    alignItems:'center',
-    paddingBottom: 5
+    alignItems: 'center',
+    paddingBottom: 5,
   },
   indicator: {
     backgroundColor: '#fce9c0',
@@ -177,7 +189,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
     shadowRadius: 24,
-    elevation: 30
+    elevation: 30,
   },
   text: {
     // marginBottom: -2,
@@ -200,7 +212,7 @@ const styles = StyleSheet.create({
     width: '100%',
     // alignItems:'center',
     justifyContent: 'flex-start',
-    paddingBottom: 5, 
+    paddingBottom: 5,
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
