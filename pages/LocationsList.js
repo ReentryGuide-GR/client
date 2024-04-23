@@ -19,7 +19,7 @@ import {
 const LocationList = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
-  const { category } = route.params;
+  const { category, title } = route.params;
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Loading screen state
 
@@ -131,9 +131,8 @@ const LocationList = () => {
       <View style={styles.pageTitleContainer}>
         <Text style={styles.pageTitle}>
           Select&nbsp;
-          {category}
-          &nbsp;
-          Location
+          {title}
+          &nbsp;Location
         </Text>
       </View>
 

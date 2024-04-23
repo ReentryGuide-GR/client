@@ -68,7 +68,7 @@ const SelectResourceLocation = () => {
           imageSource={require('../assets/locations.png')}
           iconSize={38}
           title="Pick Other Locations"
-          onPress={() => navigation.navigate('LocationsList', { category })}
+          onPress={() => navigation.navigate('LocationsList', { category, title })}
         />
       </View>
 
