@@ -54,10 +54,9 @@ const LocationList = () => {
             ...location,
             ...details,
             ...colorMapping,
-            distance: typeof distance === 'number' ? distance.toFixed(1) : distance,
+            distance: typeof distance === 'number' ? (distance * 0.621371).toFixed(1) : distance,
             ...statusDetails,
             ...statusStyles, // Spread the styles directly into the object
-
           };
         }).sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
 
