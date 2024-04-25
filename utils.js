@@ -75,19 +75,19 @@ export const getUserLocation = async () => {
 // Function to open Google Maps or Moovit with given coordinates and mode
 export const openGoogleMaps = (lat, lng, mode = 'w') => {
   const modeMappingApp = {
-    'driving': 'd',  // Google Maps app uses 'd' for driving
-    'walking': 'w',  // Google Maps app uses 'w' for walking
-    'bicycling': 'bicycling',
-    'transit': 'transit',
-    'bus': 'transit', // Specifying 'transit' as the mode for bus in native app
+    driving: 'd', // Google Maps app uses 'd' for driving
+    walking: 'w', // Google Maps app uses 'w' for walking
+    bicycling: 'bicycling',
+    transit: 'transit',
+    bus: 'transit', // Specifying 'transit' as the mode for bus in native app
   };
 
   const modeMappingWeb = {
-    'driving': 'driving',
-    'walking': 'walking',
-    'bicycling': 'bicycling',
-    'transit': 'transit',
-    'bus': 'transit', // Web also uses 'transit' for bus
+    driving: 'driving',
+    walking: 'walking',
+    bicycling: 'bicycling',
+    transit: 'transit',
+    bus: 'transit', // Web also uses 'transit' for bus
   };
 
   const modeParamApp = modeMappingApp[mode] || 'd'; // Default to driving if mode is not recognized for native apps
@@ -96,9 +96,7 @@ export const openGoogleMaps = (lat, lng, mode = 'w') => {
   if (mode === 'transit') {
     const moovitUrl = `moovit://directions?dest_lat=${lat}&dest_lon=${lng}&travelMode=publicTransport`;
     // Try to open Moovit for transit
-    Linking.openURL(moovitUrl).catch(err => {
-      // If Moovit fails to open, fallback to Google Maps
-      // Alert.alert("Error", "Moovit app not installed, trying Google Maps instead.");
+    Linking.openURL(moovitUrl).catch(() => {
       openGoogleMapsViaLinking(lat, lng, modeParamApp, modeParamWeb);
     });
   } else {
