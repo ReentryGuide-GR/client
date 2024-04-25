@@ -1,7 +1,8 @@
-/* eslint-disable */
-import React, {useEffect} from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation, useRoute} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import {
+  StyleSheet, View, Text, Linking, AppState,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 // import ActionButton from '../components/ActionButton';
@@ -10,20 +11,30 @@ import IconButton from '../components/IconButton';
 // import locationsData from './database/locations_basic.json';
 // import * as styles from '../../styles/detailsStyles';
 
-
 const Page = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
-  
   useEffect(() => {
     const checkPermissionAndNavigate = async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status === 'granted') {
-        navigation.navigate('MainMenu'); // Replace 'MainPage' with your main menu screen name if it's different
+        navigation.navigate('MainMenu');
       }
     };
 
-    checkPermissionAndNavigate();
-  }, [navigation]); // Dependency array includes navigation to avoid re-running this effect unnecessarily
+    const handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'active') {
+        checkPermissionAndNavigate();
+      }
+    };
+
+    // Subscribe to app state changes
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      // Unsubscribe to the app state changes when the component unmounts
+      subscription.remove();
+    };
+  }, [navigation]);
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
@@ -34,34 +45,31 @@ const Page = () => {
     return null; // Return null to render nothing while loading fonts
   }
 
-  
-return (
-
-        <View style={styles.mainContainer}>
-          {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
-          <View></View> 
-          <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>ReentryGuide GR</Text>
-            <Text style={styles.title}>Request permission</Text>
-            <IconButton
-              // imageSource={require('../assets/meal.png')}
-              title="Grant Permission"
-              buttonStyle={styles.primaryButton}
-              iconSize={0}
-              onPress={() => Linking.openSettings()}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.text}>1. Click "Grant Permission"</Text>
-              <Text style={styles.text}>2. Click "Permissions"</Text>
-              <Text style={styles.text}>3. Click "Location"</Text>
-              <Text style={styles.text}>4. Click "Allow all the time"</Text>
-            </View>
-          </View>
-
-          <View>
-          </View>
-
+  return (
+    <View style={styles.mainContainer}>
+      {/* Empty Component to make buttons in the middle of the screen but not on top,
+      easier for user to reach */}
+      <View />
+      <View style={styles.resourceContainer}>
+        <Text style={styles.subtitle}>ReentryGuide GR</Text>
+        <Text style={styles.title}>Request permission</Text>
+        <IconButton
+          // imageSource={require('../assets/meal.png')}
+          title="Grant Permission"
+          buttonStyle={styles.primaryButton}
+          iconSize={0}
+          onPress={() => Linking.openSettings()}
+        />
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>1. Click &quot;Grant Permission&quot;</Text>
+          <Text style={styles.text}>2. Click &quot;Permissions&quot;</Text>
+          <Text style={styles.text}>3. Click &quot;Location&quot;</Text>
+          <Text style={styles.text}>4. Click &quot;Allow all the time&quot;</Text>
         </View>
+      </View>
+
+      <View />
+    </View>
   );
 };
 
@@ -77,12 +85,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   resourceContainer: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
   },
   textContainer: {
-    fontSize: 15, 
+    fontSize: 15,
+    width: '95%',
+    marginTop: 38,
   },
   primaryButton: {
     backgroundColor: '#E2E9F3',
@@ -108,8 +118,4 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
   },
-  textContainer: {
-    width: '95%',
-    marginTop: 38,
-  }
 });

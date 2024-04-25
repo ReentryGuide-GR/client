@@ -1,9 +1,9 @@
-//SelectResoureLocation.js 
-import React , { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
-import { useNavigation, useRoute} from '@react-navigation/native';
-import * as Location from 'expo-location';
-import * as SplashScreen from 'expo-splash-screen';
+// SelectResourceLocation.js
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+// import * as Location from 'expo-location';
+// import * as SplashScreen from 'expo-splash-screen';
 // import ActionButton from '../components/ActionButton';
 import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
@@ -11,8 +11,7 @@ import IconButton from '../components/IconButton';
 import { findClosestLocation } from '../utils';
 // import * as styles from '../../styles/detailsStyles';
 
-const SelectResourceLocation = ({ isVisible, onClose }) => {
-
+const SelectResourceLocation = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category, title } = route.params; // Access the passed category
@@ -25,32 +24,37 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
     setIsLoading(false);
     if (result) {
       const { location, distance } = result;
-      navigation.navigate('ResourceLocation', { 
-        location, 
+      navigation.navigate('ResourceLocation', {
+        location,
         distance: parseFloat(distance * 0.621371).toFixed(1),
-        category, 
-        subtitle: `Closest ${title} Location: `
+        category,
+        subtitle: `Closest ${title} Location: `,
       });
     } else {
       console.error(`No closest location found for category: ${category}`);
     }
   };
 
-  
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
   }
 
   return (
     <View style={styles.mainContainer}>
-      {/* Empty Component to make buttons in the middle of the screen but not on top, easier for user to reach*/}
-      <View></View> 
+      {/* Empty Component to make buttons in the middle of the screen but not on top,
+      easier for user to reach */}
+      <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Select {"\n"}{title} Location</Text>
+        <Text style={styles.title}>
+          Select
+          {'\n'}
+          {title}
+          &nbsp;Location
+        </Text>
         <IconButton
           iconSize={32}
           imageSource={require('../assets/bullseye.png')}
@@ -64,12 +68,12 @@ const SelectResourceLocation = ({ isVisible, onClose }) => {
           imageSource={require('../assets/locations.png')}
           iconSize={38}
           title="Pick Other Locations"
-          onPress={() => navigation.navigate('LocationsList', {category})}
+          onPress={() => navigation.navigate('LocationsList', { category, title })}
         />
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton/>
+        <GoBackButton />
       </View>
 
     </View>
@@ -93,19 +97,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   resourceContainer: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
   },
   textContainer: {
-    fontSize: 15, 
+    fontSize: 15,
   },
 
   primaryButton: {
     backgroundColor: '#E2E9F3',
     padding: 25,
   },
-  
+
   secondaryButtonText: {
     color: '#000',
   },
@@ -130,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
 });

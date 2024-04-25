@@ -1,6 +1,7 @@
-/* eslint-disable */
-import React, {useEffect} from 'react';
-import { StyleSheet, View, Text, Modal, TouchableOpacity, Image, Linking} from 'react-native';
+import React, { useEffect } from 'react';
+import {
+  StyleSheet, View, Text, Linking,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
@@ -9,9 +10,7 @@ import IconButton from '../components/IconButton';
 // import locations from './locationsData';
 // import * as styles from '../../styles/detailsStyles';
 
-
-
-const MainMenu = ({}) => {
+const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -19,17 +18,14 @@ const MainMenu = ({}) => {
       navigation.navigate('RequestPermission');
       return;
     }
-  
     const userLocation = await Location.getCurrentPositionAsync({});
     console.log(userLocation);
   };
 
-  
   useEffect(() => {
     requestLocationPermission();
   }, []);
 
-  
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
@@ -39,54 +35,53 @@ const MainMenu = ({}) => {
     return null; // Return null to render nothing while loading fonts
   }
 
-return (
+  return (
 
-        <View style={styles.mainContainer}>
-          <View style={styles.resourceContainer}>
-            <IconButton
-              title="Call Navigator"
-              onPress={() => {
-                // Use the Linking API to open the phone app, empty number for now
-                Linking.openURL(`tel:${''}`)
-                  .catch(err => {
-                    console.error('Failed to open the phone app', err);
-                  });
-              }}
-              buttonStyle={styles.primaryButton}
-              textStyle={styles.primaryButtonText}
-              // arrowStyle="white"
-              
-            />
-          </View>
-          <View style={styles.resourceContainer}>
-            <Text style={styles.subtitle}>ReentryGuide GR</Text>
-            <Text style={styles.title}>Main Menu</Text>
-            <IconButton
-              imageSource={require('../assets/food.png')}
-              title=" Find Food"
-              onPress={() => navigation.navigate('MealOrGroceries')}
-            />
-            <IconButton
-              imageSource={require('../assets/clothing.png')}
-              title=" Find Clothing"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
-            />
-            <IconButton
-              imageSource={require('../assets/drop.png')}
-              title=" Find Hygiene"
-              onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene'  })}
-            />
-            <IconButton
-              imageSource={require('../assets/med.png')}
-              title=" Find Healthcare"
-              onPress={() => navigation.navigate('FindHealthcare')}
-            />
+    <View style={styles.mainContainer}>
+      <View style={styles.resourceContainer}>
+        <IconButton
+          title="Call Navigator"
+          onPress={() => {
+            // Use the Linking API to open the phone app, empty number for now
+            Linking.openURL(`tel:${''}`)
+              .catch((err) => {
+                console.error('Failed to open the phone app', err);
+              });
+          }}
+          buttonStyle={styles.primaryButton}
+          textStyle={styles.primaryButtonText}
+          // arrowStyle="white"
+        />
+      </View>
+      <View style={styles.resourceContainer}>
+        <Text style={styles.subtitle}>ReentryGuide GR</Text>
+        <Text style={styles.title}>Main Menu</Text>
+        <IconButton
+          imageSource={require('../assets/food.png')}
+          title=" Find Food"
+          onPress={() => navigation.navigate('MealOrGroceries')}
+        />
+        <IconButton
+          imageSource={require('../assets/clothing.png')}
+          title=" Find Clothing"
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
+        />
+        <IconButton
+          imageSource={require('../assets/drop.png')}
+          title=" Find Hygiene"
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene' })}
+        />
+        <IconButton
+          imageSource={require('../assets/med.png')}
+          title=" Find Healthcare"
+          onPress={() => navigation.navigate('FindHealthcare')}
+        />
 
-          </View>
-          {/* Placeholder for space at the bottom */}
-          <View></View> 
+      </View>
+      {/* Placeholder for space at the bottom */}
+      <View />
 
-        </View>
+    </View>
   );
 };
 
@@ -103,12 +98,13 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   resourceContainer: {
-    justifyContent: 'center', 
+    justifyContent: 'center',
     alignItems: 'center',
     width: '80%',
   },
   textContainer: {
-    fontSize: 15, 
+    fontSize: 15,
+    alignItems: 'left',
   },
   subtitle: {
     marginBottom: -2,
@@ -123,19 +119,12 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: '#000',
   },
-
   secondaryButton: {
     backgroundColor: '#E2E9F3',
   },
-  
   secondaryButtonText: {
     color: '#000',
   },
-  
-  textContainer: {
-    alignItems: 'left'
-  },
-
   title: {
     marginBottom: 18,
     color: '#2F2E41',
