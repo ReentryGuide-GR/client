@@ -148,21 +148,21 @@ export const requirementsColorMapping = (colorName) => {
 
 // Return Formatted week schedule based on database
 export const formatOpenHours = (openHoursArray) => {
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-  // Ensure we're working with an array for both old and new structures
-  if (!Array.isArray(openHoursArray)) {
-    // If openHoursArray is not an array, assume it's the old single object structure
-    openHoursArray = [openHoursArray]; // Wrap it in an array for compatibility
-  }
+  // // Ensure we're working with an array for both old and new structures
+  // if (!Array.isArray(openHoursArray)) {
+  //   // If openHoursArray is not an array, assume it's the old single object structure
+  //   openHoursArray = [openHoursArray]; // Wrap it in an array for compatibility
+  // }
 
   // Function to format a single openHours object
   const formatSingleOpenHours = (openHours) => {
     if (openHours.days.length === 7 && openHours.days.every((val, i) => val === i)) {
       return `Everyday \n${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
     }
-  
-    let daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
+
+    const daysFormatted = openHours.days.reduce((acc, day, index, arr) => {
       if (index > 0 && day - arr[index - 1] === 1) {
         acc[acc.length - 1].push(day);
       } else {
@@ -172,16 +172,15 @@ export const formatOpenHours = (openHoursArray) => {
     }, []).map(group => {
       if (group.length > 1) {
         return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
-      } else {
-        return daysOfWeek[group[0]];
       }
-    }).join(", ");
-    
+      return daysOfWeek[group[0]];
+    }).join(', ');
+
     return `${daysFormatted} \n ${formatTime(openHours.open)} - ${formatTime(openHours.close)}`;
   };
 
   // Iterate over each openHours object, format it, and combine the results
-  return openHoursArray.map(formatSingleOpenHours).join("\n\n");
+  return openHoursArray.map(formatSingleOpenHours).join('\n\n');
 };
 
 // Convert 24-hour format to 12-hour format
@@ -206,7 +205,6 @@ export const updateLocationStatus = (openHoursArray) => {
   }
 
   let status = '', time = '';
-
 
   if (currentOpenHours) {
     const openTime = moment(currentOpenHours.open, "HH:mm");
@@ -269,7 +267,6 @@ export const updateLocationStatus = (openHoursArray) => {
 
 export const getStatusStyles = (status) => {
   let backgroundColor, textColor, text;
-  
   switch (status) {
     case 'closingSoon':
       backgroundColor = '#ffe8ad';
@@ -301,6 +298,6 @@ export const getStatusStyles = (status) => {
   return {
     statusBackgroundColor: { backgroundColor },
     statusTextStyleColor: textColor,
-    statusText: text
+    statusText: text,
   };
 };
