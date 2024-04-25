@@ -169,7 +169,7 @@ export const formatOpenHours = (openHoursArray) => {
         acc.push([day]);
       }
       return acc;
-    }, []).map(group => {
+    }, []).map((group) => {
       if (group.length > 1) {
         return `${daysOfWeek[group[0]]} - ${daysOfWeek[group[group.length - 1]]}`;
       }
@@ -187,28 +187,24 @@ export const formatOpenHours = (openHoursArray) => {
 export const formatTime = (time) => {
   const [hours, minutes] = time.split(':').map(Number);
   const isPM = hours >= 12;
-  const formattedHours = ((hours + 11) % 12 + 1);
+  const formattedHours = (((hours + 11) % 12) + 1);
   return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${isPM ? 'pm' : 'am'}`;
 };
 
 export const updateLocationStatus = (openHoursArray) => {
   const now = moment();
   const dayOfWeek = now.day(); // Sunday as 0 through Saturday as 6
-  let currentOpenHours = null;
+  // let currentOpenHours = null;
 
   // Find open hours for today
-  for (const openHours of openHoursArray) {
-    if (openHours.days.includes(dayOfWeek)) {
-      currentOpenHours = openHours;
-      break;
-    }
-  }
+  const currentOpenHours = openHoursArray.find((openHours) => openHours.days.includes(dayOfWeek));
 
-  let status = '', time = '';
+  let status = '';
+  let time = '';
 
   if (currentOpenHours) {
-    const openTime = moment(currentOpenHours.open, "HH:mm");
-    const closeTime = moment(currentOpenHours.close, "HH:mm");
+    const openTime = moment(currentOpenHours.open, 'HH:mm');
+    const closeTime = moment(currentOpenHours.close, 'HH:mm');
     const closingSoonTime = moment(closeTime).subtract(1, 'hours');
 
     // Determine status based on current time if open today
@@ -220,25 +216,23 @@ export const updateLocationStatus = (openHoursArray) => {
       time = formatTime(currentOpenHours.close);
     } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
       status = 'openingSoon';
-      time =  "Today " + formatTime(currentOpenHours.open);
-    } else if (now.isBefore(openTime)) {
+      time = `Today ${formatTime(currentOpenHours.open)}`;
       status = 'closed';
-      time = "Today " + formatTime(currentOpenHours.open); // Fix to explicitly state "Today"
+      time = `Today ${formatTime(currentOpenHours.open)}`; // Fix to explicitly state "Today"
     } else {
       status = 'closed';
       // For when it's past close time today, handled in the next section
     }
   }
 
-
   // If closed or not open today, find the next open day
-  if (!currentOpenHours || (status === 'closed' && !time.startsWith("Today"))) {
-    const allDays = openHoursArray.reduce((acc, {days}) => [...acc, ...days], []);
+  if (!currentOpenHours || (status === 'closed' && !time.startsWith('Today'))) {
+    const allDays = openHoursArray.reduce((acc, { days }) => [...acc, ...days], []);
     if (allDays.length === 1 && allDays[0] === dayOfWeek) {
       // If today is the only day it opens and it's already past closing time
-      time = moment().day(dayOfWeek).format('dddd') + ' ' + formatTime(currentOpenHours.open);
+      time = `${moment().day(dayOfWeek).format('dddd')} ${formatTime(currentOpenHours.open)}`;
     } else {
-      let nextDayIndex = allDays.findIndex(day => day > dayOfWeek);
+      let nextDayIndex = allDays.findIndex((day) => day > dayOfWeek);
       if (nextDayIndex === -1) { // No more days this week, wrap to next
         nextDayIndex = 0; // Start from the first day in the next week
       }
@@ -249,24 +243,26 @@ export const updateLocationStatus = (openHoursArray) => {
         sameDay: '[Today]',
         nextDay: '[Tomorrow]',
         nextWeek: 'dddd',
-        sameElse: 'dddd'
+        sameElse: 'dddd',
       });
-      const nextOpenHours = openHoursArray.find(oh => oh.days.includes(nextOpenDate.day()));
+      const nextOpenHours = openHoursArray.find((oh) => oh.days.includes(nextOpenDate.day()));
 
       time = `${nextOpenDayFormatted} ${formatTime(nextOpenHours.open)}`;
     }
     status = 'closed';
-    return { status, message: `Opens `, time };
+    return { status, message: 'Opens ', time };
   }
 
   // Constructing the message based on status
-  let message = status === 'open' || status === 'closingSoon' ? `Closes ` : `Opens `;
+  const message = status === 'open' || status === 'closingSoon' ? 'Closes ' : 'Opens ';
 
   return { status, message, time };
 };
 
 export const getStatusStyles = (status) => {
-  let backgroundColor, textColor, text;
+  let backgroundColor;
+  let textColor;
+  let text;
   switch (status) {
     case 'closingSoon':
       backgroundColor = '#ffe8ad';
