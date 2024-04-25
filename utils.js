@@ -117,12 +117,12 @@ const openGoogleMapsViaLinking = (lat, lng, modeParamApp, modeParamWeb) => {
       Linking.openURL(baseUrl);
     } else {
       // If the app isn't installed, fall back to opening in a web browser
-      Linking.openURL(webUrl).catch(err => {
-        Alert.alert("Error", "Unable to open Google Maps in a browser.");
+      Linking.openURL(webUrl).catch(() => {
+        Alert.alert('Error', 'Unable to open Google Maps in a browser.');
       });
     }
-  }).catch(err => {
-    Alert.alert("Error", "An error occurred while trying to open the map.");
+  }).catch(() => {
+    Alert.alert('Error', 'An error occurred while trying to open the map.');
   });
 };
 
