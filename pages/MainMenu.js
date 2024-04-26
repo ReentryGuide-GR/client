@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking,
+  StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -39,7 +39,7 @@ const MainMenu = () => {
 
     <View style={styles.mainContainer}>
       <View style={styles.resourceContainer}>
-        <IconButton
+        {/* <IconButton
           title="Call Navigator"
           onPress={() => {
             // Use the Linking API to open the phone app, empty number for now
@@ -51,7 +51,7 @@ const MainMenu = () => {
           buttonStyle={styles.primaryButton}
           textStyle={styles.primaryButtonText}
           // arrowStyle="white"
-        />
+        /> */}
       </View>
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
