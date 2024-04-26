@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking,
+  StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
