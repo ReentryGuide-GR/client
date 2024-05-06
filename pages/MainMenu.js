@@ -67,7 +67,7 @@ const MainMenu = () => {
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
         />
         <IconButton
-          imageSource={require('../assets/drop.png')}
+          imageSource={require('../assets/sanitizer.png')}
           title=" Find Hygiene"
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene' })}
         />
