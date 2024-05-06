@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   secondaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
   secondaryButtonText: {
     color: '#000',

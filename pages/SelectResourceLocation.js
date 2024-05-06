@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
 
   primaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     padding: 25,
   },
 
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
 
   tertiaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     padding: 22,
   },
 
