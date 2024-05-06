@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import ActionButton from '../components/ActionButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { openGoogleMaps } from '../utils';
@@ -94,7 +94,7 @@ const Transportation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>

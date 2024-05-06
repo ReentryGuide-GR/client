@@ -5,7 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import {
@@ -153,11 +153,11 @@ const LocationList = () => {
           paddingTop: 80,
         }}
       />
-      <View style={styles.resourceContainer}>
+      {/* <View style={styles.resourceContainer}>
         <View style={styles.buttonContainer}>
           <GoBackButton />
         </View>
-      </View>
+      </View> */}
 
     </View>
   );

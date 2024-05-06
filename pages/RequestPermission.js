@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 // import ActionButton from '../components/ActionButton';
-// import GoBackButton from '../components/GoBackButton';
+// // import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locationsData from './database/locations_basic.json';
 // import * as styles from '../../styles/detailsStyles';

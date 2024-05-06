@@ -5,7 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
@@ -164,7 +164,7 @@ const ResourceLocation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>

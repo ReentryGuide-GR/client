@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 // import IconButton from '../components/IconButton';
 import { getUserLocation, getDistance, formatTime } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
@@ -124,7 +124,7 @@ const Page = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
     </View>
   );

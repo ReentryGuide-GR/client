@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import * as SplashScreen from 'expo-splash-screen';
 // import ActionButton from '../components/ActionButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
@@ -73,7 +73,7 @@ const SelectResourceLocation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
