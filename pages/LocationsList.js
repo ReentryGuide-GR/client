@@ -132,7 +132,8 @@ const LocationList = () => {
     <View style={styles.mainContainer}>
       <View style={styles.pageTitleContainer}>
         <Text style={styles.pageTitle}>
-          Select&nbsp;
+          Select
+          {'\n'}
           {title}
           &nbsp;Location
         </Text>
