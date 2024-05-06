@@ -65,6 +65,8 @@ const MoreInfo = () => {
           <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
             <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
           </View>
+        </View>
+        <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
             <Text style={{ fontFamily: 'Manrope-Bold' }}>
