@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     // color: '#2F2E41',
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: '900',
     // width: '95%',
     marginHorizontal: '10%',
@@ -231,7 +231,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     width: '88%',
-    paddingVertical: 20,
+    paddingBottom: 17,
+    paddingTop: 8,
     paddingHorizontal: 20,
     borderRadius: 30,
     shadowColor: '#A59D95',
@@ -239,13 +240,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 24,
     elevation: 30,
-    marginBottom: 35,
+    marginBottom: 25,
     marginTop: 25,
   },
 
   infoContainer: {
     width: '100%',
-    paddingBottom: 20,
+    paddingBottom: 10,
     paddingTop: 10,
   },
 
