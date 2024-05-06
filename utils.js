@@ -250,11 +250,11 @@ export const updateLocationStatus = (openHoursArray) => {
       time = `${nextOpenDayFormatted} ${formatTime(nextOpenHours.open)}`;
     }
     status = 'closed';
-    return { status, message: 'Opens ', time };
+    return { status, message: 'Will open', time };
   }
 
   // Constructing the message based on status
-  const message = status === 'open' || status === 'closingSoon' ? 'Closes ' : 'Opens ';
+  const message = status === 'open' || status === 'closingSoon' ? 'Will close ' : 'Will open ';
 
   return { status, message, time };
 };
@@ -277,12 +277,12 @@ export const getStatusStyles = (status) => {
     case 'open':
       backgroundColor = '#c1fcbb';
       textColor = '#075400';
-      text = 'Open';
+      text = 'Now Open';
       break;
     case 'closed':
       backgroundColor = '#ffd1d1';
       textColor = 'darkred';
-      text = 'Closed';
+      text = 'Now Close';
       break;
     default:
       backgroundColor = 'transparent';
