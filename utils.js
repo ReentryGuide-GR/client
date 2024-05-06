@@ -277,12 +277,12 @@ export const getStatusStyles = (status) => {
     case 'open':
       backgroundColor = '#c1fcbb';
       textColor = '#075400';
-      text = 'Now Open';
+      text = 'Now Opens';
       break;
     case 'closed':
       backgroundColor = '#ffd1d1';
       textColor = 'darkred';
-      text = 'Now Close';
+      text = 'Now Closes';
       break;
     default:
       backgroundColor = 'transparent';
