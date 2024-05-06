@@ -21,6 +21,12 @@ const Page = () => {
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Find Healthcare</Text>
         <IconButton
+          imageSource={require('../assets/hand_heart.png')}
+          title=" Find Mental Support"
+          buttonStyle={styles.primaryButton}
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'mental', title: 'Mental Support' })}
+        />
+        <IconButton
           imageSource={require('../assets/pill.png')}
           title=" Find Medical Help"
           buttonStyle={styles.primaryButton}
@@ -38,12 +44,6 @@ const Page = () => {
           title=" Find Eye Doctor"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'vision', title: 'Eye Doctor' })}
-        />
-        <IconButton
-          imageSource={require('../assets/hand_heart.png')}
-          title=" Find Mental Support"
-          buttonStyle={styles.primaryButton}
-          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'mental', title: 'Mental Support' })}
         />
 
       </View>
