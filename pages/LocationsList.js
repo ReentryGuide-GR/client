@@ -104,8 +104,11 @@ const LocationList = () => {
                 {item.statusText}
               </Text>
             </View>
+          </View>
+          <View style={styles.row}>
             <Text style={styles.timing}>
               {item.message}
+              &nbsp;
               <Text style={{ fontFamily: 'Manrope-Bold' }}>{item.time}</Text>
             </Text>
           </View>

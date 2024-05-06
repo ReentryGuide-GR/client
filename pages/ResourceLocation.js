@@ -91,13 +91,16 @@ const ResourceLocation = () => {
           <View style={[styles.indicator, statusBackgroundColor]}>
             <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
           </View>
+        </View>
+        <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
-            <Text style={{ fontFamily: 'Manrope-Bold' }}>
-              {statusTime}
-            </Text>
+          </Text>
+          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+            {statusTime}
           </Text>
         </View>
+
       </View>
 
       <View style={styles.resourceContainer}>
