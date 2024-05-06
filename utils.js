@@ -254,7 +254,7 @@ export const updateLocationStatus = (openHoursArray) => {
   }
 
   // Constructing the message based on status
-  const message = status === 'open' || status === 'closingSoon' ? 'Will close ' : 'Will open ';
+  const message = status === 'open' || status === 'closingSoon' ? 'Will close' : 'Will open';
 
   return { status, message, time };
 };
