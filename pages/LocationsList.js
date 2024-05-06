@@ -137,6 +137,9 @@ const LocationList = () => {
           {title}
           &nbsp;Location
         </Text>
+        <Text style={styles.pageSubtitle}>
+          Scroll down to see more options
+        </Text>
       </View>
 
       <FlatList
@@ -198,6 +201,11 @@ const styles = StyleSheet.create({
     // width: '95%',
     marginHorizontal: '10%',
     // position: 'absolute',
+  },
+  pageSubtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Medium',
+    marginHorizontal: '10%',
   },
   listContainer: {
     alignItems: 'center',
