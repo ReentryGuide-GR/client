@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import ActionButton from '../components/ActionButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { openGoogleMaps } from '../utils';
@@ -57,11 +57,13 @@ const Transportation = () => {
           <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
             <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
           </View>
+        </View>
+        <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
-            <Text style={{ fontFamily: 'Manrope-Bold' }}>
-              {statusTime}
-            </Text>
+          </Text>
+          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+            {statusTime}
           </Text>
         </View>
 
@@ -92,7 +94,7 @@ const Transportation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
@@ -120,6 +122,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: -2,
+    marginLeft: 4,
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
@@ -127,6 +130,7 @@ const styles = StyleSheet.create({
   },
   subtitle2: {
     marginBottom: 10,
+    marginLeft: 7,
     fontSize: 17,
     color: '#2F2E41',
     width: '100%',
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
 
   title: {

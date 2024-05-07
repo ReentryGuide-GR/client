@@ -192,6 +192,11 @@ export const formatTime = (time) => {
 };
 
 export const updateLocationStatus = (openHoursArray) => {
+  // If time info not found, immediately return a status indicating
+  // that the location operates by schedule only
+  if (!openHoursArray || openHoursArray.length === 0) {
+    return { status: 'scheduleOnly', message: 'Hours by Appointment', time: '' };
+  }
   const now = moment();
   const dayOfWeek = now.day(); // Sunday as 0 through Saturday as 6
   // let currentOpenHours = null;
@@ -250,11 +255,11 @@ export const updateLocationStatus = (openHoursArray) => {
       time = `${nextOpenDayFormatted} ${formatTime(nextOpenHours.open)}`;
     }
     status = 'closed';
-    return { status, message: 'Opens ', time };
+    return { status, message: 'Will open', time };
   }
 
   // Constructing the message based on status
-  const message = status === 'open' || status === 'closingSoon' ? 'Closes ' : 'Opens ';
+  const message = status === 'open' || status === 'closingSoon' ? 'Will close' : 'Will open';
 
   return { status, message, time };
 };
@@ -269,6 +274,11 @@ export const getStatusStyles = (status) => {
       textColor = '#543c00';
       text = 'Closes Soon';
       break;
+    case 'scheduleOnly':
+      backgroundColor = '#ffe8ad';
+      textColor = '#543c00';
+      text = 'Schedule Only';
+      break;
     case 'openingSoon':
       backgroundColor = '#c1fcbb';
       textColor = '#075400';
@@ -277,12 +287,12 @@ export const getStatusStyles = (status) => {
     case 'open':
       backgroundColor = '#c1fcbb';
       textColor = '#075400';
-      text = 'Open';
+      text = 'Now Opens';
       break;
     case 'closed':
       backgroundColor = '#ffd1d1';
       textColor = 'darkred';
-      text = 'Closed';
+      text = 'Now Closes';
       break;
     default:
       backgroundColor = 'transparent';

@@ -2,7 +2,7 @@
   "expo": {
     "name": "ReentryGuide GR",
     "slug": "reentryguide-gr",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "orientation": "portrait",
     "icon": "assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,6 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "assets/adaptive-icon.png",
+        "backgroundImage": "assets/adaptive-icon-bg.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.reentryreimagined.reentryguidegr",

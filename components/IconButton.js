@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 6,
   },
   icon: {
     marginRight: 0,

@@ -5,7 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import {
@@ -104,8 +104,11 @@ const LocationList = () => {
                 {item.statusText}
               </Text>
             </View>
+          </View>
+          <View style={styles.row}>
             <Text style={styles.timing}>
               {item.message}
+              &nbsp;
               <Text style={{ fontFamily: 'Manrope-Bold' }}>{item.time}</Text>
             </Text>
           </View>
@@ -129,9 +132,13 @@ const LocationList = () => {
     <View style={styles.mainContainer}>
       <View style={styles.pageTitleContainer}>
         <Text style={styles.pageTitle}>
-          Select&nbsp;
+          Select
+          {'\n'}
           {title}
           &nbsp;Location
+        </Text>
+        <Text style={styles.pageSubtitle}>
+          Scroll down to see more options
         </Text>
       </View>
 
@@ -146,11 +153,11 @@ const LocationList = () => {
           paddingTop: 80,
         }}
       />
-      <View style={styles.resourceContainer}>
+      {/* <View style={styles.resourceContainer}>
         <View style={styles.buttonContainer}>
           <GoBackButton />
         </View>
-      </View>
+      </View> */}
 
     </View>
   );
@@ -189,11 +196,16 @@ const styles = StyleSheet.create({
   },
   pageTitle: {
     // color: '#2F2E41',
-    fontSize: 35,
+    fontSize: 30,
     fontWeight: '900',
     // width: '95%',
     marginHorizontal: '10%',
     // position: 'absolute',
+  },
+  pageSubtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Medium',
+    marginHorizontal: '10%',
   },
   listContainer: {
     alignItems: 'center',
@@ -219,7 +231,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     width: '88%',
-    paddingVertical: 20,
+    paddingBottom: 17,
+    paddingTop: 8,
     paddingHorizontal: 20,
     borderRadius: 30,
     shadowColor: '#A59D95',
@@ -227,18 +240,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 24,
     elevation: 30,
-    marginBottom: 35,
+    marginBottom: 25,
     marginTop: 25,
   },
 
   infoContainer: {
     width: '100%',
-    paddingBottom: 20,
+    paddingBottom: 10,
     paddingTop: 10,
   },
 
   secondaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
   indicator: {
     padding: 5,

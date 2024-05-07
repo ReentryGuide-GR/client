@@ -5,7 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
 
@@ -91,13 +91,16 @@ const ResourceLocation = () => {
           <View style={[styles.indicator, statusBackgroundColor]}>
             <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
           </View>
+        </View>
+        <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
-            <Text style={{ fontFamily: 'Manrope-Bold' }}>
-              {statusTime}
-            </Text>
+          </Text>
+          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+            {statusTime}
           </Text>
         </View>
+
       </View>
 
       <View style={styles.resourceContainer}>
@@ -161,7 +164,7 @@ const ResourceLocation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
@@ -189,17 +192,18 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     padding: 25,
   },
 
   tertiaryButton: {
-    // backgroundColor: '#E2E9F3',
+    // backgroundColor: '#eae0d4',
     padding: 25,
   },
 
   subtitle: {
     marginBottom: -2,
+    marginLeft: 4,
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',

@@ -5,7 +5,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import ActionButton from '../components/ActionButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locationsData from './database/locations_basic.json';
 // import * as styles from '../../styles/detailsStyles';
@@ -20,6 +20,12 @@ const Page = () => {
       <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Find Healthcare</Text>
+        <IconButton
+          imageSource={require('../assets/hand_heart.png')}
+          title=" Find Mental Support"
+          buttonStyle={styles.primaryButton}
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'mental', title: 'Mental Support' })}
+        />
         <IconButton
           imageSource={require('../assets/pill.png')}
           title=" Find Medical Help"
@@ -39,17 +45,11 @@ const Page = () => {
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'vision', title: 'Eye Doctor' })}
         />
-        <IconButton
-          imageSource={require('../assets/hand_heart.png')}
-          title=" Find Mental Support"
-          buttonStyle={styles.primaryButton}
-          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'mental', title: 'Mental Support' })}
-        />
 
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   primaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
 
   title: {

@@ -3,7 +3,7 @@ import {
   StyleSheet, View, Text,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import { formatOpenHours } from '../utils';
@@ -34,7 +34,11 @@ const MoreInfo = () => {
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
     if (details) {
-      setOpenHoursFormatted(formatOpenHours(details.openHours));
+      if (!details.openHours || details.openHours.length === 0) {
+        setOpenHoursFormatted('Hours by appointment');
+      } else {
+        setOpenHoursFormatted(formatOpenHours(details.openHours));
+      }
     }
   }, [location, category]);
 
@@ -65,11 +69,13 @@ const MoreInfo = () => {
           <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
             <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
           </View>
+        </View>
+        <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
-            <Text style={{ fontFamily: 'Manrope-Bold' }}>
-              {statusTime}
-            </Text>
+          </Text>
+          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+            {statusTime}
           </Text>
         </View>
 
@@ -97,7 +103,7 @@ const MoreInfo = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
@@ -125,6 +131,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: -2,
+    marginLeft: 4,
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
@@ -145,7 +152,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
 
   title: {

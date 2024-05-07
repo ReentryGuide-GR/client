@@ -67,7 +67,7 @@ const MainMenu = () => {
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'clothing', title: 'Clothing' })}
         />
         <IconButton
-          imageSource={require('../assets/drop.png')}
+          imageSource={require('../assets/sanitizer.png')}
           title=" Find Hygiene"
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'hygiene', title: 'Hygiene' })}
         />
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   secondaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
   },
   secondaryButtonText: {
     color: '#000',

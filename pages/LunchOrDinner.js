@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 // import IconButton from '../components/IconButton';
 import { getUserLocation, getDistance, formatTime } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
@@ -124,7 +124,7 @@ const Page = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
     </View>
   );
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     padding: 21,
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     shadowColor: '#A59D95',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,

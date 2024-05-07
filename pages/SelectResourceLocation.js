@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import * as SplashScreen from 'expo-splash-screen';
 // import ActionButton from '../components/ActionButton';
-import GoBackButton from '../components/GoBackButton';
+// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
@@ -53,7 +53,10 @@ const SelectResourceLocation = () => {
           Select
           {'\n'}
           {title}
-          &nbsp;Location
+          {' '}
+          <Text>
+            Location
+          </Text>
         </Text>
         <IconButton
           iconSize={32}
@@ -73,7 +76,7 @@ const SelectResourceLocation = () => {
       </View>
 
       <View style={styles.resourceContainer}>
-        <GoBackButton />
+        {/* <GoBackButton /> */}
       </View>
 
     </View>
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
   },
 
   primaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     padding: 25,
   },
 
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
   },
 
   tertiaryButton: {
-    backgroundColor: '#E2E9F3',
+    backgroundColor: '#eae0d4',
     padding: 22,
   },
 
@@ -124,6 +127,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    flexWrap: 'wrap', // Ensures text within can wrap
+    flexDirection: 'row', // Aligns text in a row; default for Text, shown for clarity
     marginBottom: 18,
     color: '#2F2E41',
     fontSize: 35,
