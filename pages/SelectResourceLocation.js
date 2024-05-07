@@ -1,6 +1,8 @@
 // SelectResourceLocation.js
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet, View, Text, Alert,
+} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';
 // import * as SplashScreen from 'expo-splash-screen';
@@ -17,21 +19,31 @@ const SelectResourceLocation = () => {
   const { category, title } = route.params; // Access the passed category
   // const [selectedLocation, setSelectedLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
 
   const handleSelectClosestLocation = async () => {
     setIsLoading(true);
-    const result = await findClosestLocation(category);
-    setIsLoading(false);
-    if (result) {
-      const { location, distance } = result;
-      navigation.navigate('ResourceLocation', {
-        location,
-        distance: parseFloat(distance * 0.621371).toFixed(1),
-        category,
-        subtitle: `Closest ${title} Location: `,
-      });
-    } else {
-      console.error(`No closest location found for category: ${category}`);
+    setIsOffline(false); // Reset the offline status each time the user tries
+    try {
+      const result = await findClosestLocation(category);
+      if (result) {
+        const { location, distance } = result;
+        navigation.navigate('ResourceLocation', {
+          location,
+          distance: parseFloat(distance * 0.621371).toFixed(1),
+          category,
+          subtitle: `Closest ${title} Location: `,
+        });
+      } else {
+        // console.error(`No closest location found for category: ${category}`);
+        // Alert.alert('Error', 'No closest location found. Please try again later.');
+        setIsOffline(true);
+      }
+    } catch (error) {
+      console.error('Failed to find location:', error);
+      setIsOffline(true); // Set the offline status if an error occurs
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -39,6 +51,26 @@ const SelectResourceLocation = () => {
     return (
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (isOffline) {
+    return (
+      <View style={styles.loadingContainer}>
+        <View style={styles.resourceContainer}>
+          <Text style={styles.warning}>
+            Failed to get your location,
+            please make sure you are connected to the internet and try again.
+          </Text>
+          <IconButton
+            iconSize={0} // Assuming you want some size, not 0
+            title="Try Again"
+            buttonStyle={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+            onPress={handleSelectClosestLocation}
+          />
+        </View>
       </View>
     );
   }
@@ -133,6 +165,15 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
+    width: '95%',
+  },
+  warning: {
+    flexWrap: 'wrap', // Ensures text within can wrap
+    flexDirection: 'row', // Aligns text in a row; default for Text, shown for clarity
+    marginBottom: 30,
+    color: '#2F2E41',
+    fontSize: 20,
+    fontWeight: '600',
     width: '95%',
   },
   loadingText: {
