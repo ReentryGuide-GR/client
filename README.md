@@ -9,7 +9,6 @@
 - **Resource Locator:** Dynamically finds the closest essential services like employment centers, housing, counseling, and legal aid, etc.
 - **Integration with Google Maps:** Integrates with Google Maps for turn-by-turn navigation, guiding users to their selected resources by foot.
 - **User-Friendly Interface:** Designed for simplicity and ease of use.
-- **Call Navigator:** Provides immediate access to a Navigator for personalized assistance.
 
 ## Getting Started
 
