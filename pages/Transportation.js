@@ -61,9 +61,9 @@ const Transportation = () => {
         <View style={styles.row}>
           <Text style={styles.timing}>
             {timeMessage}
-            <Text style={{ fontFamily: 'Manrope-Bold' }}>
-              {statusTime}
-            </Text>
+          </Text>
+          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+            {statusTime}
           </Text>
         </View>
 
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginBottom: -2,
+    marginLeft: 4,
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
   },
   subtitle2: {
     marginBottom: 10,
+    marginLeft: 7,
     fontSize: 17,
     color: '#2F2E41',
     width: '100%',

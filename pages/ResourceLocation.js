@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
 
   subtitle: {
     marginBottom: -2,
+    marginLeft: 4,
     color: '#2F2E41',
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
