@@ -192,6 +192,11 @@ export const formatTime = (time) => {
 };
 
 export const updateLocationStatus = (openHoursArray) => {
+  // If time info not found, immediately return a status indicating
+  // that the location operates by schedule only
+  if (!openHoursArray || openHoursArray.length === 0) {
+    return { status: 'scheduleOnly', message: 'Hours by Appointment', time: '' };
+  }
   const now = moment();
   const dayOfWeek = now.day(); // Sunday as 0 through Saturday as 6
   // let currentOpenHours = null;
@@ -268,6 +273,11 @@ export const getStatusStyles = (status) => {
       backgroundColor = '#ffe8ad';
       textColor = '#543c00';
       text = 'Closes Soon';
+      break;
+    case 'scheduleOnly':
+      backgroundColor = '#ffe8ad';
+      textColor = '#543c00';
+      text = 'Schedule Only';
       break;
     case 'openingSoon':
       backgroundColor = '#c1fcbb';

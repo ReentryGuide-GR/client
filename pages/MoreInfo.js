@@ -34,7 +34,11 @@ const MoreInfo = () => {
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
     if (details) {
-      setOpenHoursFormatted(formatOpenHours(details.openHours));
+      if (!details.openHours || details.openHours.length === 0) {
+        setOpenHoursFormatted('Hours by appointment');
+      } else {
+        setOpenHoursFormatted(formatOpenHours(details.openHours));
+      }
     }
   }, [location, category]);
 
