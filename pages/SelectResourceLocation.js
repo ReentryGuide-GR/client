@@ -53,7 +53,10 @@ const SelectResourceLocation = () => {
           Select
           {'\n'}
           {title}
-          &nbsp;Location
+          {' '}
+          <Text>
+            Location
+          </Text>
         </Text>
         <IconButton
           iconSize={32}
@@ -124,6 +127,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    flexWrap: 'wrap', // Ensures text within can wrap
+    flexDirection: 'row', // Aligns text in a row; default for Text, shown for clarity
     marginBottom: 18,
     color: '#2F2E41',
     fontSize: 35,
