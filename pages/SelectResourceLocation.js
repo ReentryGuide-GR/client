@@ -115,6 +115,11 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: 20,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   resourceContainer: {
     justifyContent: 'center',
     alignItems: 'center',
