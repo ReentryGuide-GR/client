@@ -2,24 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import IconButton from './IconButton'; // Adjust path as necessary
 
-const OfflineScreen = ({ retryFunction, message }) => {
-  return (
-    <View style={styles.loadingContainer}>
-      <View style={styles.resourceContainer}>
-        <Text style={styles.warning}>
-          {message || 'We failed to get your location. Please check your internet connection and try again.'}
-        </Text>
-        <IconButton
-          iconSize={0} // Set a reasonable default size or make this customizable via props
-          title="Try Again"
-          buttonStyle={styles.primaryButton}
-          textStyle={styles.primaryButtonText}
-          onPress={retryFunction}
-        />
-      </View>
+const OfflineScreen = ({ retryFunction, message }) => (
+  <View style={styles.loadingContainer}>
+    <View style={styles.resourceContainer}>
+      <Text style={styles.warning}>
+        {message || 'We failed to get your location. Please check your internet connection and try again.'}
+      </Text>
+      <IconButton
+        iconSize={0} // Set a reasonable default size or make this customizable via props
+        title="Try Again"
+        buttonStyle={styles.primaryButton}
+        textStyle={styles.primaryButtonText}
+        onPress={retryFunction}
+      />
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   loadingContainer: {
