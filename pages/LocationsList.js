@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import RetryScreen from '../components/RetryScreen';
 import IconButton from '../components/IconButton';
 // import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
@@ -88,21 +89,9 @@ const LocationList = () => {
 
   if (isOffline) {
     return (
-      <View style={styles.loadingContainer}>
-        <View style={styles.resourceContainer}>
-          <Text style={styles.warning}>
-            Failed to get your location,
-            please make sure you are connected to the internet and try again.
-          </Text>
-          <IconButton
-            iconSize={0} // Assuming you want some size, not 0
-            title="Try Again"
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-            onPress={fetchAndMergeData}
-          />
-        </View>
-      </View>
+      <RetryScreen
+        retryFunction={fetchAndMergeData}
+      />
     );
   }
 
