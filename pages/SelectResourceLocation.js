@@ -8,6 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // import * as SplashScreen from 'expo-splash-screen';
 // import ActionButton from '../components/ActionButton';
 // import GoBackButton from '../components/GoBackButton';
+import RetryScreen from '../components/RetryScreen';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
@@ -57,21 +58,9 @@ const SelectResourceLocation = () => {
 
   if (isOffline) {
     return (
-      <View style={styles.loadingContainer}>
-        <View style={styles.resourceContainer}>
-          <Text style={styles.warning}>
-            Failed to get your location,
-            please make sure you are connected to the internet and try again.
-          </Text>
-          <IconButton
-            iconSize={0} // Assuming you want some size, not 0
-            title="Try Again"
-            buttonStyle={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-            onPress={handleSelectClosestLocation}
-          />
-        </View>
-      </View>
+      <RetryScreen
+        retryFunction={handleSelectClosestLocation}
+      />
     );
   }
 
@@ -126,11 +115,6 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: 20,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   resourceContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -165,15 +149,6 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     fontSize: 35,
     fontWeight: '900',
-    width: '95%',
-  },
-  warning: {
-    flexWrap: 'wrap', // Ensures text within can wrap
-    flexDirection: 'row', // Aligns text in a row; default for Text, shown for clarity
-    marginBottom: 30,
-    color: '#2F2E41',
-    fontSize: 20,
-    fontWeight: '600',
     width: '95%',
   },
   loadingText: {
