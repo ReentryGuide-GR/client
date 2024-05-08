@@ -7,7 +7,7 @@ const OfflineScreen = ({ retryFunction, message }) => {
     <View style={styles.loadingContainer}>
       <View style={styles.resourceContainer}>
         <Text style={styles.warning}>
-          {message || 'Failed to connect. Please check your internet connection and try again.'}
+          {message || 'We failed to get your location. Please check your internet connection and try again.'}
         </Text>
         <IconButton
           iconSize={0} // Set a reasonable default size or make this customizable via props
