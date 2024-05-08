@@ -1,7 +1,7 @@
 // SelectResourceLocation.js
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Alert,
+  StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 // import * as Location from 'expo-location';

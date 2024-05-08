@@ -22,6 +22,7 @@ const LocationList = () => {
   const { category, title } = route.params;
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Loading screen state
+  const [isOffline, setIsOffline] = useState(false);
 
   const [fontsLoaded] = useFonts({
     'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
@@ -29,12 +30,12 @@ const LocationList = () => {
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
 
-  useEffect(() => {
-    const fetchAndMergeData = async () => {
-      setIsLoading(true); // Start loading
+  const fetchAndMergeData = async () => {
+    setIsLoading(true); // Start loading
+    setIsOffline(false); // Reset offline status on new fetch attempt
+    try {
       const userLocation = await getUserLocation();
       const categoryData = locationsBasic[category];
-
       if (categoryData) {
         const mergedData = categoryData.map((location) => {
           const details = locationsDetails[category].find(
@@ -65,9 +66,15 @@ const LocationList = () => {
         console.warn(`No data found for category: ${category}`);
         setData([]);
       }
-      setIsLoading(false); // End loading
-    };
+    } catch (error) {
+      setIsOffline(true); // Set offline status if an error occurs
+      // console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchAndMergeData();
   }, [category]);
 
@@ -75,6 +82,26 @@ const LocationList = () => {
     return (
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (isOffline) {
+    return (
+      <View style={styles.loadingContainer}>
+        <View style={styles.resourceContainer}>
+          <Text style={styles.warning}>
+            Failed to get your location,
+            please make sure you are connected to the internet and try again.
+          </Text>
+          <IconButton
+            iconSize={0} // Assuming you want some size, not 0
+            title="Try Again"
+            buttonStyle={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+            onPress={fetchAndMergeData}
+          />
+        </View>
       </View>
     );
   }
@@ -178,6 +205,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loadingContainer2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
   },
   loadingText: {
     fontSize: 35,

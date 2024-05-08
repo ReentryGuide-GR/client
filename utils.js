@@ -67,7 +67,7 @@ export const getUserLocation = async () => {
     return location.coords;
   } catch (error) {
     Alert.alert('Location Error', "Couldn't get location");
-    return null;
+    throw error;
   }
 };
 
