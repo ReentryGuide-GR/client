@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import RetryScreen from '../components/RetryScreen';
 import IconButton from '../components/IconButton';
 // import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
@@ -22,6 +23,7 @@ const LocationList = () => {
   const { category, title } = route.params;
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Loading screen state
+  const [isOffline, setIsOffline] = useState(false);
 
   const [fontsLoaded] = useFonts({
     'Manrope-Medium': require('../assets/fonts/Manrope-Medium.ttf'),
@@ -29,12 +31,12 @@ const LocationList = () => {
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
 
-  useEffect(() => {
-    const fetchAndMergeData = async () => {
-      setIsLoading(true); // Start loading
+  const fetchAndMergeData = async () => {
+    setIsLoading(true); // Start loading
+    setIsOffline(false); // Reset offline status on new fetch attempt
+    try {
       const userLocation = await getUserLocation();
       const categoryData = locationsBasic[category];
-
       if (categoryData) {
         const mergedData = categoryData.map((location) => {
           const details = locationsDetails[category].find(
@@ -65,9 +67,15 @@ const LocationList = () => {
         console.warn(`No data found for category: ${category}`);
         setData([]);
       }
-      setIsLoading(false); // End loading
-    };
+    } catch (error) {
+      setIsOffline(true); // Set offline status if an error occurs
+      // console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchAndMergeData();
   }, [category]);
 
@@ -76,6 +84,14 @@ const LocationList = () => {
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
       </View>
+    );
+  }
+
+  if (isOffline) {
+    return (
+      <RetryScreen
+        retryFunction={fetchAndMergeData}
+      />
     );
   }
 
@@ -178,6 +194,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loadingContainer2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
   },
   loadingText: {
     fontSize: 35,
