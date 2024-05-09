@@ -1,6 +1,6 @@
 # ReentryGuide GR
 
-<img src="./mockup.png?raw=true" alt="Mockup" title="Mockup" width="500" />
+<img src="./mockup.png?raw=true" alt="Mockup" title="Mockup" width="1000" />
 
 ## Overview
 "ReentryGuide GR" is a mobile application developed in collaboration with Reentry Reimagined, designed specifically to support the reintegration of former prisoners into society within the Grand Rapids area. With a focus on accessibility and user-friendliness, "ReentryGuide GR" serves as a vital tool for navigating urban landscapes to locate crucial resources. It simplifies the process of finding employment centers, housing options, counseling services, and legal aid, thereby supporting users in their journey towards reintegration.
