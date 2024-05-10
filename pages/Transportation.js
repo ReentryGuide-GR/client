@@ -1,6 +1,9 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import {
+  StyleSheet, View, Text, Modal, Image,
+} from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import * as Location from 'expo-location';
 // import ActionButton from '../components/ActionButton';
 // import GoBackButton from '../components/GoBackButton';
@@ -11,6 +14,10 @@ import { openGoogleMaps } from '../utils';
 
 const Transportation = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
+  const [transportMode, setTransportMode] = useState(null);
+  // const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
+
   const route = useRoute();
   const {
     location,
@@ -26,13 +33,60 @@ const Transportation = () => {
     subtitle,
   } = route.params;
 
-  const handlePlanYourRoute = (mode) => {
-    openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
+  const handlePlanYourRoute = async (mode) => {
+    setTransportMode(mode); // Store the mode for later use
+    const hasBeenShown = await AsyncStorage.getItem('modalShown');
+    if (hasBeenShown !== 'true') {
+      setModalVisible(true);
+      await AsyncStorage.setItem('modalShown', 'true');
+    } else {
+      openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
+    }
   };
 
   return (
 
     <View style={styles.mainContainer}>
+      <Modal
+        animationType="slide"
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.mainContainer}>
+          <View />
+          <View style={styles.resourceContainer}>
+            <Text style={styles.subtitle2}>
+              After you open google maps,
+              {'\n'}
+              if you see this button:
+            </Text>
+            <View style={styles.row}>
+              <View style={[styles.startContainer]}>
+                <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
+                <Text style={[styles.startText]}>Start</Text>
+              </View>
+            </View>
+            <Text style={styles.subtitle2}>
+              Click on it to start navigation.
+              {'\n'}
+            </Text>
+            <IconButton
+              iconSize={0}
+              title="Continue"
+              buttonStyle={styles.primaryButton}
+              onPress={() => {
+                setModalVisible(false);
+                if (transportMode) {
+                  openGoogleMaps(location.coordinates.lat, location.coordinates.lng, transportMode);
+                }
+              }}
+            />
+          </View>
+          <View />
+        </View>
+      </Modal>
+
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>{subtitle}</Text>
         <Text style={styles.title}>{location.name}</Text>
@@ -111,6 +165,32 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: 20,
+  },
+  modalContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+  },
+  startContainer: {
+    backgroundColor: '#1970E2',
+    padding: 10,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  startText: {
+    fontSize: 15,
+    // fontWeight: '700',
+    color: '#fff',
+    fontFamily: 'Manrope-SemiBold',
+  },
+  startIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    marginRight: 10,
+    marginLeft: -3,
   },
   resourceContainer: {
     justifyContent: 'center',
