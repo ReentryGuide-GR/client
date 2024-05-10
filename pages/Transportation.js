@@ -15,8 +15,9 @@ import { openGoogleMaps } from '../utils';
 const Transportation = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
   const [transportMode, setTransportMode] = useState(null);
-  // const [modalVisible, setModalVisible] = useState(false);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  // For debugging purposes
+  // const [modalVisible, setModalVisible] = useState(true);
 
   const route = useRoute();
   const {
