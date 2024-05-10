@@ -52,6 +52,10 @@ const SelectResourceLocation = () => {
     return (
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.subtitle}>
+          if it takes too long,
+          make sure you have internet connection, restart this app.
+        </Text>
       </View>
     );
   }
@@ -155,6 +159,13 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '95%',
+  },
+  subtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    textAlign: 'center',
+    width: '80%',
+    marginTop: 10,
   },
   loadingText: {
     fontSize: 35,
