@@ -91,6 +91,38 @@
       "requirementsColor": "Yellow"
     }
   ],
+  "addictionSupport": [
+    {
+      "id": "1",
+      "address": "401 Hall St SE",
+      "phone": "(616) 456-9063",
+      "requirementsText": "unknown", 
+      "requirementsColor": "Yellow"
+    }
+  ],
+  "mental": [
+    {
+      "id": "1",
+      "address": "1211 Lafayette Ave NE",
+      "phone": "(616) 336-8800",
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "2",
+      "address": "280 60th St SE Suite 200",
+      "phone": "(616) 483-0750",
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
+      "requirementsColor": "Yellow"
+    }, 
+    {
+      "id": "3",
+      "address": "950 36th St SW",
+      "phone": "(616) 320-0405",
+      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
+      "requirementsColor": "Yellow"
+    }
+  ],
   "medical": [
     {
       "id": "1",
@@ -138,28 +170,5 @@
       "requirementsText": "Appointment by Phone Call Required", 
       "requirementsColor": "Yellow"
     } 
-  ],
-  "mental": [
-    {
-      "id": "1",
-      "address": "1211 Lafayette Ave NE",
-      "phone": "(616) 336-8800",
-      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
-      "requirementsColor": "Yellow"
-    }, 
-    {
-      "id": "2",
-      "address": "280 60th St SE Suite 200",
-      "phone": "(616) 483-0750",
-      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
-      "requirementsColor": "Yellow"
-    }, 
-    {
-      "id": "3",
-      "address": "950 36th St SW",
-      "phone": "(616) 320-0405",
-      "requirementsText": "Appointment by Phone Call Required, ID and Insurance Required, iPad interpreter for Spanish available. ", 
-      "requirementsColor": "Yellow"
-    }
   ]
 }

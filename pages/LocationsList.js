@@ -5,6 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import RetryScreen from '../components/RetryScreen';
+import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
 // import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
@@ -80,11 +81,7 @@ const LocationList = () => {
   }, [category]);
 
   if (!fontsLoaded || isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading...</Text>
-      </View>
-    );
+    return (<LoadingScreen />);
   }
 
   if (isOffline) {
@@ -149,7 +146,7 @@ const LocationList = () => {
       <View style={styles.pageTitleContainer}>
         <Text style={styles.pageTitle}>
           Select
-          {'\n'}
+          {' '}
           {title}
           &nbsp;Location
         </Text>
@@ -300,7 +297,13 @@ const styles = StyleSheet.create({
     width: '95%',
     marginHorizontal: '4',
   },
-
+  subtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    textAlign: 'center',
+    width: '80%',
+    marginTop: 10,
+  },
   row: {
     flexDirection: 'row',
     width: '100%',

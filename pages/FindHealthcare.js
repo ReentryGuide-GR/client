@@ -21,27 +21,33 @@ const Page = () => {
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Find Healthcare</Text>
         <IconButton
+          imageSource={require('../assets/wellbeing.png')}
+          title="Find Addiction Support"
+          buttonStyle={styles.primaryButton}
+          onPress={() => navigation.navigate('SelectResourceLocation', { category: 'addictionSupport', title: 'Addiction Support' })}
+        />
+        <IconButton
           imageSource={require('../assets/hand_heart.png')}
-          title=" Find Mental Support"
+          title="Find Mental Support"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'mental', title: 'Mental Support' })}
         />
         <IconButton
           imageSource={require('../assets/pill.png')}
-          title=" Find Medical Help"
+          title="Find Medical Help"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'medical', title: 'Medical Help' })}
         />
 
         <IconButton
           imageSource={require('../assets/tooth.png')}
-          title=" Find Tooth Care"
+          title="Find Tooth Care"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'dental', title: 'Tooth Care' })}
         />
         <IconButton
           imageSource={require('../assets/eye.png')}
-          title=" Find Eye Doctor"
+          title="Find Eye Doctor"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'vision', title: 'Eye Doctor' })}
         />

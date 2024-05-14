@@ -1,32 +1,41 @@
 // SelectResourceLocation.js
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View, Text, Alert,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-// import * as Location from 'expo-location';
-// import * as SplashScreen from 'expo-splash-screen';
-// import ActionButton from '../components/ActionButton';
-// import GoBackButton from '../components/GoBackButton';
 import RetryScreen from '../components/RetryScreen';
+import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
-// import locations from '../locationsData';
-import { findClosestLocation } from '../utils';
-// import * as styles from '../../styles/detailsStyles';
+import { getUserLocation, findClosestLocation } from '../utils';
 
 const SelectResourceLocation = () => {
-  const navigation = useNavigation(); // used for navigation.navigate()
+  const navigation = useNavigation();
   const route = useRoute();
-  const { category, title } = route.params; // Access the passed category
-  // const [selectedLocation, setSelectedLocation] = useState(null);
+  const { category, title } = route.params;
   const [isLoading, setIsLoading] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
     setIsLoading(true);
-    setIsOffline(false); // Reset the offline status each time the user tries
+    setIsOffline(false); // Reset offline status at the beginning of the operation
+
     try {
-      const result = await findClosestLocation(category);
+      let currentLocation = userLocation; // Use existing location if already fetched
+
+      // Fetch location if not already available or if it's the first attempt
+      if (!currentLocation) {
+        const fetchedLocation = await getUserLocation();
+        if (!fetchedLocation) {
+          throw new Error('Unable to retrieve user location'); // Ensuring we handle null location
+        }
+        setUserLocation(fetchedLocation); // Update state only if location is successfully retrieved
+        currentLocation = fetchedLocation; // Use newly fetched location for this operation
+      }
+
+      // Proceed to find the closest location now that we have valid coordinates
+      const result = await findClosestLocation(category, currentLocation);
       if (result) {
         const { location, distance } = result;
         navigation.navigate('ResourceLocation', {
@@ -36,24 +45,19 @@ const SelectResourceLocation = () => {
           subtitle: `Closest ${title} Location: `,
         });
       } else {
-        // console.error(`No closest location found for category: ${category}`);
-        // Alert.alert('Error', 'No closest location found. Please try again later.');
-        setIsOffline(true);
+        Alert.alert('Error', 'No closest location found. Please try again later.');
       }
     } catch (error) {
-      console.error('Failed to find location:', error);
-      setIsOffline(true); // Set the offline status if an error occurs
+      console.error('Failed to find location:', error.message);
+      setIsOffline(true);
+      Alert.alert('Location Error', error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading...</Text>
-      </View>
-    );
+    return (<LoadingScreen />);
   }
 
   if (isOffline) {
@@ -155,6 +159,13 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: '900',
     width: '95%',
+  },
+  subtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    textAlign: 'center',
+    width: '80%',
+    marginTop: 10,
   },
   loadingText: {
     fontSize: 35,
