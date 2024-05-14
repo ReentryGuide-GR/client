@@ -20,10 +20,10 @@ const SelectResourceLocation = () => {
   const handleSelectClosestLocation = async () => {
     setIsLoading(true);
     setIsOffline(false); // Reset offline status at the beginning of the operation
-  
+
     try {
       let currentLocation = userLocation; // Use existing location if already fetched
-  
+
       // Fetch location if not already available or if it's the first attempt
       if (!currentLocation) {
         const fetchedLocation = await getUserLocation();
@@ -33,7 +33,7 @@ const SelectResourceLocation = () => {
         setUserLocation(fetchedLocation); // Update state only if location is successfully retrieved
         currentLocation = fetchedLocation; // Use newly fetched location for this operation
       }
-  
+
       // Proceed to find the closest location now that we have valid coordinates
       const result = await findClosestLocation(category, currentLocation);
       if (result) {
