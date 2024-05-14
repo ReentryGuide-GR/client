@@ -21,7 +21,7 @@ const Page = () => {
       <View style={styles.resourceContainer}>
         <Text style={styles.title}>Find Healthcare</Text>
         <IconButton
-          imageSource={require('../assets/hand_heart.png')}
+          imageSource={require('../assets/wellbeing.png')}
           title=" Addiction Support"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'addictionSupport', title: 'Addiction Support' })}
