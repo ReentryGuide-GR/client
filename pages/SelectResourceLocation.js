@@ -4,16 +4,10 @@ import {
   StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-// import * as Location from 'expo-location';
-// import * as SplashScreen from 'expo-splash-screen';
-// import ActionButton from '../components/ActionButton';
-// import GoBackButton from '../components/GoBackButton';
 import RetryScreen from '../components/RetryScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
-// import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
-// import * as styles from '../../styles/detailsStyles';
 
 const SelectResourceLocation = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
