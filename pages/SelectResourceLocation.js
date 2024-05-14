@@ -53,8 +53,8 @@ const SelectResourceLocation = () => {
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
         <Text style={styles.subtitle}>
-          if it takes too long,
-          make sure you have internet connection, restart this app.
+          if loading takes too long,
+          make sure you have internet connection, then restart this app.
         </Text>
       </View>
     );

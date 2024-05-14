@@ -83,6 +83,10 @@ const LocationList = () => {
     return (
       <View style={styles.loadingContainer}>
         <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.subtitle}>
+          if loading takes too long,
+          make sure you have internet connection, then restart this app.
+        </Text>
       </View>
     );
   }
@@ -300,7 +304,13 @@ const styles = StyleSheet.create({
     width: '95%',
     marginHorizontal: '4',
   },
-
+  subtitle: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    textAlign: 'center',
+    width: '80%',
+    marginTop: 10,
+  },
   row: {
     flexDirection: 'row',
     width: '100%',
