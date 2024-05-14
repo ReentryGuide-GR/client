@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const LoadingScreen = () => (
-  <View style={styles.loadingContainer}>
-    <Text style={styles.loadingText}>Loading...</Text>
-    <Text style={styles.subtitle}>
-      if loading takes too long,
-      make sure you have internet connection, then restart this app.
-    </Text>
-  </View>
-);
+const LoadingScreen = () => {
+  const [showSubtitle, setShowSubtitle] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSubtitle(true);
+    }, 8000); // Delay subtitle appearance for 10 seconds
+
+    return () => clearTimeout(timer); // Ensure to clear the timer to prevent memory leaks
+  }, []);
+
+  return (
+    <View style={styles.loadingContainer}>
+      <Text style={styles.loadingText}>Loading...</Text>
+      {showSubtitle && (
+        <Text style={styles.subtitle}>
+          If loading takes too long,
+          make sure you have internet connection, then restart this app.
+        </Text>
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   loadingContainer: {
