@@ -8,7 +8,6 @@ import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
 
 const Transportation = () => {
-  // const navigation = useNavigation(); // used for navigation.navigate()
   const [transportMode, setTransportMode] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes
