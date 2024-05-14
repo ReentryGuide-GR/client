@@ -20,22 +20,22 @@ const SelectResourceLocation = () => {
   const handleSelectClosestLocation = async () => {
     setIsLoading(true);
     setIsOffline(false); // Reset offline status at the beginning of the operation
-
-    if (!userLocation) {
-      try {
-        const location = await getUserLocation();
-        setUserLocation(location); // Update state only if location is successfully retrieved
-      } catch (error) {
-        console.error('Failed to get user location:', error);
-        Alert.alert('Location Error', 'Unable to retrieve user location.');
-        setIsOffline(true);
-        setIsLoading(false);
-        return;
-      }
-    }
-
+  
     try {
-      const result = await findClosestLocation(category, userLocation);
+      let currentLocation = userLocation; // Use existing location if already fetched
+  
+      // Fetch location if not already available or if it's the first attempt
+      if (!currentLocation) {
+        const fetchedLocation = await getUserLocation();
+        if (!fetchedLocation) {
+          throw new Error('Unable to retrieve user location'); // Ensuring we handle null location
+        }
+        setUserLocation(fetchedLocation); // Update state only if location is successfully retrieved
+        currentLocation = fetchedLocation; // Use newly fetched location for this operation
+      }
+  
+      // Proceed to find the closest location now that we have valid coordinates
+      const result = await findClosestLocation(category, currentLocation);
       if (result) {
         const { location, distance } = result;
         navigation.navigate('ResourceLocation', {
@@ -48,8 +48,9 @@ const SelectResourceLocation = () => {
         Alert.alert('Error', 'No closest location found. Please try again later.');
       }
     } catch (error) {
-      console.error('Failed to find location:', error);
+      console.error('Failed to find location:', error.message);
       setIsOffline(true);
+      Alert.alert('Location Error', error.message);
     } finally {
       setIsLoading(false);
     }
