@@ -4,16 +4,10 @@ import {
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import * as Location from 'expo-location';
-// import ActionButton from '../components/ActionButton';
-// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
-// import locations from '../locationsData';
 import { openGoogleMaps } from '../utils';
-// import * as styles from '../../styles/detailsStyles';
 
 const Transportation = () => {
-  // const navigation = useNavigation(); // used for navigation.navigate()
   const [transportMode, setTransportMode] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes

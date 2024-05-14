@@ -64,7 +64,7 @@
       "id": "3",
       "address": "3233 Burton St SE",
       "phone": "(616) 929-0529",
-      "requirementsText": "Hours available by appointment only. Call Nick Nichols from the Calvin Prison Initiative to schedule (616-929-0529). Dress clothes available. Clothing for kids available.", 
+      "requirementsText": "Hours by appointment only. Call Nick Nichols from the Calvin Prison Initiative to schedule (616-929-0529). Dress clothes available. Clothing for kids available.", 
       "requirementsColor": "Yellow"
     }
   ],
@@ -96,8 +96,8 @@
       "id": "1",
       "address": "401 Hall St SE",
       "phone": "(616) 456-9063",
-      "requirementsText": "unknown", 
-      "requirementsColor": "Yellow"
+      "requirementsText": "Walk-ins Welcome", 
+      "requirementsColor": "Green"
     }
   ],
   "mental": [
