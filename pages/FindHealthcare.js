@@ -22,7 +22,7 @@ const Page = () => {
         <Text style={styles.title}>Find Healthcare</Text>
         <IconButton
           imageSource={require('../assets/wellbeing.png')}
-          title=" Addiction Support"
+          title=" Find Addiction Support"
           buttonStyle={styles.primaryButton}
           onPress={() => navigation.navigate('SelectResourceLocation', { category: 'addictionSupport', title: 'Addiction Support' })}
         />
