@@ -1,27 +1,41 @@
 // SelectResourceLocation.js
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View, Text, Alert,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import RetryScreen from '../components/RetryScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
-import { findClosestLocation } from '../utils';
+import { getUserLocation, findClosestLocation } from '../utils';
 
 const SelectResourceLocation = () => {
-  const navigation = useNavigation(); // used for navigation.navigate()
+  const navigation = useNavigation();
   const route = useRoute();
-  const { category, title } = route.params; // Access the passed category
-  // const [selectedLocation, setSelectedLocation] = useState(null);
+  const { category, title } = route.params;
   const [isLoading, setIsLoading] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
   const handleSelectClosestLocation = async () => {
     setIsLoading(true);
-    setIsOffline(false); // Reset the offline status each time the user tries
+    setIsOffline(false); // Reset offline status at the beginning of the operation
+
+    if (!userLocation) {
+      try {
+        const location = await getUserLocation();
+        setUserLocation(location); // Update state only if location is successfully retrieved
+      } catch (error) {
+        console.error('Failed to get user location:', error);
+        Alert.alert('Location Error', 'Unable to retrieve user location.');
+        setIsOffline(true);
+        setIsLoading(false);
+        return;
+      }
+    }
+
     try {
-      const result = await findClosestLocation(category);
+      const result = await findClosestLocation(category, userLocation);
       if (result) {
         const { location, distance } = result;
         navigation.navigate('ResourceLocation', {
@@ -31,13 +45,11 @@ const SelectResourceLocation = () => {
           subtitle: `Closest ${title} Location: `,
         });
       } else {
-        // console.error(`No closest location found for category: ${category}`);
-        // Alert.alert('Error', 'No closest location found. Please try again later.');
-        setIsOffline(true);
+        Alert.alert('Error', 'No closest location found. Please try again later.');
       }
     } catch (error) {
       console.error('Failed to find location:', error);
-      setIsOffline(true); // Set the offline status if an error occurs
+      setIsOffline(true);
     } finally {
       setIsLoading(false);
     }

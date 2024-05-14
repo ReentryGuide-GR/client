@@ -18,18 +18,17 @@ export const getDistance = (lat1, lng1, lat2, lng2) => {
 };
 
 // Function to find the closest location from a category
-export const findClosestLocation = async (category) => {
-  const userLocation = await getUserLocation();
+export const findClosestLocation = async (category, userLocation) => {
   if (!userLocation) {
-    Alert.alert('Error', 'Unable to get user location');
-    return null;
+    throw new Error('User location is not provided');
   }
+
   const categoryData = locationsData[category.charAt(0) + category.slice(1)];
   if (!categoryData) {
     Alert.alert('Error', `Category ${category} not found`);
     return null;
   }
-  // Initialize with the first location as the default and calculate distance for it
+
   let closestLocation = categoryData[0];
   let shortestDistance = getDistance(
     userLocation.latitude,
@@ -37,7 +36,7 @@ export const findClosestLocation = async (category) => {
     closestLocation.coordinates.lat,
     closestLocation.coordinates.lng,
   );
-  // Go through each location to find the closest
+
   categoryData.forEach((location) => {
     const distance = getDistance(
       userLocation.latitude,
@@ -50,7 +49,7 @@ export const findClosestLocation = async (category) => {
       closestLocation = location;
     }
   });
-  // Return both the closest location and the shortest distance to it
+
   return { location: closestLocation, distance: shortestDistance };
 };
 
