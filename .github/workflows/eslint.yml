@@ -16,10 +16,11 @@ jobs:
       - name: set up node
         uses: actions/setup-node@v3
         with:
-            node-version: 20
+          node-version: 20
+          cache: 'yarn'  # Ensure Yarn cache is enabled
 
-      - name: npm install
-        run: npm ci
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: eslint
-        run: npm run lint
+        run: yarn lint
