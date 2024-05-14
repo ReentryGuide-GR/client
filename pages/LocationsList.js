@@ -5,6 +5,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import RetryScreen from '../components/RetryScreen';
+import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
 // import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
@@ -80,15 +81,7 @@ const LocationList = () => {
   }, [category]);
 
   if (!fontsLoaded || isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading...</Text>
-        <Text style={styles.subtitle}>
-          if loading takes too long,
-          make sure you have internet connection, then restart this app.
-        </Text>
-      </View>
-    );
+    return (<LoadingScreen />);
   }
 
   if (isOffline) {

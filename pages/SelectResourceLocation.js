@@ -9,6 +9,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // import ActionButton from '../components/ActionButton';
 // import GoBackButton from '../components/GoBackButton';
 import RetryScreen from '../components/RetryScreen';
+import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
 // import locations from '../locationsData';
 import { findClosestLocation } from '../utils';
@@ -49,15 +50,7 @@ const SelectResourceLocation = () => {
   };
 
   if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading...</Text>
-        <Text style={styles.subtitle}>
-          if loading takes too long,
-          make sure you have internet connection, then restart this app.
-        </Text>
-      </View>
-    );
+    return (<LoadingScreen />);
   }
 
   if (isOffline) {
