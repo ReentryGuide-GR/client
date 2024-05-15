@@ -242,7 +242,7 @@ export const updateLocationStatus = (openHoursArray) => {
       : openHoursArray.reduce((acc, oh) => acc.concat(oh.days), []).sort()[0];
     const daysUntilNextOpen = nextDay >= dayOfWeek ? nextDay - dayOfWeek : nextDay + 7 - dayOfWeek;
     const nextOpenDate = moment().add(daysUntilNextOpen, 'days');
-    const nextOpenHours = openHoursArray.find(oh => oh.days.includes(nextOpenDate.day()));
+    const nextOpenHours = openHoursArray.find((oh) => oh.days.includes(nextOpenDate.day()));
     const nextOpenDayFormatted = nextOpenDate.isSame(moment().add(1, 'days'), 'day') ? 'Tomorrow' : nextOpenDate.format('dddd');
     time = `${nextOpenDayFormatted} at ${formatTime(nextOpenHours.open)}`;
     status = 'closed';
