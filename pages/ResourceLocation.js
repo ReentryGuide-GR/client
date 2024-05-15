@@ -168,9 +168,7 @@ const ResourceLocation = () => {
         />
       </View>
 
-      <View style={styles.resourceContainer}>
-        {/* <GoBackButton /> */}
-      </View>
+      <View />
 
     </View>
   );
