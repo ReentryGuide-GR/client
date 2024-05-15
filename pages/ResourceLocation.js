@@ -5,11 +5,8 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
-// import GoBackButton from '../components/GoBackButton';
 import locationsDetails from '../database/locations_details.json';
 import { requirementsColorMapping, updateLocationStatus, getStatusStyles } from '../utils';
-
-// import * as styles from '../../styles/detailsStyles';
 
 const ResourceLocation = () => {
   const navigation = useNavigation(); // used for navigation.navigate()

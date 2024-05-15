@@ -7,7 +7,6 @@ import { useFonts } from 'expo-font';
 import RetryScreen from '../components/RetryScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
-// import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import {
