@@ -96,13 +96,11 @@ const SelectResourceLocation = () => {
           imageSource={require('../assets/locations.png')}
           iconSize={38}
           title="Pick Other Locations"
-          onPress={() => navigation.navigate('LocationsList', { category, title })}
+          onPress={() => navigation.navigate('ResourceLocationsList', { category, title })}
         />
       </View>
 
-      <View style={styles.resourceContainer}>
-        {/* <GoBackButton /> */}
-      </View>
+      <View />
 
     </View>
   );

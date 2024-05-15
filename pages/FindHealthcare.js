@@ -3,12 +3,7 @@ import {
   StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import * as Location from 'expo-location';
-// import ActionButton from '../components/ActionButton';
-// import GoBackButton from '../components/GoBackButton';
 import IconButton from '../components/IconButton';
-// import locationsData from './database/locations_basic.json';
-// import * as styles from '../../styles/detailsStyles';
 
 const Page = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
@@ -54,9 +49,7 @@ const Page = () => {
 
       </View>
 
-      <View style={styles.resourceContainer}>
-        {/* <GoBackButton /> */}
-      </View>
+      <View />
 
     </View>
   );

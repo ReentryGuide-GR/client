@@ -5,10 +5,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
-// import ActionButton from './components/ActionButton';
 import IconButton from '../components/IconButton';
-// import locations from './locationsData';
-// import * as styles from '../../styles/detailsStyles';
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
@@ -38,21 +35,7 @@ const MainMenu = () => {
   return (
 
     <View style={styles.mainContainer}>
-      <View style={styles.resourceContainer}>
-        {/* <IconButton
-          title="Call Navigator"
-          onPress={() => {
-            // Use the Linking API to open the phone app, empty number for now
-            Linking.openURL(`tel:${''}`)
-              .catch((err) => {
-                console.error('Failed to open the phone app', err);
-              });
-          }}
-          buttonStyle={styles.primaryButton}
-          textStyle={styles.primaryButtonText}
-          // arrowStyle="white"
-        /> */}
-      </View>
+      <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
         <Text style={styles.title}>Main Menu</Text>

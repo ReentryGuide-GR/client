@@ -3,11 +3,9 @@ import {
   StyleSheet, View, Text,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
-// import GoBackButton from '../components/GoBackButton';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import { formatOpenHours } from '../utils';
-// import * as styles from '../../styles/detailsStyles';
 
 const MoreInfo = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
@@ -102,9 +100,7 @@ const MoreInfo = () => {
         </View>
       </View>
 
-      <View style={styles.resourceContainer}>
-        {/* <GoBackButton /> */}
-      </View>
+      <View />
 
     </View>
   );
