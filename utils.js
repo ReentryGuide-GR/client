@@ -235,8 +235,11 @@ export const updateLocationStatus = (openHoursArray) => {
 
   // If closed or not open today, find the next open day
   if (!currentOpenHours || (status === 'closed' && time === '')) {
-    const sortedDays = openHoursArray.reduce((acc, { days }) => [...acc, ...days], []).filter(day => day > dayOfWeek).sort();
-    const nextDay = sortedDays.length ? sortedDays[0] : openHoursArray.reduce((acc, oh) => acc.concat(oh.days), []).sort()[0];
+    const sortedDays = openHoursArray.reduce((acc, { days }) => [...acc, ...days], []).filter(
+      (day) => day > dayOfWeek,
+    ).sort();
+    const nextDay = sortedDays.length ? sortedDays[0]
+      : openHoursArray.reduce((acc, oh) => acc.concat(oh.days), []).sort()[0];
     const daysUntilNextOpen = nextDay >= dayOfWeek ? nextDay - dayOfWeek : nextDay + 7 - dayOfWeek;
     const nextOpenDate = moment().add(daysUntilNextOpen, 'days');
     const nextOpenHours = openHoursArray.find(oh => oh.days.includes(nextOpenDate.day()));
