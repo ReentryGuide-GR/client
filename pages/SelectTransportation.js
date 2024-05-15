@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
 
-const Transportation = () => {
+const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes
@@ -150,7 +150,7 @@ const Transportation = () => {
   );
 };
 
-export default Transportation;
+export default SelectTransportation;
 
 const styles = StyleSheet.create({
   mainContainer: {

@@ -9,8 +9,8 @@ import MealOrGroceries from './pages/MealOrGroceries';
 import FindHealthcare from './pages/FindHealthcare';
 import LunchOrDinner from './pages/LunchOrDinner';
 import ResourceLocation from './pages/ResourceLocation';
-import Transportation from './pages/Transportation';
-import LocationsList from './pages/LocationsList';
+import SelectTransportation from './pages/SelectTransportation';
+import ResourceLocationsList from './pages/ResourceLocationsList';
 import MoreInfo from './pages/MoreInfo';
 import RequestPermission from './pages/RequestPermission';
 
@@ -37,8 +37,8 @@ const Navigation = () => (
       <Stack.Screen name="FindHealthcare" component={FindHealthcare} />
       <Stack.Screen name="LunchOrDinner" component={LunchOrDinner} />
       <Stack.Screen name="ResourceLocation" component={ResourceLocation} />
-      <Stack.Screen name="Transportation" component={Transportation} />
-      <Stack.Screen name="LocationsList" component={LocationsList} />
+      <Stack.Screen name="SelectTransportation" component={SelectTransportation} />
+      <Stack.Screen name="ResourceLocationsList" component={ResourceLocationsList} />
       <Stack.Screen name="MoreInfo" component={MoreInfo} />
       <Stack.Screen name="RequestPermission" component={RequestPermission} />
     </Stack.Navigator>

@@ -115,7 +115,7 @@ const ResourceLocation = () => {
           title="Plan Your Route"
           iconSize={32}
           buttonStyle={styles.secondaryButton}
-          onPress={() => navigation.navigate('Transportation', {
+          onPress={() => navigation.navigate('SelectTransportation', {
             location,
             distance,
             requirementIndicatorStyle: requirementIndicatorStyle.backgroundColor,
