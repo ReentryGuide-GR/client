@@ -51,9 +51,10 @@ const SelectTransportation = () => {
         <View style={styles.mainContainer}>
           <View />
           <View style={styles.resourceContainer}>
+            <Text style={styles.title}>
+              Google Maps Tutorial
+            </Text>
             <Text style={styles.subtitle2}>
-              After you open google maps,
-              {'\n'}
               if you see this button:
             </Text>
             <View style={styles.row}>
