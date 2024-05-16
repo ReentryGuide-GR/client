@@ -220,16 +220,12 @@ export const updateLocationStatus = (openHoursArray) => {
       time = formatTime(currentOpenHours.close);
     } else if (now.isAfter(closeTime)) {
       status = 'closed';
-      // Set the time to check the next opening day in the later code block
       time = '';
     } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
       status = 'openingSoon';
       time = `Today ${formatTime(currentOpenHours.open)}`;
-      status = 'closed';
-      time = `Today ${formatTime(currentOpenHours.open)}`; // Fix to explicitly state "Today"
     } else {
       status = 'closed';
-      // For when it's past close time today, handled in the next section
     }
   }
 
