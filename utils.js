@@ -224,6 +224,10 @@ export const updateLocationStatus = (openHoursArray) => {
     } else if (now.isBefore(openTime) && now.isAfter(moment(openTime).subtract(1, 'hours'))) {
       status = 'openingSoon';
       time = `Today ${formatTime(currentOpenHours.open)}`;
+    } else if (now.isBefore(openTime) && now.isSame(moment(), 'day')) {
+      // Add this condition to check if the location opens later today
+      status = 'closed';
+      time = `Today ${formatTime(currentOpenHours.open)}`;
     } else {
       status = 'closed';
     }
