@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 6,
+    flexWrap: 'wrap',
   },
   arrow: {
     marginRight: 0,
