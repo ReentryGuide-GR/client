@@ -143,7 +143,7 @@ const ResourceLocationsList = () => {
 
     <View style={styles.mainContainer}>
       <View style={styles.pageTitleContainer}>
-        <Text style={styles.pageTitle}>
+        <Text style={styles.pageTitle} allowFontScaling={false}>
           Select
           {' '}
           {title}
