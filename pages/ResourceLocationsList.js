@@ -161,8 +161,6 @@ const ResourceLocationsList = () => {
         persistentScrollbar
         contentContainerStyle={{
           width: '100%',
-          paddingBottom: 130,
-          paddingTop: 80,
         }}
       />
 
@@ -175,7 +173,7 @@ export default ResourceLocationsList;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start', // Align children to the top
     // alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
@@ -202,7 +200,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     top: 0,
     // elevation: 7,
-    position: 'absolute',
+    // position: 'absolute',
     zIndex: 100,
     width: '100%',
   },
