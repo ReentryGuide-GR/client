@@ -9,9 +9,9 @@ import { openGoogleMaps } from '../utils';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
-  // const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes
-  const [modalVisible, setModalVisible] = useState(true);
+  // const [modalVisible, setModalVisible] = useState(true);
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
