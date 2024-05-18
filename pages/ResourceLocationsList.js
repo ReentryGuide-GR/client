@@ -165,11 +165,6 @@ const ResourceLocationsList = () => {
           paddingTop: 80,
         }}
       />
-      {/* <View style={styles.resourceContainer}>
-        <View style={styles.buttonContainer}>
-          <GoBackButton />
-        </View>
-      </View> */}
 
     </View>
   );
