@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking, Animated,
+  StyleSheet, View, Text, Linking, Animated, Dimensions,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -18,6 +18,10 @@ const ResourceLocation = () => {
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
+
+  const [contentHeight, setContentHeight] = useState(0);
+  const screenHeight = Dimensions.get('window').height;
+
   const { statusBackgroundColor, statusTextStyleColor, statusText } = getStatusStyles(status);
 
   const [timeMessage, setTimeMessage] = useState('');
@@ -74,7 +78,9 @@ const ResourceLocation = () => {
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: false },
         )}
+        onContentSizeChange={(width, height) => setContentHeight(height)}
       >
+
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle}>{subtitle}</Text>
           <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
@@ -179,16 +185,16 @@ const ResourceLocation = () => {
         <View />
       </Animated.ScrollView>
       <Animated.View style={[styles.scrollIndicator, {
+        height: contentHeight > 0 ? Math.max(screenHeight * (screenHeight / contentHeight), 10) : 10, // Ensure minimum height of 10
         transform: [{
           translateY: scrollY.interpolate({
-            inputRange: [0, 500],
-            outputRange: [0, 500],
+            inputRange: [0, Math.max(1, contentHeight - screenHeight)], // Ensure inputRange is valid
+            outputRange: [0, Math.max(1, screenHeight - Math.max(screenHeight * (screenHeight / contentHeight), 10))], // Ensure outputRange is valid
             extrapolate: 'clamp',
           }),
         }],
       }]}
       />
-
     </View>
   );
 };
