@@ -9,9 +9,9 @@ import { openGoogleMaps } from '../utils';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes
-  // const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(true);
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
@@ -45,7 +45,50 @@ const SelectTransportation = () => {
 
   return (
     <View style={styles.container}>
-
+      <Modal
+        animationType="slide"
+        transparent
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.mainContainer}>
+          <View />
+          <View style={styles.resourceContainer}>
+            <Text style={styles.title} allowFontScaling={false}>
+              Google Maps Tutorial
+            </Text>
+            <Text style={styles.subtitle2}>
+              if you see this button:
+            </Text>
+            <View style={styles.row}>
+              <View style={[styles.startContainer]}>
+                <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
+                <Text style={[styles.startText]}>Start</Text>
+              </View>
+            </View>
+            <Text style={styles.subtitle2}>
+              Click on it to start navigation.
+              {'\n'}
+            </Text>
+            <IconButton
+              iconSize={0}
+              title="Continue"
+              buttonStyle={styles.primaryButton}
+              onPress={() => {
+                setModalVisible(false);
+                if (transportMode) {
+                  openGoogleMaps(
+                    location.coordinates.lat,
+                    location.coordinates.lng,
+                    transportMode,
+                  );
+                }
+              }}
+            />
+          </View>
+          <View />
+        </View>
+      </Modal>
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
@@ -56,50 +99,6 @@ const SelectTransportation = () => {
         )}
         onContentSizeChange={(width, height) => setContentHeight(height)}
       >
-        <Modal
-          animationType="slide"
-          transparent
-          visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.mainContainer}>
-            <View />
-            <View style={styles.resourceContainer}>
-              <Text style={styles.title} allowFontScaling={false}>
-                Google Maps Tutorial
-              </Text>
-              <Text style={styles.subtitle2}>
-                if you see this button:
-              </Text>
-              <View style={styles.row}>
-                <View style={[styles.startContainer]}>
-                  <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
-                  <Text style={[styles.startText]}>Start</Text>
-                </View>
-              </View>
-              <Text style={styles.subtitle2}>
-                Click on it to start navigation.
-                {'\n'}
-              </Text>
-              <IconButton
-                iconSize={0}
-                title="Continue"
-                buttonStyle={styles.primaryButton}
-                onPress={() => {
-                  setModalVisible(false);
-                  if (transportMode) {
-                    openGoogleMaps(
-                      location.coordinates.lat,
-                      location.coordinates.lng,
-                      transportMode,
-                    );
-                  }
-                }}
-              />
-            </View>
-            <View />
-          </View>
-        </Modal>
 
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle}>{subtitle}</Text>
@@ -190,6 +189,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
+  },
+  mainContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: '5%',
+    paddingBottom: 20,
   },
   scrollContainer: {
     flexGrow: 1,
