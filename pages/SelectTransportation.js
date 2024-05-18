@@ -51,7 +51,7 @@ const SelectTransportation = () => {
         <View style={styles.mainContainer}>
           <View />
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>
+            <Text style={styles.title} allowFontScaling={false}>
               Google Maps Tutorial
             </Text>
             <Text style={styles.subtitle2}>
@@ -85,7 +85,7 @@ const SelectTransportation = () => {
 
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>{subtitle}</Text>
-        <Text style={styles.title}>{location.name}</Text>
+        <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
         <View style={styles.row}>
           <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
             <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>

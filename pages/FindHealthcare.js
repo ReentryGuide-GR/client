@@ -14,7 +14,7 @@ const Page = () => {
       easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Find Healthcare</Text>
+        <Text style={styles.title} allowFontScaling={false}>Find Healthcare</Text>
         <IconButton
           imageSource={require('../assets/wellbeing.png')}
           title="Find Addiction Support"

@@ -48,7 +48,7 @@ const Page = () => {
       <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
-        <Text style={styles.title}>Request permission</Text>
+        <Text style={styles.title} allowFontScaling={false}>Request permission</Text>
         <IconButton
           // imageSource={require('../assets/meal.png')}
           title="Grant Permission"

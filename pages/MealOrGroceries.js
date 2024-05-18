@@ -13,7 +13,7 @@ const Page = () => {
       easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Meal or Groceries?</Text>
+        <Text style={styles.title} allowFontScaling={false}>Meal or Groceries?</Text>
         <IconButton
           imageSource={require('../assets/meal.png')}
           title="Find Meal"

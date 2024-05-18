@@ -68,7 +68,7 @@ const ResourceLocation = () => {
     <View style={styles.mainContainer}>
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>{subtitle}</Text>
-        <Text style={styles.title}>{location.name}</Text>
+        <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
         <View style={styles.row}>
           <Text style={[
             styles.requirementText,

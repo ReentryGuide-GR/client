@@ -80,7 +80,7 @@ const Page = () => {
       easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Lunch or Dinner?</Text>
+        <Text style={styles.title} allowFontScaling={false}>Lunch or Dinner?</Text>
 
         <TouchableOpacity
           style={styles.IconButton}

@@ -95,7 +95,7 @@ const LocationList = () => {
     <View style={styles.listContainer}>
       <View style={styles.card}>
         <View style={styles.infoContainer}>
-          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.title} allowFontScaling={false}>{item.name}</Text>
           <View style={styles.row}>
             <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
               <Text style={[styles.requirementText, { color: item.textColor }]}>
