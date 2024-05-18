@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Modal, Image, Animated, Dimensions,
+  StyleSheet, View, Text, Modal, Image, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
+import ScrollIndicator from '../components/ScrollIndicator';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
@@ -15,7 +16,6 @@ const SelectTransportation = () => {
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
-  const screenHeight = Dimensions.get('window').height;
 
   const route = useRoute();
   const {
@@ -163,21 +163,7 @@ const SelectTransportation = () => {
         <View />
 
       </Animated.ScrollView>
-      {contentHeight > screenHeight + 1 && (
-        <Animated.View style={[styles.scrollIndicator, {
-          height: Math.max(screenHeight * (screenHeight / contentHeight), 10),
-          transform: [{
-            translateY: scrollY.interpolate({
-              inputRange: [0, Math.max(1, contentHeight - screenHeight)],
-              outputRange:
-              [0, Math.max(1, screenHeight
-                - Math.max(screenHeight * (screenHeight / contentHeight), 10))],
-              extrapolate: 'clamp',
-            }),
-          }],
-        }]}
-        />
-      )}
+      <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
     </View>
 
   );
@@ -205,15 +191,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: 20,
-  },
-  scrollIndicator: {
-    position: 'absolute',
-    right: 2,
-    width: 6,
-    height: 100, // Set a fixed height for the scrollbar
-    backgroundColor: 'black',
-    borderRadius: 3,
-    opacity: 0.6,
   },
   modalContainer: {
     justifyContent: 'center',
