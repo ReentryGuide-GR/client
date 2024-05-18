@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, Text, FlatList,
+  StyleSheet, View, Text, FlatList, Animated,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import RetryScreen from '../components/RetryScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
+import ScrollIndicator from '../components/ScrollIndicator';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import {
@@ -30,6 +31,10 @@ const ResourceLocationsList = () => {
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
+
+  // Scroll Bar related code
+  const scrollY = useState(new Animated.Value(0))[0];
+  const [contentHeight, setContentHeight] = useState(0);
 
   const fetchAndMergeData = async () => {
     setIsLoading(true); // Start loading
@@ -140,7 +145,6 @@ const ResourceLocationsList = () => {
   );
 
   return (
-
     <View style={styles.mainContainer}>
       <View style={styles.pageTitleContainer}>
         <Text style={styles.pageTitle} allowFontScaling={false}>
@@ -154,16 +158,25 @@ const ResourceLocationsList = () => {
         </Text>
       </View>
 
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        persistentScrollbar
-        contentContainerStyle={{
-          width: '100%',
-        }}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            width: '100%',
+          }}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: false },
+          )}
+          onContentSizeChange={(width, height) => setContentHeight(height)}
+        />
 
+        <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
+
+      </View>
     </View>
   );
 };
@@ -171,6 +184,10 @@ const ResourceLocationsList = () => {
 export default ResourceLocationsList;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
   mainContainer: {
     flex: 1,
     justifyContent: 'flex-start', // Align children to the top
