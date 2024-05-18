@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 2,
     width: 6,
-    height: 50, // Set a fixed height for the scrollbar
+    height: 100, // Set a fixed height for the scrollbar
     backgroundColor: 'black',
     borderRadius: 3,
     opacity: 0.6,
