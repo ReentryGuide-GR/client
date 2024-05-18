@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking,
+  StyleSheet, View, Text, ScrollView, Linking,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -64,8 +64,7 @@ const ResourceLocation = () => {
   }
 
   return (
-
-    <View style={styles.mainContainer}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>{subtitle}</Text>
         <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
@@ -166,8 +165,7 @@ const ResourceLocation = () => {
       </View>
 
       <View />
-
-    </View>
+    </ScrollView>
   );
 };
 
@@ -176,6 +174,14 @@ export default ResourceLocation;
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: '5%',
+    paddingBottom: 20,
+  },
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
