@@ -211,14 +211,6 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    paddingTop: '5%',
-    paddingBottom: 20,
-  },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'space-between',
