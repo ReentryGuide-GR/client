@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 6,
     flexWrap: 'wrap',
+    flex: 1,
   },
   arrow: {
     marginRight: 0,
