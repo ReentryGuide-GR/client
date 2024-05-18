@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View, Text, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import { formatOpenHours } from '../utils';
+import ScrollIndicator from '../components/ScrollIndicator';
 
 const MoreInfo = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
@@ -29,6 +30,10 @@ const MoreInfo = () => {
   const locationDetails = locationsDetails[category].find((detail) => detail.id === location.id);
   const [openHoursFormatted, setOpenHoursFormatted] = useState('');
 
+  // Scroll Bar related code
+  const scrollY = useState(new Animated.Value(0))[0];
+  const [contentHeight, setContentHeight] = useState(0);
+
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
     if (details) {
@@ -41,66 +46,79 @@ const MoreInfo = () => {
   }, [location, category]);
 
   return (
-
-    <View style={styles.mainContainer}>
-      <View style={styles.resourceContainer}>
-        <Text style={styles.subtitle}>{subtitle}</Text>
-        <Text style={styles.title}>{location.name}</Text>
-        <View style={styles.row}>
-          <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
-            <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
-              {requirementsText}
+    <View style={styles.container}>
+      <Animated.ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false },
+        )}
+        onContentSizeChange={(width, height) => setContentHeight(height)}
+      >
+        <View style={styles.resourceContainer}>
+          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
+          <View style={styles.row}>
+            <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
+              <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
+                {requirementsText}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.distance}>
+            ~&nbsp;
+            <Text style={{ fontFamily: 'Manrope-Bold' }}>
+              {distance}
+            </Text>
+            &nbsp;miles away
+          </Text>
+          {/* For Debug */}
+          {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
+          Lng: {location.coordinates.lng}</Text> */}
+          <View style={styles.row}>
+            <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+              <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.timing}>
+              {timeMessage}
+            </Text>
+            <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+              {statusTime}
             </Text>
           </View>
-        </View>
-        <Text style={styles.distance}>
-          ~&nbsp;
-          <Text style={{ fontFamily: 'Manrope-Bold' }}>
-            {distance}
-          </Text>
-          &nbsp;miles away
-        </Text>
-        {/* For Debug */}
-        {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
-        Lng: {location.coordinates.lng}</Text> */}
-        <View style={styles.row}>
-          <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
-            <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.timing}>
-            {timeMessage}
-          </Text>
-          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
-            {statusTime}
-          </Text>
-        </View>
-
-      </View>
-
-      <View style={styles.resourceContainer}>
-        <View style={styles.card}>
-
-          <View style={styles.row2}>
-            <Text style={styles.text}>Open Hours</Text>
-            <Text style={styles.text2}>{openHoursFormatted}</Text>
-          </View>
-
-          <View style={[styles.row2, { backgroundColor: '#eee' }]}>
-            <Text style={styles.text}>Address</Text>
-            <Text style={styles.text2}>{locationDetails.address}</Text>
-          </View>
-
-          <View style={styles.row2}>
-            <Text style={styles.text}>Phone</Text>
-            <Text style={styles.text2}>{locationDetails.phone}</Text>
-          </View>
 
         </View>
-      </View>
 
-      <View />
+        <View style={styles.resourceContainer}>
+          <View style={styles.card}>
+
+            <View style={styles.row2}>
+              <Text style={styles.text}>Open Hours</Text>
+              <Text style={styles.text2}>{openHoursFormatted}</Text>
+            </View>
+
+            <View style={[styles.row2, { backgroundColor: '#eee' }]}>
+              <Text style={styles.text}>Address</Text>
+              <Text style={styles.text2}>{locationDetails.address}</Text>
+            </View>
+
+            <View style={styles.row2}>
+              <Text style={styles.text}>Phone</Text>
+              <Text style={styles.text2}>{locationDetails.phone}</Text>
+            </View>
+
+          </View>
+        </View>
+
+        <View />
+
+      </Animated.ScrollView>
+
+      <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
 
     </View>
   );
@@ -109,6 +127,18 @@ const MoreInfo = () => {
 export default MoreInfo;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: '5%',
+    paddingBottom: 20,
+  },
   mainContainer: {
     flex: 1,
     justifyContent: 'space-between',

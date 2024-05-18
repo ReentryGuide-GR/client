@@ -74,7 +74,7 @@ const SelectResourceLocation = () => {
       easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>
+        <Text style={styles.title} allowFontScaling={false}>
           Select
           {'\n'}
           {title}

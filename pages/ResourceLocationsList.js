@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, Text, FlatList,
+  StyleSheet, View, Text, FlatList, Animated,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import RetryScreen from '../components/RetryScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import IconButton from '../components/IconButton';
+import ScrollIndicator from '../components/ScrollIndicator';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import {
@@ -17,7 +18,7 @@ import {
   getStatusStyles,
 } from '../utils';
 
-const LocationList = () => {
+const ResourceLocationsList = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category, title } = route.params;
@@ -30,6 +31,10 @@ const LocationList = () => {
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
+
+  // Scroll Bar related code
+  const scrollY = useState(new Animated.Value(0))[0];
+  const [contentHeight, setContentHeight] = useState(0);
 
   const fetchAndMergeData = async () => {
     setIsLoading(true); // Start loading
@@ -95,7 +100,7 @@ const LocationList = () => {
     <View style={styles.listContainer}>
       <View style={styles.card}>
         <View style={styles.infoContainer}>
-          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.title} allowFontScaling={false}>{item.name}</Text>
           <View style={styles.row}>
             <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
               <Text style={[styles.requirementText, { color: item.textColor }]}>
@@ -140,10 +145,9 @@ const LocationList = () => {
   );
 
   return (
-
     <View style={styles.mainContainer}>
       <View style={styles.pageTitleContainer}>
-        <Text style={styles.pageTitle}>
+        <Text style={styles.pageTitle} allowFontScaling={false}>
           Select
           {' '}
           {title}
@@ -154,33 +158,39 @@ const LocationList = () => {
         </Text>
       </View>
 
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        persistentScrollbar
-        contentContainerStyle={{
-          width: '100%',
-          paddingBottom: 130,
-          paddingTop: 80,
-        }}
-      />
-      {/* <View style={styles.resourceContainer}>
-        <View style={styles.buttonContainer}>
-          <GoBackButton />
-        </View>
-      </View> */}
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            width: '100%',
+          }}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: false },
+          )}
+          onContentSizeChange={(width, height) => setContentHeight(height)}
+        />
 
+        <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
+
+      </View>
     </View>
   );
 };
 
-export default LocationList;
+export default ResourceLocationsList;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
   mainContainer: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start', // Align children to the top
     // alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
@@ -207,7 +217,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     top: 0,
     // elevation: 7,
-    position: 'absolute',
+    // position: 'absolute',
     zIndex: 100,
     width: '100%',
   },

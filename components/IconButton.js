@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   icon: {
     marginRight: 0,
@@ -84,5 +85,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000',
     marginLeft: 10,
+    flexShrink: 1, // Added to allow text to shrink
   },
 });

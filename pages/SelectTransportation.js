@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Modal, Image,
+  StyleSheet, View, Text, Modal, Image, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
+import ScrollIndicator from '../components/ScrollIndicator';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   // For debugging purposes
   // const [modalVisible, setModalVisible] = useState(true);
+  // Scroll Bar related code
+  const scrollY = useState(new Animated.Value(0))[0];
+  const [contentHeight, setContentHeight] = useState(0);
 
   const route = useRoute();
   const {
@@ -40,8 +44,7 @@ const SelectTransportation = () => {
   };
 
   return (
-
-    <View style={styles.mainContainer}>
+    <View style={styles.container}>
       <Modal
         animationType="slide"
         transparent
@@ -51,7 +54,7 @@ const SelectTransportation = () => {
         <View style={styles.mainContainer}>
           <View />
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>
+            <Text style={styles.title} allowFontScaling={false}>
               Google Maps Tutorial
             </Text>
             <Text style={styles.subtitle2}>
@@ -74,7 +77,11 @@ const SelectTransportation = () => {
               onPress={() => {
                 setModalVisible(false);
                 if (transportMode) {
-                  openGoogleMaps(location.coordinates.lat, location.coordinates.lng, transportMode);
+                  openGoogleMaps(
+                    location.coordinates.lat,
+                    location.coordinates.lng,
+                    transportMode,
+                  );
                 }
               }}
             />
@@ -82,78 +89,103 @@ const SelectTransportation = () => {
           <View />
         </View>
       </Modal>
+      <Animated.ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false },
+        )}
+        onContentSizeChange={(width, height) => setContentHeight(height)}
+      >
 
-      <View style={styles.resourceContainer}>
-        <Text style={styles.subtitle}>{subtitle}</Text>
-        <Text style={styles.title}>{location.name}</Text>
-        <View style={styles.row}>
-          <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
-            <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
-              {requirementsText}
+        <View style={styles.resourceContainer}>
+          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
+          <View style={styles.row}>
+            <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
+              <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
+                {requirementsText}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.distance}>
+            ~&nbsp;
+            <Text style={{ fontFamily: 'Manrope-Bold' }}>
+              {distance}
+            </Text>
+            &nbsp;miles away
+          </Text>
+          {/* For Debug */}
+          {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
+          Lng: {location.coordinates.lng}</Text> */}
+          <View style={styles.row}>
+            <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
+              <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.timing}>
+              {timeMessage}
+            </Text>
+            <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
+              {statusTime}
             </Text>
           </View>
-        </View>
-        <Text style={styles.distance}>
-          ~&nbsp;
-          <Text style={{ fontFamily: 'Manrope-Bold' }}>
-            {distance}
-          </Text>
-          &nbsp;miles away
-        </Text>
-        {/* For Debug */}
-        {/* <Text style={styles.coordinates}>Lat: {location.coordinates.lat},
-        Lng: {location.coordinates.lng}</Text> */}
-        <View style={styles.row}>
-          <View style={[styles.indicator, { backgroundColor: indicatorColor }]}>
-            <Text style={[styles.openOrClosed, { color: textColor }]}>{statusText}</Text>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.timing}>
-            {timeMessage}
-          </Text>
-          <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
-            {statusTime}
-          </Text>
+
         </View>
 
-      </View>
+        <View style={styles.resourceContainer}>
+          <Text style={styles.subtitle2}>How will you get there?</Text>
+          <IconButton
+            imageSource={require('../assets/walk.png')}
+            title="By Walking"
+            buttonStyle={styles.primaryButton}
+            onPress={() => handlePlanYourRoute('walking')}
+          />
 
-      <View style={styles.resourceContainer}>
-        <Text style={styles.subtitle2}>How will you get there?</Text>
-        <IconButton
-          imageSource={require('../assets/walk.png')}
-          title="By Walking"
-          buttonStyle={styles.primaryButton}
-          onPress={() => handlePlanYourRoute('walking')}
-        />
+          <IconButton
+            imageSource={require('../assets/subway.png')}
+            title="By Bus"
+            buttonStyle={styles.primaryButton}
+            onPress={() => handlePlanYourRoute('transit')}
+          />
 
-        <IconButton
-          imageSource={require('../assets/subway.png')}
-          title="By Bus"
-          buttonStyle={styles.primaryButton}
-          onPress={() => handlePlanYourRoute('transit')}
-        />
+          <IconButton
+            imageSource={require('../assets/car.png')}
+            title="By Driving"
+            buttonStyle={styles.primaryButton}
+            onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
+          />
+        </View>
 
-        <IconButton
-          imageSource={require('../assets/car.png')}
-          title="By Driving"
-          buttonStyle={styles.primaryButton}
-          onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
-        />
-      </View>
+        <View />
 
-      <View />
-
+      </Animated.ScrollView>
+      <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
     </View>
+
   );
 };
 
 export default SelectTransportation;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
   mainContainer: {
     flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: '5%',
+    paddingBottom: 20,
+  },
+  scrollContainer: {
+    flexGrow: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'white',
