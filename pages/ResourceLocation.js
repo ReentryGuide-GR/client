@@ -179,11 +179,13 @@ const ResourceLocation = () => {
         <View />
       </Animated.ScrollView>
       <Animated.View style={[styles.scrollIndicator, {
-        height: scrollY.interpolate({
-          inputRange: [0, 500],
-          outputRange: [50, 150],
-          extrapolate: 'clamp',
-        }),
+        transform: [{
+          translateY: scrollY.interpolate({
+            inputRange: [0, 500],
+            outputRange: [0, 500],
+            extrapolate: 'clamp',
+          }),
+        }],
       }]}
       />
 
@@ -218,6 +220,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 2,
     width: 6,
+    height: 50, // Set a fixed height for the scrollbar
     backgroundColor: 'black',
     borderRadius: 3,
     opacity: 0.6,
