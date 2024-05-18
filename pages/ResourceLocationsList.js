@@ -17,7 +17,7 @@ import {
   getStatusStyles,
 } from '../utils';
 
-const LocationList = () => {
+const ResourceLocationsList = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const route = useRoute();
   const { category, title } = route.params;
@@ -175,7 +175,7 @@ const LocationList = () => {
   );
 };
 
-export default LocationList;
+export default ResourceLocationsList;
 
 const styles = StyleSheet.create({
   mainContainer: {
