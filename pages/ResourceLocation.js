@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  StyleSheet, View, Text, ScrollView, Linking, Animated,
+  StyleSheet, View, Text, Linking, Animated,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -72,7 +72,7 @@ const ResourceLocation = () => {
         scrollEventThrottle={16}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: false }
+          { useNativeDriver: false },
         )}
       >
         <View style={styles.resourceContainer}>
@@ -100,7 +100,9 @@ const ResourceLocation = () => {
           Lng: {location.coordinates.lng}</Text> */}
           <View style={styles.row}>
             <View style={[styles.indicator, statusBackgroundColor]}>
-              <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>{statusText}</Text>
+              <Text style={[styles.openOrClosed, { color: statusTextStyleColor }]}>
+                {statusText}
+              </Text>
             </View>
           </View>
           <View style={styles.row}>
@@ -182,7 +184,8 @@ const ResourceLocation = () => {
           outputRange: [50, 150],
           extrapolate: 'clamp',
         }),
-      }]}/>
+      }]}
+      />
 
     </View>
   );
