@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Animated, 
+  StyleSheet, View, Text, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import locationsBasic from '../database/locations_basic.json';
