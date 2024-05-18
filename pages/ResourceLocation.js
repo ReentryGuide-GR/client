@@ -14,11 +14,12 @@ const ResourceLocation = () => {
   const {
     location, distance, category, subtitle,
   } = route.params;
-  const scrollY = useState(new Animated.Value(0))[0];
 
   // Initialize state for status and time message
   const [status, setStatus] = useState('');
 
+  // Scroll Bar related code
+  const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
   const screenHeight = Dimensions.get('window').height;
 
