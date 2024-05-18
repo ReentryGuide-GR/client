@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Animated, Dimensions,
+  StyleSheet, View, Text, Animated, 
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import { formatOpenHours } from '../utils';
+import ScrollIndicator from '../components/ScrollIndicator';
 
 const MoreInfo = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
@@ -32,7 +33,6 @@ const MoreInfo = () => {
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
-  const screenHeight = Dimensions.get('window').height;
 
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
@@ -118,21 +118,7 @@ const MoreInfo = () => {
 
       </Animated.ScrollView>
 
-      {contentHeight > screenHeight + 1 && (
-        <Animated.View style={[styles.scrollIndicator, {
-          height: Math.max(screenHeight * (screenHeight / contentHeight), 10),
-          transform: [{
-            translateY: scrollY.interpolate({
-              inputRange: [0, Math.max(1, contentHeight - screenHeight)],
-              outputRange:
-              [0, Math.max(1, screenHeight
-                - Math.max(screenHeight * (screenHeight / contentHeight), 10))],
-              extrapolate: 'clamp',
-            }),
-          }],
-        }]}
-        />
-      )}
+      <ScrollIndicator contentHeight={contentHeight} scrollY={scrollY} />
 
     </View>
   );
@@ -152,15 +138,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: 20,
-  },
-  scrollIndicator: {
-    position: 'absolute',
-    right: 2,
-    width: 6,
-    height: 100, // Set a fixed height for the scrollbar
-    backgroundColor: 'black',
-    borderRadius: 3,
-    opacity: 0.6,
   },
   mainContainer: {
     flex: 1,
