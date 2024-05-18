@@ -184,17 +184,22 @@ const ResourceLocation = () => {
 
         <View />
       </Animated.ScrollView>
-      <Animated.View style={[styles.scrollIndicator, {
-        height: contentHeight > 0 ? Math.max(screenHeight * (screenHeight / contentHeight), 10) : 10, // Ensure minimum height of 10
-        transform: [{
-          translateY: scrollY.interpolate({
-            inputRange: [0, Math.max(1, contentHeight - screenHeight)], // Ensure inputRange is valid
-            outputRange: [0, Math.max(1, screenHeight - Math.max(screenHeight * (screenHeight / contentHeight), 10))], // Ensure outputRange is valid
-            extrapolate: 'clamp',
-          }),
-        }],
-      }]}
-      />
+      {contentHeight > screenHeight + 1 && (
+        <Animated.View style={[styles.scrollIndicator, {
+          height: Math.max(screenHeight * (screenHeight / contentHeight), 10),
+          transform: [{
+            translateY: scrollY.interpolate({
+              inputRange: [0, Math.max(1, contentHeight - screenHeight)],
+              outputRange:
+              [0, Math.max(1, screenHeight
+                 - Math.max(screenHeight * (screenHeight / contentHeight), 10))],
+              extrapolate: 'clamp',
+            }),
+          }],
+        }]}
+        />
+      )}
+
     </View>
   );
 };
