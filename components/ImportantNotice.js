@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import IconButton from './IconButton';
 
-const TutorialModal = ({ modalVisible, setModalVisible, setTutorialSeen }) => (
+const ImportantNotice = ({ modalVisible, setModalVisible, setTutorialSeen }) => (
   <Modal
     animationType="slide"
     transparent
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TutorialModal;
+export default ImportantNotice;
