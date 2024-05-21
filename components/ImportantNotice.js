@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import IconButton from './IconButton';
 
-const ImportantNotice = ({ modalVisible, setModalVisible, setTutorialSeen }) => (
+const ImportantNotice = ({ modalVisible, setModalVisible, setImportantNoticeSeen }) => (
   <Modal
     animationType="slide"
     transparent
@@ -32,7 +32,7 @@ const ImportantNotice = ({ modalVisible, setModalVisible, setTutorialSeen }) => 
           buttonStyle={styles.primaryButton}
           onPress={() => {
             setModalVisible(false);
-            setTutorialSeen(); // Set the tutorial as seen
+            setImportantNoticeSeen(); // Set the tutorial as seen
           }}
         />
       </View>
