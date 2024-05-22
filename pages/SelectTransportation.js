@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Modal, Image, Animated,
+  StyleSheet, View, Text, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
+import GoogleMapsTutorial from '../components/GoogleMapsTutorial';
 import ScrollIndicator from '../components/ScrollIndicator';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [googleMapsTutorialModalVisible, setGoogleMapsTutorialModalVisible] = useState(false);
   // For debugging purposes
-  // const [modalVisible, setModalVisible] = useState(true);
+  // const [googleMapsTutorialModalVisible, setGoogleMapsTutorialModalVisible] = useState(true);
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
@@ -36,7 +37,7 @@ const SelectTransportation = () => {
     setTransportMode(mode); // Store the mode for later use
     const hasBeenShown = await AsyncStorage.getItem('modalShown');
     if (hasBeenShown !== 'true') {
-      setModalVisible(true);
+      setGoogleMapsTutorialModalVisible(true);
       await AsyncStorage.setItem('modalShown', 'true');
     } else {
       openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
@@ -45,50 +46,13 @@ const SelectTransportation = () => {
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.mainContainer}>
-          <View />
-          <View style={styles.resourceContainer}>
-            <Text style={styles.title} allowFontScaling={false}>
-              Google Maps Tutorial
-            </Text>
-            <Text style={styles.subtitle2}>
-              if you see this button:
-            </Text>
-            <View style={styles.row}>
-              <View style={[styles.startContainer]}>
-                <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
-                <Text style={[styles.startText]}>Start</Text>
-              </View>
-            </View>
-            <Text style={styles.subtitle2}>
-              Click on it to start navigation.
-              {'\n'}
-            </Text>
-            <IconButton
-              iconSize={0}
-              title="Continue"
-              buttonStyle={styles.primaryButton}
-              onPress={() => {
-                setModalVisible(false);
-                if (transportMode) {
-                  openGoogleMaps(
-                    location.coordinates.lat,
-                    location.coordinates.lng,
-                    transportMode,
-                  );
-                }
-              }}
-            />
-          </View>
-          <View />
-        </View>
-      </Modal>
+      <GoogleMapsTutorial
+        googleMapsTutorialModalVisible={googleMapsTutorialModalVisible}
+        setGoogleMapsTutorialModalVisible={setGoogleMapsTutorialModalVisible}
+        openGoogleMaps={openGoogleMaps}
+        location={location}
+        transportMode={transportMode}
+      />
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
