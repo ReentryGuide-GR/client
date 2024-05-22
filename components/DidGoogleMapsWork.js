@@ -15,7 +15,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
     <View style={styles.mainContainer}>
       <View />
       <View style={styles.resourceContainer}>
-        <Text style={styles.title}>Did Google Maps Work Correctly?</Text>
+        <Text style={styles.title} allowFontScaling={false}>Did Google Maps Work Correctly?</Text>
         <IconButton
           title="Yes, it worked fine."
           iconSize={0}
