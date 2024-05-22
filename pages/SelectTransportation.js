@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Animated, AppState, Modal,
+  StyleSheet, View, Text, Animated, AppState,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,7 @@ import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
 import GoogleMapsTutorial from '../components/GoogleMapsTutorial';
 import ScrollIndicator from '../components/ScrollIndicator';
+import DidGoogleMapsWork from '../components/DidGoogleMapsWork';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
@@ -18,7 +19,7 @@ const SelectTransportation = () => {
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
 
-  const [crashPromptModalVisible, setCrashPromptModalVisible] = useState(false);
+  const [didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible] = useState(false);
 
   const route = useRoute();
   const {
@@ -54,7 +55,7 @@ const SelectTransportation = () => {
         if (googleMapsLaunched === 'true') {
           const crashPromptShown = await AsyncStorage.getItem('crashPromptShown');
           if (crashPromptShown !== 'true') {
-            setCrashPromptModalVisible(true);
+            setDidGoogleMapsWorkVisible(true);
             await AsyncStorage.setItem('crashPromptShown', 'true');
           }
           await AsyncStorage.removeItem('googleMapsLaunched');
@@ -78,35 +79,10 @@ const SelectTransportation = () => {
         location={location}
         transportMode={transportMode}
       />
-      <Modal
-        animationType="slide"
-        transparent
-        visible={crashPromptModalVisible}
-        onRequestClose={() => setCrashPromptModalVisible(false)}
-      >
-        <View style={styles.mainContainer}>
-          <View />
-          <View style={styles.resourceContainer}>
-            <Text style={styles.title}>Did Google Maps Work Correctly?</Text>
-            <IconButton
-              title="Yes, it worked fine."
-              iconSize={0}
-              onPress={() => {
-                setCrashPromptModalVisible(false);
-                // handle the case where Google Maps crashed
-              }}
-              buttonStyle={styles.primaryButton}
-            />
-            <IconButton
-              title="No, there was a problem"
-              iconSize={0}
-              onPress={() => setCrashPromptModalVisible(false)}
-              buttonStyle={styles.primaryButton}
-            />
-          </View>
-          <View />
-        </View>
-      </Modal>
+      <DidGoogleMapsWork
+        didGoogleMapsWorkVisible={didGoogleMapsWorkVisible}
+        setDidGoogleMapsWorkVisible={setDidGoogleMapsWorkVisible}
+      />
 
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
