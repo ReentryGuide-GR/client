@@ -6,7 +6,7 @@ import IconButton from './IconButton';
 
 const ImportantNotice = ({ modalVisible, setModalVisible, setImportantNoticeSeen }) => (
   <Modal
-    animationType="slide"
+    animationType="fade"
     transparent
     visible={modalVisible}
     onRequestClose={() => setModalVisible(false)}

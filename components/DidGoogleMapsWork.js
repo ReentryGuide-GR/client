@@ -19,7 +19,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
   return (
     <>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent
         visible={didGoogleMapsWorkVisible}
         onRequestClose={() => setDidGoogleMapsWorkVisible(false)}
@@ -47,7 +47,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
         </View>
       </Modal>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent
         visible={successModalVisible}
         onRequestClose={handleCloseSuccessModal}

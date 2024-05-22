@@ -13,7 +13,7 @@ const GoogleMapsTutorial = ({
   transportMode,
 }) => (
   <Modal
-    animationType="slide"
+    animationType="fade"
     transparent
     visible={googleMapsTutorialModalVisible}
     onRequestClose={() => setGoogleMapsTutorialModalVisible(false)}
