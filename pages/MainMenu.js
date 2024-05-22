@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Modal, Animated,
+  StyleSheet, View, Text, Animated,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,7 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import ScrollIndicator from '../components/ScrollIndicator';
+import ImportantNotice from '../components/ImportantNotice'; // Import the modal
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
@@ -28,7 +29,7 @@ const MainMenu = () => {
   };
 
   // Function to set the tutorial flag
-  const setTutorialSeen = async () => {
+  const setImportantNoticeSeen = async () => {
     try {
       await AsyncStorage.setItem('hasSeenTutorial', 'true');
     } catch (error) {
@@ -62,40 +63,11 @@ const MainMenu = () => {
 
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View />
-          <View style={styles.resourceContainer}>
-            <Text style={styles.modalTitle} allowFontScaling={false}>
-              Important Notice
-            </Text>
-            <Text style={styles.modalText}>
-              {'\n'}
-              Please do not rely solely on this app for navigation.
-              {'\n'}
-              Check your route and stay alert.
-              {'\n'}
-              If you feel lost or unsure, ask for help.
-              {'\n'}
-            </Text>
-            <IconButton
-              iconSize={0}
-              title="I Understand"
-              buttonStyle={styles.primaryButton}
-              onPress={() => {
-                setModalVisible(false);
-                setTutorialSeen(); // Set the tutorial as seen
-              }}
-            />
-          </View>
-          <View />
-        </View>
-      </Modal>
+      <ImportantNotice
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        setImportantNoticeSeen={setImportantNoticeSeen}
+      />
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
