@@ -52,7 +52,11 @@ const SelectTransportation = () => {
       if (nextAppState === 'active') {
         const googleMapsLaunched = await AsyncStorage.getItem('googleMapsLaunched');
         if (googleMapsLaunched === 'true') {
-          setCrashPromptModalVisible(true);
+          const crashPromptShown = await AsyncStorage.getItem('crashPromptShown');
+          if (crashPromptShown !== 'true') {
+            setCrashPromptModalVisible(true);
+            await AsyncStorage.setItem('crashPromptShown', 'true');
+          }
           await AsyncStorage.removeItem('googleMapsLaunched');
         }
       }
