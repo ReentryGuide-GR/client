@@ -30,10 +30,12 @@ const GoogleMapsTutorial = ({
           if you see this button:
         </Text>
         <View style={styles.row}>
+          <Text style={styles.quote}>&quot;</Text>
           <View style={[styles.startContainer]}>
             <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
             <Text style={[styles.startText]}>Start</Text>
           </View>
+          <Text style={styles.quote}>&quot;</Text>
         </View>
         <Text style={styles.subtitle2}>
           Click on it to start navigation.
@@ -102,6 +104,13 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#2F2E41',
     width: '100%',
+    fontFamily: 'Manrope-Bold',
+  },
+  quote: {
+    marginBottom: 10,
+    marginHorizontal: 7,
+    fontSize: 25,
+    color: '#2F2E41',
     fontFamily: 'Manrope-Bold',
   },
   primaryButton: {
