@@ -25,6 +25,8 @@ const GoogleMapsTutorial = ({
           Google Maps Tutorial
         </Text>
         <Text style={styles.subtitle2}>
+          Just in case,
+          {'\n'}
           if you see this button:
         </Text>
         <View style={styles.row}>
