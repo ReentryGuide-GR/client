@@ -21,9 +21,21 @@
 1. Clone the repo:
    ```sh
    git clone git@github.com:ReentryGuide-GR/client.git
-2. Install NPM packages:
-    ```sh
-    npm install
+   
+2. Install Dependencies:
+   - Navigate to the project directory and install the dependencies using either npm or Yarn:
+
+     Using npm:
+     ```bash
+     cd client
+     npm install
+     ```
+
+     Using Yarn:
+     ```bash
+     cd client
+     yarn install
+     ```
 3. Running the App
     ```sh
     npx expo start
