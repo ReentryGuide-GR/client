@@ -27,13 +27,11 @@
 
      Using npm:
      ```bash
-     cd client
      npm install
      ```
 
      Using Yarn:
      ```bash
-     cd client
      yarn install
      ```
 3. Running the App
