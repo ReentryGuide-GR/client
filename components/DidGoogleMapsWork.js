@@ -37,7 +37,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
               buttonStyle={styles.primaryButton}
             />
             <IconButton
-              title="No, there was a problem"
+              title="No, there was a problem."
               iconSize={0}
               onPress={() => setDidGoogleMapsWorkVisible(false)}
               buttonStyle={styles.primaryButton}
