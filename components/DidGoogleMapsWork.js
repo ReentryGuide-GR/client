@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Modal, View, Text, StyleSheet,
+  Modal, View, Text, StyleSheet, Linking,
 } from 'react-native';
 import IconButton from './IconButton';
 
@@ -39,7 +39,10 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
             <IconButton
               title="No, there was a problem."
               iconSize={0}
-              onPress={() => setDidGoogleMapsWorkVisible(false)}
+              onPress={() => {
+                setDidGoogleMapsWorkVisible(false);
+                Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
+              }}
               buttonStyle={styles.primaryButton}
             />
           </View>
