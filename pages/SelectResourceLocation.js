@@ -50,7 +50,7 @@ const SelectResourceLocation = () => {
     } catch (error) {
       console.error('Failed to find location:', error.message);
       setIsOffline(true);
-      Alert.alert('Location Error', error.message);
+      // Alert.alert('Location Error', error.message);
     } finally {
       setIsLoading(false);
     }

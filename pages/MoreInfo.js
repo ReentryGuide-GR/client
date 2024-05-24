@@ -85,9 +85,8 @@ const MoreInfo = () => {
           <View style={styles.row}>
             <Text style={styles.timing}>
               {timeMessage}
-            </Text>
-            <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
-              {statusTime}
+              &nbsp;
+              <Text style={{ fontFamily: 'Manrope-Bold' }}>{statusTime}</Text>
             </Text>
           </View>
 
@@ -211,6 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     // fontWeight: '700',
     fontFamily: 'Manrope-Medium',
+    letterSpacing: 0.4, // increase letter spacing
   },
   card: {
     backgroundColor: '#fff',
