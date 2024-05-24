@@ -58,7 +58,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
         <View style={styles.mainContainer}>
           <View />
           <View style={styles.resourceContainer}>
-            <Text style={styles.title}>You are all set!</Text>
+            <Text style={styles.title} allowFontScaling={false}>You are all set!</Text>
             <IconButton
               title="Continue"
               iconSize={0}
