@@ -115,9 +115,8 @@ const ResourceLocation = () => {
           <View style={styles.row}>
             <Text style={styles.timing}>
               {timeMessage}
-            </Text>
-            <Text style={[styles.timing, { fontFamily: 'Manrope-Bold' }]}>
-              {statusTime}
+              &nbsp;
+              <Text style={{ fontFamily: 'Manrope-Bold' }}>{statusTime}</Text>
             </Text>
           </View>
 
