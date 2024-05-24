@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Modal, Image, Animated,
+  StyleSheet, View, Text, Animated, AppState,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from '../components/IconButton';
 import { openGoogleMaps } from '../utils';
+import GoogleMapsTutorial from '../components/GoogleMapsTutorial';
 import ScrollIndicator from '../components/ScrollIndicator';
+import DidGoogleMapsWork from '../components/DidGoogleMapsWork';
 
 const SelectTransportation = () => {
   const [transportMode, setTransportMode] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [googleMapsTutorialModalVisible, setGoogleMapsTutorialModalVisible] = useState(false);
   // For debugging purposes
-  // const [modalVisible, setModalVisible] = useState(true);
+  // const [googleMapsTutorialModalVisible, setGoogleMapsTutorialModalVisible] = useState(true);
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
+
+  const [didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible] = useState(false);
 
   const route = useRoute();
   const {
@@ -36,59 +40,50 @@ const SelectTransportation = () => {
     setTransportMode(mode); // Store the mode for later use
     const hasBeenShown = await AsyncStorage.getItem('modalShown');
     if (hasBeenShown !== 'true') {
-      setModalVisible(true);
+      setGoogleMapsTutorialModalVisible(true);
       await AsyncStorage.setItem('modalShown', 'true');
     } else {
+      await AsyncStorage.setItem('googleMapsLaunched', 'true');
       openGoogleMaps(location.coordinates.lat, location.coordinates.lng, mode);
     }
   };
 
+  useEffect(() => {
+    const handleAppStateChange = async (nextAppState) => {
+      if (nextAppState === 'active') {
+        const googleMapsLaunched = await AsyncStorage.getItem('googleMapsLaunched');
+        if (googleMapsLaunched === 'true') {
+          const crashPromptShown = await AsyncStorage.getItem('crashPromptShown');
+          if (crashPromptShown !== 'true') {
+            setDidGoogleMapsWorkVisible(true);
+            await AsyncStorage.setItem('crashPromptShown', 'true');
+          }
+          await AsyncStorage.removeItem('googleMapsLaunched');
+        }
+      }
+    };
+
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.mainContainer}>
-          <View />
-          <View style={styles.resourceContainer}>
-            <Text style={styles.title} allowFontScaling={false}>
-              Google Maps Tutorial
-            </Text>
-            <Text style={styles.subtitle2}>
-              if you see this button:
-            </Text>
-            <View style={styles.row}>
-              <View style={[styles.startContainer]}>
-                <Image source={require('../assets/navigation.png')} style={styles.startIcon} />
-                <Text style={[styles.startText]}>Start</Text>
-              </View>
-            </View>
-            <Text style={styles.subtitle2}>
-              Click on it to start navigation.
-              {'\n'}
-            </Text>
-            <IconButton
-              iconSize={0}
-              title="Continue"
-              buttonStyle={styles.primaryButton}
-              onPress={() => {
-                setModalVisible(false);
-                if (transportMode) {
-                  openGoogleMaps(
-                    location.coordinates.lat,
-                    location.coordinates.lng,
-                    transportMode,
-                  );
-                }
-              }}
-            />
-          </View>
-          <View />
-        </View>
-      </Modal>
+      <GoogleMapsTutorial
+        googleMapsTutorialModalVisible={googleMapsTutorialModalVisible}
+        setGoogleMapsTutorialModalVisible={setGoogleMapsTutorialModalVisible}
+        openGoogleMaps={openGoogleMaps}
+        location={location}
+        transportMode={transportMode}
+      />
+      <DidGoogleMapsWork
+        didGoogleMapsWorkVisible={didGoogleMapsWorkVisible}
+        setDidGoogleMapsWorkVisible={setDidGoogleMapsWorkVisible}
+      />
+
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
