@@ -166,6 +166,7 @@ const ResourceLocationsList = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             width: '100%',
+            minHeight: '100%',
           }}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: scrollY } } }],
