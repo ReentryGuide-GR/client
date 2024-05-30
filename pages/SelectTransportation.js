@@ -1,6 +1,7 @@
+// SelectTransportation.js
 import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet, View, Text, Animated, AppState,
+  StyleSheet, View, Text, Animated, AppState, Linking,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -133,7 +134,9 @@ const SelectTransportation = () => {
           <IconButton
             title="If Google Maps Crashes"
             buttonStyle={styles.secondaryButton}
-            onPress={() => handlePlanYourRoute('walking')}
+            onPress={() => {
+              Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
+            }}
             iconSize={0}
           />
         </View>
