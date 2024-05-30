@@ -129,9 +129,18 @@ const SelectTransportation = () => {
           </View>
 
         </View>
+        <View style={styles.resourceContainer}>
+          <IconButton
+            title="If Google Maps Crashes"
+            buttonStyle={styles.secondaryButton}
+            onPress={() => handlePlanYourRoute('walking')}
+            iconSize={0}
+          />
+        </View>
 
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle2}>How will you get there?</Text>
+
           <IconButton
             imageSource={require('../assets/walk.png')}
             title="By Walking"
@@ -180,7 +189,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: '5%',
@@ -245,6 +254,9 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#eae0d4',
+  },
+  secondaryButton: {
+    backgroundColor: '#fff',
   },
 
   title: {
