@@ -22,6 +22,10 @@ const SelectTransportation = () => {
   const [showCrashButton, setShowCrashButton] = useState(false);
   const [didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible] = useState(false);
 
+  const handleReportProblem = () => {
+    setShowCrashButton(true);
+  };
+
   const route = useRoute();
   const {
     location,
@@ -90,6 +94,7 @@ const SelectTransportation = () => {
       <DidGoogleMapsWork
         didGoogleMapsWorkVisible={didGoogleMapsWorkVisible}
         setDidGoogleMapsWorkVisible={setDidGoogleMapsWorkVisible}
+        onReportProblem={handleReportProblem}
       />
 
       <Animated.ScrollView

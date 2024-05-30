@@ -6,7 +6,11 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from './IconButton';
 
-const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible }) => {
+const DidGoogleMapsWork = ({
+  didGoogleMapsWorkVisible,
+  setDidGoogleMapsWorkVisible,
+  onReportProblem,
+}) => {
   const [successModalVisible, setSuccessModalVisible] = useState(false);
 
   const handleYes = () => {
@@ -17,6 +21,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
   const handleNo = async () => {
     setDidGoogleMapsWorkVisible(false);
     await AsyncStorage.setItem('googleMapsProblemReported', 'true');
+    onReportProblem();
     Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
   };
 
