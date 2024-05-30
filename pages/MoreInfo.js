@@ -3,10 +3,12 @@ import {
   StyleSheet, View, Text, Animated,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import * as Clipboard from 'expo-clipboard';
 import locationsBasic from '../database/locations_basic.json';
 import locationsDetails from '../database/locations_details.json';
 import { formatOpenHours } from '../utils';
 import ScrollIndicator from '../components/ScrollIndicator';
+import IconButton from '../components/IconButton';
 
 const MoreInfo = () => {
   // const navigation = useNavigation(); // used for navigation.navigate()
@@ -113,7 +115,17 @@ const MoreInfo = () => {
           </View>
         </View>
 
-        <View />
+        <View style={styles.resourceContainer}>
+          <IconButton
+            imageSource={require('../assets/content_copy.png')}
+            title="Copy Address"
+            buttonStyle={styles.primaryButton}
+            onPress={() => {
+              Clipboard.setString(locationDetails.address);
+            }}
+            iconSize={35}
+          />
+        </View>
 
       </Animated.ScrollView>
 
