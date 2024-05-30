@@ -36,6 +36,8 @@ const MoreInfo = () => {
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
 
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
     if (details) {
@@ -59,6 +61,14 @@ const MoreInfo = () => {
         )}
         onContentSizeChange={(width, height) => setContentHeight(height)}
       >
+        {showCopiedMessage && (
+          <View style={styles.isCopiedMessageContainer}>
+            <View style={styles.isCopiedMessage}>
+              <Text style={styles.isCopiedText}>Successfully Copied Address</Text>
+            </View>
+          </View>
+        )}
+
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle}>{subtitle}</Text>
           <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
@@ -122,6 +132,10 @@ const MoreInfo = () => {
             buttonStyle={styles.primaryButton}
             onPress={() => {
               Clipboard.setString(locationDetails.address);
+              setTimeout(() => {
+                setShowCopiedMessage(true);
+                setTimeout(() => setShowCopiedMessage(false), 2000);
+              }, 0); // Show the message after 2 seconds
             }}
             iconSize={35}
           />
@@ -157,6 +171,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingTop: '5%',
     paddingBottom: 20,
+  },
+  isCopiedMessageContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    zIndex: 1,
+  },
+  isCopiedMessage: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    padding: 10,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+  },
+  isCopiedText: {
+    color: 'white',
+    fontSize: 22,
+    fontFamily: 'Manrope-Bold',
   },
   resourceContainer: {
     justifyContent: 'center',
