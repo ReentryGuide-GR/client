@@ -161,7 +161,7 @@ const SelectTransportation = () => {
 
           <IconButton
             imageSource={require('../assets/walk.png')}
-            title="By Walking"
+            title="By Walk"
             buttonStyle={styles.primaryButton}
             onPress={() => handlePlanYourRoute('walking')}
           />
@@ -173,10 +173,17 @@ const SelectTransportation = () => {
             onPress={() => handlePlanYourRoute('transit')}
           />
 
+          {/* <IconButton
+            imageSource={require('../assets/bike.png')}
+            title="By Bike"
+            buttonStyle={styles.secondaryButton}
+            onPress={() => handlePlanYourRoute('bike')} // 'd' for driving
+          /> */}
+
           <IconButton
             imageSource={require('../assets/car.png')}
-            title="By Driving"
-            buttonStyle={styles.primaryButton}
+            title="By Drive"
+            buttonStyle={styles.secondaryButton}
             onPress={() => handlePlanYourRoute('driving')} // 'd' for driving
           />
         </View>
