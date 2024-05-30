@@ -37,6 +37,7 @@ const MoreInfo = () => {
   const [contentHeight, setContentHeight] = useState(0);
 
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+  const fadeAnim = useState(new Animated.Value(0))[0]; // Initial opacity value is 0
 
   useEffect(() => {
     const details = locationsBasic[category].find((detail) => detail.id === location.id);
@@ -62,13 +63,12 @@ const MoreInfo = () => {
         onContentSizeChange={(width, height) => setContentHeight(height)}
       >
         {showCopiedMessage && (
-          <View style={styles.isCopiedMessageContainer}>
+          <Animated.View style={[styles.isCopiedMessageContainer, { opacity: fadeAnim }]}>
             <View style={styles.isCopiedMessage}>
               <Text style={styles.isCopiedText}>Successfully Copied Address</Text>
             </View>
-          </View>
+          </Animated.View>
         )}
-
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle}>{subtitle}</Text>
           <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
@@ -132,10 +132,22 @@ const MoreInfo = () => {
             buttonStyle={styles.primaryButton}
             onPress={() => {
               Clipboard.setString(locationDetails.address);
-              setTimeout(() => {
-                setShowCopiedMessage(true);
-                setTimeout(() => setShowCopiedMessage(false), 2000);
-              }, 0); // Show the message after 2 seconds
+              setShowCopiedMessage(true);
+              Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
+              }).start(() => {
+                setTimeout(() => {
+                  Animated.timing(fadeAnim, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true,
+                  }).start(() => {
+                    setShowCopiedMessage(false);
+                  });
+                }, 1500);
+              });
             }}
             iconSize={35}
           />
