@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   Modal, View, Text, StyleSheet, Linking,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import IconButton from './IconButton';
 
 const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible }) => {
@@ -11,6 +12,12 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
   const handleYes = () => {
     setDidGoogleMapsWorkVisible(false);
     setSuccessModalVisible(true);
+  };
+
+  const handleNo = async () => {
+    setDidGoogleMapsWorkVisible(false);
+    await AsyncStorage.setItem('googleMapsProblemReported', 'true');
+    Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
   };
 
   const handleCloseSuccessModal = () => {
@@ -40,10 +47,7 @@ const DidGoogleMapsWork = ({ didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisib
             <IconButton
               title="No, there was a problem."
               iconSize={0}
-              onPress={() => {
-                setDidGoogleMapsWorkVisible(false);
-                Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
-              }}
+              onPress={handleNo}
               buttonStyle={styles.primaryButton}
             />
           </View>

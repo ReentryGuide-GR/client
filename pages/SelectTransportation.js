@@ -19,7 +19,7 @@ const SelectTransportation = () => {
   // Scroll Bar related code
   const scrollY = useState(new Animated.Value(0))[0];
   const [contentHeight, setContentHeight] = useState(0);
-
+  const [showCrashButton, setShowCrashButton] = useState(false);
   const [didGoogleMapsWorkVisible, setDidGoogleMapsWorkVisible] = useState(false);
 
   const route = useRoute();
@@ -50,6 +50,15 @@ const SelectTransportation = () => {
   };
 
   useEffect(() => {
+    const checkCrashPromptShown = async () => {
+      const crashPromptShown = await AsyncStorage.getItem('googleMapsProblemReported');
+      if (crashPromptShown === 'true') {
+        setShowCrashButton(true);
+      }
+    };
+
+    checkCrashPromptShown();
+
     const handleAppStateChange = async (nextAppState) => {
       if (nextAppState === 'active') {
         const googleMapsLaunched = await AsyncStorage.getItem('googleMapsLaunched');
@@ -63,9 +72,7 @@ const SelectTransportation = () => {
         }
       }
     };
-
     const subscription = AppState.addEventListener('change', handleAppStateChange);
-
     return () => {
       subscription.remove();
     };
@@ -130,16 +137,19 @@ const SelectTransportation = () => {
           </View>
 
         </View>
-        <View style={styles.resourceContainer}>
-          <IconButton
-            title="If Google Maps Crashes"
-            buttonStyle={styles.secondaryButton}
-            onPress={() => {
-              Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
-            }}
-            iconSize={0}
-          />
-        </View>
+
+        {showCrashButton && (
+          <View style={styles.resourceContainer}>
+            <IconButton
+              title="If Google Maps Crashes"
+              buttonStyle={styles.secondaryButton}
+              onPress={() => {
+                Linking.openURL('https://reentryguidegr.org/docs/troubleshooting');
+              }}
+              iconSize={0}
+            />
+          </View>
+        )}
 
         <View style={styles.resourceContainer}>
           <Text style={styles.subtitle2}>How will you get there?</Text>
