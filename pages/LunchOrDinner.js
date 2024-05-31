@@ -8,9 +8,11 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance, formatTime } from '../utils';
+import LoadingScreen from '../components/LoadingScreen';
 import locationsBasic from '../database/locations_basic.json';
 
 const LunchOrDinner = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation();
   // Sunday - 0, Monday - 1, ..., Saturday - 6
   const [today] = useState(new Date().getDay());
@@ -20,47 +22,49 @@ const LunchOrDinner = () => {
   const godsKitchenLocation = locationsBasic.meal.find((location) => location.id === '1');
 
   const handleLunchPress = async () => {
+    setIsLoading(true);
     const userLocation = await getUserLocation();
     if (!userLocation) {
       console.log('Could not fetch user location.');
       return;
     }
-
     const distanceToGodsKitchen = getDistance(
       userLocation.latitude,
       userLocation.longitude,
       godsKitchenLocation.coordinates.lat,
       godsKitchenLocation.coordinates.lng,
     );
+    const godsKitchenDistanceFormatted = (distanceToGodsKitchen * 0.621371).toFixed(1);
+    setIsLoading(false);
 
-    const godsKitchenDistance = (distanceToGodsKitchen * 0.621371).toFixed(1);
     navigation.navigate('ResourceLocation', {
       location: godsKitchenLocation,
       category: 'meal',
-      distance: godsKitchenDistance,
+      distance: godsKitchenDistanceFormatted,
       subtitle: 'Lunch Location: ',
     });
   };
 
   const handleDinnerPress = async () => {
+    setIsLoading(true);
     const userLocation = await getUserLocation();
     if (!userLocation) {
       console.log('Could not fetch user location.');
       return;
     }
-
     const distanceToMelTrotter = getDistance(
       userLocation.latitude,
       userLocation.longitude,
       melTrotterLocation.coordinates.lat,
       melTrotterLocation.coordinates.lng,
     );
+    const melTrotterDistanceFormatted = (distanceToMelTrotter * 0.621371).toFixed(1);
+    setIsLoading(false);
 
-    const melTrotterDistance = (distanceToMelTrotter * 0.621371).toFixed(1);
     navigation.navigate('ResourceLocation', {
       location: melTrotterLocation,
       category: 'meal',
-      distance: melTrotterDistance,
+      distance: melTrotterDistanceFormatted,
       subtitle: 'Dinner Location: ',
     });
   };
@@ -90,6 +94,10 @@ const LunchOrDinner = () => {
 
   if (!fontsLoaded) {
     return null; // Return null to render nothing while loading fonts
+  }
+
+  if (isLoading) {
+    return (<LoadingScreen />);
   }
 
   return (
