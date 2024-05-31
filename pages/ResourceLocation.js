@@ -87,7 +87,7 @@ const ResourceLocation = () => {
           <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
           <View style={styles.row}>
             <Text style={[
-              styles.requirementText,
+              styles.requirementsText,
               requirementsTextStyle,
               { backgroundColor: requirementIndicatorStyle.backgroundColor },
             ]}
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 20,
   },
-  requirementText: {
+  requirementsText: {
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
     // backgroundColor: '#eee',
