@@ -9,10 +9,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance, formatTime } from '../utils';
 import LoadingScreen from '../components/LoadingScreen';
+import RetryScreen from '../components/RetryScreen';
 import locationsBasic from '../database/locations_basic.json';
 
 const LunchOrDinner = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+  const [retryFunction, setRetryFunction] = useState(null);
   const navigation = useNavigation();
   // Sunday - 0, Monday - 1, ..., Saturday - 6
   const [today] = useState(new Date().getDay());
@@ -23,26 +26,35 @@ const LunchOrDinner = () => {
 
   const handleLunchPress = async () => {
     setIsLoading(true);
-    const userLocation = await getUserLocation();
-    if (!userLocation) {
-      console.log('Could not fetch user location.');
-      return;
-    }
-    const distanceToGodsKitchen = getDistance(
-      userLocation.latitude,
-      userLocation.longitude,
-      godsKitchenLocation.coordinates.lat,
-      godsKitchenLocation.coordinates.lng,
-    );
-    const godsKitchenDistanceFormatted = (distanceToGodsKitchen * 0.621371).toFixed(1);
-    setIsLoading(false);
+    setIsOffline(false); // Reset offline status at the beginning of the operation
 
-    navigation.navigate('ResourceLocation', {
-      location: godsKitchenLocation,
-      category: 'meal',
-      distance: godsKitchenDistanceFormatted,
-      subtitle: 'Lunch Location: ',
-    });
+    try {
+      const userLocation = await getUserLocation();
+      if (!userLocation) {
+        throw new Error('Unable to retrieve user location');
+      }
+
+      const distanceToGodsKitchen = getDistance(
+        userLocation.latitude,
+        userLocation.longitude,
+        godsKitchenLocation.coordinates.lat,
+        godsKitchenLocation.coordinates.lng,
+      );
+
+      const godsKitchenDistanceFormatted = (distanceToGodsKitchen * 0.621371).toFixed(1);
+      navigation.navigate('ResourceLocation', {
+        location: godsKitchenLocation,
+        category: 'meal',
+        distance: godsKitchenDistanceFormatted,
+        subtitle: 'Lunch Location: ',
+      });
+    } catch (error) {
+      console.log('Failed to get location:', error.message);
+      setIsOffline(true);
+      setRetryFunction(() => handleLunchPress);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDinnerPress = async () => {
@@ -98,6 +110,14 @@ const LunchOrDinner = () => {
 
   if (isLoading) {
     return (<LoadingScreen />);
+  }
+
+  if (isOffline) {
+    return (
+      <RetryScreen
+        retryFunction={retryFunction}
+      />
+    );
   }
 
   return (
