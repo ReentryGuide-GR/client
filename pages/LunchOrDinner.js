@@ -1,7 +1,7 @@
 // This Page is developed to fit Grand Rapids environment, where
 // "God’s Kitchen" is for lunch and "Mel Trotter" is for dinner.
 // These two locations are the only locations we know that doesn't require payments for food.
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet, View, Text, TouchableOpacity, Image,
 } from 'react-native';
@@ -12,8 +12,6 @@ import locationsBasic from '../database/locations_basic.json';
 
 const Page = () => {
   const navigation = useNavigation();
-  const [godsKitchenDistance, setGodsKitchenDistance] = useState(null);
-  const [melTrotterDistance, setMelTrotterDistance] = useState(null);
   // Sunday - 0, Monday - 1, ..., Saturday - 6
   const [today] = useState(new Date().getDay());
 
@@ -21,31 +19,51 @@ const Page = () => {
   const melTrotterLocation = locationsBasic.meal.find((location) => location.id === '2');
   const godsKitchenLocation = locationsBasic.meal.find((location) => location.id === '1');
 
-  useEffect(() => {
-    (async () => {
-      const userLocation = await getUserLocation();
-      if (!userLocation) {
-        console.log('Could not fetch user location.');
-        return;
-      }
+  const handleLunchPress = async () => {
+    const userLocation = await getUserLocation();
+    if (!userLocation) {
+      console.log('Could not fetch user location.');
+      return;
+    }
 
-      const distanceToMelTrotter = getDistance(
-        userLocation.latitude,
-        userLocation.longitude,
-        melTrotterLocation.coordinates.lat,
-        melTrotterLocation.coordinates.lng,
-      );
-      const distanceToGodsKitchen = getDistance(
-        userLocation.latitude,
-        userLocation.longitude,
-        godsKitchenLocation.coordinates.lat,
-        godsKitchenLocation.coordinates.lng,
-      );
-      // Convert km to miles and round to 1 decimal place
-      setMelTrotterDistance((distanceToMelTrotter * 0.621371).toFixed(1));
-      setGodsKitchenDistance((distanceToGodsKitchen * 0.621371).toFixed(1));
-    })();
-  }, []);
+    const distanceToGodsKitchen = getDistance(
+      userLocation.latitude,
+      userLocation.longitude,
+      godsKitchenLocation.coordinates.lat,
+      godsKitchenLocation.coordinates.lng,
+    );
+
+    const godsKitchenDistance = (distanceToGodsKitchen * 0.621371).toFixed(1);
+    navigation.navigate('ResourceLocation', {
+      location: godsKitchenLocation,
+      category: 'meal',
+      distance: godsKitchenDistance,
+      subtitle: 'Lunch Location: ',
+    });
+  };
+
+  const handleDinnerPress = async () => {
+    const userLocation = await getUserLocation();
+    if (!userLocation) {
+      console.log('Could not fetch user location.');
+      return;
+    }
+
+    const distanceToMelTrotter = getDistance(
+      userLocation.latitude,
+      userLocation.longitude,
+      melTrotterLocation.coordinates.lat,
+      melTrotterLocation.coordinates.lng,
+    );
+
+    const melTrotterDistance = (distanceToMelTrotter * 0.621371).toFixed(1);
+    navigation.navigate('ResourceLocation', {
+      location: melTrotterLocation,
+      category: 'meal',
+      distance: melTrotterDistance,
+      subtitle: 'Dinner Location: ',
+    });
+  };
 
   // Helper function to determine if a location is open today
   const isOpenToday = (location) => (location.openHours.some((oh) => oh.days.includes(today)));
@@ -84,15 +102,7 @@ const Page = () => {
 
         <TouchableOpacity
           style={styles.IconButton}
-          onPress={() => {
-            const godsKitchen = locationsBasic.meal.find((location) => location.id === '1');
-            navigation.navigate('ResourceLocation', {
-              location: godsKitchen,
-              category: 'meal',
-              distance: godsKitchenDistance,
-              subtitle: 'Lunch Location: ',
-            });
-          }}
+          onPress={handleLunchPress}
         >
           <View style={styles.row}>
             <Text style={styles.IconButtonText}>Lunch</Text>
@@ -103,15 +113,7 @@ const Page = () => {
 
         <TouchableOpacity
           style={styles.IconButton}
-          onPress={() => {
-            const melTrotter = locationsBasic.meal.find((location) => location.id === '2');
-            navigation.navigate('ResourceLocation', {
-              location: melTrotter,
-              category: 'meal',
-              distance: melTrotterDistance,
-              subtitle: 'Dinner Location: ',
-            });
-          }}
+          onPress={handleDinnerPress}
         >
           <View style={styles.row}>
             <Text style={styles.IconButtonText}>Dinner</Text>
