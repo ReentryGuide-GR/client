@@ -10,7 +10,7 @@ import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance, formatTime } from '../utils';
 import locationsBasic from '../database/locations_basic.json';
 
-const Page = () => {
+const LunchOrDinner = () => {
   const navigation = useNavigation();
   // Sunday - 0, Monday - 1, ..., Saturday - 6
   const [today] = useState(new Date().getDay());
@@ -128,7 +128,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default LunchOrDinner;
 
 const styles = StyleSheet.create({
   mainContainer: {
