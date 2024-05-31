@@ -112,11 +112,15 @@ const SelectTransportation = () => {
           <Text style={styles.subtitle}>{subtitle}</Text>
           <Text style={styles.title} allowFontScaling={false}>{location.name}</Text>
           <View style={styles.row}>
-            <View style={[styles.indicator, { backgroundColor: requirementIndicatorStyle }]}>
-              <Text style={[styles.openOrClosed, { color: requirementsTextStyle }]}>
-                {requirementsText}
-              </Text>
-            </View>
+            <Text style={[
+              styles.requirementsText,
+              {
+                color: requirementsTextStyle,
+                backgroundColor: requirementIndicatorStyle,
+              }]}
+            >
+              {requirementsText}
+            </Text>
           </View>
           <Text style={styles.distance}>
             ~&nbsp;
@@ -269,6 +273,14 @@ const styles = StyleSheet.create({
     color: '#2F2E41',
     width: '100%',
     fontFamily: 'Manrope-Bold',
+  },
+  requirementsText: {
+    fontSize: 17,
+    fontFamily: 'Manrope-Bold',
+    // backgroundColor: '#eee',
+    padding: 5,
+    borderRadius: 20,
+    paddingHorizontal: 10,
   },
   distance: {
     marginBottom: 8,
