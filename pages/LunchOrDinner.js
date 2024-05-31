@@ -59,26 +59,32 @@ const LunchOrDinner = () => {
 
   const handleDinnerPress = async () => {
     setIsLoading(true);
-    const userLocation = await getUserLocation();
-    if (!userLocation) {
-      console.log('Could not fetch user location.');
-      return;
+    setIsOffline(false); // Reset offline status at the beginning of the operation
+    try {
+      const userLocation = await getUserLocation();
+      if (!userLocation) {
+        throw new Error('Unable to retrieve user location');
+      }
+      const distanceToMelTrotter = getDistance(
+        userLocation.latitude,
+        userLocation.longitude,
+        melTrotterLocation.coordinates.lat,
+        melTrotterLocation.coordinates.lng,
+      );
+      const melTrotterDistanceFormatted = (distanceToMelTrotter * 0.621371).toFixed(1);
+      navigation.navigate('ResourceLocation', {
+        location: melTrotterLocation,
+        category: 'meal',
+        distance: melTrotterDistanceFormatted,
+        subtitle: 'Dinner Location: ',
+      });
+    } catch (error) {
+      console.log('Failed to get location:', error.message);
+      setIsOffline(true);
+      setRetryFunction(() => handleDinnerPress); // Set the retry function
+    } finally {
+      setIsLoading(false);
     }
-    const distanceToMelTrotter = getDistance(
-      userLocation.latitude,
-      userLocation.longitude,
-      melTrotterLocation.coordinates.lat,
-      melTrotterLocation.coordinates.lng,
-    );
-    const melTrotterDistanceFormatted = (distanceToMelTrotter * 0.621371).toFixed(1);
-    setIsLoading(false);
-
-    navigation.navigate('ResourceLocation', {
-      location: melTrotterLocation,
-      category: 'meal',
-      distance: melTrotterDistanceFormatted,
-      subtitle: 'Dinner Location: ',
-    });
   };
 
   // Helper function to determine if a location is open today
