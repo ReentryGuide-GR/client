@@ -102,11 +102,15 @@ const ResourceLocationsList = () => {
         <View style={styles.infoContainer}>
           <Text style={styles.title} allowFontScaling={false}>{item.name}</Text>
           <View style={styles.row}>
-            <View style={[styles.indicator, { backgroundColor: item.backgroundColor }]}>
-              <Text style={[styles.requirementText, { color: item.textColor }]}>
-                {item.requirementsText}
-              </Text>
-            </View>
+            <Text style={[
+              styles.requirementText,
+              {
+                color: item.textColor,
+                backgroundColor: item.backgroundColor,
+              }]}
+            >
+              {item.requirementsText}
+            </Text>
           </View>
           <Text style={styles.distance}>
             ~&nbsp;
@@ -290,6 +294,10 @@ const styles = StyleSheet.create({
   requirementText: {
     fontSize: 17,
     fontFamily: 'Manrope-Bold',
+    // backgroundColor: '#eee',
+    padding: 5,
+    borderRadius: 20,
+    paddingHorizontal: 10,
   },
   distance: {
     marginBottom: 8,

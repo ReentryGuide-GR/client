@@ -1,19 +1,22 @@
 // This Page is developed to fit Grand Rapids environment, where
 // "God’s Kitchen" is for lunch and "Mel Trotter" is for dinner.
 // These two locations are the only locations we know that doesn't require payments for food.
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet, View, Text, TouchableOpacity, Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { getUserLocation, getDistance, formatTime } from '../utils';
+import LoadingScreen from '../components/LoadingScreen';
+import RetryScreen from '../components/RetryScreen';
 import locationsBasic from '../database/locations_basic.json';
 
-const Page = () => {
+const LunchOrDinner = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+  const [retryFunction, setRetryFunction] = useState(null);
   const navigation = useNavigation();
-  const [godsKitchenDistance, setGodsKitchenDistance] = useState(null);
-  const [melTrotterDistance, setMelTrotterDistance] = useState(null);
   // Sunday - 0, Monday - 1, ..., Saturday - 6
   const [today] = useState(new Date().getDay());
 
@@ -21,31 +24,68 @@ const Page = () => {
   const melTrotterLocation = locationsBasic.meal.find((location) => location.id === '2');
   const godsKitchenLocation = locationsBasic.meal.find((location) => location.id === '1');
 
-  useEffect(() => {
-    (async () => {
+  const handleLunchPress = async () => {
+    setIsLoading(true);
+    setIsOffline(false); // Reset offline status at the beginning of the operation
+
+    try {
       const userLocation = await getUserLocation();
       if (!userLocation) {
-        console.log('Could not fetch user location.');
-        return;
+        throw new Error('Unable to retrieve user location');
       }
 
-      const distanceToMelTrotter = getDistance(
-        userLocation.latitude,
-        userLocation.longitude,
-        melTrotterLocation.coordinates.lat,
-        melTrotterLocation.coordinates.lng,
-      );
       const distanceToGodsKitchen = getDistance(
         userLocation.latitude,
         userLocation.longitude,
         godsKitchenLocation.coordinates.lat,
         godsKitchenLocation.coordinates.lng,
       );
-      // Convert km to miles and round to 1 decimal place
-      setMelTrotterDistance((distanceToMelTrotter * 0.621371).toFixed(1));
-      setGodsKitchenDistance((distanceToGodsKitchen * 0.621371).toFixed(1));
-    })();
-  }, []);
+
+      const godsKitchenDistanceFormatted = (distanceToGodsKitchen * 0.621371).toFixed(1);
+      navigation.navigate('ResourceLocation', {
+        location: godsKitchenLocation,
+        category: 'meal',
+        distance: godsKitchenDistanceFormatted,
+        subtitle: 'Lunch Location: ',
+      });
+    } catch (error) {
+      console.log('Failed to get location:', error.message);
+      setIsOffline(true);
+      setRetryFunction(() => handleLunchPress);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDinnerPress = async () => {
+    setIsLoading(true);
+    setIsOffline(false); // Reset offline status at the beginning of the operation
+    try {
+      const userLocation = await getUserLocation();
+      if (!userLocation) {
+        throw new Error('Unable to retrieve user location');
+      }
+      const distanceToMelTrotter = getDistance(
+        userLocation.latitude,
+        userLocation.longitude,
+        melTrotterLocation.coordinates.lat,
+        melTrotterLocation.coordinates.lng,
+      );
+      const melTrotterDistanceFormatted = (distanceToMelTrotter * 0.621371).toFixed(1);
+      navigation.navigate('ResourceLocation', {
+        location: melTrotterLocation,
+        category: 'meal',
+        distance: melTrotterDistanceFormatted,
+        subtitle: 'Dinner Location: ',
+      });
+    } catch (error) {
+      console.log('Failed to get location:', error.message);
+      setIsOffline(true);
+      setRetryFunction(() => handleDinnerPress); // Set the retry function
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Helper function to determine if a location is open today
   const isOpenToday = (location) => (location.openHours.some((oh) => oh.days.includes(today)));
@@ -74,6 +114,18 @@ const Page = () => {
     return null; // Return null to render nothing while loading fonts
   }
 
+  if (isLoading) {
+    return (<LoadingScreen />);
+  }
+
+  if (isOffline) {
+    return (
+      <RetryScreen
+        retryFunction={retryFunction}
+      />
+    );
+  }
+
   return (
     <View style={styles.mainContainer}>
       {/* Empty Component to make buttons in the middle of the screen but not on top,
@@ -84,15 +136,7 @@ const Page = () => {
 
         <TouchableOpacity
           style={styles.IconButton}
-          onPress={() => {
-            const godsKitchen = locationsBasic.meal.find((location) => location.id === '1');
-            navigation.navigate('ResourceLocation', {
-              location: godsKitchen,
-              category: 'meal',
-              distance: godsKitchenDistance,
-              subtitle: 'Lunch Location: ',
-            });
-          }}
+          onPress={handleLunchPress}
         >
           <View style={styles.row}>
             <Text style={styles.IconButtonText}>Lunch</Text>
@@ -103,15 +147,7 @@ const Page = () => {
 
         <TouchableOpacity
           style={styles.IconButton}
-          onPress={() => {
-            const melTrotter = locationsBasic.meal.find((location) => location.id === '2');
-            navigation.navigate('ResourceLocation', {
-              location: melTrotter,
-              category: 'meal',
-              distance: melTrotterDistance,
-              subtitle: 'Dinner Location: ',
-            });
-          }}
+          onPress={handleDinnerPress}
         >
           <View style={styles.row}>
             <Text style={styles.IconButtonText}>Dinner</Text>
@@ -126,7 +162,7 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default LunchOrDinner;
 
 const styles = StyleSheet.create({
   mainContainer: {
