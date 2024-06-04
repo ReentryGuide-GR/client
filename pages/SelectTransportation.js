@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   secondaryButton: {
     backgroundColor: '#fff',

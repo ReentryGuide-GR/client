@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   title: {
     marginBottom: 8,

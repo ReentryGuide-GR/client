@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
 
   title: {

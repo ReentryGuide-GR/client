@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   indicator: {
     padding: 5,

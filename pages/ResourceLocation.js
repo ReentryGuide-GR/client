@@ -214,12 +214,12 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 25,
   },
 
   tertiaryButton: {
-    // backgroundColor: '#eae0d4',
+    // backgroundColor: '#FDDEBA',
     padding: 25,
   },
 

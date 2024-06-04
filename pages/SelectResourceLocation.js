@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 25,
   },
 
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
 
   tertiaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 22,
   },
 

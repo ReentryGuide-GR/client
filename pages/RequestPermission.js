@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 38,
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
 
   title: {

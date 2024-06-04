@@ -165,13 +165,13 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   primaryButtonText: {
     color: '#000',
   },
   secondaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   secondaryButtonText: {
     color: '#000',
