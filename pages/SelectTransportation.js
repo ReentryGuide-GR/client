@@ -177,12 +177,12 @@ const SelectTransportation = () => {
             onPress={() => handlePlanYourRoute('transit')}
           />
 
-          {/* <IconButton
+          <IconButton
             imageSource={require('../assets/bike.png')}
             title="By Bike"
             buttonStyle={styles.secondaryButton}
             onPress={() => handlePlanYourRoute('bike')} // 'd' for driving
-          /> */}
+          />
 
           <IconButton
             imageSource={require('../assets/car.png')}
