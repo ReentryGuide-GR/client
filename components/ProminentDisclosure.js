@@ -19,7 +19,7 @@ const ProminentDisclosure = ({ modalVisible, setModalVisible, onAcknowledge }) =
         </Text>
         <Text style={styles.modalText}>
           {'\n'}
-          This app requires location access to provide better services. Please allow location access.
+          In order to calculate the distance, Please allow location access.
           {'\n'}
         </Text>
         <IconButton
