@@ -8,17 +8,25 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import ScrollIndicator from '../components/ScrollIndicator';
-import ImportantNotice from '../components/ImportantNotice'; // Import the modal
+import ImportantNotice from '../components/ImportantNotice';
+import ProminentDisclosure from '../components/ProminentDisclosure';
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [contentHeight, setContentHeight] = useState(0);
   const scrollY = useState(new Animated.Value(0))[0];
   const [modalVisible, setModalVisible] = useState(false);
+  const [disclosureVisible, setDisclosureVisible] = useState(false);
 
   // Function to check if the user has seen the tutorial
   const checkFirstLaunch = async () => {
     try {
+      const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
+      if (hasSeenDisclosure === null) {
+        setDisclosureVisible(true); // Show the disclosure modal on first launch
+      } else {
+        // requestLocationPermission();
+      }
       const hasSeenTutorial = await AsyncStorage.getItem('hasSeenTutorial');
       if (hasSeenTutorial === null) {
         setModalVisible(true);
@@ -37,6 +45,16 @@ const MainMenu = () => {
     }
   };
 
+  const handleLocationPermissionRequest = async () => {
+    try {
+      await AsyncStorage.setItem('hasSeenDisclosure', 'true'); // Set the flag
+      setDisclosureVisible(false);
+      requestLocationPermission();
+    } catch (error) {
+      console.error('Failed to set disclosure status', error);
+    }
+  };
+
   const requestLocationPermission = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -49,7 +67,9 @@ const MainMenu = () => {
 
   useEffect(() => {
     checkFirstLaunch();
-    requestLocationPermission();
+    if (!disclosureVisible) {
+      requestLocationPermission();
+    }
   }, []);
 
   const [fontsLoaded] = useFonts({
@@ -63,6 +83,12 @@ const MainMenu = () => {
 
   return (
     <View style={styles.container}>
+      <ProminentDisclosure
+        modalVisible={disclosureVisible}
+        setModalVisible={setDisclosureVisible}
+        onAcknowledge={handleLocationPermissionRequest}
+      />
+
       <ImportantNotice
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
