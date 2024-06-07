@@ -30,8 +30,8 @@ const MainMenu = () => {
       if (hasSeenDisclosure === null) {
         setDisclosureVisible(true); // Show the disclosure modal on first launch
       }
-      const hasSeenTutorial = await AsyncStorage.getItem('hasSeenTutorial');
-      if (hasSeenTutorial === null) {
+      const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
+      if (hasSeenImportantNotice === null) {
         setImportantNoticeVisible(true);
       }
     } catch (error) {
@@ -42,7 +42,7 @@ const MainMenu = () => {
   // Function to set the tutorial flag
   const setImportantNoticeSeen = async () => {
     try {
-      await AsyncStorage.setItem('hasSeenTutorial', 'true');
+      await AsyncStorage.setItem('hasSeenImportantNotice', 'true');
     } catch (error) {
       console.error('Failed to set tutorial status', error);
     }
