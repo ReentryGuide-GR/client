@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 import IconButton from './IconButton';
 
-const ImportantNotice = ({ modalVisible, setModalVisible, setImportantNoticeSeen }) => (
+const ImportantNotice = ({ importantNoticeVisible, setImportantNoticeVisible, setImportantNoticeSeen }) => (
   <Modal
     animationType="fade"
     transparent
-    visible={modalVisible}
-    onRequestClose={() => setModalVisible(false)}
+    visible={importantNoticeVisible}
+    onRequestClose={() => setImportantNoticeVisible(false)}
   >
     <View style={styles.modalContainer}>
       <View />
@@ -31,7 +31,7 @@ const ImportantNotice = ({ modalVisible, setModalVisible, setImportantNoticeSeen
           title="I Understand"
           buttonStyle={styles.primaryButton}
           onPress={() => {
-            setModalVisible(false);
+            setImportantNoticeVisible(false);
             setImportantNoticeSeen(); // Set the tutorial as seen
           }}
         />

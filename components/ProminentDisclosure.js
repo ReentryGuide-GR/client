@@ -4,12 +4,12 @@ import {
 } from 'react-native';
 import IconButton from './IconButton';
 
-const ProminentDisclosure = ({ modalVisible, setModalVisible, onAcknowledge }) => (
+const ProminentDisclosure = ({ disclosureVisible, setDisclosureVisible, onAcknowledge }) => (
   <Modal
     animationType="fade"
     transparent
-    visible={modalVisible}
-    onRequestClose={() => setModalVisible(false)}
+    visible={disclosureVisible}
+    onRequestClose={() => setDisclosureVisible(false)}
   >
     <View style={styles.modalContainer}>
       <View />
@@ -27,7 +27,7 @@ const ProminentDisclosure = ({ modalVisible, setModalVisible, onAcknowledge }) =
           title="OK"
           buttonStyle={styles.primaryButton}
           onPress={() => {
-            setModalVisible(false);
+            setDisclosureVisible(false);
             onAcknowledge(); // Acknowledge the permission request
           }}
         />

@@ -15,21 +15,24 @@ const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [contentHeight, setContentHeight] = useState(0);
   const scrollY = useState(new Animated.Value(0))[0];
-  const [modalVisible, setModalVisible] = useState(false);
+  const [importantNoticeVisible, setImportantNoticeVisible] = useState(false);
   const [disclosureVisible, setDisclosureVisible] = useState(false);
 
   // Function to check if the user has seen the tutorial
   const checkFirstLaunch = async () => {
     try {
+      const { status } = await Location.getForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setDisclosureVisible(true); // Show the disclosure modal if location permission is not granted
+        return;
+      }
       const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
       if (hasSeenDisclosure === null) {
         setDisclosureVisible(true); // Show the disclosure modal on first launch
-      } else {
-        // requestLocationPermission();
       }
       const hasSeenTutorial = await AsyncStorage.getItem('hasSeenTutorial');
       if (hasSeenTutorial === null) {
-        setModalVisible(true);
+        setImportantNoticeVisible(true);
       }
     } catch (error) {
       console.error('Failed to check tutorial status', error);
@@ -67,9 +70,9 @@ const MainMenu = () => {
 
   useEffect(() => {
     checkFirstLaunch();
-    if (!disclosureVisible) {
-      requestLocationPermission();
-    }
+    // if (!disclosureVisible) {
+    //   requestLocationPermission();
+    // }
   }, []);
 
   const [fontsLoaded] = useFonts({
@@ -84,14 +87,14 @@ const MainMenu = () => {
   return (
     <View style={styles.container}>
       <ProminentDisclosure
-        modalVisible={disclosureVisible}
-        setModalVisible={setDisclosureVisible}
+        disclosureVisible={disclosureVisible}
+        setDisclosureVisible={setDisclosureVisible}
         onAcknowledge={handleLocationPermissionRequest}
       />
 
       <ImportantNotice
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
+        importantNoticeVisible={importantNoticeVisible}
+        setImportantNoticeVisible={setImportantNoticeVisible}
         setImportantNoticeSeen={setImportantNoticeSeen}
       />
       <Animated.ScrollView
