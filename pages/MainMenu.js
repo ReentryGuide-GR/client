@@ -29,6 +29,7 @@ const MainMenu = () => {
       const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
       if (hasSeenDisclosure === null) {
         setDisclosureVisible(true); // Show the disclosure modal on first launch
+        return;
       }
       const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
       if (hasSeenImportantNotice === null) {
@@ -52,20 +53,25 @@ const MainMenu = () => {
     try {
       await AsyncStorage.setItem('hasSeenDisclosure', 'true'); // Set the flag
       setDisclosureVisible(false);
-      requestLocationPermission();
+
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setDisclosureVisible(true); // If permission is not granted, show the disclosure modal again
+        navigation.navigate('RequestPermission');
+        return;
+      }
+
+      const userLocation = await Location.getCurrentPositionAsync({});
+      console.log(userLocation);
+
+      // Check if the tutorial needs to be shown
+      const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
+      if (hasSeenImportantNotice === null) {
+        setImportantNoticeVisible(true);
+      }
     } catch (error) {
       console.error('Failed to set disclosure status', error);
     }
-  };
-
-  const requestLocationPermission = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      navigation.navigate('RequestPermission');
-      return;
-    }
-    const userLocation = await Location.getCurrentPositionAsync({});
-    console.log(userLocation);
   };
 
   useEffect(() => {
