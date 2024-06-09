@@ -23,7 +23,7 @@ const MainMenu = () => {
     try {
       const { status } = await Location.getForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setDisclosureVisible(true); // Show the disclosure modal if location permission is not granted
+        setDisclosureVisible(true);
         return;
       }
       const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
