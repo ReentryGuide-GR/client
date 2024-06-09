@@ -9,13 +9,13 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import ScrollIndicator from '../components/ScrollIndicator';
-import ImportantNotice from '../components/ImportantNotice';
+// import ImportantNotice from '../components/ImportantNotice';
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [contentHeight, setContentHeight] = useState(0);
   const scrollY = useState(new Animated.Value(0))[0];
-  const [importantNoticeVisible, setImportantNoticeVisible] = useState(false);
+  // const [importantNoticeVisible, setImportantNoticeVisible] = useState(false);
 
   // Function to check if the user has seen the tutorial
   const checkFirstLaunch = async () => {
@@ -32,7 +32,7 @@ const MainMenu = () => {
       }
       const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
       if (hasSeenImportantNotice === null) {
-        setImportantNoticeVisible(true);
+        navigation.navigate('ImportantNotice');
       }
     } catch (error) {
       console.error('Failed to check tutorial status', error);
@@ -66,12 +66,6 @@ const MainMenu = () => {
 
   return (
     <View style={styles.container}>
-
-      <ImportantNotice
-        importantNoticeVisible={importantNoticeVisible}
-        setImportantNoticeVisible={setImportantNoticeVisible}
-        setImportantNoticeSeen={setImportantNoticeSeen}
-      />
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
