@@ -35,7 +35,7 @@ const MainMenu = () => {
         navigation.navigate('ImportantNotice');
       }
     } catch (error) {
-      console.error('Failed to check tutorial status', error);
+      console.error('Failed to check checkFirstLaunch status', error);
     }
   };
 
