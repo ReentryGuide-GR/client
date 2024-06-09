@@ -1,3 +1,4 @@
+// MainMenu.js
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet, View, Text, Animated,
@@ -9,26 +10,24 @@ import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import ScrollIndicator from '../components/ScrollIndicator';
 import ImportantNotice from '../components/ImportantNotice';
-import ProminentDisclosure from '../components/ProminentDisclosure';
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [contentHeight, setContentHeight] = useState(0);
   const scrollY = useState(new Animated.Value(0))[0];
   const [importantNoticeVisible, setImportantNoticeVisible] = useState(false);
-  const [disclosureVisible, setDisclosureVisible] = useState(false);
 
   // Function to check if the user has seen the tutorial
   const checkFirstLaunch = async () => {
     try {
       const { status } = await Location.getForegroundPermissionsAsync();
       if (status !== 'granted') {
-        setDisclosureVisible(true);
+        navigation.navigate('ProminentDisclosure');
         return;
       }
       const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
       if (hasSeenDisclosure === null) {
-        setDisclosureVisible(true); // Show the disclosure modal on first launch
+        navigation.navigate('ProminentDisclosure');
         return;
       }
       const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
@@ -46,31 +45,6 @@ const MainMenu = () => {
       await AsyncStorage.setItem('hasSeenImportantNotice', 'true');
     } catch (error) {
       console.error('Failed to set tutorial status', error);
-    }
-  };
-
-  const handleLocationPermissionRequest = async () => {
-    try {
-      await AsyncStorage.setItem('hasSeenDisclosure', 'true'); // Set the flag
-      setDisclosureVisible(false);
-
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setDisclosureVisible(true); // If permission is not granted, show the disclosure modal again
-        navigation.navigate('RequestPermission');
-        return;
-      }
-
-      const userLocation = await Location.getCurrentPositionAsync({});
-      console.log(userLocation);
-
-      // Check if the tutorial needs to be shown
-      const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
-      if (hasSeenImportantNotice === null) {
-        setImportantNoticeVisible(true);
-      }
-    } catch (error) {
-      console.error('Failed to set disclosure status', error);
     }
   };
 
@@ -92,11 +66,6 @@ const MainMenu = () => {
 
   return (
     <View style={styles.container}>
-      <ProminentDisclosure
-        disclosureVisible={disclosureVisible}
-        setDisclosureVisible={setDisclosureVisible}
-        onAcknowledge={handleLocationPermissionRequest}
-      />
 
       <ImportantNotice
         importantNoticeVisible={importantNoticeVisible}
