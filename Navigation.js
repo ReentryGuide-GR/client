@@ -14,6 +14,7 @@ import ResourceLocationsList from './pages/ResourceLocationsList';
 import MoreInfo from './pages/MoreInfo';
 import RequestPermission from './pages/RequestPermission';
 import ProminentDisclosure from './pages/ProminentDisclosure';
+import ImportantNotice from './pages/ImportantNotice';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,7 @@ const Navigation = () => (
       <Stack.Screen name="MoreInfo" component={MoreInfo} />
       <Stack.Screen name="RequestPermission" component={RequestPermission} />
       <Stack.Screen name="ProminentDisclosure" component={ProminentDisclosure} />
+      <Stack.Screen name="ImportantNotice" component={ImportantNotice} />
     </Stack.Navigator>
   </NavigationContainer>
 );
