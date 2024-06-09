@@ -39,15 +39,6 @@ const MainMenu = () => {
     }
   };
 
-  // Function to set the tutorial flag
-  const setImportantNoticeSeen = async () => {
-    try {
-      await AsyncStorage.setItem('hasSeenImportantNotice', 'true');
-    } catch (error) {
-      console.error('Failed to set tutorial status', error);
-    }
-  };
-
   useEffect(() => {
     checkFirstLaunch();
     // if (!disclosureVisible) {
