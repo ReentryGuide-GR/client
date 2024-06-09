@@ -21,7 +21,7 @@ const Stack = createStackNavigator();
 const Navigation = () => (
   <NavigationContainer>
     <StatusBar
-      backgroundColor="#fff"
+      backgroundColor="#fafafa"
       barStyle="dark-content"
       // color="#000"
     />
