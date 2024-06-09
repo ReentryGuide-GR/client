@@ -13,6 +13,7 @@ import SelectTransportation from './pages/SelectTransportation';
 import ResourceLocationsList from './pages/ResourceLocationsList';
 import MoreInfo from './pages/MoreInfo';
 import RequestPermission from './pages/RequestPermission';
+import ProminentDisclosure from './pages/ProminentDisclosure';
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,7 @@ const Navigation = () => (
       <Stack.Screen name="ResourceLocationsList" component={ResourceLocationsList} />
       <Stack.Screen name="MoreInfo" component={MoreInfo} />
       <Stack.Screen name="RequestPermission" component={RequestPermission} />
+      <Stack.Screen name="ProminentDisclosure" component={ProminentDisclosure} />
     </Stack.Navigator>
   </NavigationContainer>
 );
