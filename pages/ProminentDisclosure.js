@@ -36,7 +36,7 @@ const ProminentDisclosure = ({ navigation }) => {
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
         <Text style={styles.title} allowFontScaling={false}>
-          Location Permission
+          Location Permission Needed
         </Text>
         <Text style={styles.text}>
           {'\n'}
@@ -46,7 +46,7 @@ const ProminentDisclosure = ({ navigation }) => {
         </Text>
         <IconButton
           iconSize={0}
-          title="OK"
+          title="Allow Location Access"
           buttonStyle={styles.primaryButton}
           onPress={handleAcknowledge}
         />

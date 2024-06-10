@@ -34,7 +34,7 @@ const RequestPermission = () => {
       <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
-        <Text style={styles.title} allowFontScaling={false}>Location permission</Text>
+        <Text style={styles.title} allowFontScaling={false}>Location permission Needed</Text>
         <IconButton
           title="Grant Permission"
           buttonStyle={styles.primaryButton}
