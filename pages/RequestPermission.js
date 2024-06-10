@@ -1,48 +1,29 @@
-// import React, { useEffect, useState, useRef } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  // StyleSheet, View, Text, Linking, AppState,
   StyleSheet, View, Text, Linking,
 } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
-// import * as Location from 'expo-location';
+import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import * as Location from 'expo-location';
 import IconButton from '../components/IconButton';
 
 const RequestPermission = () => {
-  // const navigation = useNavigation(); // used for navigation.navigate()
-  // const appState = useRef(AppState.currentState);
-  // const hasNavigated = useRef(false); // Add this line
+  const navigation = useNavigation(); // used for navigation.navigate()
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
 
-  // const checkPermissionAndNavigate = async () => {
-  //   const { status } = await Location.requestForegroundPermissionsAsync();
-  //   if (status === 'granted') {
-  //     if (!hasNavigated.current) { // Add this check
-  //       hasNavigated.current = true; // Set the flag
-  //       navigation.navigate('MainMenu');
-  //     }
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const handleAppStateChange = (nextAppState) => {
-  //     if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-  //       checkPermissionAndNavigate();
-  //     }
-  //     appState.current = nextAppState;
-  //   };
-
-  //   const subscription = AppState.addEventListener('change', handleAppStateChange);
-
-  //   return () => {
-  //     subscription.remove();
-  //   };
-  // }, []);
+  useEffect(() => {
+    const checkPermissionAndNavigate = async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === 'granted') {
+        navigation.navigate('MainMenu');
+      }
+    };
+    checkPermissionAndNavigate();
+  }, [navigation]);
 
   if (!fontsLoaded) {
     return null; // Return null to render nothing while loading fonts
@@ -65,7 +46,7 @@ const RequestPermission = () => {
           <Text style={styles.text}>2. Click &quot;Permissions&quot;</Text>
           <Text style={styles.text}>3. Click &quot;Location&quot;</Text>
           <Text style={styles.text}>4. Click &quot;Allow only while using the app&quot;</Text>
-          <Text style={styles.text}>5. Restart the App</Text>
+          <Text style={styles.text}>5. Restart the app if needed</Text>
         </View>
       </View>
       <View />

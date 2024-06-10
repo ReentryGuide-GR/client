@@ -40,7 +40,8 @@ const ProminentDisclosure = ({ navigation }) => {
         </Text>
         <Text style={styles.text}>
           {'\n'}
-          In order to calculate the distance, Please allow location access.
+          To find the distance to your chosen location,
+          please let us use your current location.
           {'\n'}
         </Text>
         <IconButton
