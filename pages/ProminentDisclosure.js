@@ -41,7 +41,7 @@ const ProminentDisclosure = ({ navigation }) => {
         <Text style={styles.text}>
           {'\n'}
           To find the distance to your chosen location,
-          please let us use your current location.
+          please allow our app to use your current location.
           {'\n'}
         </Text>
         <IconButton
