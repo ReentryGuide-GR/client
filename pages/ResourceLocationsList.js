@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start', // Align children to the top
     // alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     // paddingBottom: '5%',
   },
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pageTitleContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 1.0)',
+    backgroundColor: '#fafafa',
     paddingBottom: 15,
     top: 0,
     // elevation: 7,
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   indicator: {
     padding: 5,

@@ -1,41 +1,29 @@
 import React, { useEffect } from 'react';
 import {
-  StyleSheet, View, Text, Linking, AppState,
+  StyleSheet, View, Text, Linking,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
+import * as Location from 'expo-location';
 import IconButton from '../components/IconButton';
 
-const Page = () => {
+const RequestPermission = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
-  useEffect(() => {
-    const checkPermissionAndNavigate = async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status === 'granted') {
-        navigation.navigate('MainMenu');
-      }
-    };
-
-    const handleAppStateChange = (nextAppState) => {
-      if (nextAppState === 'active') {
-        checkPermissionAndNavigate();
-      }
-    };
-
-    // Subscribe to app state changes
-    const subscription = AppState.addEventListener('change', handleAppStateChange);
-
-    return () => {
-      // Unsubscribe to the app state changes when the component unmounts
-      subscription.remove();
-    };
-  }, [navigation]);
 
   const [fontsLoaded] = useFonts({
     'Manrope-SemiBold': require('../assets/fonts/Manrope-SemiBold.ttf'),
     'Manrope-Bold': require('../assets/fonts/Manrope-Bold.ttf'),
   });
+
+  useEffect(() => {
+    const checkPermissionAndNavigate = async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === 'granted') {
+        navigation.navigate('ImportantNotice');
+      }
+    };
+    checkPermissionAndNavigate();
+  }, [navigation]);
 
   if (!fontsLoaded) {
     return null; // Return null to render nothing while loading fonts
@@ -43,14 +31,11 @@ const Page = () => {
 
   return (
     <View style={styles.mainContainer}>
-      {/* Empty Component to make buttons in the middle of the screen but not on top,
-      easier for user to reach */}
       <View />
       <View style={styles.resourceContainer}>
         <Text style={styles.subtitle}>ReentryGuide GR</Text>
-        <Text style={styles.title} allowFontScaling={false}>Request permission</Text>
+        <Text style={styles.title} allowFontScaling={false}>Location permission Needed</Text>
         <IconButton
-          // imageSource={require('../assets/meal.png')}
           title="Grant Permission"
           buttonStyle={styles.primaryButton}
           iconSize={0}
@@ -60,23 +45,23 @@ const Page = () => {
           <Text style={styles.text}>1. Click &quot;Grant Permission&quot;</Text>
           <Text style={styles.text}>2. Click &quot;Permissions&quot;</Text>
           <Text style={styles.text}>3. Click &quot;Location&quot;</Text>
-          <Text style={styles.text}>4. Click &quot;Allow all the time&quot;</Text>
+          <Text style={styles.text}>4. Click &quot;Allow only while using the app&quot;</Text>
+          <Text style={styles.text}>5. Restart the app if needed</Text>
         </View>
       </View>
-
       <View />
     </View>
   );
 };
 
-export default Page;
+export default RequestPermission;
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -91,9 +76,8 @@ const styles = StyleSheet.create({
     marginTop: 38,
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
-
   title: {
     marginBottom: 38,
     color: '#2F2E41',

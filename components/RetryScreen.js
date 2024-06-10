@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 25,
   },
 });

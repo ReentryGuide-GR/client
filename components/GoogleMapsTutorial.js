@@ -41,6 +41,10 @@ const GoogleMapsTutorial = ({
           Click on it to start navigation.
           {'\n'}
         </Text>
+        <Text style={styles.subtitle2}>
+          If you feel confused, ask people for help!
+          {'\n'}
+        </Text>
         <IconButton
           iconSize={0}
           title="Continue"
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -114,7 +118,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Manrope-Bold',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   title: {
     marginBottom: 8,

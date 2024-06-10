@@ -41,16 +41,16 @@ const DidGoogleMapsWork = ({
           <View />
           <View style={styles.resourceContainer}>
             <Text style={styles.title} allowFontScaling={false}>
-              Did Google Maps Work Correctly?
+              Did Google Maps Crash?
             </Text>
             <IconButton
-              title="Yes, it worked fine."
+              title="It worked fine."
               iconSize={0}
               onPress={handleYes}
               buttonStyle={styles.primaryButton}
             />
             <IconButton
-              title="No, there was a problem."
+              title="There was a problem."
               iconSize={0}
               onPress={handleNo}
               buttonStyle={styles.primaryButton}
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
 });
 

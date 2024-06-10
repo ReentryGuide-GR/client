@@ -1,3 +1,4 @@
+// MainMenu.js
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet, View, Text, Animated,
@@ -8,48 +9,41 @@ import * as Location from 'expo-location';
 import { useFonts } from 'expo-font';
 import IconButton from '../components/IconButton';
 import ScrollIndicator from '../components/ScrollIndicator';
-import ImportantNotice from '../components/ImportantNotice'; // Import the modal
+// import ImportantNotice from '../components/ImportantNotice';
 
 const MainMenu = () => {
   const navigation = useNavigation(); // used for navigation.navigate()
   const [contentHeight, setContentHeight] = useState(0);
   const scrollY = useState(new Animated.Value(0))[0];
-  const [modalVisible, setModalVisible] = useState(false);
+  // const [importantNoticeVisible, setImportantNoticeVisible] = useState(false);
 
   // Function to check if the user has seen the tutorial
   const checkFirstLaunch = async () => {
     try {
-      const hasSeenTutorial = await AsyncStorage.getItem('hasSeenTutorial');
-      if (hasSeenTutorial === null) {
-        setModalVisible(true);
+      const { status } = await Location.getForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        navigation.navigate('ProminentDisclosure');
+        return;
+      }
+      const hasSeenDisclosure = await AsyncStorage.getItem('hasSeenDisclosure');
+      if (hasSeenDisclosure === null) {
+        navigation.navigate('ProminentDisclosure');
+        return;
+      }
+      const hasSeenImportantNotice = await AsyncStorage.getItem('hasSeenImportantNotice');
+      if (hasSeenImportantNotice === null) {
+        navigation.navigate('ImportantNotice');
       }
     } catch (error) {
-      console.error('Failed to check tutorial status', error);
+      console.error('Failed to check checkFirstLaunch status', error);
     }
-  };
-
-  // Function to set the tutorial flag
-  const setImportantNoticeSeen = async () => {
-    try {
-      await AsyncStorage.setItem('hasSeenTutorial', 'true');
-    } catch (error) {
-      console.error('Failed to set tutorial status', error);
-    }
-  };
-
-  const requestLocationPermission = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      navigation.navigate('RequestPermission');
-      return;
-    }
-    const userLocation = await Location.getCurrentPositionAsync({});
-    console.log(userLocation);
   };
 
   useEffect(() => {
     checkFirstLaunch();
-    requestLocationPermission();
+    // if (!disclosureVisible) {
+    //   requestLocationPermission();
+    // }
   }, []);
 
   const [fontsLoaded] = useFonts({
@@ -63,11 +57,6 @@ const MainMenu = () => {
 
   return (
     <View style={styles.container}>
-      <ImportantNotice
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        setImportantNoticeSeen={setImportantNoticeSeen}
-      />
       <Animated.ScrollView
         contentContainerStyle={styles.scrollContainer}
         showsVerticalScrollIndicator={false}
@@ -121,7 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -144,7 +133,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -165,13 +154,13 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   primaryButtonText: {
     color: '#000',
   },
   secondaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
   },
   secondaryButtonText: {
     color: '#000',

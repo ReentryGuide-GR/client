@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
     paddingTop: '5%',
     paddingBottom: 20,
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   primaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 25,
   },
 
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
 
   tertiaryButton: {
-    backgroundColor: '#eae0d4',
+    backgroundColor: '#FDDEBA',
     padding: 22,
   },
 

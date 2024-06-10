@@ -13,13 +13,15 @@ import SelectTransportation from './pages/SelectTransportation';
 import ResourceLocationsList from './pages/ResourceLocationsList';
 import MoreInfo from './pages/MoreInfo';
 import RequestPermission from './pages/RequestPermission';
+import ProminentDisclosure from './pages/ProminentDisclosure';
+import ImportantNotice from './pages/ImportantNotice';
 
 const Stack = createStackNavigator();
 
 const Navigation = () => (
   <NavigationContainer>
     <StatusBar
-      backgroundColor="#fff"
+      backgroundColor="#fafafa"
       barStyle="dark-content"
       // color="#000"
     />
@@ -41,6 +43,8 @@ const Navigation = () => (
       <Stack.Screen name="ResourceLocationsList" component={ResourceLocationsList} />
       <Stack.Screen name="MoreInfo" component={MoreInfo} />
       <Stack.Screen name="RequestPermission" component={RequestPermission} />
+      <Stack.Screen name="ProminentDisclosure" component={ProminentDisclosure} />
+      <Stack.Screen name="ImportantNotice" component={ImportantNotice} />
     </Stack.Navigator>
   </NavigationContainer>
 );
