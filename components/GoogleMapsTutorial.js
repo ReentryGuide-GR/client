@@ -41,6 +41,10 @@ const GoogleMapsTutorial = ({
           Click on it to start navigation.
           {'\n'}
         </Text>
+        <Text style={styles.subtitle2}>
+          If you feel confused, ask people for help!
+          {'\n'}
+        </Text>
         <IconButton
           iconSize={0}
           title="Continue"

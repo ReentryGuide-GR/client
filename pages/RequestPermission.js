@@ -19,7 +19,7 @@ const RequestPermission = () => {
     const checkPermissionAndNavigate = async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status === 'granted') {
-        navigation.navigate('MainMenu');
+        navigation.navigate('ImportantNotice');
       }
     };
     checkPermissionAndNavigate();
