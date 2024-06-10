@@ -46,7 +46,7 @@
       [
         "expo-location",
         {
-          "isAndroidBackgroundLocationEnabled": true
+          "isAndroidBackgroundLocationEnabled": false
         }
       ],
       "expo-font"
