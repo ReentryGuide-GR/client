@@ -25,6 +25,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.reentryreimagined.reentryguidegr",
+      "versionCode": 2, // Increment this value for new builds
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
