@@ -46,7 +46,7 @@ const RequestPermission = () => {
           <Text style={styles.text}>2. Click &quot;Permissions&quot;</Text>
           <Text style={styles.text}>3. Click &quot;Location&quot;</Text>
           <Text style={styles.text}>4. Click &quot;Allow only while using the app&quot;</Text>
-          <Text style={styles.text}>5. Restart the app if needed</Text>
+          <Text style={styles.text}>5. Go back, or restart the app if needed</Text>
         </View>
       </View>
       <View />

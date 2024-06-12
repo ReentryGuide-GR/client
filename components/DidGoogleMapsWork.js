@@ -53,7 +53,7 @@ const DidGoogleMapsWork = ({
               title="There was a problem."
               iconSize={0}
               onPress={handleNo}
-              buttonStyle={styles.primaryButton}
+              buttonStyle={styles.secondaryButton}
             />
           </View>
           <View />
@@ -106,6 +106,9 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     backgroundColor: '#FDDEBA',
+  },
+  secondaryButton: {
+    backgroundColor: '#FFF',
   },
 });
 
