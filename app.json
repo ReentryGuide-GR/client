@@ -2,7 +2,7 @@
   "expo": {
     "name": "ReentryGuide GR",
     "slug": "reentryguide-gr",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "orientation": "portrait",
     "icon": "assets/icon.png",
     "jsEngine": "hermes",
@@ -25,10 +25,12 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.reentryreimagined.reentryguidegr",
-      "versionCode": 3, // Increment this value for new builds
+      "versionCode": 4, // Increment this value for new builds
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
-        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "blockedPermissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_LOCATION"
       ]
