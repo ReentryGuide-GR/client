@@ -26,7 +26,7 @@ export const filterOpenLocations = (categoryData) => {
   const isOpen = (openHours) => {
     return openHours.some(hours => {
       if (hours.days.includes(currentDay)) {
-        const openTime = moment(hours.open, 'HH:mm');
+        const openTime = moment(openTime).subtract(1, 'hour');
         const closeTime = moment(hours.close, 'HH:mm');
         // Handle case where close time is past midnight
         if (closeTime.isBefore(openTime)) {
