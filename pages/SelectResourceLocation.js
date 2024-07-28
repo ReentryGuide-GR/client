@@ -1,7 +1,7 @@
 // SelectResourceLocation.js
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Alert,
+  StyleSheet, View, Text,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import RetryScreen from '../components/RetryScreen';
@@ -45,7 +45,7 @@ const SelectResourceLocation = () => {
           subtitle: `Closest ${title} Location: `,
         });
       } else {
-        Alert.alert('Error', 'No closest location found. Please try again later.');
+        navigation.navigate('AllLocationsClosed', { category, title });
       }
     } catch (error) {
       console.error('Failed to find location:', error.message);
