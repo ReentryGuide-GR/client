@@ -59,7 +59,7 @@ export const findClosestLocation = async (category, userLocation) => {
 
   const openLocations = filterOpenLocations(categoryData);
   if (!openLocations || openLocations.length === 0) {
-    Alert.alert('Error', 'No open locations found in the selected category');
+    console.log('No open locations found in the selected category');
     return null;
   }
 
