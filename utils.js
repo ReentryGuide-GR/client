@@ -23,25 +23,20 @@ export const filterOpenLocations = (categoryData) => {
   const currentDay = now.day(); // 0-6 where 0 is Sunday and 6 is Saturday
   const currentTime = now.format('HH:mm');
 
-  const isOpen = (openHours) => {
-    return openHours.some(hours => {
-      if (hours.days.includes(currentDay)) {
-        const openTime = moment(openTime).subtract(1, 'hour'); // Adjusted filter to include 1 hour before
-        const closeTime = moment(hours.close, 'HH:mm');
-        // Handle case where close time is past midnight
-        if (closeTime.isBefore(openTime)) {
-          return currentTime >= openTime.format('HH:mm') || currentTime <= closeTime.format('HH:mm');
-        } else {
-          return currentTime >= openTime.format('HH:mm') && currentTime <= closeTime.format('HH:mm');
-        }
+  const isOpen = (openHours) => openHours.some((hours) => {
+    if (hours.days.includes(currentDay)) {
+      const openTime = moment(hours.open, 'HH:mm').subtract(1, 'hour'); // Adjusted filter to include 1 hour before
+      const closeTime = moment(hours.close, 'HH:mm');
+      // Handle case where close time is past midnight
+      if (closeTime.isBefore(openTime)) {
+        return currentTime >= openTime.format('HH:mm') || currentTime <= closeTime.format('HH:mm');
       }
-      return false;
-    });
-  };
-
-  const openLocations = categoryData.filter(location => {
-    return isOpen(location.openHours || []);
+      return currentTime >= openTime.format('HH:mm') && currentTime <= closeTime.format('HH:mm');
+    }
+    return false;
   });
+
+  const openLocations = categoryData.filter((location) => isOpen(location.openHours || []));
 
   console.log('Current Day:', currentDay);
   console.log('Current Time:', currentTime);
