@@ -26,7 +26,14 @@ export const filterOpenLocations = (categoryData) => {
   const isOpen = (openHours) => {
     return openHours.some(hours => {
       if (hours.days.includes(currentDay)) {
-        return currentTime >= hours.open && currentTime <= hours.close;
+        const openTime = moment(hours.open, 'HH:mm');
+        const closeTime = moment(hours.close, 'HH:mm');
+        // Handle case where close time is past midnight
+        if (closeTime.isBefore(openTime)) {
+          return currentTime >= openTime.format('HH:mm') || currentTime <= closeTime.format('HH:mm');
+        } else {
+          return currentTime >= openTime.format('HH:mm') && currentTime <= closeTime.format('HH:mm');
+        }
       }
       return false;
     });
