@@ -19,7 +19,7 @@ const SelectResourceLocation = () => {
       <View style={styles.resourceContainer}>
         <Text style={styles.title} allowFontScaling={false}>
           All
-          {'\n'}
+          {' '}
           {title}
           {' '}
           <Text>
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row', // Aligns text in a row; default for Text, shown for clarity
     marginBottom: 18,
     color: '#2F2E41',
-    fontSize: 35,
-    fontWeight: '900',
+    fontSize: 30,
+    fontWeight: '700',
     width: '95%',
   },
   subtitle: {
