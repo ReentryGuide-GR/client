@@ -17,19 +17,53 @@ export const getDistance = (lat1, lng1, lat2, lng2) => {
   return R * c;
 };
 
+// Function to filter locations that are open at the current time
+export const filterOpenLocations = (categoryData) => {
+  const now = moment();
+  const currentDay = now.day(); // 0-6 where 0 is Sunday and 6 is Saturday
+  const currentTime = now.format('HH:mm');
+
+  const isOpen = (openHours) => openHours.some((hours) => {
+    if (hours.days.includes(currentDay)) {
+      const openTime = moment(hours.open, 'HH:mm').subtract(1, 'hour'); // Adjusted filter to include 1 hour before
+      const closeTime = moment(hours.close, 'HH:mm');
+      // Handle case where close time is past midnight
+      if (closeTime.isBefore(openTime)) {
+        return currentTime >= openTime.format('HH:mm') || currentTime <= closeTime.format('HH:mm');
+      }
+      return currentTime >= openTime.format('HH:mm') && currentTime <= closeTime.format('HH:mm');
+    }
+    return false;
+  });
+
+  const openLocations = categoryData.filter((location) => isOpen(location.openHours || []));
+
+  console.log('Current Day:', currentDay);
+  console.log('Current Time:', currentTime);
+  console.log('Filtered Locations:', openLocations);
+
+  return openLocations;
+};
+
 // Function to find the closest location from a category
 export const findClosestLocation = async (category, userLocation) => {
   if (!userLocation) {
     throw new Error('User location is not provided');
   }
 
-  const categoryData = locationsData[category.charAt(0) + category.slice(1)];
+  const categoryData = locationsData[category];
   if (!categoryData) {
     Alert.alert('Error', `Category ${category} not found`);
     return null;
   }
 
-  let closestLocation = categoryData[0];
+  const openLocations = filterOpenLocations(categoryData);
+  if (!openLocations || openLocations.length === 0) {
+    console.log('No open locations found in the selected category');
+    return null;
+  }
+
+  let closestLocation = openLocations[0];
   let shortestDistance = getDistance(
     userLocation.latitude,
     userLocation.longitude,
@@ -37,7 +71,7 @@ export const findClosestLocation = async (category, userLocation) => {
     closestLocation.coordinates.lng,
   );
 
-  categoryData.forEach((location) => {
+  openLocations.forEach((location) => {
     const distance = getDistance(
       userLocation.latitude,
       userLocation.longitude,

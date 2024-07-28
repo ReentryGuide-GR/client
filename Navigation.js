@@ -15,6 +15,7 @@ import MoreInfo from './pages/MoreInfo';
 import RequestPermission from './pages/RequestPermission';
 import ProminentDisclosure from './pages/ProminentDisclosure';
 import ImportantNotice from './pages/ImportantNotice';
+import AllLocationsClosed from './pages/AllLocationsClosed';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,7 @@ const Navigation = () => (
       <Stack.Screen name="RequestPermission" component={RequestPermission} />
       <Stack.Screen name="ProminentDisclosure" component={ProminentDisclosure} />
       <Stack.Screen name="ImportantNotice" component={ImportantNotice} />
+      <Stack.Screen name="AllLocationsClosed" component={AllLocationsClosed} />
     </Stack.Navigator>
   </NavigationContainer>
 );
