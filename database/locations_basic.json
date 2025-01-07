@@ -133,14 +133,6 @@
           "close": "15:00"
         }
       ]
-    },
-    {
-      "id": "3",
-      "name": "Calvin Theological Seminary",
-      "coordinates": {
-        "lat": 42.927983,
-        "lng": -85.5864931
-      }
     }
   ],
   "hygiene": [
